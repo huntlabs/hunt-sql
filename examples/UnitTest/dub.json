@@ -1,0 +1,14 @@
+{
+	"name": "unittest",
+    "authors": [
+        "Hunt Labs"
+    ],
+	"description": "All the unittests for hunt-http.",
+	"copyright": "Copyright (C) 2015-2018, HuntLabs.cn",
+	"license": "Apache-2.0",
+    "dependencies": {
+        "hunt-sql":{
+            "path":"../../../hunt-sql"
+        }
+    }
+}
