@@ -25,4 +25,7 @@ void main()
 
     new SchemaStatVisitorTest().test2();
 
+    new CreateTableSetSchemaDemo().test_schemaStat();
+
+    new MySqlSelectTest_1().test_0();
 }
