@@ -2,7 +2,10 @@ module test.Demo0;
 
 import hunt.sql.ast.SQLStatement;
 import hunt.sql.dialect.mysql.parser.MySqlStatementParser;
+import hunt.sql.dialect.postgresql.parser.PGSQLStatementParser;
+
 import hunt.sql.dialect.mysql.visitor.MySqlOutputVisitor;
+import hunt.sql.dialect.postgresql.visitor.PGOutputVisitor;
 import hunt.sql.parser.SQLStatementParser;
 import hunt.sql.GlobalInit;
 import hunt.sql.SQLUtils;
@@ -18,24 +21,24 @@ public class Demo0  {
     public void test_demo_0() {
         mixin(DO_TEST);
 
-        string sql = "SELECT UUID();";
+        string sql = "create table t(fid FLOA)";
 
         // parser得到AST
-        SQLStatementParser parser = new MySqlStatementParser(sql);
+        MySqlStatementParser parser = new MySqlStatementParser(sql);
         List!SQLStatement stmtList = parser.parseStatementList(); //
 
         // 将AST通过visitor输出
         StringBuilder _out = new StringBuilder();
         MySqlOutputVisitor visitor = new MySqlOutputVisitor(_out);
+        logDebug("--ast---> : ",SQLUtils.toSQLString(stmtList,DBType.MYSQL.name));
 
         foreach ( stmt ; stmtList) {
-        // logInfo("class : ",stmt.classinfo);
 
             stmt.accept(visitor);
             _out.append(";");
+            
         }
 
         logDebug("--visit-> : ",_out.toString());
-        logDebug("--ast---> : ",SQLUtils.toSQLString(stmtList,DBType.MYSQL.name));
     }
 }

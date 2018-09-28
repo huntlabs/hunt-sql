@@ -2076,7 +2076,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         }
 
         SQLOrderingSpecification type = x.getType();
-        if (type.name.length != 0) {
+        if (type !is null) {
             print(' ');
             print0(ucase ? type.name : type.name_lcase);
         }

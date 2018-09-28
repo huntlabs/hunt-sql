@@ -1606,7 +1606,7 @@ public class Lexer {
         } else if (ch == '/' && charAt(_pos + 1) == '*') {
             scanMultiLineComment();
         } else {
-            throw new Exception("IllegalStateException");
+            throw new Exception("Exception");
         }
     }
 

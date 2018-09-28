@@ -12,6 +12,7 @@ import test.base;
 import hunt.sql.SQLUtils;
 import hunt.sql.ast.SQLStatement;
 import hunt.sql.util.DBType;
+import hunt.sql.dialect.mysql.visitor.MySqlSchemaStatVisitor;
 
 class SchemaStatVisitorTest
 {
@@ -48,5 +49,25 @@ class SchemaStatVisitorTest
 
         logDebug(statVisitor.getTables()); //{t_org=Create}
         logDebug(statVisitor.getColumns()); // [t_org.fid, t_org.name]
+    }
+
+    public void test3()
+    {
+        mixin(DO_TEST);
+        string sql = "select name, age from t_user where id = 1";
+        string dbType = DBType.MYSQL.name;
+        List!SQLStatement stmtList = SQLUtils.parseStatements(sql, dbType);
+
+        foreach ( stmt ; stmtList) 
+        {
+            MySqlSchemaStatVisitor visitor = new MySqlSchemaStatVisitor();
+            stmt.accept(visitor);
+            //获取表名称
+            // logDebug("Tables : " , visitor.getCurrentTable());
+            //获取操作方法名称,依赖于表名称
+            logDebug("Manipulation : " , visitor.getTables());
+            //获取字段名称
+            logDebug("fields : " , visitor.getColumns());
+        }
     }
 }

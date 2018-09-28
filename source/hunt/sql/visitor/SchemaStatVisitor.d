@@ -1795,7 +1795,7 @@ public class SchemaStatVisitor : SQLASTVisitorAdapter {
 
         accept(x.getFrom());
 
-        accept(cast(List!SQLObject)(x.getItems()));
+        accept!SQLUpdateSetItem((x.getItems()));
         accept(x.getWhere());
 
         return false;

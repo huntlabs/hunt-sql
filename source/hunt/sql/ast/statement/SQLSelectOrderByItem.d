@@ -88,7 +88,7 @@ public  class SQLSelectOrderByItem : SQLObjectImpl , SQLReplaceable {
         size_t result = 1;
         result = prime * result + hashOf(collate);
         result = prime * result + ((expr is null) ? 0 : (cast(Object)expr).toHash());
-        result = prime * result + hashOf(type);
+        result = prime * result + (type is null) ? 0 : type.toHash();
         return result;
     }
 

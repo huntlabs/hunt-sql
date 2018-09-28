@@ -4,8 +4,8 @@ import std.uni;
 
 public class SQLOrderingSpecification {
 
-    public static  SQLOrderingSpecification ASC ;
-    public static  SQLOrderingSpecification DESC ;
+    public static  SQLOrderingSpecification ASC;
+    public static  SQLOrderingSpecification DESC;
 
     // static this()
     // {
@@ -20,6 +20,11 @@ public class SQLOrderingSpecification {
         this.name = name;
         this.name_lcase = toLower(name);
     }
+
+    override public size_t toHash() @trusted nothrow {
+        return hashOf(name);
+    }
+
 
     bool opEquals(const SQLOrderingSpecification h) nothrow {
         return name == h.name ;
