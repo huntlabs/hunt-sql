@@ -18,7 +18,7 @@ module test.SQLLexerTest;
 import hunt.logging;
 import hunt.container;
 import hunt.util.string;
-import hunt.sql.parser;
+import hunt.sql;
 import std.conv;
 import std.traits;
 import test.base;

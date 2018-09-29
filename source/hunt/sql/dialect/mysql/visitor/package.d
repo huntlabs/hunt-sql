@@ -8,3 +8,5 @@ public import hunt.sql.dialect.mysql.visitor.MySqlOutputVisitor;
 public import hunt.sql.dialect.mysql.visitor.MySqlSchemaStatVisitor;
 public import hunt.sql.dialect.mysql.visitor.MySqlShowColumnOutpuVisitor;
 public import hunt.sql.dialect.mysql.visitor.OracleToMySqlOutputVisitor;
+
+public import hunt.sql.dialect.mysql.visitor.transform;

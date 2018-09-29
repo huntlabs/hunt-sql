@@ -1,18 +1,10 @@
 module test.ExportParameters;
 
-import hunt.sql.ast.SQLStatement;
-import hunt.sql.dialect.mysql.parser.MySqlStatementParser;
-import hunt.sql.dialect.mysql.visitor.MySqlOutputVisitor;
-import hunt.sql.parser.SQLStatementParser;
-import hunt.sql.GlobalInit;
-import hunt.sql.SQLUtils;
-import hunt.sql.util.DBType;
+import hunt.sql;
 import hunt.logging;
 import hunt.container;
 import hunt.util.string;
 import std.stdio;
-import hunt.sql.visitor.ExportParameterVisitor;
-import hunt.sql.dialect.mysql.visitor.MySqlExportParameterVisitor;
 import test.base;
 
 public class ExportParameters  {

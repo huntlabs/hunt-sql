@@ -3,16 +3,11 @@ module test.SchemaStatVisitorTest;
 import hunt.logging;
 import hunt.container;
 import hunt.util.string;
-import hunt.sql.parser;
-import hunt.sql.visitor.SchemaStatVisitor;
+import hunt.sql;
 
 import std.conv;
 import std.traits;
 import test.base;
-import hunt.sql.SQLUtils;
-import hunt.sql.ast.SQLStatement;
-import hunt.sql.util.DBType;
-import hunt.sql.dialect.mysql.visitor.MySqlSchemaStatVisitor;
 
 class SchemaStatVisitorTest
 {

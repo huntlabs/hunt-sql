@@ -12,3 +12,7 @@ public import hunt.sql.dialect.mysql.ast.MySqlObjectImpl;
 public import hunt.sql.dialect.mysql.ast.MySqlPrimaryKey;
 public import hunt.sql.dialect.mysql.ast.MySqlUnique;
 public import hunt.sql.dialect.mysql.ast.MySqlUseIndexHint;
+
+public import hunt.sql.dialect.mysql.ast.clause;
+public import hunt.sql.dialect.mysql.ast.expr;
+public import hunt.sql.dialect.mysql.ast.statement;

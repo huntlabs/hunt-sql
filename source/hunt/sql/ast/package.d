@@ -39,3 +39,5 @@ public import hunt.sql.ast.SQLSubPartitionByList;
 public import hunt.sql.ast.SQLSubPartitionByRange;
 public import hunt.sql.ast.SQLWindow;
 
+public import hunt.sql.ast.expr;
+public import hunt.sql.ast.statement;
