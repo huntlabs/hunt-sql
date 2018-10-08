@@ -15,12 +15,17 @@ public class MySqlSelectTest_1  {
     public void test_0()  {
         mixin(DO_TEST);
 
-        string sql = "SELECT t1.name, t2.salary FROM employee t1, info t2  WHERE t1.name = t2.name order by name desc;";
+        string sql = "SELECT t1.name as tname, t2.salary FROM employee t1, info t2  WHERE t1.name = t2.name order by name desc;";
 
         MySqlStatementParser parser = new MySqlStatementParser(sql);
         List!SQLStatement statementList = parser.parseStatementList();
         SQLStatement statemen = statementList.get(0);
         // print(statementList);
+         SQLSelectStatement stmt = cast(SQLSelectStatement)statemen ;
+        SQLSelectQueryBlock queryBlock = stmt.getSelect().getQueryBlock();
+        foreach(selectItem; queryBlock.getSelectList()) {
+            logDebug(" selcet : ",selectItem.toString());
+        }
 
         assert(1 == statementList.size());
 

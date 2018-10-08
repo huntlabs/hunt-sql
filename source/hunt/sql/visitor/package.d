@@ -15,5 +15,6 @@ public import hunt.sql.visitor.SQLEvalVisitorImpl;
 public import hunt.sql.visitor.SQLEvalVisitorUtils;
 public import hunt.sql.visitor.SQLTransformVisitor;
 public import hunt.sql.visitor.VisitorFeature;
+public import hunt.sql.visitor.ExportTableAliasVisitor;
 
 public import hunt.sql.visitor.functions;
