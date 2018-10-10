@@ -28,6 +28,17 @@ public class SelectTest  {
 
         logDebug(aliasVisitor.getAliasMap());
 
+        foreach(k, v ; aliasVisitor.getAliasMap())
+        {
+            logDebug("table name : %s".format((cast(SQLExprTableSource)v).getName().getSimpleName()));
+        }
+
+        foreach(k, v ; aliasVisitor.getAliasMap())
+        {
+            foreach(p ; (cast(SQLExprTableSource)v).getHints())
+                logDebug("hint : %s".format(p));
+        }
+
 
         SchemaStatVisitor visitor = SQLUtils.createSchemaStatVisitor(DBType.MYSQL.name);
         statemen.accept(visitor);

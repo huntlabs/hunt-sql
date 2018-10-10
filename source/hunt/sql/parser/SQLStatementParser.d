@@ -118,7 +118,7 @@ public class SQLStatementParser : SQLParser {
         }
 
         for (;;) {
-            writeln("token : ",lexer.token);
+            // writeln("token : ",lexer.token);
             if (max != -1) {
                 if (statementList.size() >= max) {
                     return;

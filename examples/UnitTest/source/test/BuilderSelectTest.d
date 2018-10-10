@@ -25,6 +25,7 @@ public class BuilderSelectTest  {
         builder.orderBy("f1", "f2 desc");
         builder.whereAnd("f1 > 0");
 
+
         string sql = builder.toString();
         logDebug("builder result : ",sql);
         assert("SELECT f1, f2, f3 AS F3, COUNT(*) AS cnt\n" ~

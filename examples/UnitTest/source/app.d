@@ -17,6 +17,8 @@ void main()
 
     // new ExportParameters().test_export_parameters();
 
+    new ExportParameters().test_sql_format();
+
     // new SQLLexerTest().test_lexer();
 
     // new SQLLexerTest().test_lexer2();
@@ -33,9 +35,9 @@ void main()
 
     // new MySqlUpdateTest_1().test_0();
 
-    // new BuilderSelectTest().test_0();
+    new BuilderSelectTest().test_0();
 
-    new SelectTest().test_0();
+    // new SelectTest().test_0();
 
-    new MySqlVisitorDemo().test_for_demo();
+    // new MySqlVisitorDemo().test_for_demo();
 }
