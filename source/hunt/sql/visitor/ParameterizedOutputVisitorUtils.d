@@ -33,7 +33,7 @@ import hunt.sql.util.FnvHash;
 import hunt.sql.util.DBType;
 import hunt.sql.visitor.ParameterizedVisitor;
 import hunt.sql.visitor.VisitorFeature;
-import hunt.util.string;
+import hunt.string;
 import hunt.sql.visitor.SQLASTOutputVisitor;
 
 public class ParameterizedOutputVisitorUtils {

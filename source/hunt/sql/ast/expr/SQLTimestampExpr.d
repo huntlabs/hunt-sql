@@ -7,7 +7,7 @@ import hunt.container;
 import hunt.sql.ast.SQLObject;
 import hunt.sql.ast.statement.SQLCharacterDataType;
 import hunt.sql.SQLUtils;
-import hunt.math;
+import hunt.lang;
 import hunt.sql.util.String;
 
 public class SQLTimestampExpr : SQLExprImpl , SQLValuableExpr {

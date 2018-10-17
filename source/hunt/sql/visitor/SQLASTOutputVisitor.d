@@ -51,9 +51,10 @@ import std.conv;
 import std.string;
 import hunt.container;
 import hunt.sql.util.String;
-import hunt.util.string;
-import hunt.math;
+import hunt.string;
+import hunt.lang;
 import hunt.sql.visitor.ExportParameterVisitorUtils;
+import hunt.math;
 
 
 public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, PrintableVisitor {

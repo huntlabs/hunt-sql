@@ -24,7 +24,7 @@ import hunt.sql.parser.Lexer;
 import hunt.container;
 import hunt.sql.parser.SQLSelectParser;
 import hunt.sql.parser.SQLParserUtils;
-import hunt.util.string;
+import hunt.string;
 import hunt.sql.parser.Token;
 import std.algorithm.searching;
 import hunt.logging;

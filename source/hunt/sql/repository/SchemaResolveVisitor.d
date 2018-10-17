@@ -22,7 +22,7 @@ import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.repository.SchemaRepository;
 
 import hunt.container;
-import hunt.math;
+import hunt.lang;
 /**
  * Created by wenshao on 03/08/2017.
  */

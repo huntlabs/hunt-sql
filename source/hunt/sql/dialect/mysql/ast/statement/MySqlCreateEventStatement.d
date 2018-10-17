@@ -23,7 +23,7 @@ import hunt.sql.dialect.mysql.visitor.MySqlASTVisitor;
 import hunt.sql.util.DBType;
 import hunt.sql.dialect.mysql.ast.statement.MySqlStatementImpl;
 import hunt.sql.dialect.mysql.ast.statement.MySqlEventSchedule;
-import hunt.math;
+import hunt.lang;
 
 public class MySqlCreateEventStatement : MySqlStatementImpl , SQLAlterStatement {
 

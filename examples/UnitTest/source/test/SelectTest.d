@@ -2,7 +2,7 @@ module test.SelectTest;
 
 import hunt.logging;
 import hunt.container;
-import hunt.util.string;
+import hunt.string;
 import hunt.sql;
 
 import std.conv;
@@ -15,7 +15,7 @@ public class SelectTest  {
     public void test_0()  {
         mixin(DO_TEST);
 
-        string sql = "SELECT t1.name as tname, t2.salary FROM employee t1 left join info t2  on t1.name = t2.name where t1.id > 5 order by t1.id desc;";
+        string sql = "SELECT t1.name as tname, t2.salary FROM employee t1 left join t1.ok t2  on t1.name = t2.name where t1.id > 5 order by t1.id desc;";
         logDebug("SQL : ",sql);
 
         MySqlStatementParser parser = new MySqlStatementParser(sql);
@@ -31,12 +31,6 @@ public class SelectTest  {
         foreach(k, v ; aliasVisitor.getAliasMap())
         {
             logDebug("table name : %s".format((cast(SQLExprTableSource)v).getName().getSimpleName()));
-        }
-
-        foreach(k, v ; aliasVisitor.getAliasMap())
-        {
-            foreach(p ; (cast(SQLExprTableSource)v).getHints())
-                logDebug("hint : %s".format(p));
         }
 
 

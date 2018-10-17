@@ -36,8 +36,8 @@ import hunt.sql.util.DBType;
 import hunt.sql.dialect.postgresql.parser.PGExprParser;
 import hunt.sql.dialect.postgresql.parser.PGSelectParser;
 import hunt.sql.ast.SQLObjectImpl;
-import hunt.math;
-import hunt.util.string;
+import hunt.lang;
+import hunt.string;
 import hunt.container;
 import std.uni;
 

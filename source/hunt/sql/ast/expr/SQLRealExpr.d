@@ -3,7 +3,7 @@ import hunt.sql.ast.expr.SQLValuableExpr;
 import hunt.sql.ast.expr.SQLNumericLiteralExpr;
 import hunt.container;
 import hunt.sql.visitor.SQLASTVisitor;
-import hunt.math;
+import hunt.lang;
 import hunt.sql.ast.SQLObject;
 
 public class SQLRealExpr : SQLNumericLiteralExpr , SQLValuableExpr {

@@ -45,8 +45,8 @@ import hunt.sql.parser;
 import hunt.sql.util.FnvHash;
 import hunt.sql.dialect.mysql.parser.MySqlExprParser;
 import hunt.sql.dialect.mysql.parser.MySqlSelectParser;
-import hunt.util.string;
-import hunt.math;
+import hunt.string;
+import hunt.lang;
 import hunt.container;
 import hunt.sql.ast.SQLObject;
 

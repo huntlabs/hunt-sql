@@ -22,7 +22,7 @@ import hunt.sql.ast.SQLStatementImpl;
 import hunt.sql.ast.expr.SQLPropertyExpr;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.statement.SQLAlterStatement;
-import hunt.math;
+import hunt.lang;
 import hunt.container;
 
 public class SQLAlterSequenceStatement : SQLStatementImpl , SQLAlterStatement {

@@ -24,13 +24,13 @@ import  hunt.sql.parser.LayoutCharacters;
 
 import hunt.container;
 import std.conv;
-import hunt.util.string;
+import hunt.string;
 import hunt.sql.parser;
 import hunt.sql.util.FnvHash;
 import hunt.sql.util.DBType;
 import std.string;
 
-alias  hunt_charAt = hunt.util.string.common.charAt;
+alias  hunt_charAt = hunt.string.common.charAt;
 
 public class MySqlLexer : Lexer {
     public static SymbolTable quoteTable;

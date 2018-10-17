@@ -42,7 +42,7 @@ import hunt.sql.parser.SQLSelectParser;
 import hunt.sql.parser.Token;
 import hunt.sql.dialect.mysql.parser.MySqlExprParser;
 import hunt.sql.ast.SQLObject;
-import hunt.math;
+import hunt.lang;
 
 public class MySqlSelectIntoParser : SQLSelectParser {
 	private List!(SQLExpr) argsList;

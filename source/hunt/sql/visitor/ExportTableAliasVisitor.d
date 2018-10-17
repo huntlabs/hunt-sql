@@ -18,7 +18,7 @@ module hunt.sql.visitor.ExportTableAliasVisitor;
 import hunt.sql.visitor.SQLASTVisitorAdapter;
 import hunt.sql.ast.statement.SQLTableSource;
 import hunt.sql.ast.statement.SQLExprTableSource;
-import hunt.util.string;
+import hunt.string;
 import hunt.container;
 
  public  class ExportTableAliasVisitor : SQLASTVisitorAdapter {

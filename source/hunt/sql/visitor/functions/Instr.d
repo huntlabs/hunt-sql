@@ -22,9 +22,9 @@ import hunt.sql.ast.expr.SQLMethodInvokeExpr;
 import hunt.sql.visitor.SQLEvalVisitor;
 import hunt.sql.visitor.functions.Function;
 import std.string;
-import hunt.util.string;
+import hunt.string;
 import hunt.sql.util.String;
-import hunt.math;
+import hunt.lang;
 
 public class Instr : Function {
     public  static Instr instance;

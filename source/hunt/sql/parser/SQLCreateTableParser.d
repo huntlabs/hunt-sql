@@ -26,7 +26,7 @@ import hunt.sql.ast.statement.SQLConstraint;
 import hunt.sql.ast.statement.SQLTableElement;
 import hunt.sql.parser.Token;
 import hunt.sql.parser.ParserException;
-import hunt.util.string;
+import hunt.string;
 import hunt.sql.parser.SQLDDLParser;
 import hunt.sql.parser.SQLExprParser;
 

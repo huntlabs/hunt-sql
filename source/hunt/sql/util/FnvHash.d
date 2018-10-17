@@ -1,6 +1,6 @@
 module hunt.sql.util.FnvHash;
 
-import hunt.util.string;
+import hunt.string;
 
 public  class FnvHash {
     public  enum  long BASIC = 0xcbf29ce484222325L;

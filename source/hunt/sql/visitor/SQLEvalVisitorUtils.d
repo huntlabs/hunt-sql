@@ -22,9 +22,9 @@ import  hunt.sql.visitor.SQLEvalVisitor;
 // import  hunt.sql.visitor.SQLEvalVisitor.EVAL_VALUE_NULL;
 
 
-import hunt.util.exception;
+import hunt.lang.exception;
 import hunt.sql.util.String;
-import hunt.util.string;
+import hunt.string;
 import std.random;
 import hunt.container;
 import std.uni;
@@ -79,8 +79,9 @@ import hunt.sql.util.Utils;
 // import entity.wall.spi.WallVisitorUtils;
 // import entity.wall.spi.WallVisitorUtils.WallConditionContext;
 import hunt.sql.visitor.SQLEvalVisitorImpl;
-import hunt.math;
+import hunt.lang;
 import std.datetime;
+import hunt.math;
 
 public class SQLEvalVisitorUtils {
 

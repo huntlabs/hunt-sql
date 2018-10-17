@@ -23,7 +23,7 @@ import hunt.sql.ast.SQLObject;
 import hunt.sql.ast.SQLStatementImpl;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.statement.SQLExprTableSource;
-import hunt.math;
+import hunt.lang;
 
 public class SQLTruncateStatement : SQLStatementImpl {
 

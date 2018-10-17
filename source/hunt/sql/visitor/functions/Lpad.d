@@ -16,9 +16,9 @@
 module hunt.sql.visitor.functions.Lpad;
 
 // import hunt.sql.visitor.SQLEvalVisitor.EVAL_VALUE;
-import hunt.math;
+import hunt.lang;
 import hunt.sql.util.String;
-import hunt.util.string;
+import hunt.string;
 import hunt.container;
 import std.conv;
 import std.uni;

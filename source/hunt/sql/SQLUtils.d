@@ -79,7 +79,7 @@ import hunt.sql.ast.statement.SQLCreateTableStatement;
 import hunt.sql.util;
 import hunt.logging;
 import hunt.container;
-import hunt.util.string;
+import hunt.string;
 import std.array;
 
 public class SQLUtils {

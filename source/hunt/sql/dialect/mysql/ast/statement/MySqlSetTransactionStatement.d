@@ -18,7 +18,7 @@ module hunt.sql.dialect.mysql.ast.statement.MySqlSetTransactionStatement;
 import hunt.sql.ast.SQLObject;
 import hunt.sql.dialect.mysql.visitor.MySqlASTVisitor;
 import hunt.sql.dialect.mysql.ast.statement.MySqlStatementImpl;
-import hunt.math;
+import hunt.lang;
 
 import hunt.container;
 

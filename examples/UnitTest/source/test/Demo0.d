@@ -3,7 +3,7 @@ module test.Demo0;
 import hunt.sql;
 import hunt.logging;
 import hunt.container;
-import hunt.util.string;
+import hunt.string;
 import std.stdio;
 import test.base;
 

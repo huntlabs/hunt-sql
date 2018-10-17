@@ -28,18 +28,19 @@ import hunt.sql.util.DBType;
 import hunt.sql.parser.ParserException;
 import hunt.sql.util.FnvHash;
 import hunt.sql.util.Utils;
-import hunt.util.exception;
+import hunt.lang.exception;
 
 import hunt.container;
-import hunt.util.string;
+import hunt.string;
 import std.string;
 import std.bigint;
 import std.xml;
 import std.uni;
 import std.conv;
 import std.algorithm.mutation;
+import hunt.lang;
+import hunt.string;
 import hunt.math;
-import hunt.util.string;
 
 
 public class Lexer {

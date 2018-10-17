@@ -21,7 +21,7 @@ import hunt.sql.ast.expr.SQLPropertyExpr;
 import hunt.util.serialize;
 import hunt.sql.util.FnvHash;
 import hunt.sql.util.DBType;
-import hunt.util.string;
+import hunt.string;
 import hunt.container;
 import hunt.sql.util.String;
 import std.string;

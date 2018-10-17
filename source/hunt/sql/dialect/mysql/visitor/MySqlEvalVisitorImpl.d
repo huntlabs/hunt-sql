@@ -40,7 +40,7 @@ import hunt.sql.visitor.SQLEvalVisitor;
 import hunt.sql.visitor.SQLEvalVisitorUtils;
 import hunt.sql.visitor.functions.Function;
 import hunt.sql.dialect.mysql.visitor.MySqlASTVisitorAdapter;
-import hunt.math;
+import hunt.lang;
 
 public class MySqlEvalVisitorImpl : MySqlASTVisitorAdapter , SQLEvalVisitor {
     alias visit = MySqlASTVisitorAdapter.visit;

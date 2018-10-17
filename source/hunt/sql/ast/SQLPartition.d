@@ -11,7 +11,7 @@ import hunt.sql.visitor.SQLASTVisitor;
 
 
 import hunt.container;
-import hunt.math;
+import hunt.lang;
 
 public interface OracleSegmentAttributes : SQLObject {
 

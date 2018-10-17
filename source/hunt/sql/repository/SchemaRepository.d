@@ -40,7 +40,7 @@ import hunt.sql.repository.SchemaResolveVisitor;
 import hunt.container;
 import std.uni;
 import hunt.sql.repository.SchemaObjectImpl;
-import hunt.math;
+import hunt.lang;
 /**
  * Created by wenshao on 03/06/2017.
  */

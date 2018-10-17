@@ -21,8 +21,8 @@ import hunt.sql.parser.Lexer;
 import hunt.sql.parser.Token;
 import hunt.sql.parser.SQLParserFeature;
 import hunt.sql.parser.ParserException;
-import hunt.util.string;
-import hunt.math;
+import hunt.string;
+import hunt.lang;
 
 public class SQLParser {
     protected  Lexer lexer;

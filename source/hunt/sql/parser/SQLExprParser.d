@@ -31,13 +31,14 @@ import hunt.sql.parser.SQLSelectParser;
 import hunt.sql.parser.Token;
 import hunt.sql.ast.SQLObject;
 import hunt.sql.util.Utils;
-import hunt.math;
+import hunt.lang;
 import hunt.sql.parser.ParserException;
-import hunt.util.string;
+import hunt.string;
 import std.algorithm.searching;
 import hunt.sql.parser.SQLParserFeature;
-import hunt.util.exception;
+import hunt.lang.exception;
 import hunt.sql.util.String;
+import hunt.math;
 
 public class SQLExprParser : SQLParser {
 

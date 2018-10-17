@@ -8,7 +8,7 @@ import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.SQLUtils;
 
 import hunt.container;
-import hunt.util.exception;
+import hunt.lang.exception;
 
 
 public abstract class SQLStatementImpl : SQLObjectImpl , SQLStatement {

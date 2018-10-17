@@ -34,7 +34,7 @@ import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.util.DBType;
 import hunt.sql.util.DBType;
 import hunt.sql.SQLUtils;
-import hunt.math;
+import hunt.lang;
 import hunt.sql.visitor.SQLASTVisitorAdapter;
 
 public class PagerUtils {

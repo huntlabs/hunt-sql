@@ -21,7 +21,7 @@ import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.expr.SQLNumericLiteralExpr;
 import hunt.sql.ast.expr.SQLValuesExpr;
 import hunt.sql.ast.expr.SQLValuableExpr;
-import hunt.math;
+import hunt.lang;
 import hunt.container;
 
 public class SQLIntegerExpr : SQLNumericLiteralExpr , SQLValuableExpr{

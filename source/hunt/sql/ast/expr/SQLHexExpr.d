@@ -22,7 +22,7 @@ import hunt.sql.ast.expr.SQLValuableExpr;
 import hunt.sql.ast.expr.SQLLiteralExpr;
 import hunt.container;
 import hunt.sql.ast.SQLObject;
-import hunt.math;
+import hunt.lang;
 
 public class SQLHexExpr : SQLExprImpl , SQLLiteralExpr, SQLValuableExpr {
 

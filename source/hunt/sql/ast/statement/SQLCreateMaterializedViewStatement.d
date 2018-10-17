@@ -25,7 +25,7 @@ import hunt.sql.ast.statement.SQLSelect;
 import hunt.sql.ast.statement.SQLCreateStatement;
 
 import hunt.container;
-import hunt.math;
+import hunt.lang;
 /**
  * Created by wenshao on 30/06/2017.
  */

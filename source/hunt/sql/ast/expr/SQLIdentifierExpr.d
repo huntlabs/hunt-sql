@@ -23,7 +23,7 @@ import hunt.sql.util.FnvHash;
 import hunt.container;
 import hunt.sql.ast.expr.SQLPropertyExpr;
 import std.uni;
-import hunt.util.string;
+import hunt.string;
 
 public  class SQLIdentifierExpr : SQLExprImpl , SQLName {
     public  string    name;

@@ -4,7 +4,7 @@ import hunt.sql.ast.SQLObjectImpl;
 import hunt.sql.ast.SQLHint;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.container;
-import hunt.util.exception;
+import hunt.lang.exception;
 
 
 public class SQLCommentHint : SQLObjectImpl , SQLHint {

@@ -2,7 +2,7 @@ module test.CreateTableSetSchemaDemo;
 
 import hunt.logging;
 import hunt.container;
-import hunt.util.string;
+import hunt.string;
 import hunt.sql;
 
 import std.conv;

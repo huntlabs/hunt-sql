@@ -24,7 +24,7 @@ import hunt.sql.ast.statement;
 // import hunt.sql.dialect.oracle.ast.expr.OracleSysdateExpr;
 // import hunt.sql.dialect.oracle.ast.stmt;
 import hunt.sql.util.FnvHash;
-import hunt.util.string;
+import hunt.string;
 import hunt.container;
 import std.uni;
 

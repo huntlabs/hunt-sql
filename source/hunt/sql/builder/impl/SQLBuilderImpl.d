@@ -23,7 +23,7 @@ import hunt.sql.ast.expr.SQLNullExpr;
 import hunt.sql.ast.expr.SQLNumberExpr;
 import hunt.sql.builder.SQLBuilder;
 import hunt.sql.util.String;
-import hunt.math;
+import hunt.lang;
 
 public class SQLBuilderImpl : SQLBuilder {
     public static SQLExpr toSQLExpr(Object obj, string dbType) {

@@ -45,7 +45,7 @@ import hunt.sql.visitor.SQLASTOutputVisitor;
 import hunt.sql.util.FnvHash;
 import hunt.sql.util.DBType;
 import hunt.sql.dialect.postgresql.visitor.PGASTVisitor;
-import hunt.util.string;
+import hunt.string;
 import hunt.container;
 import std.uni;
 import std.algorithm.searching;

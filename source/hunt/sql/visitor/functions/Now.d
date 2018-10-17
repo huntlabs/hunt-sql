@@ -15,9 +15,9 @@
  */
 module hunt.sql.visitor.functions.Now;
 
-import hunt.math;
+import hunt.lang;
 import hunt.sql.util.String;
-import hunt.util.string;
+import hunt.string;
 import hunt.container;
 import std.conv;
 import std.uni;

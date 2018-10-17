@@ -3,10 +3,10 @@ module test.ExportParameters;
 import hunt.sql;
 import hunt.logging;
 import hunt.container;
-import hunt.util.string;
+import hunt.string;
 import std.stdio;
 import test.base;
-import hunt.math;
+import hunt.lang;
 
 public class ExportParameters  {
     public void test_export_parameters() {

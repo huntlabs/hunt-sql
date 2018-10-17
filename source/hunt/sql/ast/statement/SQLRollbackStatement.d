@@ -20,7 +20,7 @@ import hunt.sql.ast.SQLName;
 import hunt.sql.ast.SQLObject;
 import hunt.sql.ast.SQLStatementImpl;
 import hunt.sql.visitor.SQLASTVisitor;
-import hunt.math;
+import hunt.lang;
 
 import hunt.container;
 

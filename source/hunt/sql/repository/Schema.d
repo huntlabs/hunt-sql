@@ -35,8 +35,8 @@ import hunt.sql.util.DBType;
 import hunt.sql.repository.SchemaObjectType;
 
 import hunt.container;
-import hunt.math;
-import hunt.util.string;
+import hunt.lang;
+import hunt.string;
 import hunt.sql.repository.SchemaObject;
 import std.uni;
 import hunt.sql.repository.SchemaRepository;

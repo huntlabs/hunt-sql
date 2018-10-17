@@ -22,7 +22,7 @@ import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.statement.SQLCreateStatement;
 
 import hunt.container;
-import hunt.math;
+import hunt.lang;
 /**
  * Created by wenshao on 16/9/14.
  */

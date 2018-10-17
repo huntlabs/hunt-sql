@@ -31,9 +31,9 @@ import hunt.sql.parser.SQLSelectListCache;
 import hunt.sql.parser.Lexer;
 import hunt.sql.parser.SQLExprParser;
 import hunt.sql.parser.Token;
-import hunt.math;
+import hunt.lang;
 import hunt.sql.parser.ParserException;
-import hunt.util.string;
+import hunt.string;
 
 public class SQLSelectParser : SQLParser {
     protected SQLExprParser      exprParser;

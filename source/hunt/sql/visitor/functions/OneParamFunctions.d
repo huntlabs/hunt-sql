@@ -26,14 +26,15 @@ import hunt.sql.visitor.SQLEvalVisitor;
 import hunt.sql.visitor.SQLEvalVisitorUtils;
 import hunt.sql.util.Utils;
 import hunt.sql.visitor.functions.Function;
-import hunt.math;
+import hunt.lang;
 import hunt.sql.util.String;
-import hunt.util.string;
+import hunt.string;
 import hunt.container;
 import std.conv;
 import std.uni;
 import std.digest.md;
 import std.string;
+import hunt.math;
 
 public class OneParamFunctions : Function {
 
@@ -73,7 +74,7 @@ public class OneParamFunctions : Function {
             }
 
             if (cast(BigDecimal)(paramValue) !is null) {
-                import hunt.util.exception;
+                import hunt.lang.exception;
                 implementationMissing(false);
                 BigDecimal decimal = cast(BigDecimal) paramValue;
                 BigInteger bigInt = decimal.setScale(0,  BigDecimal.ROUND_HALF_UP).toBigInteger();

@@ -15,7 +15,7 @@
  */
 module hunt.sql.dialect.mysql.ast.statement.MySqlSelectQueryBlock;
 
-import hunt.math;
+import hunt.lang;
 import hunt.container;
 import hunt.sql.ast.SQLObject;
 

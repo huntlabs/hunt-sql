@@ -16,7 +16,7 @@
 module hunt.sql.util.ListDG;
 import std.stdio;
 import hunt.container;
-import hunt.math;
+import hunt.lang;
 import hunt.sql.util.Utils;
 import hunt.sql.util.FnvHash;
 

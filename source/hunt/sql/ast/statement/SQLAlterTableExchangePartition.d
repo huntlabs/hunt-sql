@@ -20,7 +20,7 @@ import hunt.sql.ast.SQLObjectImpl;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.statement.SQLAlterTableItem;
 import hunt.sql.ast.statement.SQLExprTableSource;
-import hunt.math;
+import hunt.lang;
 
 public class SQLAlterTableExchangePartition : SQLObjectImpl , SQLAlterTableItem {
     private SQLName partition;

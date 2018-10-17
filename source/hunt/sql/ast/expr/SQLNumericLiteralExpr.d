@@ -1,7 +1,7 @@
 module hunt.sql.ast.expr.SQLNumericLiteralExpr;
 import hunt.sql.ast.SQLExprImpl;
 import hunt.sql.ast.expr.SQLLiteralExpr;
-import hunt.math.Number;
+import hunt.lang.Number;
 import hunt.container;
 import hunt.sql.ast.SQLObject;
 

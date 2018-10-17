@@ -59,7 +59,7 @@ import hunt.sql.ast.statement.SQLAlterTableAddIndex;
 import hunt.sql.ast.statement.SQLAlterTableAddColumn;
 import hunt.sql.ast.statement.SQLDropIndexStatement;
 import hunt.sql.ast.statement.SQLCommentStatement;
-import hunt.util.string;
+import hunt.string;
 import std.uni;
 import hunt.sql.ast.statement.SQLUnique;
 

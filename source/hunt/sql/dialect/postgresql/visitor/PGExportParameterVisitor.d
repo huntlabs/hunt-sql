@@ -28,7 +28,7 @@ import hunt.sql.ast.statement.SQLSelectItem;
 import hunt.sql.visitor.ExportParameterVisitor;
 import hunt.sql.visitor.ExportParameterVisitorUtils;
 import hunt.sql.dialect.postgresql.visitor.PGOutputVisitor;
-import hunt.util.string;
+import hunt.string;
 import hunt.sql.visitor.SQLASTOutputVisitor;
 
 public class PGExportParameterVisitor : PGOutputVisitor , ExportParameterVisitor {

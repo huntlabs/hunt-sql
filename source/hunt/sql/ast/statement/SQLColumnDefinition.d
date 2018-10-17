@@ -26,7 +26,7 @@ import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.util.DBType;
 import hunt.sql.ast.statement.SQLTableElement;
 import hunt.sql.ast.statement.SQLColumnConstraint;
-import hunt.math;
+import hunt.lang;
 import hunt.sql.ast.statement.SQLNotNullConstraint;
 import hunt.sql.ast.statement.SQLColumnPrimaryKey;
 import hunt.sql.ast.statement.SQLCreateTableStatement;

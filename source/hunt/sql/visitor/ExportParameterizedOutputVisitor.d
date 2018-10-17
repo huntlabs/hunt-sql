@@ -17,7 +17,7 @@ module hunt.sql.visitor.ExportParameterizedOutputVisitor;
 
 import hunt.sql.visitor.SQLASTOutputVisitor;
 import hunt.sql.visitor.ExportParameterVisitor;
-import hunt.util.string;
+import hunt.string;
 import hunt.container;
 
 public class ExportParameterizedOutputVisitor : SQLASTOutputVisitor , ExportParameterVisitor {

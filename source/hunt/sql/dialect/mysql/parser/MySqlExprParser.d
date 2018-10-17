@@ -46,7 +46,7 @@ import hunt.sql.parser;
 import hunt.sql.util.FnvHash;
 import hunt.sql.util.DBType;
 import hunt.sql.dialect.mysql.parser.MySqlLexer;
-import hunt.util.string;
+import hunt.string;
 import std.string;
 import hunt.sql.util.Utils;
 import hunt.sql.util.String;

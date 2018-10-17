@@ -22,7 +22,7 @@ import hunt.sql.ast.SQLName;
 import hunt.sql.ast.SQLObjectImpl;
 import hunt.sql.ast.expr.SQLIdentifierExpr;
 import hunt.sql.ast.statement.SQLConstraint;
-import hunt.math;
+import hunt.lang;
 import hunt.container;
 
 public abstract class SQLConstraintImpl : SQLObjectImpl , SQLConstraint {

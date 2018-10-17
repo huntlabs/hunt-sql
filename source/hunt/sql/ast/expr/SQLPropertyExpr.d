@@ -14,7 +14,7 @@ import hunt.sql.ast.statement.SQLSelect;
 import hunt.sql.ast.statement.SQLSelectQueryBlock;
 import hunt.sql.ast.expr.SQLIdentifierExpr;
 import hunt.sql.util.FnvHash;
-import hunt.util.string;
+import hunt.string;
 import hunt.sql.SQLUtils;
 import hunt.sql.ast.statement.SQLSubqueryTableSource;
 

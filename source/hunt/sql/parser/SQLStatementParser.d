@@ -37,9 +37,9 @@ import hunt.sql.ast.statement.SQLInsertStatement;
 import hunt.sql.parser.InsertColumnsCache;
 import hunt.sql.parser.Lexer;
 import hunt.sql.parser.Token;
-import hunt.util.string;
+import hunt.string;
 import hunt.sql.parser.ParserException;
-import hunt.math;
+import hunt.lang;
 import hunt.sql.parser.SQLParserFeature;
 
 public class SQLStatementParser : SQLParser {
