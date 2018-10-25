@@ -5297,7 +5297,7 @@ public class MySqlStatementParser : SQLStatementParser {
             } else { //for condition_name or mysql_error_code
                 if (lexer.token() == Token.LITERAL_INT) {
                     condition.setType(ConditionValue.ConditionType.MYSQL_ERROR_CODE);
-                    condition.setValue(lexer.integerValue().toString());
+                    condition.setValue((cast(Object)(lexer.integerValue())).toString());
                 } else {
                     condition.setType(ConditionValue.ConditionType.SELF);
                     condition.setValue(tokenName);

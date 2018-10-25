@@ -9,6 +9,9 @@
     "dependencies": {
         "hunt-sql":{
             "path":"../../../hunt-sql"
-        }
+        },
+		"hunt":{
+			"path":"../../../hunt"
+}
     }
 }

@@ -18,7 +18,7 @@ module hunt.sql.visitor.functions.Locate;
 // import hunt.sql.visitor.SQLEvalVisitor.EVAL_VALUE;
 
 import hunt.lang;
-import hunt.sql.util.String;
+import hunt.sql.util.MyString;
 import hunt.string;
 import hunt.container;
 import std.conv;

@@ -22,7 +22,7 @@ import hunt.sql.ast.expr.SQLIntegerExpr;
 import hunt.sql.ast.expr.SQLNullExpr;
 import hunt.sql.ast.expr.SQLNumberExpr;
 import hunt.sql.builder.SQLBuilder;
-import hunt.sql.util.String;
+import hunt.sql.util.MyString;
 import hunt.lang;
 
 public class SQLBuilderImpl : SQLBuilder {
@@ -39,8 +39,8 @@ public class SQLBuilderImpl : SQLBuilder {
             return new SQLNumberExpr(cast(Number) obj);
         }
         
-        if (cast(String)(obj) !is null) {
-            return new SQLCharExpr(cast(String) obj);
+        if (cast(MyString)(obj) !is null) {
+            return new SQLCharExpr(cast(MyString) obj);
         }
         
         if (cast(Boolean)(obj) !is null) {

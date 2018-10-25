@@ -23,7 +23,7 @@ import hunt.sql.visitor.SQLEvalVisitor;
 import hunt.sql.visitor.functions.Function;
 import std.string;
 import hunt.string;
-import hunt.sql.util.String;
+import hunt.sql.util.MyString;
 import hunt.lang;
 
 public class Instr : Function {

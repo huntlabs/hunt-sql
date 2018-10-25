@@ -23,7 +23,7 @@ import hunt.sql.visitor.SQLEvalVisitor;
 import hunt.sql.visitor.SQLEvalVisitorUtils;
 import hunt.sql.visitor.functions.Function;
 import hunt.lang;
-import hunt.sql.util.String;
+import hunt.sql.util.MyString;
 import hunt.string;
 import hunt.container;
 import std.conv;
@@ -61,6 +61,6 @@ public class Right : Function {
             start = 0;
         }
         string result = strValue.substring(start, strValue.length);
-        return new String(result);
+        return new MyString(result);
     }
 }

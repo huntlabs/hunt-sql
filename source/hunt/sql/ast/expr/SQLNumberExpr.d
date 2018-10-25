@@ -50,9 +50,9 @@ public class SQLNumberExpr : SQLNumericLiteralExpr, SQLValuableExpr
         return this.number;
     }
 
-    public Number getValue()
+    public Object getValue()
     {
-        return getNumber();
+        return cast(Object)getNumber();
     }
 
     override public void setNumber(Number number)

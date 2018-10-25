@@ -16,7 +16,7 @@
 module hunt.sql.visitor.functions.Now;
 
 import hunt.lang;
-import hunt.sql.util.String;
+import hunt.sql.util.MyString;
 import hunt.string;
 import hunt.container;
 import std.conv;

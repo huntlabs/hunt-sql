@@ -17,7 +17,7 @@ module hunt.sql.visitor.functions.Lpad;
 
 // import hunt.sql.visitor.SQLEvalVisitor.EVAL_VALUE;
 import hunt.lang;
-import hunt.sql.util.String;
+import hunt.sql.util.MyString;
 import hunt.string;
 import hunt.container;
 import std.conv;
@@ -65,13 +65,13 @@ public class Lpad : Function {
         
         string result = strValue0;
         if (result.length > len) {
-            return new String(result.substring(0, len));
+            return new MyString(result.substring(0, len));
         }
         
         while (result.length < len) {
             result = strValue1 ~ result;
         }
 
-        return new String(result);
+        return new MyString(result);
     }
 }

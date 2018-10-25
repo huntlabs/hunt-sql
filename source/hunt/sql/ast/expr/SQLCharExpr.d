@@ -24,7 +24,7 @@ import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.expr.SQLTextLiteralExpr;
 import hunt.sql.ast.expr.SQLValuableExpr;
 import hunt.container;
-import hunt.sql.util.String;
+import hunt.sql.util.MyString;
 
 public class SQLCharExpr : SQLTextLiteralExpr , SQLValuableExpr{
     public static  SQLDataType DEFAULT_DATA_TYPE;
@@ -37,12 +37,12 @@ public class SQLCharExpr : SQLTextLiteralExpr , SQLValuableExpr{
 
     }
 
-    public this(String text){
+    public this(MyString text){
         super(text);
     }
 
     public this(string text){
-        super(new String(text));
+        super(new MyString(text));
     }
 
     override public void output(StringBuffer buf) {

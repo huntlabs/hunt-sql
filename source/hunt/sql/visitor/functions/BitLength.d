@@ -22,7 +22,7 @@ import hunt.sql.ast.expr.SQLMethodInvokeExpr;
 import hunt.sql.visitor.SQLEvalVisitor;
 import hunt.sql.visitor.functions.Function;
 import hunt.lang;
-import hunt.sql.util.String;
+import hunt.sql.util.MyString;
 
 public class BitLength : Function {
 
@@ -46,8 +46,8 @@ public class BitLength : Function {
             return cast(Object)(SQLEvalVisitor.EVAL_ERROR);
         }
 
-        if (cast(String)(param0Value) !is null) {
-            return new Long((cast(String) param0Value).str.length * 8);
+        if (cast(MyString)(param0Value) !is null) {
+            return new Long((cast(MyString) param0Value).str.length * 8);
         }
         return cast(Object)(SQLEvalVisitor.EVAL_ERROR);
     }

@@ -54,7 +54,7 @@ import hunt.sql.dialect.mysql.visitor.MySqlASTVisitor;
 import hunt.string;
 import hunt.container;
 import std.string;
-import hunt.sql.util.String;
+import hunt.sql.util.MyString;
 import hunt.lang;
 
 public class MySqlOutputVisitor : SQLASTOutputVisitor , MySqlASTVisitor {
@@ -719,7 +719,7 @@ public class MySqlOutputVisitor : SQLASTOutputVisitor , MySqlASTVisitor {
             }
         }
 
-        String collate = cast(String) x.getAttribute("COLLATE");
+        MyString collate = cast(MyString) x.getAttribute("COLLATE");
         if (collate !is null) {
             print0(ucase ? " COLLATE " : " collate ");
             print0(collate);
@@ -4249,7 +4249,7 @@ public class MySqlOutputVisitor : SQLASTOutputVisitor , MySqlASTVisitor {
                     printExpr(column);
                 }
 
-                String dataType = cast(String) column.getAttribute("dataType");
+                MyString dataType = cast(MyString) column.getAttribute("dataType");
                 if (dataType !is null) {
                     print(' ');
                     print(dataType);

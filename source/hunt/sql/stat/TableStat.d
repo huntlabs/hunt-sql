@@ -23,7 +23,7 @@ import hunt.sql.util.FnvHash;
 import hunt.sql.util.DBType;
 import hunt.string;
 import hunt.container;
-import hunt.sql.util.String;
+import hunt.sql.util.MyString;
 import std.string;
 
 public class TableStat
@@ -470,7 +470,7 @@ public class TableStat
             if (values.size() == 1)
             {
                 buf.append(' ');
-                buf.append(String.valueOf(this.values.get(0)));
+                buf.append(MyString.valueOf(this.values.get(0)));
             }
             else if (values.size() > 0)
             {
@@ -482,14 +482,14 @@ public class TableStat
                         buf.append(", ");
                     }
                     Object val = values.get(i);
-                    if (cast(String)(val) !is null)
+                    if (cast(MyString)(val) !is null)
                     {
                         string jsonStr = toJSON(val).toString;
                         buf.append(jsonStr);
                     }
                     else
                     {
-                        buf.append(String.valueOf(val));
+                        buf.append(MyString.valueOf(val));
                     }
                 }
                 buf.append(")");

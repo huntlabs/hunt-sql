@@ -50,7 +50,7 @@ import std.datetime;
 import std.conv;
 import std.string;
 import hunt.container;
-import hunt.sql.util.String;
+import hunt.sql.util.MyString;
 import hunt.string;
 import hunt.lang;
 import hunt.sql.visitor.ExportParameterVisitorUtils;
@@ -326,7 +326,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     //     print0("'" ~ dateFormat.format(date) ~ "'");
     // }
 
-    public void print(String text)
+    public void print(MyString text)
     {
         print(text.str);
     }
@@ -337,7 +337,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         }
         print0(text);
     }
-     protected void print0(String text)
+     protected void print0(MyString text)
      {
          print0(text.str);
      }
@@ -1428,7 +1428,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     protected void printInteger(SQLIntegerExpr x, bool parameterized) {
         Number number = x.getNumber();
 
-        if (number.opEquals(Integer.valueOf(1))) {
+        if (number == (Integer.valueOf(1))) {
             if (DBType.ORACLE.opEquals(dbType)) {
                 SQLObject parent = x.getParent();
                 if (cast(SQLBinaryOpExpr)parent !is null) {
@@ -2315,8 +2315,8 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
             return;
         }
 
-        if (cast(String)param !is null) {
-            SQLCharExpr charExpr = new SQLCharExpr(cast(String) param);
+        if (cast(MyString)param !is null) {
+            SQLCharExpr charExpr = new SQLCharExpr(cast(MyString) param);
             visit(charExpr);
             return;
         }
@@ -2367,7 +2367,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         //         chars[i * 2 + 3] = cast(char) (b1 + (b1 < 10 ? 48 : 55));
         //     }
         //     chars[chars.length - 1] = '\'';
-        //     print0(new String(chars));
+        //     print0(new MyString(chars));
         //     return;
         // }
 
@@ -2628,7 +2628,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
                     printExpr(column);
                 }
 
-                String dataType = cast(String) column.getAttribute("dataType");
+                MyString dataType = cast(MyString) column.getAttribute("dataType");
                 if (dataType !is null) {
                     print(' ');
                     print(dataType.str);
@@ -3000,7 +3000,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         print0("0x");
         print0(x.getHex());
 
-        String charset = cast(String) x.getAttribute("USING");
+        MyString charset = cast(MyString) x.getAttribute("USING");
         if (charset !is null) {
             print0(ucase ? " USING " : " using ");
             print0(charset.str);

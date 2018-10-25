@@ -24,7 +24,7 @@ import hunt.sql.ast.expr.SQLMethodInvokeExpr;
 import hunt.sql.visitor.SQLEvalVisitor;
 import hunt.sql.visitor.functions.Function;
 import hunt.lang;
-import hunt.sql.util.String;
+import hunt.sql.util.MyString;
 import hunt.string;
 import hunt.container;
 import std.conv;
@@ -69,10 +69,10 @@ public class Substring : Function {
         if (paramSize == 2 && x.getFor() is null) {
             if (index <= 0) {
                 int lastIndex = cast(int)(str.length) + index;
-                return new String(str.substring(lastIndex));
+                return new MyString(str.substring(lastIndex));
             }
 
-            return new String(str.substring(index - 1));
+            return new MyString(str.substring(index - 1));
         }
 
         SQLExpr param2 = x.getFor();
@@ -96,8 +96,8 @@ public class Substring : Function {
         }
 
         if (len > result.length) {
-            return new String(result);
+            return new MyString(result);
         }
-        return new String(result.substring(0, len));
+        return new MyString(result.substring(0, len));
     }
 }

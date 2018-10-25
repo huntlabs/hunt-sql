@@ -29,7 +29,7 @@ import hunt.sql.dialect.postgresql.visitor.PGExportParameterVisitor;
 // import hunt.sql.util.DBType;
 import hunt.sql.visitor.ExportParameterVisitor;
 import hunt.sql.util.DBType;
-import hunt.sql.util.String;
+import hunt.sql.util.MyString;
 
 public  class ExportParameterVisitorUtils {
     
@@ -95,7 +95,7 @@ public  class ExportParameterVisitorUtils {
             value = (cast(SQLBooleanExpr) param).getBooleanValue();
             replace = true;
         } else if (cast(SQLNumericLiteralExpr)(param) !is null) {
-            value = (cast(SQLNumericLiteralExpr) param).getNumber();
+            value = cast(Object)(cast(SQLNumericLiteralExpr) param).getNumber();
             replace = true;
         } else if (cast(SQLHexExpr)(param) !is null) {
             value = (cast(SQLHexExpr) param)/* .toBytes() */;
@@ -117,7 +117,7 @@ public  class ExportParameterVisitorUtils {
                     Object listValue = (cast(SQLBooleanExpr) listItem).getBooleanValue();
                     listValues.add(listValue);
                 } else if (cast(SQLNumericLiteralExpr)(listItem) !is null) {
-                    Object listValue = (cast(SQLNumericLiteralExpr) listItem).getNumber();
+                    Object listValue = cast(Object)(cast(SQLNumericLiteralExpr) listItem).getNumber();
                     listValues.add(listValue);
                 } else if (cast(SQLHexExpr)(param) !is null) {
                     Object listValue = (cast(SQLHexExpr) listItem)/* .toBytes() */;//@gxc

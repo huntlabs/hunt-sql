@@ -97,7 +97,7 @@ public class SQLIntegerExpr : SQLNumericLiteralExpr , SQLValuableExpr{
 
    override
     public Object getValue() {
-        return this.number;
+        return cast(Object)this.number;
     }
 
     override public SQLIntegerExpr clone() {

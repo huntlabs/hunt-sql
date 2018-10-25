@@ -37,7 +37,7 @@ import hunt.string;
 import std.algorithm.searching;
 import hunt.sql.parser.SQLParserFeature;
 import hunt.lang.exception;
-import hunt.sql.util.String;
+import hunt.sql.util.MyString;
 import hunt.math;
 
 public class SQLExprParser : SQLParser {
@@ -3179,7 +3179,7 @@ public class SQLExprParser : SQLParser {
                 lexer.nextToken();
 
                 SQLDateExpr dateExpr = new SQLDateExpr();
-                dateExpr.setLiteral(new String(literal));
+                dateExpr.setLiteral(new MyString(literal));
 
                 expr = dateExpr;
             } else {

@@ -20,7 +20,7 @@ import hunt.sql.dialect.mysql.visitor.MySqlASTVisitor;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.dialect.mysql.ast.expr.MySqlExpr;
 import hunt.container;
-import hunt.sql.util.String;
+import hunt.sql.util.MyString;
 
 public class MySqlCharExpr : SQLCharExpr , MySqlExpr {
 
@@ -37,7 +37,7 @@ public class MySqlCharExpr : SQLCharExpr , MySqlExpr {
         super(text);
     }
 
-     public this(String text){
+     public this(MyString text){
         super(text);
     }
 

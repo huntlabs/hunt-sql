@@ -24,7 +24,7 @@ import hunt.sql.visitor.SQLEvalVisitor;
 import hunt.sql.util.HexBin;
 import hunt.sql.visitor.functions.Function;
 import hunt.lang;
-import hunt.sql.util.String;
+import hunt.sql.util.MyString;
 import hunt.string;
 import hunt.container;
 import std.conv;
@@ -52,16 +52,16 @@ public class Hex : Function {
             return cast(Object)(SQLEvalVisitor.EVAL_ERROR);
         }
 
-        if (cast(String)(param0Value) !is null) {
-            byte[] bytes = (cast(String) param0Value).getBytes();
+        if (cast(MyString)(param0Value) !is null) {
+            byte[] bytes = (cast(MyString) param0Value).getBytes();
             string result = HexBin.encode(bytes);
-            return new String(result);
+            return new MyString(result);
         }
 
         if (cast(Number)(param0Value) !is null) {
             long value = (cast(Number) param0Value).longValue();
             string result = toUpper(Long.toHexString(value));
-            return new String(result);
+            return new MyString(result);
         }
 
         return cast(Object)(SQLEvalVisitor.EVAL_ERROR);

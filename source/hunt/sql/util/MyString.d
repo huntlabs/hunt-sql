@@ -1,7 +1,7 @@
-module hunt.sql.util.String;
+module hunt.sql.util.MyString;
 import std.conv;
 
-class String{
+class MyString{
 
     private string _str;
 
@@ -50,7 +50,7 @@ class String{
     }
 }
 
- int compareTo(String v1 , String v2)
+ int compareTo(MyString v1 , MyString v2)
  {  
         import std.algorithm.comparison;
 

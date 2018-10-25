@@ -22,7 +22,7 @@ import hunt.sql.ast.expr.SQLMethodInvokeExpr;
 import hunt.sql.visitor.SQLEvalVisitor;
 import hunt.sql.visitor.functions.Function;
 import hunt.lang;
-import hunt.sql.util.String;
+import hunt.sql.util.MyString;
 
 public class Bin : Function {
 
@@ -49,7 +49,7 @@ public class Bin : Function {
         if (cast(Number)(param0Value) !is null) {
             long longValue = (cast(Number) param0Value).longValue();
             string result = Long.toStr(longValue, 2);
-            return new String(result);
+            return new MyString(result);
         }
         return cast(Object)(SQLEvalVisitor.EVAL_ERROR);
     }

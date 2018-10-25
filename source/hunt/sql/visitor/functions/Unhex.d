@@ -25,7 +25,7 @@ import hunt.sql.visitor.SQLEvalVisitor;
 import hunt.sql.util.HexBin;
 import hunt.sql.visitor.functions.Function;
 import hunt.lang;
-import hunt.sql.util.String;
+import hunt.sql.util.MyString;
 import hunt.string;
 import hunt.container;
 import std.conv;
@@ -69,8 +69,8 @@ public class Unhex : Function {
             return cast(Object)(SQLEvalVisitor.EVAL_ERROR);
         }
 
-        if (cast(String)(param0Value) !is null) {
-            byte[] bytes = HexBin.decode((cast(String) param0Value).str);
+        if (cast(MyString)(param0Value) !is null) {
+            byte[] bytes = HexBin.decode((cast(MyString) param0Value).str);
             if (bytes is null) {
                 return cast(Object)(SQLEvalVisitor.EVAL_VALUE_NULL);
             }
@@ -81,7 +81,7 @@ public class Unhex : Function {
             } catch (Exception e) {
                 throw new Exception(e.msg, e);
             }
-            return new String(result);
+            return new MyString(result);
         }
 
         return cast(Object)(SQLEvalVisitor.EVAL_ERROR);

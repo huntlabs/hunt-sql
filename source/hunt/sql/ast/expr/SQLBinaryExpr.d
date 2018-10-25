@@ -45,7 +45,7 @@ public class SQLBinaryExpr : SQLExprImpl , SQLLiteralExpr, SQLValuableExpr {
         return text;
     }
 
-    public Number getValue() {
+    public Object getValue() {
         if (text is null) {
             return null;
         }
@@ -73,7 +73,7 @@ public class SQLBinaryExpr : SQLExprImpl , SQLLiteralExpr, SQLValuableExpr {
             }
         }
 
-        return val;
+        return cast(Object)val;
     }
 
     public void setValue(string value) {
