@@ -25,28 +25,28 @@ import hunt.sql.builder.SQLBuilder;
 import hunt.sql.util.MyString;
 import hunt.lang;
 
-public class SQLBuilderImpl : SQLBuilder {
-    public static SQLExpr toSQLExpr(Object obj, string dbType) {
-        if (obj is null) {
-            return new SQLNullExpr();
-        }
+// public class SQLBuilderImpl : SQLBuilder {
+//     public static SQLExpr toSQLExpr(Object obj, string dbType) {
+//         if (obj is null) {
+//             return new SQLNullExpr();
+//         }
         
-        if (cast(Integer)(obj) !is null) {
-            return new SQLIntegerExpr(cast(Integer) obj);
-        }
+//         if (cast(Integer)(obj) !is null) {
+//             return new SQLIntegerExpr(cast(Integer) obj);
+//         }
         
-        if (cast(Number)(obj) !is null) {
-            return new SQLNumberExpr(cast(Number) obj);
-        }
+//         if (cast(Number)(obj) !is null) {
+//             return new SQLNumberExpr(cast(Number) obj);
+//         }
         
-        if (cast(MyString)(obj) !is null) {
-            return new SQLCharExpr(cast(MyString) obj);
-        }
+//         if (cast(MyString)(obj) !is null) {
+//             return new SQLCharExpr(cast(MyString) obj);
+//         }
         
-        if (cast(Boolean)(obj) !is null) {
-            return new SQLBooleanExpr((cast(Boolean) obj).booleanValue);
-        }
+//         if (cast(Boolean)(obj) !is null) {
+//             return new SQLBooleanExpr((cast(Boolean) obj).booleanValue);
+//         }
         
-        throw new Exception("IllegalArgument not support : " ~ typeof(obj).stringof);
-    }
-}
+//         throw new Exception("IllegalArgument not support : " ~ typeof(obj).stringof);
+//     }
+// }

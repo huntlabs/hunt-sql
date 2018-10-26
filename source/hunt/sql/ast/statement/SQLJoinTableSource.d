@@ -62,6 +62,13 @@ public class SQLJoinTableSource : SQLTableSourceImpl , SQLReplaceable {
         this.setCondition(condition);
     }
 
+    public this(SQLTableSource left, JoinType joinType, SQLTableSource right){
+        this();
+        this.setLeft(left);
+        this.setJoinType(joinType);
+        this.setRight(right);
+    }
+
     override  protected void accept0(SQLASTVisitor visitor) {
         if (visitor.visit(this)) {
             acceptChild(visitor, this.left);

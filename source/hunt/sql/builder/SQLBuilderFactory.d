@@ -21,30 +21,39 @@ import hunt.sql.builder.impl.SQLUpdateBuilderImpl;
 import hunt.sql.builder.SQLSelectBuilder;
 import hunt.sql.builder.SQLDeleteBuilder;
 import hunt.sql.builder.SQLUpdateBuilder;
+import hunt.sql.builder.SQLBuilder;
 
 public class SQLBuilderFactory {
 
-    public static SQLSelectBuilder createSelectSQLBuilder(string dbType) {
+    public static SQLBuilder createSQLBuilder(T)(string dbType) {
+        return new T(dbType);
+    }
+
+    public static SQLBuilder createSQLBuilder(T)(string sql, string dbType) {
+        return new T(sql, dbType);
+    }
+
+    public static SQLBuilder createSelectSQLBuilder(string dbType) {
         return new SQLSelectBuilderImpl(dbType);
     }
     
-    public static SQLSelectBuilder createSelectSQLBuilder(string sql, string dbType) {
+    public static SQLBuilder createSelectSQLBuilder(string sql, string dbType) {
         return new SQLSelectBuilderImpl(sql, dbType);
     }
 
-    public static SQLDeleteBuilder createDeleteBuilder(string dbType) {
+    public static SQLBuilder createDeleteBuilder(string dbType) {
         return new SQLDeleteBuilderImpl(dbType);
     }
     
-    public static SQLDeleteBuilder createDeleteBuilder(string sql, string dbType) {
+    public static SQLBuilder createDeleteBuilder(string sql, string dbType) {
         return new SQLDeleteBuilderImpl(sql, dbType);
     }
 
-    public static SQLUpdateBuilder createUpdateBuilder(string dbType) {
+    public static SQLBuilder createUpdateBuilder(string dbType) {
         return new SQLUpdateBuilderImpl(dbType);
     }
     
-    public static SQLUpdateBuilder createUpdateBuilder(string sql, string dbType) {
+    public static SQLBuilder createUpdateBuilder(string sql, string dbType) {
         return new SQLUpdateBuilderImpl(sql, dbType);
     }
 }

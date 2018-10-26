@@ -29,6 +29,7 @@ import hunt.sql.dialect.mysql.ast.statement.MySqlDeleteStatement;
 // import hunt.sql.dialect.oracle.ast.stmt.OracleDeleteStatement;
 import hunt.sql.dialect.postgresql.ast.stmt.PGDeleteStatement;
 import hunt.sql.util.DBType;
+import hunt.sql.builder.SQLBuilder;
 
 public class SQLDeleteBuilderImpl : SQLDeleteBuilder {
 
@@ -61,22 +62,22 @@ public class SQLDeleteBuilderImpl : SQLDeleteBuilder {
     }
 
     override
-    public SQLDeleteBuilderImpl limit(int rowCount) {
+    public SQLBuilder limit(int rowCount) {
         throw new Exception("not implement");
     }
 
     override
-    public SQLDeleteBuilderImpl limit(int rowCount, int offset) {
+    public SQLBuilder limit(int rowCount, int offset) {
         throw new Exception("not implement");
     }
 
     override
-    public SQLDeleteBuilder from(string table) {
+    public SQLBuilder from(string table) {
         return from(table, null);
     }
 
     override
-    public SQLDeleteBuilder from(string table, string _alias) {
+    public SQLBuilder from(string table, string _alias) {
         SQLDeleteStatement _delete = getSQLDeleteStatement();
         SQLExprTableSource from = new SQLExprTableSource(new SQLIdentifierExpr(table), _alias);
         _delete.setTableSource(from);
@@ -84,7 +85,7 @@ public class SQLDeleteBuilderImpl : SQLDeleteBuilder {
     }
 
     override
-    public SQLDeleteBuilder where(string expr) {
+    public SQLBuilder where(string expr) {
         SQLDeleteStatement _delete = getSQLDeleteStatement();
 
         SQLExpr exprObj = SQLUtils.toSQLExpr(expr, dbType);
@@ -94,7 +95,7 @@ public class SQLDeleteBuilderImpl : SQLDeleteBuilder {
     }
 
     override
-    public SQLDeleteBuilder whereAnd(string expr) {
+    public SQLBuilder whereAnd(string expr) {
         SQLDeleteStatement _delete = getSQLDeleteStatement();
 
         SQLExpr exprObj = SQLUtils.toSQLExpr(expr, dbType);
@@ -105,7 +106,7 @@ public class SQLDeleteBuilderImpl : SQLDeleteBuilder {
     }
 
     override
-    public SQLDeleteBuilder whereOr(string expr) {
+    public SQLBuilder whereOr(string expr) {
         SQLDeleteStatement _delete = getSQLDeleteStatement();
 
         SQLExpr exprObj = SQLUtils.toSQLExpr(expr, dbType);

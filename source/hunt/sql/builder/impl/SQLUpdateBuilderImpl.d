@@ -32,8 +32,16 @@ import hunt.sql.dialect.postgresql.ast.stmt.PGUpdateStatement;
 // import hunt.sql.dialect.sqlserver.ast.stmt.SQLServerUpdateStatement;
 import hunt.sql.util.DBType;
 import hunt.sql.builder.impl.SQLBuilderImpl;
+import hunt.sql.builder.SQLBuilder;
+import hunt.sql.ast.expr.SQLBooleanExpr;
+import hunt.sql.ast.expr.SQLCharExpr;
+import hunt.sql.ast.expr.SQLIntegerExpr;
+import hunt.sql.ast.expr.SQLNullExpr;
+import hunt.sql.ast.expr.SQLNumberExpr;
+import hunt.sql.util.MyString;
+import hunt.lang;
 
-public class SQLUpdateBuilderImpl : SQLBuilderImpl , SQLUpdateBuilder {
+public class SQLUpdateBuilderImpl :  SQLUpdateBuilder {
 
     private SQLUpdateStatement stmt;
     private string             dbType;
@@ -58,28 +66,52 @@ public class SQLUpdateBuilderImpl : SQLBuilderImpl , SQLUpdateBuilder {
         this.dbType = dbType;
     }
 
+    public static SQLExpr toSQLExpr(Object obj, string dbType) {
+        if (obj is null) {
+            return new SQLNullExpr();
+        }
+        
+        if (cast(Integer)(obj) !is null) {
+            return new SQLIntegerExpr(cast(Integer) obj);
+        }
+        
+        if (cast(Number)(obj) !is null) {
+            return new SQLNumberExpr(cast(Number) obj);
+        }
+        
+        if (cast(MyString)(obj) !is null) {
+            return new SQLCharExpr(cast(MyString) obj);
+        }
+        
+        if (cast(Boolean)(obj) !is null) {
+            return new SQLBooleanExpr((cast(Boolean) obj).booleanValue);
+        }
+        
+        throw new Exception("IllegalArgument not support : " ~ typeof(obj).stringof);
+    }
+
     public this(SQLUpdateStatement stmt, string dbType){
         this.stmt = stmt;
         this.dbType = dbType;
     }
 
     override
-    public SQLUpdateBuilderImpl limit(int rowCount) {
+    public SQLBuilder limit(int rowCount) {
         throw new Exception("not implement");
     }
 
     override
-    public SQLUpdateBuilderImpl limit(int rowCount, int offset) {
+    public SQLBuilder limit(int rowCount, int offset) {
         throw new Exception("not implement");
     }
 
     override
-    public SQLUpdateBuilderImpl from(string table) {
+    public SQLBuilder from(string table) {
         return from(table, null);
     }
 
     override
-    public SQLUpdateBuilderImpl from(string table, string _alias) {
+    public SQLBuilder from(string table, string _alias) {
         SQLUpdateStatement update = getSQLUpdateStatement();
         SQLExprTableSource from = new SQLExprTableSource(new SQLIdentifierExpr(table), _alias);
         update.setTableSource(from);
@@ -87,7 +119,7 @@ public class SQLUpdateBuilderImpl : SQLBuilderImpl , SQLUpdateBuilder {
     }
 
     override
-    public SQLUpdateBuilderImpl where(string expr) {
+    public SQLBuilder where(string expr) {
         SQLUpdateStatement update = getSQLUpdateStatement();
 
         SQLExpr exprObj = SQLUtils.toSQLExpr(expr, dbType);
@@ -97,7 +129,7 @@ public class SQLUpdateBuilderImpl : SQLBuilderImpl , SQLUpdateBuilder {
     }
 
     override
-    public SQLUpdateBuilderImpl whereAnd(string expr) {
+    public SQLBuilder whereAnd(string expr) {
         SQLUpdateStatement update = getSQLUpdateStatement();
 
         SQLExpr exprObj = SQLUtils.toSQLExpr(expr, dbType);
@@ -108,7 +140,7 @@ public class SQLUpdateBuilderImpl : SQLBuilderImpl , SQLUpdateBuilder {
     }
 
     override
-    public SQLUpdateBuilderImpl whereOr(string expr) {
+    public SQLBuilder whereOr(string expr) {
         SQLUpdateStatement update = getSQLUpdateStatement();
 
         SQLExpr exprObj = SQLUtils.toSQLExpr(expr, dbType);
@@ -118,7 +150,8 @@ public class SQLUpdateBuilderImpl : SQLBuilderImpl , SQLUpdateBuilder {
         return this;
     }
 
-    public SQLUpdateBuilderImpl set(string[] items...) {
+    override
+    public SQLUpdateBuilder set(string[] items...) {
         SQLUpdateStatement update = getSQLUpdateStatement();
         foreach (string item ; items) {
             SQLUpdateSetItem updateSetItem = SQLUtils.toUpdateSetItem(item, dbType);

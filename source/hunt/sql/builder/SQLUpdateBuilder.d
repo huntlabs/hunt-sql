@@ -14,22 +14,107 @@
  * limitations under the License.
  */
 module hunt.sql.builder.SQLUpdateBuilder;
+import hunt.sql.builder.SQLBuilder; 
 
-public interface SQLUpdateBuilder {
+abstract class SQLUpdateBuilder : SQLBuilder {
 
-    SQLUpdateBuilder from(string table);
+    SQLBuilder select(string[] column...)
+    {
+        return this;
+    }
 
-    SQLUpdateBuilder from(string table, string _alias);
+    SQLBuilder selectWithAlias(string column, string _alias)
+    {
+        return this;
+    }
 
-    SQLUpdateBuilder limit(int rowCount);
+    SQLBuilder from(string table)
+    {
+        return this;
+    }
 
-    SQLUpdateBuilder limit(int rowCount, int offset);
+    SQLBuilder from(string table, string _alias)
+    {
+        return this;
+    }
 
-    SQLUpdateBuilder where(string sql);
+    SQLBuilder orderBy(string[] columns...)
+    {
+        return this;
+    }
 
-    SQLUpdateBuilder whereAnd(string sql);
+    SQLBuilder groupBy(string expr)
+    {
+        return this;
+    }
 
-    SQLUpdateBuilder whereOr(string sql);
+    SQLBuilder having(string expr)
+    {
+        return this;
+    }
 
-    SQLUpdateBuilder set(string[] items...);
+    SQLBuilder into(string expr)
+    {
+        return this;
+    }
+
+    SQLBuilder limit(int rowCount)
+    {
+        return this;
+    }
+
+    SQLBuilder offset(int offset)
+    {
+        return this;
+    }
+
+    SQLBuilder limit(int rowCount, int offset)
+    {
+        return this;
+    }
+
+    SQLBuilder where(string sql)
+    {
+        return this;
+    }
+
+    SQLBuilder whereAnd(string sql)
+    {
+        return this;
+    }
+
+    SQLBuilder whereOr(string sql)
+    {
+        return this;
+    }
+
+    SQLBuilder join(string table , string _alias = null, string cond = null)
+    {
+        return this;
+    }
+
+    SQLBuilder innerJoin(string table , string _alias = null, string cond = null)
+    {
+        return this;
+    }
+
+    SQLBuilder leftJoin(string table , string _alias = null, string cond = null)
+    {
+        return this;
+    }
+
+    SQLBuilder rightJoin(string table , string _alias = null, string cond = null)
+    {
+        return this;
+    }
+
+    override string toString()
+    {
+        return "SQLUpdateBuilder";
+    }
+
+    SQLUpdateBuilder set(string[] items...)
+    {
+        return this;
+    }
 }

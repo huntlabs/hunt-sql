@@ -16,36 +16,103 @@
 module hunt.sql.builder.SQLSelectBuilder;
 
 import hunt.sql.ast.statement.SQLSelectStatement;
+import hunt.sql.builder.SQLBuilder;
 
-public interface SQLSelectBuilder {
 
-    SQLSelectStatement getSQLSelectStatement();
+abstract class SQLSelectBuilder : SQLBuilder {
 
-    SQLSelectBuilder select(string[] column...);
+    SQLBuilder select(string[] column...)
+    {
+        return this;
+    }
 
-    SQLSelectBuilder selectWithAlias(string column, string _alias);
+    SQLBuilder selectWithAlias(string column, string _alias)
+    {
+        return this;
+    }
 
-    SQLSelectBuilder from(string table);
+    SQLBuilder from(string table)
+    {
+        return this;
+    }
 
-    SQLSelectBuilder from(string table, string _alias);
+    SQLBuilder from(string table, string _alias)
+    {
+        return this;
+    }
 
-    SQLSelectBuilder orderBy(string[] columns...);
+    SQLBuilder orderBy(string[] columns...)
+    {
+        return this;
+    }
 
-    SQLSelectBuilder groupBy(string expr);
+    SQLBuilder groupBy(string expr)
+    {
+        return this;
+    }
 
-    SQLSelectBuilder having(string expr);
+    SQLBuilder having(string expr)
+    {
+        return this;
+    }
 
-    SQLSelectBuilder into(string expr);
+    SQLBuilder into(string expr)
+    {
+        return this;
+    }
 
-    SQLSelectBuilder limit(int rowCount);
+    SQLBuilder limit(int rowCount)
+    {
+        return this;
+    }
 
-    SQLSelectBuilder limit(int rowCount, int offset);
+    SQLBuilder offset(int offset)
+    {
+        return this;
+    }
 
-    SQLSelectBuilder where(string sql);
+    SQLBuilder limit(int rowCount, int offset)
+    {
+        return this;
+    }
 
-    SQLSelectBuilder whereAnd(string sql);
+    SQLBuilder where(string sql)
+    {
+        return this;
+    }
 
-    SQLSelectBuilder whereOr(string sql);
+    SQLBuilder whereAnd(string sql)
+    {
+        return this;
+    }
 
-    string toString();
+    SQLBuilder whereOr(string sql)
+    {
+        return this;
+    }
+
+    SQLBuilder join(string table , string _alias = null, string cond = null)
+    {
+        return this;
+    }
+
+    SQLBuilder innerJoin(string table , string _alias = null, string cond = null)
+    {
+        return this;
+    }
+
+    SQLBuilder leftJoin(string table , string _alias = null, string cond = null)
+    {
+        return this;
+    }
+
+    SQLBuilder rightJoin(string table , string _alias = null, string cond = null)
+    {
+        return this;
+    }
+
+    override string toString()
+    {
+        return "SQLSelectBuilder";
+    }
 }

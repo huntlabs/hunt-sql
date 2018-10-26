@@ -19,4 +19,42 @@ module hunt.sql.builder.SQLBuilder;
 
 public interface SQLBuilder {
 
+
+    SQLBuilder select(string[] column...);
+
+    SQLBuilder selectWithAlias(string column, string _alias);
+
+    SQLBuilder from(string table);
+
+    SQLBuilder from(string table, string _alias);
+
+    SQLBuilder orderBy(string[] columns...);
+
+    SQLBuilder groupBy(string expr);
+
+    SQLBuilder having(string expr);
+
+    SQLBuilder into(string expr);
+
+    SQLBuilder limit(int rowCount);
+
+    SQLBuilder offset(int offset);
+
+    SQLBuilder limit(int rowCount, int offset);
+
+    SQLBuilder where(string sql);
+
+    SQLBuilder whereAnd(string sql);
+
+    SQLBuilder whereOr(string sql);
+
+    SQLBuilder join(string table , string _alias = null, string cond = null);
+
+    SQLBuilder innerJoin(string table , string _alias = null, string cond = null);
+
+    SQLBuilder leftJoin(string table , string _alias = null, string cond = null);
+
+    SQLBuilder rightJoin(string table , string _alias = null, string cond = null);
+
+    string toString();
 }

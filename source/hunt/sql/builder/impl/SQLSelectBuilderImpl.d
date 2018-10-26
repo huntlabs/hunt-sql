@@ -25,6 +25,7 @@ import hunt.sql.ast.expr.SQLBinaryOperator;
 import hunt.sql.ast.expr.SQLIdentifierExpr;
 import hunt.sql.ast.expr.SQLIntegerExpr;
 import hunt.sql.ast.statement.SQLExprTableSource;
+import hunt.sql.ast.statement.SQLJoinTableSource;
 import hunt.sql.ast.statement.SQLSelect;
 import hunt.sql.ast.statement.SQLSelectGroupByClause;
 import hunt.sql.ast.statement.SQLSelectItem;
@@ -42,6 +43,7 @@ import hunt.sql.dialect.postgresql.ast.stmt.PGSelectQueryBlock;
 // import hunt.sql.dialect.sqlserver.ast.SQLServerSelectQueryBlock;
 // import hunt.sql.dialect.sqlserver.ast.SQLServerTop;
 import hunt.sql.util.DBType;
+import hunt.sql.builder.SQLBuilder;
 
 public class SQLSelectBuilderImpl : SQLSelectBuilder {
 
@@ -80,12 +82,12 @@ public class SQLSelectBuilderImpl : SQLSelectBuilder {
         return stmt.getSelect();
     }
 
-    override
     public SQLSelectStatement getSQLSelectStatement() {
         return stmt;
     }
 
-    public SQLSelectBuilderImpl select(string[] columns...) {
+    override
+    public SQLBuilder select(string[] columns...) {
         SQLSelectQueryBlock queryBlock = getQueryBlock();
 
         foreach (string column ; columns) {
@@ -97,7 +99,7 @@ public class SQLSelectBuilderImpl : SQLSelectBuilder {
     }
 
     override
-    public SQLSelectBuilderImpl selectWithAlias(string column, string _alias) {
+    public SQLBuilder selectWithAlias(string column, string _alias) {
         SQLSelectQueryBlock queryBlock = getQueryBlock();
 
         SQLExpr columnExpr = SQLUtils.toSQLExpr(column, dbType);
@@ -108,12 +110,12 @@ public class SQLSelectBuilderImpl : SQLSelectBuilder {
     }
 
     override
-    public SQLSelectBuilderImpl from(string table) {
+    public SQLBuilder from(string table) {
         return from(table, null);
     }
 
     override
-    public SQLSelectBuilderImpl from(string table, string _alias) {
+    public SQLBuilder from(string table, string _alias) {
         SQLSelectQueryBlock queryBlock = getQueryBlock();
         SQLExprTableSource from = new SQLExprTableSource(new SQLIdentifierExpr(table), _alias);
         queryBlock.setFrom(from);
@@ -122,7 +124,7 @@ public class SQLSelectBuilderImpl : SQLSelectBuilder {
     }
 
     override
-    public SQLSelectBuilderImpl orderBy(string[] columns...) {
+    public SQLBuilder orderBy(string[] columns...) {
         SQLSelect select = this.getSQLSelect();
 
         SQLOrderBy orderBy = select.getOrderBy();
@@ -140,7 +142,7 @@ public class SQLSelectBuilderImpl : SQLSelectBuilder {
     }
 
     override
-    public SQLSelectBuilderImpl groupBy(string expr) {
+    public SQLBuilder groupBy(string expr) {
         SQLSelectQueryBlock queryBlock = getQueryBlock();
 
         SQLSelectGroupByClause groupBy = queryBlock.getGroupBy();
@@ -156,7 +158,7 @@ public class SQLSelectBuilderImpl : SQLSelectBuilder {
     }
 
     override
-    public SQLSelectBuilderImpl having(string expr) {
+    public SQLBuilder having(string expr) {
         SQLSelectQueryBlock queryBlock = getQueryBlock();
 
         SQLSelectGroupByClause groupBy = queryBlock.getGroupBy();
@@ -172,7 +174,7 @@ public class SQLSelectBuilderImpl : SQLSelectBuilder {
     }
 
     override
-    public SQLSelectBuilderImpl into(string expr) {
+    public SQLBuilder into(string expr) {
         SQLSelectQueryBlock queryBlock = getQueryBlock();
 
         SQLExpr exprObj = SQLUtils.toSQLExpr(expr, dbType);
@@ -182,7 +184,7 @@ public class SQLSelectBuilderImpl : SQLSelectBuilder {
     }
 
     override
-    public SQLSelectBuilderImpl where(string expr) {
+    public SQLBuilder where(string expr) {
         SQLSelectQueryBlock queryBlock = getQueryBlock();
 
         SQLExpr exprObj = SQLUtils.toSQLExpr(expr, dbType);
@@ -192,7 +194,7 @@ public class SQLSelectBuilderImpl : SQLSelectBuilder {
     }
 
     override
-    public SQLSelectBuilderImpl whereAnd(string expr) {
+    public SQLBuilder whereAnd(string expr) {
         SQLSelectQueryBlock queryBlock = getQueryBlock();
         queryBlock.addWhere(SQLUtils.toSQLExpr(expr, dbType));
 
@@ -200,7 +202,7 @@ public class SQLSelectBuilderImpl : SQLSelectBuilder {
     }
 
     override
-    public SQLSelectBuilderImpl whereOr(string expr) {
+    public SQLBuilder whereOr(string expr) {
         SQLSelectQueryBlock queryBlock = getQueryBlock();
 
         SQLExpr exprObj = SQLUtils.toSQLExpr(expr, dbType);
@@ -212,16 +214,84 @@ public class SQLSelectBuilderImpl : SQLSelectBuilder {
     }
 
     override
-    public SQLSelectBuilderImpl limit(int rowCount) {
-        return limit(rowCount, 0);
+    public SQLBuilder limit(int rowCount) {
+        auto rowLimit = getQueryBlock().getLimit();
+        if(rowLimit !is null)
+            rowLimit.setRowCount(rowCount);
+        else
+        {
+            getQueryBlock()
+                .limit(rowCount, 0);
+        }
+        return this;
     }
 
     override
-    public SQLSelectBuilderImpl limit(int rowCount, int offset) {
+    public SQLBuilder offset(int off) {
+        auto rowLimit = getQueryBlock().getLimit();
+        if(rowLimit !is null)
+            rowLimit.setOffset(off);
+        else
+        {
+            getQueryBlock()
+                .limit(1, off);
+        }
+        return this;
+    }
+
+    override
+    public SQLBuilder limit(int rowCount, int offset) {
         getQueryBlock()
                 .limit(rowCount, offset);
         return this;
     }
+
+    override
+    public SQLBuilder join(string table , string _alias = null , string cond = null)
+    {
+        return doJoin(SQLJoinTableSource.JoinType.JOIN,table,_alias,cond);
+    }
+
+    override
+    public SQLBuilder innerJoin(string table , string _alias = null , string cond = null)
+    {
+        return doJoin(SQLJoinTableSource.JoinType.INNER_JOIN,table,_alias,cond);
+    }
+
+    override
+    public SQLBuilder leftJoin(string table , string _alias = null , string cond = null)
+    {
+        return doJoin(SQLJoinTableSource.JoinType.LEFT_OUTER_JOIN,table,_alias,cond);
+    }
+
+    override
+    public SQLBuilder rightJoin(string table , string _alias = null , string cond = null)
+    {
+        return doJoin(SQLJoinTableSource.JoinType.RIGHT_OUTER_JOIN,table,_alias,cond);
+    }
+
+    private SQLBuilder doJoin(SQLJoinTableSource.JoinType type , string table , string _alias = null , string cond = null)
+    {
+        SQLSelectQueryBlock queryBlock = getQueryBlock();
+        auto  from = queryBlock.getFrom();
+        if(from is null)
+        {
+            throw new Exception("No From Table");
+        }
+        else
+        {
+            auto rightTable = new SQLExprTableSource();
+            rightTable.setExpr(table);
+            rightTable.setAlias(_alias);
+            if(cond is null)
+                queryBlock.setFrom(new SQLJoinTableSource(from,type,rightTable));
+            else
+                queryBlock.setFrom(new SQLJoinTableSource(from,type,rightTable,SQLUtils.toSQLExpr(cond)));
+        }
+
+        return this;
+    }
+
 
     protected SQLSelectQueryBlock getQueryBlock() {
         SQLSelect select = getSQLSelect();
