@@ -40,6 +40,7 @@ import hunt.sql.ast.expr.SQLNullExpr;
 import hunt.sql.ast.expr.SQLNumberExpr;
 import hunt.sql.util.MyString;
 import hunt.lang;
+import hunt.logging;
 
 public class SQLUpdateBuilderImpl :  SQLUpdateBuilder {
 
@@ -67,10 +68,16 @@ public class SQLUpdateBuilderImpl :  SQLUpdateBuilder {
     }
 
     public static SQLExpr toSQLExpr(Object obj, string dbType) {
+        // logDebug("set : ",obj.toString);
         if (obj is null) {
             return new SQLNullExpr();
         }
         
+        if (cast(Nullable!int)(obj) !is null) {
+            return new SQLIntegerExpr((cast(Nullable!int) obj).value);
+        }
+
+
         if (cast(Integer)(obj) !is null) {
             return new SQLIntegerExpr(cast(Integer) obj);
         }
@@ -79,14 +86,14 @@ public class SQLUpdateBuilderImpl :  SQLUpdateBuilder {
             return new SQLNumberExpr(cast(Number) obj);
         }
         
-        if (cast(MyString)(obj) !is null) {
-            return new SQLCharExpr(cast(MyString) obj);
+        if (cast(String)(obj) !is null) {
+            return new SQLCharExpr(cast(String) obj);
         }
         
         if (cast(Boolean)(obj) !is null) {
             return new SQLBooleanExpr((cast(Boolean) obj).booleanValue);
         }
-        
+
         throw new Exception("IllegalArgument not support : " ~ typeof(obj).stringof);
     }
 

@@ -34,6 +34,7 @@ import hunt.sql.ast.statement.SQLSelectQuery;
 import hunt.sql.ast.statement.SQLSelectQueryBlock;
 import hunt.sql.ast.statement.SQLSelectStatement;
 import hunt.sql.builder.SQLSelectBuilder;
+import hunt.sql.ast.SQLSetQuantifier;
 // import hunt.sql.dialect.db2.ast.stmt.DB2SelectQueryBlock;
 import hunt.sql.dialect.mysql.ast.statement.MySqlSelectQueryBlock;
 import hunt.sql.ast.SQLLimit;
@@ -339,6 +340,12 @@ public class SQLSelectBuilderImpl : SQLSelectBuilder {
 
     protected SQLSelectGroupByClause createGroupBy() {
         return new SQLSelectGroupByClause();
+    }
+
+    public void setDistinct()
+    {
+        getQueryBlock().setDistionOption(SQLSetQuantifier.DISTINCT);
+        return;
     }
 
     override public string toString() {
