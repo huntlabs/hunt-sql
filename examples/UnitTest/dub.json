@@ -7,11 +7,7 @@
 	"copyright": "Copyright (C) 2015-2018, HuntLabs.cn",
 	"license": "Apache-2.0",
     "dependencies": {
-        "hunt-sql":{
-            "path":"../../../hunt-sql"
-        },
-		"hunt":{
-			"path":"../../../hunt"
-}
+        "hunt-sql":"~>1.0.0",
+		"hunt":"~>1.0.0-beta.8"
     }
 }
