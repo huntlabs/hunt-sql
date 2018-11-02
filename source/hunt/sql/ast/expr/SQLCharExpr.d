@@ -25,6 +25,7 @@ import hunt.sql.ast.expr.SQLTextLiteralExpr;
 import hunt.sql.ast.expr.SQLValuableExpr;
 import hunt.container;
 import hunt.sql.util.MyString;
+import hunt.lang;
 
 public class SQLCharExpr : SQLTextLiteralExpr , SQLValuableExpr{
     public static  SQLDataType DEFAULT_DATA_TYPE;
@@ -39,6 +40,10 @@ public class SQLCharExpr : SQLTextLiteralExpr , SQLValuableExpr{
 
     public this(MyString text){
         super(text);
+    }
+
+    public this(String text){
+        super(new MyString(text.value));
     }
 
     public this(string text){

@@ -29,6 +29,7 @@ import hunt.sql.parser.ParserException;
 import hunt.sql.util.FnvHash;
 import hunt.sql.util.Utils;
 import hunt.lang.exception;
+import hunt.sql.parser.SQLParserUtils;
 
 import hunt.container;
 import hunt.string;
@@ -1730,7 +1731,7 @@ public class Lexer {
                 hash *= 0x100000001b3L;
             }
 
-            // _stringVal = MySqlLexer.quoteTable.addSymbol(text, _pos, quoteIndex + 1 - _pos, hash); //@gxc
+            _stringVal = MySqlLexer.quoteTable.addSymbol(text, _pos, quoteIndex + 1 - _pos, hash); //@gxc
             //_stringVal = text.substring(_mark, _pos);
             _pos = quoteIndex + 1;
             this.ch = charAt(_pos);
@@ -2146,7 +2147,7 @@ public class Lexer {
             || comment.indexOf("where") != -1 //
             || comment.indexOf("or") != -1 //
             || comment.indexOf("and") != -1 //
-            || comment.indexOf("union_p") != -1 //
+            || comment.indexOf("union") != -1 //
             || comment.indexOf('\'') != -1 //
             || comment.indexOf('=') != -1 //
             || comment.indexOf('>') != -1 //
@@ -2211,8 +2212,8 @@ public class Lexer {
     }
 
     public static string parameterize(string sql, string dbType) {
-        // Lexer lexer = SQLParserUtils.createLexer(sql, dbType);  //@gxc tmp
-        Lexer lexer;
+        Lexer lexer = SQLParserUtils.createLexer(sql, dbType);  //@gxc tmp
+        // Lexer lexer;
         lexer.optimizedForParameterized = true; // optimized
 
         lexer.nextToken();

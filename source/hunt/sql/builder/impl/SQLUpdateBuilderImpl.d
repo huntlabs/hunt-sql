@@ -77,9 +77,38 @@ public class SQLUpdateBuilderImpl :  SQLUpdateBuilder {
             return new SQLIntegerExpr((cast(Nullable!int) obj).value);
         }
 
+        if (cast(Nullable!short)(obj) !is null) {
+            return new SQLIntegerExpr(cast(int)((cast(Nullable!short) obj).value));
+        }
+
+        if (cast(Nullable!long)(obj) !is null) {
+            return new SQLIntegerExpr(cast(int)((cast(Nullable!long) obj).value));
+        }
+
+        if (cast(Nullable!double)(obj) !is null) {
+            Double db = new Double((cast(Nullable!double) obj).value);
+            return new SQLNumberExpr(db);
+        }
+
+        if (cast(Nullable!float)(obj) !is null) {
+            Float db = new Float((cast(Nullable!float) obj).value);
+            return new SQLNumberExpr(db);
+        }
+
+
+        if (cast(Nullable!bool)(obj) !is null) {
+            Boolean db = new Boolean((cast(Nullable!bool) obj).value);
+            return new SQLBooleanExpr(db.booleanValue);
+        }
+
 
         if (cast(Integer)(obj) !is null) {
             return new SQLIntegerExpr(cast(Integer) obj);
+        }
+
+        if (cast(Double)(obj) !is null) {
+            Number nm = cast(Number)obj;
+            return new SQLNumberExpr(nm);
         }
         
         if (cast(Number)(obj) !is null) {

@@ -16,16 +16,17 @@ public class BuilderSelectTest  {
     public void test_0()  {
         mixin(DO_TEST);
 
-        auto builder = SQLBuilderFactory.createSQLBuilder!(SQLSelectBuilderImpl)(DBType.MYSQL.name);
+        // auto builder = SQLBuilderFactory.createSQLBuilder!(SQLSelectBuilderImpl)(DBType.MYSQL.name);
 
-        builder.from("mytable","a");
-        builder.join("user","b","a.uid = b.id")
-               .leftJoin("App","c","a.appid = c.id");
+        auto builder = SQLBuilderFactory.createSelectSQLBuilder(DBType.MYSQL.name);
+
+        builder.from("mytable");
         builder.select("f1", "f2", "f3 F3", "count(*) cnt");
         builder.groupBy("f1");
         builder.having("count(*) > 1");
         builder.orderBy("f1", "f2 desc");
-        builder.whereAnd("f1 > 0");
+        builder.where("nickName  =  \"Jame\\\"s Ha\'Deng\" OR nickName  =  \"James Ha\\\"Deng\"");
+
 
 
         string sql = builder.toString();
