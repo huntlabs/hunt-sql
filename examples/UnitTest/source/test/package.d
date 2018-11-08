@@ -11,3 +11,5 @@ public import test.MySqlUpdateTest_1;
 public import test.BuilderSelectTest;
 public import test.SelectTest;
 public import test.MySqlVisitorDemo;
+
+public import test.PostgresqlTest;

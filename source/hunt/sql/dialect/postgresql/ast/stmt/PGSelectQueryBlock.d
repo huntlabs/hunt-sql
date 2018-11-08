@@ -39,6 +39,29 @@ public class PGSelectQueryBlock : SQLSelectQueryBlock , PGSQLObject{
     private ForClause     forClause;
     private IntoOption    intoOption;
 
+    override public PGSelectQueryBlock clone() {
+        PGSelectQueryBlock x = new PGSelectQueryBlock();
+        cloneTo(x);
+
+        if (orderBy !is null) {
+            x.setOrderBy(orderBy.clone());
+        }
+        x.window = window;
+        x.fetch = fetch;
+
+        x.forClause = forClause;
+        x.intoOption = intoOption;
+      
+        if (distinctOn !is null) {
+            foreach(SQLExpr arg ; distinctOn) {
+                SQLExpr arg_cloned = arg.clone();
+                arg_cloned.setParent(this);
+                x.distinctOn.add(arg_cloned);
+            }
+        }
+
+        return x;
+    }
 
     public static struct IntoOption {
         enum IntoOption TEMPORARY = IntoOption("TEMPORARY");
