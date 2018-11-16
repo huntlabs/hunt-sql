@@ -101,9 +101,21 @@ public class SQLUpdateBuilderImpl :  SQLUpdateBuilder {
             return new SQLBooleanExpr(db.booleanValue);
         }
 
+        if (cast(Nullable!string)(obj) !is null) {
+            return new SQLCharExpr((cast(Nullable!string) obj).value);
+        }
+
 
         if (cast(Integer)(obj) !is null) {
             return new SQLIntegerExpr(cast(Integer) obj);
+        }
+
+        if (cast(Long)(obj) !is null) {
+            return new SQLIntegerExpr(cast(int)(cast(Long) obj).longValue);
+        }
+
+        if (cast(Float)(obj) !is null) {
+            return new SQLNumberExpr(cast(Float)obj);
         }
 
         if (cast(Double)(obj) !is null) {
@@ -123,7 +135,7 @@ public class SQLUpdateBuilderImpl :  SQLUpdateBuilder {
             return new SQLBooleanExpr((cast(Boolean) obj).booleanValue);
         }
 
-        throw new Exception("IllegalArgument not support : " ~ typeof(obj).stringof);
+        throw new Exception(" Hunt-sql IllegalArgument not support : " ~ typeof(obj).stringof);
     }
 
     public this(SQLUpdateStatement stmt, string dbType){
