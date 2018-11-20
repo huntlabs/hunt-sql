@@ -59,7 +59,7 @@ public class PGUtils {
 
         if (words is null) {
             words = new HashSet!(string)();
-            Utils.loadFromFile("entity/sql/META-INF/postgresql/keywords", words);
+            Utils.loadFromFile("entity/sql/resource/postgresql/keywords", words);
             keywords = words;
         }
 

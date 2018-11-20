@@ -35,7 +35,7 @@ public class MySqlUtils {
 
         if (words is null) {
             words = new HashSet!(string)();
-            Utils.loadFromFile("entity/sql/META-INF/mysql/keywords", words);
+            Utils.loadFromFile("entity/sql/resource/mysql/keywords", words);
             keywords = words;
         }
 

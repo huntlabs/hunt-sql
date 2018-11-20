@@ -30,7 +30,7 @@ import hunt.sql.dialect.postgresql.parser.PGLexer;
 import hunt.sql.visitor.functions;
 
 
-static this()
+/* shared */ static this()
 {
     import std.stdio;
 
@@ -332,5 +332,5 @@ static this()
         Unhex.instance = new Unhex();
     }
 
-    writeln("---GlobalInit OK---");
+    // writeln("---GlobalInit OK---");
 }
