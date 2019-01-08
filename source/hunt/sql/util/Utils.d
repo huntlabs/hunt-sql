@@ -11,10 +11,10 @@ int search(T)(T[] ts, T t)
 {
     if(!ts.canFind(t))
         return -1;
-    foreach(int idx,T tm ; ts)
+    foreach(size_t idx, T tm ; ts)
     {
         if(tm == t)
-            return idx;
+            return cast(int)idx;
     }
     return -1;
 }
