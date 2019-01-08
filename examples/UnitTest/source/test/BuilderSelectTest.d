@@ -26,7 +26,7 @@ public class BuilderSelectTest  {
         builder.having("count(*) > 1");
         builder.orderBy("f1", "f2 desc");
         builder.where("nickName  =  \"Jame\\\"s Ha\'Deng\" OR nickName  =  \"James Ha\\\"Deng\"");
-
+        builder.limit(4,1);
 
 
         string sql = builder.toString();

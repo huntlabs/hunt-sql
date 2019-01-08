@@ -126,12 +126,13 @@ public class SQLSelectBuilderImpl : SQLSelectBuilder {
 
     override
     public SQLBuilder orderBy(string[] columns...) {
-        SQLSelect select = this.getSQLSelect();
+        // SQLSelect select = this.getSQLSelect();
+        SQLSelectQueryBlock queryBlock = getQueryBlock();
 
-        SQLOrderBy orderBy = select.getOrderBy();
+        SQLOrderBy orderBy = queryBlock.getOrderBy();
         if (orderBy is null) {
             orderBy = createOrderBy();
-            select.setOrderBy(orderBy);
+            queryBlock.setOrderBy(orderBy);
         }
 
         foreach (string column ; columns) {
