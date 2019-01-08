@@ -1742,7 +1742,7 @@ public class SQLEvalVisitorUtils {
         }
 
         if (cast(Long)(a) !is null || cast(Long)(b) !is null) {
-            return new Boolean(castToLong(a).opEquals(castToLong(b)));
+            return new Boolean(castToLong(a).opEquals(cast(Object)castToLong(b)));
         }
 
         if (cast(Integer)(a) !is null || cast(Integer)(b) !is null) {
@@ -1751,11 +1751,11 @@ public class SQLEvalVisitorUtils {
             if (inta is null || intb is null) {
                 return new Boolean(false);
             }
-            return new Boolean(inta.opEquals(intb));
+            return new Boolean(inta.opEquals(cast(Object)intb));
         }
 
         if (cast(Short)(a) !is null || cast(Short)(b) !is null) {
-            return new Boolean(castToShort(a).opEquals(castToShort(b)));
+            return new Boolean(castToShort(a).opEquals(cast(Object)castToShort(b)));
         }
 
         if (cast(Boolean)(a) !is null || cast(Boolean)(b) !is null) {
@@ -1763,7 +1763,7 @@ public class SQLEvalVisitorUtils {
         }
 
         if (cast(Byte)(a) !is null || cast(Byte)(b) !is null) {
-            return new Boolean(castToByte(a).opEquals(castToByte(b)));
+            return new Boolean(castToByte(a).opEquals(cast(Object)castToByte(b)));
         }
 
         //@gxc
