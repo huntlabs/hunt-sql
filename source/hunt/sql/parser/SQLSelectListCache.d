@@ -69,7 +69,7 @@ public class SQLSelectListCache {
         );
 
         if (entries.size() > 5) {
-            logWarning("SelectListCache is too large.");
+            warning("SelectListCache is too large.");
         }
     }
 

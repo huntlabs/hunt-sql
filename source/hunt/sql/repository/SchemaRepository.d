@@ -698,7 +698,7 @@ public class SchemaRepository {
         string name = x1.computeName();
         SchemaObject table = schema.findTableOrView(name);
         if (table !is null) {
-            logInfo("replaced table '" ~ name ~ "'");
+            info("replaced table '" ~ name ~ "'");
         }
 
         table = new SchemaObjectImpl(name, SchemaObjectType.Table, x1);
