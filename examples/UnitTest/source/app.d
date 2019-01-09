@@ -39,11 +39,13 @@ void main()
 
     // new MySqlUpdateTest_1().test_1();
 
-    new BuilderSelectTest().test_0();
+    // new BuilderSelectTest().test_0();
 
     // new SelectTest().test_0();
 
     // new MySqlVisitorDemo().test_for_demo();
 
     // new PostgresqlTest().test_0();
+
+    new PageTest().test();
 }

@@ -13,3 +13,4 @@ public import test.SelectTest;
 public import test.MySqlVisitorDemo;
 
 public import test.PostgresqlTest;
+public import test.PageTest;
