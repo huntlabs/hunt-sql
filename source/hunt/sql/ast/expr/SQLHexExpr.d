@@ -23,6 +23,7 @@ import hunt.sql.ast.expr.SQLLiteralExpr;
 import hunt.collection;
 import hunt.sql.ast.SQLObject;
 import hunt.Byte;
+import hunt.Nullable;
 
 public class SQLHexExpr : SQLExprImpl , SQLLiteralExpr, SQLValuableExpr {
 
@@ -91,7 +92,7 @@ public class SQLHexExpr : SQLExprImpl , SQLLiteralExpr, SQLValuableExpr {
     }
 
     override public Object getValue() {
-        return new Bytes(toBytes());
+        return new Nullable!(byte[])(toBytes());
     }
 
    override
