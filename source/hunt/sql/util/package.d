@@ -8,5 +8,3 @@ public import hunt.sql.util.PGUtils;
 public import hunt.sql.util.MyString;
 public import hunt.sql.util.Utils;
 public import hunt.sql.util.MySqlUtils;
-
-public import hunt.sql.util.lang;

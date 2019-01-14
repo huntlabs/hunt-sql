@@ -29,7 +29,7 @@ import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.util.FnvHash;
 import hunt.sql.util.DBType;
 import hunt.sql.util.ListDG;
-import hunt.sql.util.lang.Consumer;
+import hunt.Functions;
 import hunt.sql.ast.statement.SQLAlterTableItem;
 import hunt.sql.ast.statement.SQLColumnDefinition;
 import hunt.sql.ast.statement.SQLConstraint;
@@ -492,7 +492,7 @@ public class SQLCreateTableStatement : SQLStatementImpl , SQLDDLStatement, SQLCr
 
         foreach (SQLTableElement element ; this.tableElementList) {
             if (cast(SQLColumnDefinition)(element) !is null ) {
-                columnConsumer.accept(cast(SQLColumnDefinition) element);
+                columnConsumer(cast(SQLColumnDefinition) element);
             }
         }
     }

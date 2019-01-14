@@ -1,8 +1,8 @@
 {
     "name": "hunt-sql",
-    "authors": ["HuntLabs.net"],
     "description": "SQL parser.",
-    "copyright": "Copyright (C) 2015-2018 Shanghai Putao Technology Co., Ltd",
+    "copyright": "Copyright (C) 2018-2019, HuntLabs",
+    "homepage": "https://www.huntlabs.net/",
     "license": "Apache-2.0",
     "dependencies": {
         "hunt" : "~>1.0.0"
