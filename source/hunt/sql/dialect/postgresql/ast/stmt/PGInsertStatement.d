@@ -16,7 +16,7 @@
 module hunt.sql.dialect.postgresql.ast.stmt.PGInsertStatement;
 
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.ast.SQLExpr;
 import hunt.sql.ast.SQLName;

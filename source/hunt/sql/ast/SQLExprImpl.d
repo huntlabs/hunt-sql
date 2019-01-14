@@ -5,7 +5,7 @@ import hunt.sql.ast.SQLExpr;
 import hunt.sql.ast.SQLObject;
 import hunt.sql.ast.SQLDataType;
 
-import hunt.container;
+import hunt.collection;
 
 
 abstract class SQLExprImpl : SQLObjectImpl, SQLExpr {

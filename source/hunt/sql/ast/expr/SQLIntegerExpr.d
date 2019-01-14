@@ -21,8 +21,9 @@ import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.expr.SQLNumericLiteralExpr;
 import hunt.sql.ast.expr.SQLValuesExpr;
 import hunt.sql.ast.expr.SQLValuableExpr;
-import hunt.lang;
-import hunt.container;
+import hunt.Number;
+import hunt.Integer;
+import hunt.collection;
 
 public class SQLIntegerExpr : SQLNumericLiteralExpr , SQLValuableExpr{
     public static  SQLDataType DEFAULT_DATA_TYPE;

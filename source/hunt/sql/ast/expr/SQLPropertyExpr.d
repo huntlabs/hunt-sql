@@ -4,7 +4,7 @@ import hunt.sql.ast.SQLName;
 import hunt.sql.ast.SQLExpr;
 import hunt.sql.ast.SQLObject;
 import hunt.sql.ast.statement.SQLColumnDefinition;
-import hunt.container;
+import hunt.collection;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.statement.SQLTableSource;
 import hunt.sql.ast.statement.SQLCreateProcedureStatement;
@@ -14,9 +14,10 @@ import hunt.sql.ast.statement.SQLSelect;
 import hunt.sql.ast.statement.SQLSelectQueryBlock;
 import hunt.sql.ast.expr.SQLIdentifierExpr;
 import hunt.sql.util.FnvHash;
-import hunt.string;
+import hunt.String;
 import hunt.sql.SQLUtils;
 import hunt.sql.ast.statement.SQLSubqueryTableSource;
+import hunt.text;
 
 public  class SQLPropertyExpr : SQLExprImpl , SQLName {
     private   SQLExpr             owner;

@@ -53,7 +53,7 @@ import hunt.sql.stat.TableStat;
 import hunt.sql.util.DBType;
 // import hunt.sql.util.DBType;
 import hunt.sql.dialect.mysql.visitor.MySqlASTVisitor;
-import hunt.container;
+import hunt.collection;
 
 public class MySqlSchemaStatVisitor : SchemaStatVisitor , MySqlASTVisitor {
 

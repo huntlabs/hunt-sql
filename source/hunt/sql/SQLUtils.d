@@ -15,7 +15,7 @@
  */
 module hunt.sql.SQLUtils;
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.ast;
 import hunt.sql.ast.expr;
@@ -73,14 +73,15 @@ import hunt.sql.ast.statement.SQLSelectQuery;
 import hunt.sql.ast.statement.SQLDeleteStatement;
 import hunt.sql.ast.statement.SQLUpdateStatement;
 import hunt.sql.ast.statement.SQLCreateTableStatement;
-
+import hunt.util.Common;
 // import entity.support.logging.Log;
 // import entity.support.logging.LogFactory;
 import hunt.sql.util;
 import hunt.logging;
-import hunt.container;
-import hunt.string;
+import hunt.collection;
+import hunt.String;
 import std.array;
+import hunt.text;
 
 public class SQLUtils {
     private  static SQLParserFeature[] FORMAT_DEFAULT_FEATURES = [

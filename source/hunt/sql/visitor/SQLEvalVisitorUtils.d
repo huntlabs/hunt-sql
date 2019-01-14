@@ -22,11 +22,11 @@ import  hunt.sql.visitor.SQLEvalVisitor;
 // import  hunt.sql.visitor.SQLEvalVisitor.EVAL_VALUE_NULL;
 
 
-import hunt.lang.exception;
+import hunt.Exceptions;
 import hunt.sql.util.MyString;
-import hunt.string;
+import hunt.String;
 import std.random;
-import hunt.container;
+import hunt.collection;
 import std.uni;
 import std.conv;
 import std.math;
@@ -79,7 +79,15 @@ import hunt.sql.util.Utils;
 // import entity.wall.spi.WallVisitorUtils;
 // import entity.wall.spi.WallVisitorUtils.WallConditionContext;
 import hunt.sql.visitor.SQLEvalVisitorImpl;
-import hunt.lang;
+import hunt.Boolean;
+import hunt.Byte;
+import hunt.Short;
+import hunt.Integer;
+import hunt.Long;
+import hunt.Float;
+import hunt.Double;
+import hunt.Number;
+import hunt.text;
 import std.datetime;
 import hunt.math;
 

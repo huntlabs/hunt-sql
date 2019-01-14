@@ -4,7 +4,7 @@ import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.SQLExpr;
 import hunt.sql.ast.SQLDataTypeImpl;
 import hunt.sql.ast.SQLDataType;
-import hunt.container;
+import hunt.collection;
 import hunt.sql.ast.statement.SQLColumnDefinition;
 import hunt.sql.ast.SQLObject;
 

@@ -1,6 +1,6 @@
 module hunt.sql.GlobalInit;
 
-import hunt.container;
+import hunt.collection;
 import hunt.sql.util.Utils;
 import hunt.sql.ast.expr.SQLBooleanExpr;
 import hunt.sql.ast.SQLDataType;

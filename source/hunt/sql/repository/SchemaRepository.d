@@ -37,10 +37,10 @@ import hunt.sql.repository.SchemaObjectType;
 import hunt.sql.repository.Schema;
 import hunt.sql.repository.SchemaObject;
 import hunt.sql.repository.SchemaResolveVisitor;
-import hunt.container;
+import hunt.collection;
 import std.uni;
 import hunt.sql.repository.SchemaObjectImpl;
-import hunt.lang;
+import hunt.Long;
 /**
  * Created by wenshao on 03/06/2017.
  */

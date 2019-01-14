@@ -23,7 +23,7 @@ import hunt.sql.dialect.mysql.visitor.MySqlASTVisitor;
 import hunt.sql.util.DBType;
 import hunt.sql.dialect.mysql.ast.statement.MySqlStatementImpl;
 import hunt.sql.dialect.mysql.ast.statement.MySqlEventSchedule;
-import hunt.lang;
+import hunt.Boolean;
 
 public class MySqlAlterEventStatement : MySqlStatementImpl , SQLAlterStatement {
     alias accept0 = MySqlStatementImpl.accept0;

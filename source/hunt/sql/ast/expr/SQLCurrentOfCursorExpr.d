@@ -19,7 +19,7 @@ import hunt.sql.ast.SQLExprImpl;
 import hunt.sql.ast.SQLName;
 import hunt.sql.ast.SQLObject;
 import hunt.sql.visitor.SQLASTVisitor;
-import hunt.container;
+import hunt.collection;
 
 public class SQLCurrentOfCursorExpr : SQLExprImpl {
 

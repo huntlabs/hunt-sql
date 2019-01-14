@@ -16,7 +16,7 @@
 module hunt.sql.ast.statement.SQLJoinTableSource;
 
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.SQLUtils;
 import hunt.sql.ast.SQLExpr;
@@ -30,7 +30,7 @@ import hunt.sql.ast.statement.SQLExprTableSource;
 import hunt.sql.ast.statement.SQLTableSourceImpl;
 import hunt.sql.ast.statement.SQLTableSource;
 import hunt.sql.ast.statement.SQLColumnDefinition;
-import hunt.container;
+import hunt.collection;
 import std.uni;
 import hunt.sql.ast.SQLObject;
 

@@ -15,7 +15,7 @@
  */
 module hunt.sql.ast.statement.SQLAlterTableAddPartition;
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.ast.SQLExpr;
 import hunt.sql.ast.SQLObject;

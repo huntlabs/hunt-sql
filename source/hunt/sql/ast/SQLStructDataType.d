@@ -8,7 +8,7 @@ import hunt.sql.ast.SQLExpr;
 import hunt.sql.util.FnvHash;
 import hunt.sql.visitor.SQLASTVisitor;
 
-import hunt.container;
+import hunt.collection;
 
 
 public class SQLStructDataType : SQLObjectImpl , SQLDataType {

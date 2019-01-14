@@ -22,7 +22,7 @@ import hunt.sql.ast.SQLStatementImpl;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.statement.SQLSelect;
 
-import hunt.container;
+import hunt.collection;
 
 public class SQLSelectStatement : SQLStatementImpl {
 

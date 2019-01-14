@@ -36,8 +36,8 @@ import hunt.sql.parser;
 import hunt.sql.util.FnvHash;
 import hunt.sql.ast.statement.SQLSelectQuery;
 import hunt.sql.dialect.mysql.parser.MySqlExprParser;
-import hunt.lang;
-import hunt.container;
+import hunt.Boolean;
+import hunt.collection;
 
 public class MySqlSelectParser : SQLSelectParser {
 

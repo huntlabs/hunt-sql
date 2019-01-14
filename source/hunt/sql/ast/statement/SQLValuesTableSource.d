@@ -23,7 +23,7 @@ import hunt.sql.ast.statement.SQLTableSourceImpl;
 import hunt.sql.ast.SQLObject;
 
 
-import hunt.container;
+import hunt.collection;
 
 /**
  * Created by wenshao on 23/02/2017.

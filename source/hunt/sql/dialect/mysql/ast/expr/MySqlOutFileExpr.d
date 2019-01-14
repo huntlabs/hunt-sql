@@ -22,7 +22,7 @@ import hunt.sql.dialect.mysql.visitor.MySqlASTVisitor;
 import hunt.sql.ast.SQLDataType;
 import hunt.sql.ast.SQLObject;
 
-import hunt.container;
+import hunt.collection;
 
 public class MySqlOutFileExpr : MySqlObjectImpl , SQLExpr {
 

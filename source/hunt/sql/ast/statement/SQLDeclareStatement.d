@@ -16,7 +16,7 @@
 module hunt.sql.ast.statement.SQLDeclareStatement;
 
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.ast;
 // import hunt.sql.dialect.sqlserver.ast.SQLServerObjectImpl;

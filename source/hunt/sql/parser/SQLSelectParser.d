@@ -15,7 +15,7 @@
  */
 module hunt.sql.parser.SQLSelectParser;
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.ast;
 import hunt.sql.ast.expr;
@@ -31,9 +31,10 @@ import hunt.sql.parser.SQLSelectListCache;
 import hunt.sql.parser.Lexer;
 import hunt.sql.parser.SQLExprParser;
 import hunt.sql.parser.Token;
-import hunt.lang;
+import hunt.Float;
 import hunt.sql.parser.ParserException;
-import hunt.string;
+import hunt.String;
+import hunt.text;
 
 public class SQLSelectParser : SQLParser {
     protected SQLExprParser      exprParser;

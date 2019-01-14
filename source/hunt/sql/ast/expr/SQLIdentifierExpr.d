@@ -20,10 +20,11 @@ import hunt.sql.ast;
 import hunt.sql.ast.statement;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.util.FnvHash;
-import hunt.container;
+import hunt.collection;
 import hunt.sql.ast.expr.SQLPropertyExpr;
 import std.uni;
-import hunt.string;
+import hunt.String;
+import hunt.text;
 
 public  class SQLIdentifierExpr : SQLExprImpl , SQLName {
     public  string    name;

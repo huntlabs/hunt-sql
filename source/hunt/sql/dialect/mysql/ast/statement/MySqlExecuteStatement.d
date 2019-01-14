@@ -17,7 +17,7 @@ module hunt.sql.dialect.mysql.ast.statement.MySqlExecuteStatement;
 
 
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.ast.SQLExpr;
 import hunt.sql.ast.SQLName;

@@ -18,7 +18,7 @@ module hunt.sql.ast.statement.SQLPrimaryKeyImpl;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.statement.SQLUnique;
 import hunt.sql.ast.statement.SQLPrimaryKey;
-import hunt.container;
+import hunt.collection;
 import hunt.sql.ast.SQLObject;
 import hunt.sql.ast.statement.SQLSelectOrderByItem;
 

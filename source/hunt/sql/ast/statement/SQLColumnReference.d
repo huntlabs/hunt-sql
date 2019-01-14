@@ -15,7 +15,7 @@
  */
 module hunt.sql.ast.statement.SQLColumnReference;
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.ast.SQLName;
 import hunt.sql.visitor.SQLASTVisitor;

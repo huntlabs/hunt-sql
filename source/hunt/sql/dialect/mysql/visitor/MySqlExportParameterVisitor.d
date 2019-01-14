@@ -16,7 +16,7 @@
 module hunt.sql.dialect.mysql.visitor.MySqlExportParameterVisitor;
 
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.ast.SQLOrderBy;
 import hunt.sql.ast.expr.SQLBetweenExpr;
@@ -31,6 +31,7 @@ import hunt.sql.visitor.ExportParameterVisitor;
 import hunt.sql.visitor.ExportParameterVisitorUtils;
 import hunt.sql.dialect.mysql.visitor.MySqlOutputVisitor;
 import hunt.sql.visitor.SQLASTOutputVisitor;
+import hunt.util.Common;
 
 public class MySqlExportParameterVisitor : MySqlOutputVisitor , ExportParameterVisitor {
 

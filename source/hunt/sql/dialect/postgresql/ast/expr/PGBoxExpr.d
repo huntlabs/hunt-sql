@@ -21,7 +21,7 @@ import hunt.sql.dialect.postgresql.visitor.PGASTVisitor;
 import hunt.sql.dialect.postgresql.ast.expr.PGExprImpl;
 
 
-import hunt.container;
+import hunt.collection;
 
 public class PGBoxExpr : PGExprImpl {
      alias accept0 = PGExprImpl.accept0;

@@ -15,7 +15,7 @@
  */
 module hunt.sql.parser.SQLStatementParser;
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.ast;
 import hunt.sql.ast.expr;
@@ -37,10 +37,13 @@ import hunt.sql.ast.statement.SQLInsertStatement;
 import hunt.sql.parser.InsertColumnsCache;
 import hunt.sql.parser.Lexer;
 import hunt.sql.parser.Token;
-import hunt.string;
+import hunt.String;
 import hunt.sql.parser.ParserException;
-import hunt.lang;
+//import hunt.lang;
 import hunt.sql.parser.SQLParserFeature;
+import hunt.text;
+import hunt.Boolean;
+import hunt.Integer;
 
 public class SQLStatementParser : SQLParser {
 

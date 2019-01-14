@@ -18,13 +18,14 @@ module hunt.sql.stat.TableStat;
 import hunt.sql.SQLUtils;
 import hunt.sql.ast.SQLExpr;
 import hunt.sql.ast.expr.SQLPropertyExpr;
-import hunt.util.serialize;
+import hunt.util.Serialize;
 import hunt.sql.util.FnvHash;
 import hunt.sql.util.DBType;
-import hunt.string;
-import hunt.container;
+import hunt.String;
+import hunt.collection;
 import hunt.sql.util.MyString;
 import std.string;
+import hunt.text;
 
 public class TableStat
 {

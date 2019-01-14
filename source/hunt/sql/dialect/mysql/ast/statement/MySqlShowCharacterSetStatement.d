@@ -23,7 +23,7 @@ import hunt.sql.dialect.mysql.ast.statement.MySqlStatementImpl;
 import hunt.sql.dialect.mysql.ast.statement.MySqlShowStatement;
 
 
-import hunt.container;
+import hunt.collection;
 
 public class MySqlShowCharacterSetStatement : MySqlStatementImpl , MySqlShowStatement {
 

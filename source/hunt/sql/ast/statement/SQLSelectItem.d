@@ -24,7 +24,7 @@ import hunt.sql.ast.expr.SQLPropertyExpr;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.util.FnvHash;
 import hunt.sql.util.DBType;
-import hunt.container;
+import hunt.collection;
 import hunt.sql.ast.statement.SQLTableSource;
 
 public class SQLSelectItem : SQLObjectImpl , SQLReplaceable {

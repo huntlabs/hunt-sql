@@ -20,9 +20,10 @@ import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.util.HexBin;
 import hunt.sql.ast.expr.SQLValuableExpr;
 import hunt.sql.ast.expr.SQLLiteralExpr;
-import hunt.container;
+import hunt.collection;
 import hunt.sql.ast.SQLObject;
-import hunt.lang;
+//import hunt.lang;
+import hunt.sql.util.Bytes;
 
 public class SQLHexExpr : SQLExprImpl , SQLLiteralExpr, SQLValuableExpr {
 

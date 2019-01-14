@@ -17,7 +17,7 @@ module hunt.sql.ast.expr.SQLContainsExpr;
 
 import hunt.sql.ast;
 import hunt.sql.visitor.SQLASTVisitor;
-import hunt.container;
+import hunt.collection;
 import hunt.sql.ast.expr.SQLBooleanExpr;
 
 

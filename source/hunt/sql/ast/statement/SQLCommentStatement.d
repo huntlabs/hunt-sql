@@ -19,7 +19,7 @@ import hunt.sql.ast;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.statement.SQLExprTableSource;
 
-import hunt.container;
+import hunt.collection;
 
 public class SQLCommentStatement : SQLStatementImpl {
 

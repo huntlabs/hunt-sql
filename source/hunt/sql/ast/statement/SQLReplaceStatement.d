@@ -25,7 +25,7 @@ import hunt.sql.ast.SQLObjectImpl;
 import hunt.sql.ast.SQLObject;
 
 
-import hunt.container;
+import hunt.collection;
 
 public class SQLReplaceStatement : SQLStatementImpl {
     protected bool             lowPriority = false;

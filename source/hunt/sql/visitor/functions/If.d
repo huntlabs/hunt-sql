@@ -18,10 +18,11 @@ module hunt.sql.visitor.functions.If;
 // import hunt.sql.visitor.SQLEvalVisitor.EVAL_ERROR;
 // import hunt.sql.visitor.SQLEvalVisitor.SQLEvalVisitor.EVAL_VALUE;
 
-import hunt.lang;
+import hunt.Boolean;
+import hunt.Integer;
 import hunt.sql.util.MyString;
-import hunt.string;
-import hunt.container;
+import hunt.String;
+import hunt.collection;
 import std.conv;
 import std.uni;
 

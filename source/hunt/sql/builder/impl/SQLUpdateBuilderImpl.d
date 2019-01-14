@@ -15,7 +15,7 @@
  */
 module hunt.sql.builder.impl.SQLUpdateBuilderImpl;
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.SQLUtils;
 import hunt.sql.ast.SQLExpr;
@@ -39,8 +39,15 @@ import hunt.sql.ast.expr.SQLIntegerExpr;
 import hunt.sql.ast.expr.SQLNullExpr;
 import hunt.sql.ast.expr.SQLNumberExpr;
 import hunt.sql.util.MyString;
-import hunt.lang;
+import hunt.Double;
+import hunt.Float;
+import hunt.Boolean;
+import hunt.Integer;
+import hunt.Long;
+import hunt.Number;
+import hunt.String;
 import hunt.logging;
+import hunt.Nullable;
 
 public class SQLUpdateBuilderImpl :  SQLUpdateBuilder {
 

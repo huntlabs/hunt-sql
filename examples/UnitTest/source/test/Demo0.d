@@ -2,10 +2,11 @@ module test.Demo0;
 
 import hunt.sql;
 import hunt.logging;
-import hunt.container;
-import hunt.string;
+import hunt.collection;
+import hunt.String;
 import std.stdio;
 import test.base;
+import hunt.text;
 
 public class Demo0  {
 

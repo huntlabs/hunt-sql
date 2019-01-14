@@ -3,7 +3,7 @@ module hunt.sql.ast.SQLDataType;
 import hunt.sql.ast.SQLObject;
 import hunt.sql.ast.SQLExpr;
 
-import hunt.container;
+import hunt.collection;
 
 
 public interface SQLDataType : SQLObject {

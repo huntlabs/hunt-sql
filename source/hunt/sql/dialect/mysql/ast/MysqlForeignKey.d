@@ -20,7 +20,7 @@ import hunt.sql.ast.statement.SQLForeignKeyImpl;
 import hunt.sql.dialect.mysql.visitor.MySqlASTVisitor;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.util.DBType;
-import hunt.container;
+import hunt.collection;
 import hunt.sql.ast.SQLObject;
 
 public class MysqlForeignKey : SQLForeignKeyImpl {

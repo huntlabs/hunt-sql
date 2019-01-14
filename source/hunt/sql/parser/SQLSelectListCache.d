@@ -21,13 +21,14 @@ import hunt.sql.ast.statement.SQLSelectQueryBlock;
 import hunt.sql.util.FnvHash;
 import hunt.sql.parser.Lexer;
 
-import hunt.container;
+import hunt.collection;
 import hunt.sql.parser.SQLSelectParser;
 import hunt.sql.parser.SQLParserUtils;
-import hunt.string;
+import hunt.String;
 import hunt.sql.parser.Token;
 import std.algorithm.searching;
 import hunt.logging;
+import hunt.text;
 
 public class SQLSelectListCache {
     // private  static Log                LOG             = LogFactory.getLog(SQLSelectListCache.class);

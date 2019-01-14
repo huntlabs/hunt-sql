@@ -49,13 +49,18 @@ import hunt.sql.visitor.VisitorFeature;
 import std.datetime;
 import std.conv;
 import std.string;
-import hunt.container;
+import hunt.collection;
 import hunt.sql.util.MyString;
-import hunt.string;
-import hunt.lang;
+import hunt.String;
+import hunt.Boolean;
+import hunt.Number;
+import hunt.Integer;
+import hunt.Float;
 import hunt.sql.visitor.ExportParameterVisitorUtils;
 import hunt.math;
-
+import hunt.util.Common;
+import hunt.text;
+import hunt.collection.Collections;
 
 public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, PrintableVisitor {
 

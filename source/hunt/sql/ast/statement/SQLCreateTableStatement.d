@@ -42,7 +42,7 @@ import hunt.sql.ast.statement.SQLForeignKeyConstraint;
 import hunt.sql.ast.statement.SQLSelect;
 import hunt.sql.ast.statement.SQLCreateStatement;
 import hunt.sql.ast.statement.SQLDDLStatement;
-import hunt.container;
+import hunt.collection;
 import hunt.sql.ast.statement.SQLExternalRecordFormat;
 import hunt.sql.ast.statement.SQLPrimaryKey;
 import hunt.sql.ast.statement.SQLAlterTableStatement;
@@ -59,9 +59,10 @@ import hunt.sql.ast.statement.SQLAlterTableAddIndex;
 import hunt.sql.ast.statement.SQLAlterTableAddColumn;
 import hunt.sql.ast.statement.SQLDropIndexStatement;
 import hunt.sql.ast.statement.SQLCommentStatement;
-import hunt.string;
+import hunt.String;
 import std.uni;
 import hunt.sql.ast.statement.SQLUnique;
+import hunt.text;
 
 public class SQLCreateTableStatement : SQLStatementImpl , SQLDDLStatement, SQLCreateStatement {
 

@@ -15,7 +15,7 @@
  */
 module hunt.sql.ast.statement.SQLAlterTableDisableLifecycle;
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.ast.SQLObjectImpl;
 import hunt.sql.visitor.SQLASTVisitor;

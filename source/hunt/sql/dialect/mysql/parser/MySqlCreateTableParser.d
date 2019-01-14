@@ -45,10 +45,12 @@ import hunt.sql.parser;
 import hunt.sql.util.FnvHash;
 import hunt.sql.dialect.mysql.parser.MySqlExprParser;
 import hunt.sql.dialect.mysql.parser.MySqlSelectParser;
-import hunt.string;
-import hunt.lang;
-import hunt.container;
+import hunt.String;
+import hunt.Boolean;
+import hunt.collection;
 import hunt.sql.ast.SQLObject;
+import hunt.text;
+import hunt.Number;
 
 public class MySqlCreateTableParser : SQLCreateTableParser {
 

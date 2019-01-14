@@ -18,10 +18,10 @@ module hunt.sql.visitor.functions.Nil;
 import hunt.sql.ast.expr.SQLMethodInvokeExpr;
 import hunt.sql.visitor.SQLEvalVisitor;
 import hunt.sql.visitor.functions.Function;
-import hunt.lang;
+//import hunt.lang;
 import hunt.sql.util.MyString;
-import hunt.string;
-import hunt.container;
+import hunt.String;
+import hunt.collection;
 import std.conv;
 import std.uni;
 public class Nil : Function {

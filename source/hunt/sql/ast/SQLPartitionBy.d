@@ -7,7 +7,7 @@ import hunt.sql.ast.SQLName;
 import hunt.sql.ast.SQLPartition;
 import hunt.sql.ast.SQLSubPartitionBy;
 import hunt.sql.visitor.SQLASTVisitor;
-import hunt.container;
+import hunt.collection;
 
 
 public abstract class SQLPartitionBy : SQLObjectImpl {

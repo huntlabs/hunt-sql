@@ -3,7 +3,7 @@ module hunt.sql.ast.SQLPartitionByList;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.SQLExpr;
 import hunt.sql.ast.SQLPartitionBy;
-import hunt.container;
+import hunt.collection;
 import hunt.sql.ast.SQLObject;
 import hunt.sql.ast.SQLName;
 import hunt.sql.ast.SQLPartition;

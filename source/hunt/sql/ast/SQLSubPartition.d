@@ -9,7 +9,7 @@ import hunt.sql.ast.SQLPartitionValue;
 import hunt.sql.ast.SQLObject;
 import hunt.sql.visitor.SQLASTVisitor;
 
-import hunt.container;
+import hunt.collection;
 
 public class SQLSubPartition : SQLObjectImpl {
     protected SQLName           name;

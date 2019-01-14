@@ -17,7 +17,7 @@ module hunt.sql.ast.statement.SQLGrantStatement;
 import hunt.sql.ast.statement.SQLObjectType;
 
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.ast.SQLExpr;
 import hunt.sql.ast.SQLObject;

@@ -15,7 +15,7 @@
  */
 module hunt.sql.visitor.ExportParameterVisitor;
 
-import hunt.container;
+import hunt.collection;
 import hunt.sql.visitor.SQLASTVisitor;
 
 

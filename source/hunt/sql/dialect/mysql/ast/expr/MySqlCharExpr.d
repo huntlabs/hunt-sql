@@ -19,7 +19,7 @@ import hunt.sql.ast.expr.SQLCharExpr;
 import hunt.sql.dialect.mysql.visitor.MySqlASTVisitor;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.dialect.mysql.ast.expr.MySqlExpr;
-import hunt.container;
+import hunt.collection;
 import hunt.sql.util.MyString;
 
 public class MySqlCharExpr : SQLCharExpr , MySqlExpr {

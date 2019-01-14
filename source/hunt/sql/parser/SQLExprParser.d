@@ -15,7 +15,7 @@
  */
 module hunt.sql.parser.SQLExprParser;
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.SQLUtils;
 import hunt.sql.ast;
@@ -31,12 +31,16 @@ import hunt.sql.parser.SQLSelectParser;
 import hunt.sql.parser.Token;
 import hunt.sql.ast.SQLObject;
 import hunt.sql.util.Utils;
-import hunt.lang;
+import hunt.Number;
+import hunt.Integer;
+import hunt.text;
+import hunt.Boolean;
+import hunt.Long;
 import hunt.sql.parser.ParserException;
-import hunt.string;
+import hunt.String;
 import std.algorithm.searching;
 import hunt.sql.parser.SQLParserFeature;
-import hunt.lang.exception;
+import hunt.Exceptions;
 import hunt.sql.util.MyString;
 import hunt.math;
 

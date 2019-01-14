@@ -16,7 +16,7 @@
 module hunt.sql.dialect.postgresql.ast.stmt.PGDeleteStatement;
 
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.ast.SQLName;
 import hunt.sql.ast.statement.SQLDeleteStatement;

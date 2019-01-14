@@ -1,8 +1,8 @@
 module hunt.sql.ast.expr.SQLNumericLiteralExpr;
 import hunt.sql.ast.SQLExprImpl;
 import hunt.sql.ast.expr.SQLLiteralExpr;
-import hunt.lang.Number;
-import hunt.container;
+import hunt.Number;
+import hunt.collection;
 import hunt.sql.ast.SQLObject;
 
 public abstract class SQLNumericLiteralExpr : SQLExprImpl , SQLLiteralExpr {

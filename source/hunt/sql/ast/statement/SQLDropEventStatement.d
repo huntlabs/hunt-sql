@@ -22,7 +22,7 @@ import hunt.sql.visitor.SQLASTVisitor;
 
 import hunt.sql.ast.statement.SQLDropStatement;
 
-import hunt.container;
+import hunt.collection;
 
 public class SQLDropEventStatement : SQLStatementImpl , SQLDropStatement {
 

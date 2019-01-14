@@ -16,7 +16,7 @@
 module hunt.sql.dialect.mysql.ast.clause.MySqlSelectIntoStatement;
 
 
-import hunt.container;
+import hunt.collection;
 import hunt.sql.ast.SQLObject;
 
 import hunt.sql.ast.statement.SQLSelect;

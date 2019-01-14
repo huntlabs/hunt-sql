@@ -16,14 +16,14 @@
 module hunt.sql.ast.statement.SQLTruncateStatement;
 
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.ast.SQLName;
 import hunt.sql.ast.SQLObject;
 import hunt.sql.ast.SQLStatementImpl;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.statement.SQLExprTableSource;
-import hunt.lang;
+import hunt.Boolean;
 
 public class SQLTruncateStatement : SQLStatementImpl {
 

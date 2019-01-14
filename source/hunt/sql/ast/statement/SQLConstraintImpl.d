@@ -22,8 +22,8 @@ import hunt.sql.ast.SQLName;
 import hunt.sql.ast.SQLObjectImpl;
 import hunt.sql.ast.expr.SQLIdentifierExpr;
 import hunt.sql.ast.statement.SQLConstraint;
-import hunt.lang;
-import hunt.container;
+import hunt.Boolean;
+import hunt.collection;
 
 public abstract class SQLConstraintImpl : SQLObjectImpl , SQLConstraint {
     protected string  dbType;

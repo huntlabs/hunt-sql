@@ -5,7 +5,7 @@ import hunt.sql.ast.SQLObjectImpl;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.SQLName;
 import hunt.sql.ast.SQLOver;
-import hunt.container;
+import hunt.collection;
 
 public class SQLWindow : SQLObjectImpl {
     private SQLName name;

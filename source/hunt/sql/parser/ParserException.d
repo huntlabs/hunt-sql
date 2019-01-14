@@ -1,7 +1,7 @@
 
 module hunt.sql.parser.ParserException;
 
-// import hunt.util.serialize;
+// import hunt.util.Serialize;
 import std.exception;
 
 public class ParserException : Exception {

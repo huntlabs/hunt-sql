@@ -24,10 +24,12 @@ import hunt.sql.dialect.mysql.ast.MySqlUnique;
 import hunt.sql.dialect.mysql.ast.statement.MySqlCreateTableStatement;
 import hunt.sql.visitor.SQLASTOutputVisitor;
 
-import hunt.string;
-import hunt.lang;
-import hunt.container;
+import hunt.String;
+//import hunt.lang;
+import hunt.collection;
 import hunt.sql.dialect.mysql.visitor.MySqlOutputVisitor;
+import hunt.util.Common;
+import hunt.text;
 
 /**
  * Created by wenshao on 27/07/2017.

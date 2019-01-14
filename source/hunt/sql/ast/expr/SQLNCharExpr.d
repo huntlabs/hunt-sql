@@ -19,7 +19,7 @@ import hunt.sql.ast.SQLDataType;
 import hunt.sql.ast.statement.SQLCharacterDataType;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.expr.SQLTextLiteralExpr;
-import hunt.container;
+import hunt.collection;
 import std.array;
 import hunt.sql.util.MyString;
 

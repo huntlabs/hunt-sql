@@ -15,7 +15,7 @@
  */
 module hunt.sql.ast.statement.SQLCallStatement;
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.ast.SQLExpr;
 import hunt.sql.ast.SQLName;

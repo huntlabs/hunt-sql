@@ -16,7 +16,7 @@
 module hunt.sql.ast.statement.SQLInsertStatement;
 
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.SQLUtils;
 import hunt.sql.ast.SQLExpr;

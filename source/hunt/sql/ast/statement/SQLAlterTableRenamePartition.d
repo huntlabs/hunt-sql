@@ -15,7 +15,7 @@
  */
 module hunt.sql.ast.statement.SQLAlterTableRenamePartition;
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.ast.SQLObjectImpl;
 import hunt.sql.visitor.SQLASTVisitor;

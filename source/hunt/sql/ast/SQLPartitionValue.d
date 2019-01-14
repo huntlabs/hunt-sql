@@ -5,7 +5,7 @@ import hunt.sql.ast.SQLObjectImpl;
 import hunt.sql.ast.SQLExpr;
 import hunt.sql.ast.SQLName;
 import hunt.sql.visitor.SQLASTVisitor;
-import hunt.container;
+import hunt.collection;
 import hunt.sql.ast.SQLObject;
 
 public class SQLPartitionValue : SQLObjectImpl {

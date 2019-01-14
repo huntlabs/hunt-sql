@@ -16,7 +16,7 @@
 module hunt.sql.dialect.postgresql.visitor.PGExportParameterVisitor;
 
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.ast.SQLOrderBy;
 import hunt.sql.ast.expr.SQLBetweenExpr;
@@ -28,8 +28,10 @@ import hunt.sql.ast.statement.SQLSelectItem;
 import hunt.sql.visitor.ExportParameterVisitor;
 import hunt.sql.visitor.ExportParameterVisitorUtils;
 import hunt.sql.dialect.postgresql.visitor.PGOutputVisitor;
-import hunt.string;
+import hunt.String;
 import hunt.sql.visitor.SQLASTOutputVisitor;
+import hunt.util.Common;
+import hunt.text;
 
 public class PGExportParameterVisitor : PGOutputVisitor , ExportParameterVisitor {
 

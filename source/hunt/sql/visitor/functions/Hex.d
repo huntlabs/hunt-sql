@@ -23,10 +23,11 @@ import hunt.sql.parser.ParserException;
 import hunt.sql.visitor.SQLEvalVisitor;
 import hunt.sql.util.HexBin;
 import hunt.sql.visitor.functions.Function;
-import hunt.lang;
+import hunt.Number;
+import hunt.Long;
 import hunt.sql.util.MyString;
-import hunt.string;
-import hunt.container;
+import hunt.String;
+import hunt.collection;
 import std.conv;
 import std.uni;
 

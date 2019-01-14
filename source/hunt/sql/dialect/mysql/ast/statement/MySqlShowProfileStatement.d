@@ -16,7 +16,7 @@
 module hunt.sql.dialect.mysql.ast.statement.MySqlShowProfileStatement;
 
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.ast.SQLExpr;
 import hunt.sql.ast.SQLLimit;

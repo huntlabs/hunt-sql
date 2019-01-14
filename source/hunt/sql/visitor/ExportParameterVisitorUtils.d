@@ -16,7 +16,7 @@
 module hunt.sql.visitor.ExportParameterVisitorUtils;
 
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.ast.SQLExpr;
 import hunt.sql.ast.SQLObject;
@@ -30,6 +30,7 @@ import hunt.sql.dialect.postgresql.visitor.PGExportParameterVisitor;
 import hunt.sql.visitor.ExportParameterVisitor;
 import hunt.sql.util.DBType;
 import hunt.sql.util.MyString;
+import hunt.util.Common;
 
 public  class ExportParameterVisitorUtils {
     

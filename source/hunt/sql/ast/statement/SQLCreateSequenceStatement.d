@@ -21,8 +21,8 @@ import hunt.sql.ast.expr.SQLPropertyExpr;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.statement.SQLCreateStatement;
 
-import hunt.container;
-import hunt.lang;
+import hunt.collection;
+import hunt.Boolean;
 /**
  * Created by wenshao on 16/9/14.
  */

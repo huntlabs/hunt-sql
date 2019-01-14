@@ -3,7 +3,7 @@ module hunt.sql.ast.expr.SQLTextLiteralExpr;
 import hunt.sql.ast.expr.SQLTextLiteralExpr;
 import hunt.sql.ast.expr.SQLLiteralExpr;
 import hunt.sql.ast.SQLExprImpl;
-import hunt.container;
+import hunt.collection;
 import hunt.sql.ast.SQLObject;
 import hunt.sql.util.MyString;
 

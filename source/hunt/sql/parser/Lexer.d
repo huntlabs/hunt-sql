@@ -28,21 +28,22 @@ import hunt.sql.util.DBType;
 import hunt.sql.parser.ParserException;
 import hunt.sql.util.FnvHash;
 import hunt.sql.util.Utils;
-import hunt.lang.exception;
+import hunt.Exceptions;
 import hunt.sql.parser.SQLParserUtils;
 
-import hunt.container;
-import hunt.string;
+import hunt.collection;
 import std.string;
 import std.bigint;
 import std.xml;
 import std.uni;
 import std.conv;
 import std.algorithm.mutation;
-import hunt.lang;
-import hunt.string;
+import hunt.Number;
+import hunt.Long;
+import hunt.Integer;
+import hunt.String;
 import hunt.math;
-
+import hunt.text;
 
 public class Lexer {
     public static SymbolTable symbols_l2;

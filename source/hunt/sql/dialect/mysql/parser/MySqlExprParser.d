@@ -46,12 +46,12 @@ import hunt.sql.parser;
 import hunt.sql.util.FnvHash;
 import hunt.sql.util.DBType;
 import hunt.sql.dialect.mysql.parser.MySqlLexer;
-import hunt.string;
+import hunt.String;
 import std.string;
 import hunt.sql.util.Utils;
 import hunt.sql.util.MyString;
 import hunt.sql.dialect.mysql.parser.MySqlSelectParser;
-
+import hunt.text;
 
 public class MySqlExprParser : SQLExprParser {
     public  static string[] AGGREGATE_FUNCTIONS;

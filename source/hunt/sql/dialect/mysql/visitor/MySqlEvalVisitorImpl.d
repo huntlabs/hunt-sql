@@ -17,7 +17,7 @@ module hunt.sql.dialect.mysql.visitor.MySqlEvalVisitorImpl;
 
 
 
-import hunt.container;
+import hunt.collection;
 
 
 import hunt.sql.ast.expr.SQLBinaryExpr;
@@ -40,7 +40,7 @@ import hunt.sql.visitor.SQLEvalVisitor;
 import hunt.sql.visitor.SQLEvalVisitorUtils;
 import hunt.sql.visitor.functions.Function;
 import hunt.sql.dialect.mysql.visitor.MySqlASTVisitorAdapter;
-import hunt.lang;
+//import hunt.lang;
 
 public class MySqlEvalVisitorImpl : MySqlASTVisitorAdapter , SQLEvalVisitor {
     alias visit = MySqlASTVisitorAdapter.visit;

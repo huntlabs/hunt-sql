@@ -22,7 +22,7 @@ import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.statement.SQLAlterStatement;
 import hunt.sql.ast.statement.SQLAlterCharacter;
 
-import hunt.container;
+import hunt.collection;
 
 public class SQLAlterDatabaseStatement : SQLStatementImpl , SQLAlterStatement {
 

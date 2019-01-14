@@ -22,7 +22,7 @@ import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.util.DBType;
 import hunt.sql.dialect.postgresql.ast.stmt.PGSQLStatement;
 import hunt.sql.ast.SQLObject;
-import hunt.container;
+import hunt.collection;
 import hunt.sql.ast.statement.SQLUpdateSetItem;
 
 public class PGUpdateStatement : SQLUpdateStatement , PGSQLStatement {

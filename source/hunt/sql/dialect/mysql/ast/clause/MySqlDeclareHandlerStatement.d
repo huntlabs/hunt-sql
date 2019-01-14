@@ -16,7 +16,7 @@
 module hunt.sql.dialect.mysql.ast.clause.MySqlDeclareHandlerStatement;
 
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.ast.SQLStatement;
 import hunt.sql.dialect.mysql.ast.statement.MySqlStatementImpl;

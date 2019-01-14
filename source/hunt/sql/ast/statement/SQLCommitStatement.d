@@ -18,7 +18,7 @@ module hunt.sql.ast.statement.SQLCommitStatement;
 import hunt.sql.ast.SQLExpr;
 import hunt.sql.ast.SQLStatementImpl;
 import hunt.sql.visitor.SQLASTVisitor;
-import hunt.lang;
+import hunt.Boolean;
 
 public class SQLCommitStatement : SQLStatementImpl {
 

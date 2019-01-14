@@ -15,7 +15,7 @@
  */
 module hunt.sql.parser.SQLCreateTableParser;
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.ast.SQLExpr;
 import hunt.sql.ast.SQLName;
@@ -26,9 +26,10 @@ import hunt.sql.ast.statement.SQLConstraint;
 import hunt.sql.ast.statement.SQLTableElement;
 import hunt.sql.parser.Token;
 import hunt.sql.parser.ParserException;
-import hunt.string;
+import hunt.String;
 import hunt.sql.parser.SQLDDLParser;
 import hunt.sql.parser.SQLExprParser;
+import hunt.text;
 
 public class SQLCreateTableParser : SQLDDLParser {
 

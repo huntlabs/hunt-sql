@@ -1,8 +1,8 @@
 module test.PageTest;
 
 import hunt.logging;
-import hunt.container;
-import hunt.string;
+import hunt.collection;
+import hunt.String;
 import hunt.sql;
 
 import std.conv;

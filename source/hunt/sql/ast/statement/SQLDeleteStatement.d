@@ -29,7 +29,7 @@ import hunt.sql.ast.statement.SQLSelectQueryBlock;
 import hunt.sql.ast.statement.SQLSubqueryTableSource;
 import hunt.sql.ast.statement.SQLSelectQuery;
 
-import hunt.container;
+import hunt.collection;
 
 public class SQLDeleteStatement : SQLStatementImpl , SQLReplaceable {
     protected SQLWithSubqueryClause  _with;

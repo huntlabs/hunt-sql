@@ -42,7 +42,7 @@ import hunt.sql.stat.TableStat;
 import hunt.sql.util.DBType;
 import hunt.sql.util.PGUtils;
 import hunt.sql.dialect.postgresql.visitor.PGASTVisitor;
-import hunt.container;
+import hunt.collection;
 import hunt.sql.ast.SQLObject;
 
 public class PGSchemaStatVisitor : SchemaStatVisitor , PGASTVisitor {

@@ -23,8 +23,9 @@ import hunt.sql.ast.SQLExpr;
 import hunt.sql.ast.expr.SQLMethodInvokeExpr;
 import hunt.sql.visitor.SQLEvalVisitor;
 import hunt.sql.visitor.functions.Function;
-import hunt.string;
-import hunt.lang;
+import hunt.String;
+import hunt.Integer;
+import hunt.text;
 
 public class Ascii : Function {
 

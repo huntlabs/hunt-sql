@@ -20,7 +20,7 @@ import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.statement.SQLConstraintImpl;
 import hunt.sql.ast.statement.SQLColumnConstraint;
 
-import hunt.container;
+import hunt.collection;
 
 public class SQLNotNullConstraint : SQLConstraintImpl , SQLColumnConstraint {
 

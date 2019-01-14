@@ -15,7 +15,7 @@
  */
 module hunt.sql.PagerUtils;
 
-import hunt.container;
+import hunt.collection;
 
 import std.exception;
 import hunt.sql.ast;
@@ -34,7 +34,7 @@ import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.util.DBType;
 import hunt.sql.util.DBType;
 import hunt.sql.SQLUtils;
-import hunt.lang;
+import hunt.Integer;
 import hunt.sql.visitor.SQLASTVisitorAdapter;
 
 public class PagerUtils {

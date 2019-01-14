@@ -15,7 +15,7 @@
  */
 module hunt.sql.visitor.ParameterizedOutputVisitorUtils;
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.SQLUtils;
 import hunt.sql.ast;
@@ -33,8 +33,10 @@ import hunt.sql.util.FnvHash;
 import hunt.sql.util.DBType;
 import hunt.sql.visitor.ParameterizedVisitor;
 import hunt.sql.visitor.VisitorFeature;
-import hunt.string;
+import hunt.String;
 import hunt.sql.visitor.SQLASTOutputVisitor;
+import hunt.util.Common;
+import hunt.text;
 
 public class ParameterizedOutputVisitorUtils {
     private  static SQLParserFeature[] defaultFeatures = [

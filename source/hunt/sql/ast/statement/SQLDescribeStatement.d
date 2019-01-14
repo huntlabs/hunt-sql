@@ -23,7 +23,7 @@ import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.statement.SQLObjectType;
 
 
-import hunt.container;
+import hunt.collection;
 
 public class SQLDescribeStatement : SQLStatementImpl {
 

@@ -19,7 +19,7 @@ import hunt.sql.ast.SQLExpr;
 import hunt.sql.ast.SQLObjectImpl;
 import hunt.sql.ast.SQLReplaceable;
 import hunt.sql.visitor.SQLASTVisitor;
-import hunt.container;
+import hunt.collection;
 
 public class SQLAssignItem : SQLObjectImpl , SQLReplaceable {
 

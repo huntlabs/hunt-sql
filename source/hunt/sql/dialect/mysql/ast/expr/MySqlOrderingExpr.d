@@ -24,7 +24,7 @@ import hunt.sql.dialect.mysql.ast.expr.MySqlExpr;
 import hunt.sql.ast.SQLObject;
 
 
-import hunt.container;
+import hunt.collection;
 
 public class MySqlOrderingExpr : SQLExprImpl , MySqlExpr {
 

@@ -25,7 +25,7 @@ import hunt.sql.dialect.mysql.ast.statement.MySqlShowStatement;
 
 import hunt.sql.dialect.mysql.ast.statement.MySqlStatementImpl;
 
-import hunt.container;
+import hunt.collection;
 
 public class MySqlShowColumnsStatement : MySqlStatementImpl , MySqlShowStatement {
 

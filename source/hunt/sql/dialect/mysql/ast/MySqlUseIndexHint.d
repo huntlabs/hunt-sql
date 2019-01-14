@@ -18,7 +18,7 @@ module hunt.sql.dialect.mysql.ast.MySqlUseIndexHint;
 import hunt.sql.dialect.mysql.visitor.MySqlASTVisitor;
 import hunt.sql.dialect.mysql.ast.MySqlIndexHintImpl;
 import hunt.sql.ast.SQLObject;
-import hunt.container;
+import hunt.collection;
 import hunt.sql.ast.SQLName;
 
 public class MySqlUseIndexHint : MySqlIndexHintImpl {

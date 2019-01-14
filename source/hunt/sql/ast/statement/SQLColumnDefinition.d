@@ -15,7 +15,7 @@
  */
 module hunt.sql.ast.statement.SQLColumnDefinition;
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.SQLUtils;
 import hunt.sql.ast;
@@ -26,7 +26,9 @@ import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.util.DBType;
 import hunt.sql.ast.statement.SQLTableElement;
 import hunt.sql.ast.statement.SQLColumnConstraint;
-import hunt.lang;
+import hunt.Boolean;
+import hunt.Integer;
+
 import hunt.sql.ast.statement.SQLNotNullConstraint;
 import hunt.sql.ast.statement.SQLColumnPrimaryKey;
 import hunt.sql.ast.statement.SQLCreateTableStatement;

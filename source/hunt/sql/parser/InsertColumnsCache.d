@@ -17,8 +17,8 @@ module hunt.sql.parser.InsertColumnsCache;
 
 import hunt.sql.ast.SQLExpr;
 import hunt.sql.util.FnvHash;
-import hunt.lang;
-import hunt.container;
+import hunt.Long;
+import hunt.collection;
 
 
 public class InsertColumnsCache {

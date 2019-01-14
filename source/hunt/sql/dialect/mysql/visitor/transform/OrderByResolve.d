@@ -27,7 +27,7 @@ import hunt.sql.ast.statement.SQLSelectQueryBlock;
 import hunt.sql.util.FnvHash;
 
 
-import hunt.container;
+import hunt.collection;
 
 /**
  * Created by wenshao on 27/07/2017.

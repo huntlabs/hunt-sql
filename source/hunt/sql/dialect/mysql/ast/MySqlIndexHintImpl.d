@@ -16,7 +16,7 @@
 module hunt.sql.dialect.mysql.ast.MySqlIndexHintImpl;
 
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.ast.SQLName;
 import hunt.sql.dialect.mysql.visitor.MySqlASTVisitor;

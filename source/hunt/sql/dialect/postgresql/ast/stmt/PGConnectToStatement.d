@@ -23,7 +23,7 @@ import hunt.sql.visitor.SQLASTOutputVisitor;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.util.DBType;
 import hunt.sql.dialect.postgresql.ast.stmt.PGSQLStatement;
-import hunt.container;
+import hunt.collection;
 
 public class PGConnectToStatement : SQLStatementImpl , PGSQLStatement {
     private SQLName target;

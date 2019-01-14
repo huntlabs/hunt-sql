@@ -16,7 +16,7 @@
 module hunt.sql.ast.statement.SQLCreateViewStatement;
 
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.SQLUtils;
 import hunt.sql.ast;

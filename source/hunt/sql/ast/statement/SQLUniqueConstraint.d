@@ -15,7 +15,7 @@
  */
 module hunt.sql.ast.statement.SQLUniqueConstraint;
 
-import hunt.container;
+import hunt.collection;
 import hunt.sql.ast.statement.SQLConstraint;
 import hunt.sql.ast.SQLExpr;
 import hunt.sql.ast.statement.SQLSelectOrderByItem;

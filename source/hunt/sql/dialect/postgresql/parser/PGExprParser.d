@@ -38,10 +38,11 @@ import hunt.sql.util.DBType;
 import hunt.sql.dialect.postgresql.parser.PGSelectParser;
 import hunt.sql.dialect.postgresql.parser.PGLexer;
 import std.uni;
-import hunt.lang;
-import hunt.container;
-import hunt.string;
+//import hunt.lang;
+import hunt.collection;
+import hunt.String;
 import hunt.sql.util.Utils;
+import hunt.text;
 
 public class PGExprParser : SQLExprParser {
 

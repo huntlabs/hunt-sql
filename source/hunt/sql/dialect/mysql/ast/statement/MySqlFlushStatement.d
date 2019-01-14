@@ -23,7 +23,7 @@ import hunt.sql.dialect.mysql.ast.statement.MySqlStatementImpl;
 
 import hunt.sql.ast.SQLObject;
 
-import hunt.container;
+import hunt.collection;
 
 /**
  * Created by wenshao on 16/08/2017.

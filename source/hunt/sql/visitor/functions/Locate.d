@@ -17,10 +17,12 @@ module hunt.sql.visitor.functions.Locate;
 
 // import hunt.sql.visitor.SQLEvalVisitor.EVAL_VALUE;
 
-import hunt.lang;
+import hunt.Integer;
+import hunt.Number;
+
 import hunt.sql.util.MyString;
-import hunt.string;
-import hunt.container;
+import hunt.String;
+import hunt.collection;
 import std.conv;
 import std.uni;
 import std.string;

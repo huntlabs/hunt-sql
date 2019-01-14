@@ -21,7 +21,7 @@ import hunt.sql.ast.statement.SQLSelect;
 import hunt.sql.ast.statement.SQLSelectQuery;
 import hunt.sql.ast.statement.SQLSelectQueryBlock;
 import hunt.sql.ast.statement.SQLTableSource;
-import hunt.container;
+import hunt.collection;
 
 public class SQLSubqueryTableSource : SQLTableSourceImpl {
 

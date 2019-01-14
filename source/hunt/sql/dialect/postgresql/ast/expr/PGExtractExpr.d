@@ -22,7 +22,7 @@ import hunt.sql.dialect.postgresql.ast.expr.PGDateField;
 import hunt.sql.dialect.postgresql.ast.expr.PGExprImpl;
 
 
-import hunt.container;
+import hunt.collection;
 
 public class PGExtractExpr : PGExprImpl {
      alias accept0 = PGExprImpl.accept0;

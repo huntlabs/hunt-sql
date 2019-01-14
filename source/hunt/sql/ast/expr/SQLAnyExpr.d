@@ -22,7 +22,7 @@ import hunt.sql.ast.statement.SQLSelect;
 import hunt.sql.ast.statement.SQLSelectItem;
 import hunt.sql.ast.statement.SQLSelectQueryBlock;
 import hunt.sql.visitor.SQLASTVisitor;
-import hunt.container;
+import hunt.collection;
 
 public class SQLAnyExpr : SQLExprImpl {
 

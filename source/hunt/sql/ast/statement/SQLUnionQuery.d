@@ -24,7 +24,7 @@ import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.statement.SQLSelectQuery;
 import hunt.sql.ast.statement.SQLSelectQueryBlock;
 import hunt.sql.ast.statement.SQLUnionOperator;
-import hunt.container;
+import hunt.collection;
 
 public class SQLUnionQuery : SQLObjectImpl , SQLSelectQuery {
 

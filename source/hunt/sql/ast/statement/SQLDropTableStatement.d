@@ -16,7 +16,7 @@
 module hunt.sql.ast.statement.SQLDropTableStatement;
 
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.ast.SQLCommentHint;
 import hunt.sql.ast.SQLName;

@@ -21,7 +21,7 @@ import hunt.sql.ast.SQLExpr;
 import hunt.sql.ast.SQLExprImpl;
 import hunt.sql.ast.SQLObject;
 import hunt.sql.visitor.SQLASTVisitor;
-import hunt.container;
+import hunt.collection;
 
 public class SQLArrayExpr : SQLExprImpl {
 

@@ -23,9 +23,11 @@ import hunt.sql.visitor.SQLASTOutputVisitor;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.expr.SQLTextLiteralExpr;
 import hunt.sql.ast.expr.SQLValuableExpr;
-import hunt.container;
+import hunt.collection;
 import hunt.sql.util.MyString;
-import hunt.lang;
+import hunt.String;
+import hunt.util.Common;
+//import hunt.lang;
 
 public class SQLCharExpr : SQLTextLiteralExpr , SQLValuableExpr{
     public static  SQLDataType DEFAULT_DATA_TYPE;

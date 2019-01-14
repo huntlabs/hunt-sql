@@ -21,13 +21,14 @@ import hunt.sql.ast.SQLExpr;
 import hunt.sql.ast.expr.SQLMethodInvokeExpr;
 import hunt.sql.visitor.SQLEvalVisitor;
 import hunt.sql.visitor.functions.Function;
-import hunt.lang;
+//import hunt.lang;
 import hunt.sql.util.MyString;
-import hunt.string;
-import hunt.container;
+import hunt.String;
+import hunt.collection;
 import std.conv;
 import std.uni;
 import hunt.sql.parser.CharTypes;
+import hunt.text;
 
 public class Ltrim : Function {
 

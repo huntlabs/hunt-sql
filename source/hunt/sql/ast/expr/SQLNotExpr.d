@@ -1,7 +1,7 @@
 module hunt.sql.ast.expr.SQLNotExpr;
 import hunt.sql.ast.SQLExprImpl;
 import hunt.sql.ast.SQLExpr;
-import hunt.container;
+import hunt.collection;
 import hunt.sql.ast.SQLDataType;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.SQLObject;

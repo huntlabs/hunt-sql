@@ -25,7 +25,7 @@ import hunt.sql.ast.statement.SQLCharacterDataType;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.expr.SQLValuableExpr;
 import hunt.sql.ast.expr.SQLLiteralExpr;
-import hunt.container;
+import hunt.collection;
 import hunt.sql.ast.expr.SQLCharExpr;
 import hunt.sql.util.MyString;
 

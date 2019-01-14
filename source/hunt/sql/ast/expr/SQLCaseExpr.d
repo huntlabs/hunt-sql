@@ -20,7 +20,7 @@ import hunt.sql.SQLUtils;
 import hunt.sql.ast;
 import hunt.sql.visitor.SQLASTOutputVisitor;
 import hunt.sql.visitor.SQLASTVisitor;
-import hunt.container;
+import hunt.collection;
 
 public class SQLCaseExpr : SQLExprImpl , SQLReplaceable//, Serializable 
 {

@@ -22,7 +22,7 @@ import hunt.sql.dialect.mysql.visitor.MySqlASTVisitor;
 import hunt.sql.dialect.mysql.ast.statement.MySqlStatementImpl;
 
 
-import hunt.container;
+import hunt.collection;
 
 public class MySqlPrepareStatement : MySqlStatementImpl {
 

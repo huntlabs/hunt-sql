@@ -18,7 +18,7 @@ module hunt.sql.ast.expr.SQLAllColumnExpr;
 import hunt.sql.ast.SQLExprImpl;
 import hunt.sql.ast.statement.SQLTableSource;
 import hunt.sql.visitor.SQLASTVisitor;
-import hunt.container;
+import hunt.collection;
 import hunt.sql.ast.SQLObject;
 
 public  class SQLAllColumnExpr : SQLExprImpl {

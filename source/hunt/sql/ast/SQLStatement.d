@@ -1,7 +1,7 @@
 module hunt.sql.ast.SQLStatement;
 
 import hunt.sql.ast.SQLObject;
-import hunt.container;
+import hunt.collection;
 
 
 public interface SQLStatement : SQLObject {

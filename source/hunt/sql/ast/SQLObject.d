@@ -1,6 +1,6 @@
 module hunt.sql.ast.SQLObject;
 
-import hunt.container;
+import hunt.collection;
 import hunt.sql.visitor.SQLASTVisitor;
 
 

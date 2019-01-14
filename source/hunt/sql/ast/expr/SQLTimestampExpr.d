@@ -3,11 +3,11 @@ import hunt.sql.ast.expr.SQLValuableExpr;
 import hunt.sql.ast.SQLDataType;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.SQLExprImpl;
-import hunt.container;
+import hunt.collection;
 import hunt.sql.ast.SQLObject;
 import hunt.sql.ast.statement.SQLCharacterDataType;
 import hunt.sql.SQLUtils;
-import hunt.lang;
+//import hunt.lang;
 import hunt.sql.util.MyString;
 
 public class SQLTimestampExpr : SQLExprImpl , SQLValuableExpr {

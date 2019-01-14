@@ -16,7 +16,7 @@
 module hunt.sql.dialect.mysql.ast.statement.MySqlTableIndex;
 
 
-import hunt.container;
+import hunt.collection;
 import hunt.sql.ast.SQLObject;
 
 import hunt.sql.SQLUtils;

@@ -51,11 +51,13 @@ import hunt.sql.dialect.mysql.ast.statement.MySqlCreateUserStatement;
 import hunt.sql.visitor;
 import hunt.sql.util.DBType;
 import hunt.sql.dialect.mysql.visitor.MySqlASTVisitor;
-import hunt.string;
-import hunt.container;
+import hunt.String;
+import hunt.collection;
 import std.string;
 import hunt.sql.util.MyString;
-import hunt.lang;
+import hunt.Boolean;
+import hunt.util.Common;
+import hunt.text;
 
 public class MySqlOutputVisitor : SQLASTOutputVisitor , MySqlASTVisitor {
     alias visit = SQLASTOutputVisitor.visit;

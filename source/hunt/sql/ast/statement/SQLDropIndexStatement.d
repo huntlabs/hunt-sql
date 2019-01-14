@@ -24,7 +24,7 @@ import hunt.sql.ast.statement.SQLExprTableSource;
 import hunt.sql.ast.statement.SQLDropStatement;
 
 
-import hunt.container;
+import hunt.collection;
 
 public class SQLDropIndexStatement : SQLStatementImpl , SQLDropStatement {
 

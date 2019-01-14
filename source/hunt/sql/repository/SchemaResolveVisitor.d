@@ -21,8 +21,8 @@ import hunt.sql.ast.statement.SQLTableSource;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.repository.SchemaRepository;
 
-import hunt.container;
-import hunt.lang;
+import hunt.collection;
+import hunt.Long;
 /**
  * Created by wenshao on 03/08/2017.
  */

@@ -21,10 +21,12 @@ import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.util.Utils;
 import hunt.sql.ast.expr.SQLValuableExpr;
 import hunt.sql.ast.expr.SQLLiteralExpr;
-import hunt.container;
-import hunt.lang;
-import hunt.string;
+import hunt.collection;
+import hunt.Number;
+import hunt.String;
 import hunt.math;
+import hunt.text;
+import hunt.Long;
 
 public class SQLBinaryExpr : SQLExprImpl , SQLLiteralExpr, SQLValuableExpr {
 

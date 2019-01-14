@@ -15,7 +15,7 @@
  */
 module hunt.sql.visitor.SQLEvalVisitor;
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.visitor.functions.Function;
 import hunt.sql.visitor.SQLASTVisitor;

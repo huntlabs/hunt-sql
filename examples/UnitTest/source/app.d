@@ -1,10 +1,10 @@
 import std.stdio;
 
-import hunt.lang.exception;
+import hunt.Exceptions;
 import hunt.util.UnitTest;
 import hunt.logging;
-import hunt.container;
-import hunt.string;
+import hunt.collection;
+import hunt.String;
 
 import test;
 

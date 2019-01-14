@@ -21,7 +21,7 @@ import hunt.sql.ast.SQLStatementImpl;
 import hunt.sql.ast.expr.SQLIdentifierExpr;
 import hunt.sql.visitor.SQLASTVisitor;
 
-import hunt.container;
+import hunt.collection;
 
 /**
  * 

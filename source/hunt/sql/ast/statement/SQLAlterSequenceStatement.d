@@ -22,8 +22,8 @@ import hunt.sql.ast.SQLStatementImpl;
 import hunt.sql.ast.expr.SQLPropertyExpr;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.statement.SQLAlterStatement;
-import hunt.lang;
-import hunt.container;
+import hunt.Boolean;
+import hunt.collection;
 
 public class SQLAlterSequenceStatement : SQLStatementImpl , SQLAlterStatement {
     private SQLName name;

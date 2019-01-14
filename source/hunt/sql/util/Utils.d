@@ -2,7 +2,7 @@ module hunt.sql.util.Utils;
 
 import std.conv;
 import std.algorithm.searching; 
-import hunt.container;
+import hunt.collection;
 import std.file;
 import std.stdio;
 import std.string;

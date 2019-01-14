@@ -20,7 +20,7 @@ import hunt.sql.dialect.mysql.ast.statement.MySqlStatementImpl;
 import hunt.sql.dialect.mysql.visitor.MySqlASTVisitor;
 
 
-import hunt.container;
+import hunt.collection;
 
 
 public class MySqlLeaveStatement : MySqlStatementImpl {

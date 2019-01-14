@@ -16,7 +16,7 @@
 module hunt.sql.dialect.mysql.ast.statement.MySqlResetStatement;
 
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.dialect.mysql.visitor.MySqlASTVisitor;
 import hunt.sql.dialect.mysql.ast.statement.MySqlStatementImpl;

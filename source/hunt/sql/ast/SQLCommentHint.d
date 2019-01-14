@@ -3,8 +3,8 @@ module hunt.sql.ast.SQLCommentHint;
 import hunt.sql.ast.SQLObjectImpl;
 import hunt.sql.ast.SQLHint;
 import hunt.sql.visitor.SQLASTVisitor;
-import hunt.container;
-import hunt.lang.exception;
+import hunt.collection;
+import hunt.Exceptions;
 
 
 public class SQLCommentHint : SQLObjectImpl , SQLHint {

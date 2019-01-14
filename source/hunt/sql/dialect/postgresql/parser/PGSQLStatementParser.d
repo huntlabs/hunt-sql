@@ -36,9 +36,10 @@ import hunt.sql.util.DBType;
 import hunt.sql.dialect.postgresql.parser.PGExprParser;
 import hunt.sql.dialect.postgresql.parser.PGSelectParser;
 import hunt.sql.ast.SQLObjectImpl;
-import hunt.lang;
-import hunt.string;
-import hunt.container;
+import hunt.Boolean;
+import hunt.String;
+import hunt.collection;
+import hunt.text;
 import std.uni;
 
 public class PGSQLStatementParser : SQLStatementParser {

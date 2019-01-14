@@ -16,7 +16,7 @@
 module hunt.sql.ast.statement.SQLCreateTriggerStatement;
 
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.ast;
 import hunt.sql.visitor.SQLASTVisitor;

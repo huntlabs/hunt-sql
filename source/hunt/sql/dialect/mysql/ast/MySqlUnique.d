@@ -19,7 +19,7 @@ import hunt.sql.ast.statement.SQLPrimaryKey;
 import hunt.sql.dialect.mysql.visitor.MySqlASTVisitor;
 import hunt.sql.dialect.mysql.ast.MySqlKey;
 import hunt.sql.ast.SQLObject;
-import hunt.container;
+import hunt.collection;
 import hunt.sql.ast.statement.SQLSelectOrderByItem;
 
 public class MySqlUnique : MySqlKey {

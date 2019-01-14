@@ -24,8 +24,9 @@ import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.statement.SQLSelect;
 import hunt.sql.ast.statement.SQLCreateStatement;
 
-import hunt.container;
-import hunt.lang;
+import hunt.collection;
+import hunt.Integer;
+import hunt.Boolean;
 /**
  * Created by wenshao on 30/06/2017.
  */

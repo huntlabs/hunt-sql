@@ -34,13 +34,13 @@ import hunt.sql.util.FnvHash;
 import hunt.sql.util.DBType;
 import hunt.sql.repository.SchemaObjectType;
 
-import hunt.container;
-import hunt.lang;
-import hunt.string;
+import hunt.collection;
+import hunt.Long;
+import hunt.String;
 import hunt.sql.repository.SchemaObject;
 import std.uni;
 import hunt.sql.repository.SchemaRepository;
-
+import hunt.text;
 /**
  * Created by wenshao on 21/07/2017.
  */

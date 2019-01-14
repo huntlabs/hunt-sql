@@ -15,7 +15,7 @@
  */
 module hunt.sql.ast.statement.SQLBlockStatement;
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.ast.SQLParameter;
 import hunt.sql.ast.SQLStatement;

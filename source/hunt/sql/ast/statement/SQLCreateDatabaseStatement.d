@@ -15,7 +15,7 @@
  */
 module hunt.sql.ast.statement.SQLCreateDatabaseStatement;
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.ast.SQLCommentHint;
 import hunt.sql.ast.SQLName;

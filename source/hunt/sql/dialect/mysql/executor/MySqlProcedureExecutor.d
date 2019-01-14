@@ -15,7 +15,7 @@
  */
 module hunt.sql.dialect.mysql.executor.MySqlProcedureExecutor;
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.ast.SQLStatement;
 

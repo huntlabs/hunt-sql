@@ -20,11 +20,12 @@ import hunt.sql.ast.SQLObject;
 import hunt.sql.dialect.mysql.visitor.MySqlASTVisitor;
 import hunt.sql.util.FnvHash;
 import hunt.sql.dialect.mysql.ast.expr.MySqlExprImpl;
-import hunt.lang.common;
+// //import hunt.lang.common;
 import hunt.sql.dialect.mysql.ast.MySqlObjectImpl;
+import hunt.util.Common;
 
 
-import hunt.container;
+import hunt.collection;
 
 public class MySqlUserName : MySqlExprImpl , SQLName, Cloneable {
 

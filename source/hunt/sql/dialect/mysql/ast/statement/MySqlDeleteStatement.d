@@ -16,7 +16,7 @@
 module hunt.sql.dialect.mysql.ast.statement.MySqlDeleteStatement;
 
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.ast.SQLCommentHint;
 import hunt.sql.ast.SQLName;

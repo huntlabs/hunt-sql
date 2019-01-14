@@ -10,8 +10,8 @@ import hunt.sql.ast.SQLObject;
 import hunt.sql.visitor.SQLASTVisitor;
 
 
-import hunt.container;
-import hunt.lang;
+import hunt.collection;
+import hunt.Integer;
 
 public interface OracleSegmentAttributes : SQLObject {
 

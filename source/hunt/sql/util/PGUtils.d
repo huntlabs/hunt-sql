@@ -17,7 +17,7 @@ module hunt.sql.util.PGUtils;
 
 import hunt.sql.util.FnvHash;
 import hunt.sql.util.Utils;
-import hunt.container;
+import hunt.collection;
 import std.uni;
 import std.string;
 

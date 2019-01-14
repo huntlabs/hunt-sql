@@ -18,9 +18,9 @@ module hunt.sql.visitor.SchemaStatVisitor;
 
 import std.string;
 import std.uni;
-import hunt.container;
+import hunt.collection;
 import std.array;
-import hunt.string;
+import hunt.String;
 import hunt.sql.SQLUtils;
 import hunt.sql.ast;
 import hunt.sql.ast.expr;
@@ -42,10 +42,12 @@ import hunt.sql.stat.TableStat;
 import hunt.sql.util.FnvHash;
 import hunt.sql.util.DBType;
 import hunt.sql.visitor.SQLASTVisitorAdapter;
-import hunt.lang;
+import hunt.Long;
+import hunt.Boolean;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.visitor.SQLEvalVisitorUtils;
 import hunt.sql.visitor.SQLEvalVisitor;
+import hunt.text;
 
 public class SchemaStatVisitor : SQLASTVisitorAdapter {
 

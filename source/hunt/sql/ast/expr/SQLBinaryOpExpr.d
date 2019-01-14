@@ -24,7 +24,7 @@ import hunt.sql.visitor.SQLASTOutputVisitor;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.util.Utils;
 import hunt.sql.ast.expr.SQLBinaryOperator;
-import hunt.container;
+import hunt.collection;
 import hunt.sql.ast.expr.SQLExprUtils;
 import hunt.sql.ast.expr.SQLNullExpr;
 import hunt.sql.ast.expr.SQLBooleanExpr;

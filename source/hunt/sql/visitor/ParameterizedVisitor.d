@@ -17,7 +17,7 @@ module hunt.sql.visitor.ParameterizedVisitor;
 import hunt.sql.visitor.PrintableVisitor;
 import hunt.sql.visitor.VisitorFeature;
 
-import hunt.container;
+import hunt.collection;
 
 public interface ParameterizedVisitor : PrintableVisitor {
 

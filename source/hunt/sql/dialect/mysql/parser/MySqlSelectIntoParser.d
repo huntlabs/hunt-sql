@@ -16,7 +16,7 @@
 module hunt.sql.dialect.mysql.parser.MySqlSelectIntoParser;
 
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.ast.SQLExpr;
 import hunt.sql.ast.SQLSetQuantifier;
@@ -42,7 +42,7 @@ import hunt.sql.parser.SQLSelectParser;
 import hunt.sql.parser.Token;
 import hunt.sql.dialect.mysql.parser.MySqlExprParser;
 import hunt.sql.ast.SQLObject;
-import hunt.lang;
+import hunt.Boolean;
 
 public class MySqlSelectIntoParser : SQLSelectParser {
 	private List!(SQLExpr) argsList;

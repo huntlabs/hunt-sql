@@ -46,10 +46,12 @@ import hunt.sql.dialect.mysql.parser.MySqlSelectParser;
 import hunt.sql.dialect.mysql.parser.MySqlExprParser;
 import hunt.sql.dialect.mysql.parser.MySqlCreateTableParser;
 import std.algorithm.searching;
-import hunt.string;
-import hunt.container;
+import hunt.String;
+import hunt.collection;
 import std.uni;
-import hunt.lang;
+import hunt.Boolean;
+
+import hunt.text;
 import hunt.sql.dialect.mysql.parser.MySqlSelectIntoParser;
 
 public class MySqlStatementParser : SQLStatementParser {

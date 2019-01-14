@@ -22,7 +22,7 @@ import hunt.sql.ast.SQLReplaceable;
 import hunt.sql.ast.expr.SQLIdentifierExpr;
 import hunt.sql.ast.expr.SQLPropertyExpr;
 import hunt.sql.visitor.SQLASTVisitor;
-import hunt.container;
+import hunt.collection;
 
 public class SQLUpdateSetItem : SQLObjectImpl , SQLReplaceable {
 

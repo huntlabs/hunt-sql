@@ -2,7 +2,7 @@ module hunt.sql.ast.expr.SQLSequenceExpr;
 import hunt.sql.ast.SQLExprImpl;
 import hunt.sql.ast.SQLName;
 import hunt.sql.visitor.SQLASTVisitor;
-import hunt.container;
+import hunt.collection;
 import std.uni;
 import hunt.sql.ast.SQLObject;
 

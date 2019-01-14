@@ -1,6 +1,6 @@
 module hunt.sql.ast.SQLDataTypeImpl;
 
-import hunt.container;
+import hunt.collection;
 import hunt.sql.ast.SQLObjectImpl;
 import hunt.sql.ast.SQLDataType;
 import hunt.sql.ast.SQLExpr;

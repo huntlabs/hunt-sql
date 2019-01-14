@@ -20,7 +20,7 @@ import hunt.sql.ast.expr.SQLPropertyExpr;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.statement.SQLCreateStatement;
 
-import hunt.container;
+import hunt.collection;
 
 /**
  * Created by wenshao on 23/05/2017.

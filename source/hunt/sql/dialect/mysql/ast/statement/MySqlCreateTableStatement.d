@@ -15,7 +15,7 @@
  */
 module hunt.sql.dialect.mysql.ast.statement.MySqlCreateTableStatement;
 
-import hunt.container;
+import hunt.collection;
 
 import hunt.sql.SQLUtils;
 import hunt.sql.ast;
@@ -35,7 +35,7 @@ import hunt.sql.dialect.mysql.ast.statement.MySqlAlterTableAlterColumn;
 import hunt.sql.dialect.mysql.ast.statement.MySqlAlterTableChangeColumn;
 import hunt.sql.dialect.mysql.ast.statement.MySqlAlterTableModifyColumn;
 import hunt.sql.dialect.mysql.ast.statement.MySqlTableIndex;
-
+import hunt.util.Common;
 
 public class MySqlCreateTableStatement : SQLCreateTableStatement , MySqlStatement {
 

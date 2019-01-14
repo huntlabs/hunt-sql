@@ -17,7 +17,7 @@ module hunt.sql.ast.expr.SQLCaseStatement;
 
 import hunt.sql.ast;
 import hunt.sql.visitor.SQLASTVisitor;
-import hunt.container;
+import hunt.collection;
 
 public class SQLCaseStatement : SQLStatementImpl //, Serializable 
 {

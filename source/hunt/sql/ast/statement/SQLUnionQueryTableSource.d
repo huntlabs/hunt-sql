@@ -18,7 +18,7 @@ module hunt.sql.ast.statement.SQLUnionQueryTableSource;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.statement.SQLTableSourceImpl;
 import hunt.sql.ast.statement.SQLUnionQuery;
-import hunt.container;
+import hunt.collection;
 
 public class SQLUnionQueryTableSource : SQLTableSourceImpl {
 

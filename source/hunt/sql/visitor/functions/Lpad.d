@@ -16,12 +16,13 @@
 module hunt.sql.visitor.functions.Lpad;
 
 // import hunt.sql.visitor.SQLEvalVisitor.EVAL_VALUE;
-import hunt.lang;
+import hunt.Number;
 import hunt.sql.util.MyString;
-import hunt.string;
-import hunt.container;
+import hunt.String;
+import hunt.collection;
 import std.conv;
 import std.uni;
+import hunt.text;
 
 import hunt.sql.ast.SQLExpr;
 import hunt.sql.ast.expr.SQLMethodInvokeExpr;

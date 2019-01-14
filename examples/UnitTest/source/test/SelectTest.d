@@ -1,13 +1,14 @@
 module test.SelectTest;
 
 import hunt.logging;
-import hunt.container;
-import hunt.string;
+import hunt.collection;
+import hunt.String;
 import hunt.sql;
 
 import std.conv;
 import std.traits;
 import test.base;
+import std.string;
 
 
 public class SelectTest  {

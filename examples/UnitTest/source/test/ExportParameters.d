@@ -2,11 +2,13 @@ module test.ExportParameters;
 
 import hunt.sql;
 import hunt.logging;
-import hunt.container;
-import hunt.string;
+import hunt.collection;
+import hunt.String;
 import std.stdio;
 import test.base;
-import hunt.lang;
+import hunt.Integer;
+import hunt.text;
+import std.string;
 
 public class ExportParameters  {
     public void test_export_parameters() {

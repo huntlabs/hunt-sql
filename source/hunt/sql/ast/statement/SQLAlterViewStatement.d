@@ -26,7 +26,7 @@ import hunt.sql.ast.statement.SQLExprTableSource;
 import hunt.sql.ast.statement.SQLSelect;
 import hunt.sql.ast.statement.SQLCreateStatement;
 
-import hunt.container;
+import hunt.collection;
 
 public class SQLAlterViewStatement : SQLStatementImpl , SQLCreateStatement {
 
