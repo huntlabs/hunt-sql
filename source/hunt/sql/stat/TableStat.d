@@ -485,7 +485,7 @@ public class TableStat
                     Object val = values.get(i);
                     if (cast(MyString)(val) !is null)
                     {
-                        string jsonStr = toJSON(val).toString;
+                        string jsonStr = toJson(val).toString;
                         buf.append(jsonStr);
                     }
                     else
