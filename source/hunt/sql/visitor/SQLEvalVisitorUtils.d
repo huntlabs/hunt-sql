@@ -1573,11 +1573,11 @@ public class SQLEvalVisitorUtils {
         }
 
         if (cast(Short)(a) !is null || cast(Short)(b) !is null) {
-            return new Short(castToShort(a).shortValue / castToShort(b).shortValue);
+            return new Short(cast(short)(castToShort(a).shortValue / castToShort(b).shortValue));
         }
 
         if (cast(Byte)(a) !is null || cast(Byte)(b) !is null) {
-            return new Byte(castToByte(a).byteValue / castToByte(b).byteValue);
+            return new Byte(cast(byte)(castToByte(a).byteValue / castToByte(b).byteValue));
         }
 
         throw new Exception(typeid(a).name ~ " and " ~ typeid(b).name ~ " not supported.");
