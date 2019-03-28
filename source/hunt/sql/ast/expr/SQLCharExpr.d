@@ -40,13 +40,13 @@ public class SQLCharExpr : SQLTextLiteralExpr , SQLValuableExpr{
 
     }
 
-    public this(MyString text){
+    public this(String text){
         super(text);
     }
 
-    public this(String text){
-        super(new MyString(text.value));
-    }
+    // public this(String text){
+    //     super(new MyString(text.value));
+    // }
 
     public this(string text){
         super(new MyString(text));

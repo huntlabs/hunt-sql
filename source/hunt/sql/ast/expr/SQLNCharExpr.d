@@ -49,7 +49,7 @@ public class SQLNCharExpr : SQLTextLiteralExpr {
         }
 
         buf.append("N'");
-        buf.append(this.text.str.replace("'", "''"));
+        buf.append(this.text.value().replace("'", "''"));
         buf.append("'");
     }
 

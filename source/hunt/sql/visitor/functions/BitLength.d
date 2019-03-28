@@ -47,7 +47,7 @@ public class BitLength : Function {
         }
 
         if (cast(MyString)(param0Value) !is null) {
-            return new Long((cast(MyString) param0Value).str.length * 8);
+            return new Long((cast(MyString) param0Value).value().length * 8);
         }
         return cast(Object)(SQLEvalVisitor.EVAL_ERROR);
     }

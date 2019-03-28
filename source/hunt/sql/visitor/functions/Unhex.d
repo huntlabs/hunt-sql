@@ -72,7 +72,7 @@ public class Unhex : Function {
         }
 
         if (cast(MyString)(param0Value) !is null) {
-            byte[] bytes = HexBin.decode((cast(MyString) param0Value).str);
+            byte[] bytes = HexBin.decode((cast(MyString) param0Value).value());
             if (bytes is null) {
                 return cast(Object)(SQLEvalVisitor.EVAL_VALUE_NULL);
             }

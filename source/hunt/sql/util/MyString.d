@@ -1,73 +1,76 @@
 module hunt.sql.util.MyString;
 import std.conv;
 
-class MyString{
+import hunt.String;
+alias MyString = String;
 
-    private string _str;
+// class MyString{
 
-    this()
-    {
-        _str = string.init;
-    }
+//     private string _str;
 
-    this(string str)
-    {
-        _str = str;
-    }
+//     this()
+//     {
+//         _str = string.init;
+//     }
 
-    this(char c)
-    {
-        this(to!string(c));
-    }
+//     this(string str)
+//     {
+//         _str = str;
+//     }
 
-    this(byte[] b)
-    {
-        this(to!string(b));
-    }
+//     this(char c)
+//     {
+//         this(to!string(c));
+//     }
 
-    @property string str()
-    {
-        return _str;
-    }
+//     this(byte[] b)
+//     {
+//         this(to!string(b));
+//     }
 
-    @property size_t length()
-    {
-        return _str.length;
-    }
+//     @property string str()
+//     {
+//         return _str;
+//     }
 
-    byte[] getBytes()
-    {
-        return to!(byte[])(_str);
-    }
+//     @property size_t length()
+//     {
+//         return _str.length;
+//     }
 
-    public static string valueOf(Object obj) {
-        return (obj is null) ? "null" : obj.toString();
-    }
+//     byte[] getBytes()
+//     {
+//         return to!(byte[])(_str);
+//     }
 
-    override string toString()
-    {
-        return _str;
-    }
-}
+//     public static string valueOf(Object obj) {
+//         return (obj is null) ? "null" : obj.toString();
+//     }
 
- int compareTo(MyString v1 , MyString v2)
- {  
-        import std.algorithm.comparison;
+//     override string toString()
+//     {
+//         return _str;
+//     }
+// }
 
-        string value = v1.str;
-        string another = v2.str;
-        int len1 = cast(int)value.length;
-        int len2 = cast(int)another.length;
-        int lim = min(len1, len2);
+//  int compareTo(MyString v1 , MyString v2)
+//  {  
+//         import std.algorithm.comparison;
 
-        int k = 0;
-        while (k < lim) {
-            char c1 = value[k];
-            char c2 = another[k];
-            if (c1 != c2) {
-                return c1 - c2;
-            }
-            k++;
-        }
-        return len1 - len2;
-}
+//         string value = v1.str;
+//         string another = v2.str;
+//         int len1 = cast(int)value.length;
+//         int len2 = cast(int)another.length;
+//         int lim = min(len1, len2);
+
+//         int k = 0;
+//         while (k < lim) {
+//             char c1 = value[k];
+//             char c2 = another[k];
+//             if (c1 != c2) {
+//                 return c1 - c2;
+//             }
+//             k++;
+//         }
+//         return len1 - len2;
+// }

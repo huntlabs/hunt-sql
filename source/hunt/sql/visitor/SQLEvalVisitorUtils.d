@@ -571,7 +571,8 @@ public class SQLEvalVisitorUtils {
             if (cast(Number)(firstResult) !is null) {
                 int intValue = (cast(Number) firstResult).intValue();
                 char ch = cast(char) intValue;
-                x.putAttribute(SQLEvalVisitor.EVAL_VALUE, new MyString(ch));
+                string s = to!string(ch);
+                x.putAttribute(SQLEvalVisitor.EVAL_VALUE, new MyString(s));
             }
         } else if ("current_user" == (methodName)) {
             x.putAttribute(SQLEvalVisitor.EVAL_VALUE, new MyString("CURRENT_USER"));
@@ -590,7 +591,7 @@ public class SQLEvalVisitorUtils {
         if (bytes is null) {
             x.putAttribute(SQLEvalVisitor.EVAL_VALUE, cast(Object)(SQLEvalVisitor.EVAL_ERROR));
         } else {
-            MyString val = new MyString(bytes);
+            MyString val = new MyString(cast(string)bytes);
             x.putAttribute(SQLEvalVisitor.EVAL_VALUE, val);
         }
         return true;
@@ -1099,7 +1100,7 @@ public class SQLEvalVisitorUtils {
 
     private static bool isAlwayTrueLikePattern(SQLExpr x) {
         if (cast(SQLCharExpr)(x) !is null) {
-            string text = (cast(SQLCharExpr) x).getText().str;
+            string text = (cast(SQLCharExpr) x).getText().value();
 
             if (text.length > 0) {
                 foreach(char ch ; text) {
@@ -1159,7 +1160,7 @@ public class SQLEvalVisitorUtils {
         }
 
         if (cast(MyString)(val) !is null) {
-            if ("1" == (cast(MyString)(val)).str || equalsIgnoreCase("true",(cast(MyString) val).str)) {
+            if ("1" == (cast(MyString)(val)).value() || equalsIgnoreCase("true",(cast(MyString) val).value())) {
                 return new Boolean(true);
             }
 
@@ -1189,7 +1190,7 @@ public class SQLEvalVisitorUtils {
         }
 
         if (cast(MyString)(val) !is null) {
-            return new Byte(Byte.parseByte((cast(MyString) val).str));
+            return new Byte(Byte.parseByte((cast(MyString) val).value()));
         }
 
         return new Byte((cast(Number) val).byteValue());
@@ -1205,7 +1206,7 @@ public class SQLEvalVisitorUtils {
         }
 
         if (cast(MyString)(val) !is null) {
-            return new Short(Short.parseShort((cast(MyString) val).str));
+            return new Short(Short.parseShort((cast(MyString) val).value()));
         }
 
         return new Short((cast(Number) val).shortValue());
@@ -1222,7 +1223,7 @@ public class SQLEvalVisitorUtils {
         }
 
         if (cast(MyString)(val) !is null) {
-            return new Integer(Integer.parseInt((cast(MyString) val).str));
+            return new Integer(Integer.parseInt((cast(MyString) val).value()));
         }
 
         if (cast(List!Object)(val) !is null) {
@@ -1258,7 +1259,7 @@ public class SQLEvalVisitorUtils {
         }
 
         if (cast(MyString)(val) !is null) {
-            return new Long(Long.parseLong((cast(MyString) val).str));
+            return new Long(Long.parseLong((cast(MyString) val).value()));
         }
 
         if (cast(List!Object)(val) !is null) {
@@ -1313,7 +1314,7 @@ public class SQLEvalVisitorUtils {
         }
 
         if (cast(MyString)(val) !is null) {
-            return new BigInteger((cast(MyString) val).str);
+            return new BigInteger((cast(MyString) val).value());
         }
 
         return BigInteger.valueOf((cast(Number) val).longValue());
@@ -1416,7 +1417,7 @@ public class SQLEvalVisitorUtils {
         }
 
         if (cast(MyString)(val) !is null) {
-            return new BigDecimal((cast(MyString) val).str);
+            return new BigDecimal((cast(MyString) val).value());
         }
 
         if (cast(Float)(val) !is null) {
@@ -1452,11 +1453,11 @@ public class SQLEvalVisitorUtils {
         }
 
         if (cast(MyString)(a) !is null) {
-            a = castToNumber((cast(MyString) a).str);
+            a = castToNumber((cast(MyString) a).value());
         }
 
         if (cast(MyString)(b) !is null) {
-            b = castToNumber((cast(MyString) b).str);
+            b = castToNumber((cast(MyString) b).value());
         }
 
         if (cast(Long)(a) !is null || cast(Long)(b) !is null) {
@@ -1476,11 +1477,11 @@ public class SQLEvalVisitorUtils {
         }
 
         if (cast(MyString)(a) !is null) {
-            a = castToNumber((cast(MyString) a).str);
+            a = castToNumber((cast(MyString) a).value());
         }
 
         if (cast(MyString)(b) !is null) {
-            b = castToNumber((cast(MyString) b).str);
+            b = castToNumber((cast(MyString) b).value());
         }
 
         if (cast(Long)(a) !is null || cast(Long)(b) !is null) {
@@ -1500,11 +1501,11 @@ public class SQLEvalVisitorUtils {
         }
 
         if (cast(MyString)(a) !is null) {
-            a = castToNumber((cast(MyString) a).str);
+            a = castToNumber((cast(MyString) a).value());
         }
 
         if (cast(MyString)(b) !is null) {
-            b = castToNumber((cast(MyString) b).str);
+            b = castToNumber((cast(MyString) b).value());
         }
 
         if (cast(BigDecimal)(a) !is null || cast(BigDecimal)(b) !is null) {
@@ -1807,11 +1808,11 @@ public class SQLEvalVisitorUtils {
         }
 
         if (cast(MyString)(a) !is null && !(cast(MyString)(b) !is null)) {
-            a = castToNumber((cast(MyString) a).str);
+            a = castToNumber((cast(MyString) a).value());
         }
 
         if (cast(MyString)(b) !is null && !(cast(MyString)(a) !is null)) {
-            b = castToNumber((cast(MyString) b).str);
+            b = castToNumber((cast(MyString) b).value());
         }
 
         if (cast(BigDecimal)(a) !is null || cast(BigDecimal)(b) !is null) {
@@ -1878,11 +1879,11 @@ public class SQLEvalVisitorUtils {
         // }//@gxc
 
         if (cast(MyString)(a) !is null) {
-            a = castToNumber((cast(MyString) a).str);
+            a = castToNumber((cast(MyString) a).value());
         }
 
         if (cast(MyString)(b) !is null) {
-            b = castToNumber((cast(MyString) b).str);
+            b = castToNumber((cast(MyString) b).value());
         }
 
         if (cast(BigDecimal)(a) !is null || cast(BigDecimal)(b) !is null) {
@@ -1934,11 +1935,11 @@ public class SQLEvalVisitorUtils {
         }
 
         if (cast(MyString)(a) !is null) {
-            a = castToNumber((cast(MyString) a).str);
+            a = castToNumber((cast(MyString) a).value());
         }
 
         if (cast(MyString)(b) !is null) {
-            b = castToNumber((cast(MyString) b).str);
+            b = castToNumber((cast(MyString) b).value());
         }
 
         if (cast(BigDecimal)(a) !is null || cast(BigDecimal)(b) !is null) {

@@ -649,7 +649,7 @@ public class MySqlOutputVisitor : SQLASTOutputVisitor , MySqlASTVisitor {
 
             this.appender.append('\'');
 
-            string text = x.getText().str;
+            string text = x.getText().value();
 
             bool hasSpecial = false;
             for (int i = 0; i < text.length; ++i) {

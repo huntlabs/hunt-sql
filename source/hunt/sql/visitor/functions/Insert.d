@@ -69,10 +69,10 @@ public class Insert : Function {
             return cast(Object)(SQLEvalVisitor.EVAL_ERROR);
         }
 
-        string str = (cast(MyString) param0Value).str;
+        string str = (cast(MyString) param0Value).value();
         int pos = (cast(Number) param1Value).intValue();
         int len = (cast(Number) param2Value).intValue();
-        string newstr = (cast(MyString) param3Value).str;
+        string newstr = (cast(MyString) param3Value).value();
         
         if (pos <= 0) {
             return new MyString(str);

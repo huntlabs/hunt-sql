@@ -377,12 +377,12 @@ public class SQLExprParser : SQLParser {
 
                     for (; ; ) {
                         if (lexer.token == Token.LITERAL_ALIAS) {
-                            string concat = (cast(SQLCharExpr) sqlExpr).getText().str;
+                            string concat = (cast(SQLCharExpr) sqlExpr).getText().value();
                             concat ~= lexer.stringVal();
                             lexer.nextTokenValue();
                             sqlExpr = new SQLCharExpr(concat);
                         } else if (lexer.token == Token.LITERAL_CHARS || lexer.token == Token.LITERAL_NCHARS) {
-                            string concat = (cast(SQLCharExpr) sqlExpr).getText().str;
+                            string concat = (cast(SQLCharExpr) sqlExpr).getText().value();
                             concat ~= lexer.stringVal();
                             lexer.nextTokenValue();
                             sqlExpr = new SQLCharExpr(concat);
@@ -934,7 +934,7 @@ public class SQLExprParser : SQLParser {
             lexer.nextToken();
 
             if (cast(SQLCharExpr)(expr) !is null) {
-                string text = (cast(SQLCharExpr) expr).getText().str;
+                string text = (cast(SQLCharExpr) expr).getText().value();
                 expr = new SQLIdentifierExpr(text);
             }
 
@@ -1066,7 +1066,7 @@ public class SQLExprParser : SQLParser {
         } else if (cast(SQLDefaultExpr)(expr) !is null) {
             methodName = "DEFAULT";
         } else if (cast(SQLCharExpr)(expr) !is null) {
-            methodName = (cast(SQLCharExpr) expr).getText().str;
+            methodName = (cast(SQLCharExpr) expr).getText().value();
         }
 
         if (aggMethodName !is null) {

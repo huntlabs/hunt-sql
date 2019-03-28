@@ -688,7 +688,7 @@ public class SQLTransformUtils {
             if (x.getParameters().size() == 1) {
                 SQLExpr param0 = x.getParameters().get(0);
                 if (cast(SQLCharExpr)(param0) !is null) {
-                    string text = (cast(SQLCharExpr) param0).getText().str;
+                    string text = (cast(SQLCharExpr) param0).getText().value();
                     if ("SESSIONID".equalsIgnoreCase(text)) {
                         SQLMethodInvokeExpr xx = new SQLMethodInvokeExpr();
                         xx.setMethodName("get_session_id");
@@ -703,7 +703,7 @@ public class SQLTransformUtils {
             if (x.getParameters().size() == 1) {
                 SQLExpr param0 = x.getParameters().get(0);
                 if (cast(SQLCharExpr)(param0) !is null) {
-                    string text = (cast(SQLCharExpr) param0).getText().str;
+                    string text = (cast(SQLCharExpr) param0).getText().value();
                     if ("SESSIONID".equalsIgnoreCase(text)) {
                         SQLMethodInvokeExpr xx = new SQLMethodInvokeExpr();
                         xx.setMethodName("get_session_id");
@@ -720,7 +720,7 @@ public class SQLTransformUtils {
                 SQLExpr param1 = x.getParameters().get(1);
 
                 if (cast(SQLIntegerExpr)(param0) !is null && cast(SQLCharExpr)(param1) !is null) {
-                    string text = (cast(SQLCharExpr) param1).getText().str;
+                    string text = (cast(SQLCharExpr) param1).getText().value();
                     if ("DAY".equalsIgnoreCase(text)) {
                         SQLIntervalExpr intervalExpr = new SQLIntervalExpr();
                         intervalExpr.setValue(new SQLCharExpr(param0.stringof ~ " DAYS"));

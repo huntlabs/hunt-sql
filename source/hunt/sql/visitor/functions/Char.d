@@ -54,7 +54,7 @@ public class Char : Function {
                 buf.append(cast(char) charCode);
             } else if (cast(MyString)(paramValue) !is null) {
                 try {
-                    int charCode = new BigDecimal((cast(MyString) paramValue).str).intValue();
+                    int charCode = new BigDecimal((cast(MyString) paramValue).value()).intValue();
                     buf.append(cast(char) charCode);
                 } catch (Exception e) {
                 }

@@ -333,7 +333,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
 
     public void print(MyString text)
     {
-        print(text.str);
+        print(text.value());
     }
 
     public void print(string text) {
@@ -344,7 +344,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
      protected void print0(MyString text)
      {
-         print0(text.str);
+         print0(text.value());
      }
     protected void print0(string text) {
         if (appender is null) {
@@ -1128,7 +1128,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
             return false;
         }
 
-        printChars(x.getText().str);
+        printChars(x.getText().value());
 
         return false;
     }
@@ -1501,12 +1501,12 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
                     if (DBType.ORACLE.opEquals(dbType)) {
                         if ("TO_CHAR".equalsIgnoreCase(_function)
                                 || "TO_DATE".equalsIgnoreCase(_function)) {
-                            printChars((cast(SQLCharExpr) param).getText().str);
+                            printChars((cast(SQLCharExpr) param).getText().value());
                             continue;
                         }
                     } else if (DBType.MYSQL.opEquals(dbType)) {
                         if ("DATE_FORMAT".equalsIgnoreCase(_function)) {
-                            printChars((cast(SQLCharExpr) param).getText().str);
+                            printChars((cast(SQLCharExpr) param).getText().value());
                             continue;
                         }
                     }
@@ -1641,7 +1641,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
             print0(ucase ? "NULL" : "null");
         } else {
             print0(ucase ? "N'" : "n'");
-            print0(x.getText().str.replace("'", "''"));
+            print0(x.getText().value().replace("'", "''"));
             print('\'');
         }
         return false;
@@ -2636,7 +2636,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
                 MyString dataType = cast(MyString) column.getAttribute("dataType");
                 if (dataType !is null) {
                     print(' ');
-                    print(dataType.str);
+                    print(dataType.value());
                 }
             }
             print(')');
@@ -3008,7 +3008,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         MyString charset = cast(MyString) x.getAttribute("USING");
         if (charset !is null) {
             print0(ucase ? " USING " : " using ");
-            print0(charset.str);
+            print0(charset.value());
         }
 
         return false;

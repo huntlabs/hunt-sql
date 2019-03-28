@@ -234,7 +234,7 @@ public class MySqlExprParser : SQLExprParser {
                     return primaryRest(expr);
                 }
             } else if (cast(SQLCharExpr)(expr) !is null) {
-                string text2 = (cast(SQLCharExpr) expr).getText.str();
+                string text2 = (cast(SQLCharExpr) expr).getText.value();
                 do {
                     string chars = lexer.stringVal();
                     text2 ~= chars;
