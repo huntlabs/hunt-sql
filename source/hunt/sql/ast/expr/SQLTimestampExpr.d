@@ -8,7 +8,7 @@ import hunt.sql.ast.SQLObject;
 import hunt.sql.ast.statement.SQLCharacterDataType;
 import hunt.sql.SQLUtils;
 //import hunt.lang;
-import hunt.sql.util.MyString;
+import hunt.String;
 
 public class SQLTimestampExpr : SQLExprImpl , SQLValuableExpr {
     public static  SQLDataType DEFAULT_DATA_TYPE ;
@@ -37,7 +37,7 @@ public class SQLTimestampExpr : SQLExprImpl , SQLValuableExpr {
     }
 
     override public Object getValue() {
-        return new MyString(literal);
+        return new String(literal);
     }
 
     public string getLiteral() {

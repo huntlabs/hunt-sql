@@ -40,7 +40,7 @@ public class ExportParameters  {
         
         List!Object params = new ArrayList!Object();
         params.add(new Integer(3));
-        params.add(new MyString("abc"));
+        params.add(new String("abc"));
         
         auto format_string = SQLUtils.format(sql, DBType.ORACLE.name,params);
         

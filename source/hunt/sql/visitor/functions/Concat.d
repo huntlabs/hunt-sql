@@ -22,7 +22,7 @@ import hunt.sql.ast.expr.SQLMethodInvokeExpr;
 import hunt.sql.visitor.SQLEvalVisitor;
 import hunt.sql.visitor.functions.Function;
 //import hunt.lang;
-import hunt.sql.util.MyString;
+import hunt.String;
 import hunt.String;
 import hunt.collection;
 import hunt.text;
@@ -49,6 +49,6 @@ public class Concat : Function {
             buf.append(itemValue.toString());
         }
 
-        return new MyString(buf.toString());
+        return new String(buf.toString());
     }
 }

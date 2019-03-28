@@ -50,7 +50,7 @@ import std.datetime;
 import std.conv;
 import std.string;
 import hunt.collection;
-import hunt.sql.util.MyString;
+import hunt.String;
 import hunt.String;
 import hunt.Boolean;
 import hunt.Number;
@@ -331,7 +331,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     //     print0("'" ~ dateFormat.format(date) ~ "'");
     // }
 
-    public void print(MyString text)
+    public void print(String text)
     {
         print(text.value());
     }
@@ -342,7 +342,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         }
         print0(text);
     }
-     protected void print0(MyString text)
+     protected void print0(String text)
      {
          print0(text.value());
      }
@@ -2320,8 +2320,8 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
             return;
         }
 
-        if (cast(MyString)param !is null) {
-            SQLCharExpr charExpr = new SQLCharExpr(cast(MyString) param);
+        if (cast(String)param !is null) {
+            SQLCharExpr charExpr = new SQLCharExpr(cast(String) param);
             visit(charExpr);
             return;
         }
@@ -2372,7 +2372,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         //         chars[i * 2 + 3] = cast(char) (b1 + (b1 < 10 ? 48 : 55));
         //     }
         //     chars[chars.length - 1] = '\'';
-        //     print0(new MyString(chars));
+        //     print0(new String(chars));
         //     return;
         // }
 
@@ -2633,7 +2633,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
                     printExpr(column);
                 }
 
-                MyString dataType = cast(MyString) column.getAttribute("dataType");
+                String dataType = cast(String) column.getAttribute("dataType");
                 if (dataType !is null) {
                     print(' ');
                     print(dataType.value());
@@ -3005,7 +3005,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         print0("0x");
         print0(x.getHex());
 
-        MyString charset = cast(MyString) x.getAttribute("USING");
+        String charset = cast(String) x.getAttribute("USING");
         if (charset !is null) {
             print0(ucase ? " USING " : " using ");
             print0(charset.value());

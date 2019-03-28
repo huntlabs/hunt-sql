@@ -28,7 +28,7 @@ import hunt.sql.util.Utils;
 import hunt.sql.visitor.functions.Function;
 import hunt.Integer;
 import hunt.Long;
-import hunt.sql.util.MyString;
+import hunt.String;
 import hunt.String;
 import hunt.collection;
 import std.conv;
@@ -67,7 +67,7 @@ public class OneParamFunctions : Function {
         string method = x.getMethodName();
         if ("md5".equalsIgnoreCase(method)) {
             string text = paramValue.toString();
-            return new MyString(cast(string)(md5Of(text)));
+            return new String(cast(string)(md5Of(text)));
         }
 
         if ("bit_count".equalsIgnoreCase(method)) {
@@ -88,7 +88,7 @@ public class OneParamFunctions : Function {
         
         if ("soundex".equalsIgnoreCase(method)) {
             string text = paramValue.toString();
-            return new MyString(soundex(text));
+            return new String(soundex(text));
         }
         
         if ("space".equalsIgnoreCase(method)) {
@@ -97,7 +97,7 @@ public class OneParamFunctions : Function {
             for (int i = 0; i < chars.length; ++i) {
                 chars[i] = ' ';
             }
-            return new MyString(cast(string)chars);
+            return new String(cast(string)chars);
         }
 
         throw new Exception(method);
@@ -145,7 +145,7 @@ public class OneParamFunctions : Function {
             // return str.toUpperCase(java.util.Locale.ENGLISH);
             return toUpper(str);
         }
-        // return new MyString(chars, 0, count).toUpperCase(java.util.Locale.ENGLISH);
+        // return new String(chars, 0, count).toUpperCase(java.util.Locale.ENGLISH);
         return toUpper(cast(string)chars[0..count]);
     }
     

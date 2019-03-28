@@ -27,7 +27,7 @@ import hunt.sql.ast.expr.SQLValuableExpr;
 import hunt.sql.ast.expr.SQLLiteralExpr;
 import hunt.collection;
 import hunt.sql.ast.expr.SQLCharExpr;
-import hunt.sql.util.MyString;
+import hunt.String;
 
 public class SQLDateExpr : SQLExprImpl , SQLLiteralExpr, SQLValuableExpr {
     public static  SQLDataType DEFAULT_DATA_TYPE;
@@ -43,19 +43,19 @@ public class SQLDateExpr : SQLExprImpl , SQLLiteralExpr, SQLValuableExpr {
 
     }
 
-    public this(MyString literal) {
+    public this(String literal) {
         this.setLiteral(literal);
     }
 
     public this(string literal) {
-        this.setLiteral(new MyString(literal));
+        this.setLiteral(new String(literal));
     }
 
     public SQLExpr getLiteral() {
         return literal;
     }
 
-    public void setLiteral(MyString literal) {
+    public void setLiteral(String literal) {
         setLiteral(new SQLCharExpr(literal));
     }
 
@@ -66,7 +66,7 @@ public class SQLDateExpr : SQLExprImpl , SQLLiteralExpr, SQLValuableExpr {
         this.literal = x;
     }
 
-    public MyString getValue() {
+    public String getValue() {
         if (cast(SQLCharExpr) literal !is null) {
             return (cast(SQLCharExpr) literal).getText();
         }

@@ -22,7 +22,7 @@ import hunt.sql.ast.expr.SQLMethodInvokeExpr;
 import hunt.sql.visitor.SQLEvalVisitor;
 import hunt.sql.visitor.functions.Function;
 import hunt.Number;
-import hunt.sql.util.MyString;
+import hunt.String;
 import hunt.String;
 import hunt.collection;
 import std.conv;
@@ -56,7 +56,7 @@ public class Insert : Function {
         Object param2Value = param2.getAttributes().get(SQLEvalVisitor.EVAL_VALUE);
         Object param3Value = param3.getAttributes().get(SQLEvalVisitor.EVAL_VALUE);
 
-        if (!(cast(MyString)(param0Value) !is null)) {
+        if (!(cast(String)(param0Value) !is null)) {
             return cast(Object)(SQLEvalVisitor.EVAL_ERROR);
         }
         if (!(cast(Number)(param1Value) !is null)) {
@@ -65,31 +65,31 @@ public class Insert : Function {
         if (!(cast(Number)(param2Value) !is null)) {
             return cast(Object)(SQLEvalVisitor.EVAL_ERROR);
         }
-        if (!(cast(MyString)(param3Value) !is null)) {
+        if (!(cast(String)(param3Value) !is null)) {
             return cast(Object)(SQLEvalVisitor.EVAL_ERROR);
         }
 
-        string str = (cast(MyString) param0Value).value();
+        string str = (cast(String) param0Value).value();
         int pos = (cast(Number) param1Value).intValue();
         int len = (cast(Number) param2Value).intValue();
-        string newstr = (cast(MyString) param3Value).value();
+        string newstr = (cast(String) param3Value).value();
         
         if (pos <= 0) {
-            return new MyString(str);
+            return new String(str);
         }
         
         if (pos == 1) {
             if (len > str.length) {
-                return new MyString(newstr);
+                return new String(newstr);
             }
-            return new MyString(newstr ~ str.substring(len));
+            return new String(newstr ~ str.substring(len));
         }
         
         string first = str.substring(0, pos - 1);
         if (pos + len - 1 > str.length) {
-            return new MyString(first ~ newstr);
+            return new String(first ~ newstr);
         }
         
-        return new MyString(first ~ newstr ~ str.substring(pos + len - 1));
+        return new String(first ~ newstr ~ str.substring(pos + len - 1));
     }
 }

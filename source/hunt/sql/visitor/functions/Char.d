@@ -23,7 +23,7 @@ import hunt.sql.ast.expr.SQLMethodInvokeExpr;
 import hunt.sql.visitor.SQLEvalVisitor;
 import hunt.sql.visitor.functions.Function;
 import hunt.Number;
-import hunt.sql.util.MyString;
+import hunt.String;
 import hunt.String;
 import hunt.collection;
 import hunt.math;
@@ -52,9 +52,9 @@ public class Char : Function {
             if (cast(Number)(paramValue) !is null) {
                 int charCode = (cast(Number) paramValue).intValue();
                 buf.append(cast(char) charCode);
-            } else if (cast(MyString)(paramValue) !is null) {
+            } else if (cast(String)(paramValue) !is null) {
                 try {
-                    int charCode = new BigDecimal((cast(MyString) paramValue).value()).intValue();
+                    int charCode = new BigDecimal((cast(String) paramValue).value()).intValue();
                     buf.append(cast(char) charCode);
                 } catch (Exception e) {
                 }
@@ -63,6 +63,6 @@ public class Char : Function {
             }
         }
 
-        return new MyString(buf.toString());
+        return new String(buf.toString());
     }
 }

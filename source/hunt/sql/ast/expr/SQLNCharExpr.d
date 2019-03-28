@@ -21,7 +21,7 @@ import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.expr.SQLTextLiteralExpr;
 import hunt.collection;
 import std.array;
-import hunt.sql.util.MyString;
+import hunt.String;
 
 public class SQLNCharExpr : SQLTextLiteralExpr {
     public static SQLDataType defaultDataType;
@@ -34,12 +34,12 @@ public class SQLNCharExpr : SQLTextLiteralExpr {
 
     }
 
-    public this(MyString text){
+    public this(String text){
         super(text);
     }
 
     public this(string text){
-        super(new MyString(text));
+        super(new String(text));
     }
 
     override public void output(StringBuffer buf) {

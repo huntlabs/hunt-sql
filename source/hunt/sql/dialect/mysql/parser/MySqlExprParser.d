@@ -49,7 +49,7 @@ import hunt.sql.dialect.mysql.parser.MySqlLexer;
 import hunt.String;
 import std.string;
 import hunt.sql.util.Utils;
-import hunt.sql.util.MyString;
+import hunt.String;
 import hunt.sql.dialect.mysql.parser.MySqlSelectParser;
 import hunt.text;
 
@@ -258,7 +258,7 @@ public class MySqlExprParser : SQLExprParser {
                     }
                     string charSet = lexer.stringVal();
                     lexer.nextToken();
-                    expr.getAttributes().put("USING", new MyString(charSet));
+                    expr.getAttributes().put("USING", new String(charSet));
 
                     return primaryRest(expr);
                 }
@@ -295,7 +295,7 @@ public class MySqlExprParser : SQLExprParser {
                     string collate = lexer.stringVal();
                     lexer.nextToken();
 
-                    expr.putAttribute("COLLATE", new MyString(collate));
+                    expr.putAttribute("COLLATE", new String(collate));
 
                     return primaryRest(expr);
                 }

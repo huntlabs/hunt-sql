@@ -23,7 +23,7 @@ import hunt.sql.visitor.SQLEvalVisitor;
 import hunt.sql.visitor.functions.Function;
 import hunt.Number;
 import hunt.Long;
-import hunt.sql.util.MyString;
+import hunt.String;
 
 public class Bin : Function {
 
@@ -50,7 +50,7 @@ public class Bin : Function {
         if (cast(Number)(param0Value) !is null) {
             long longValue = (cast(Number) param0Value).longValue();
             string result = Long.toStr(longValue, 2);
-            return new MyString(result);
+            return new String(result);
         }
         return cast(Object)(SQLEvalVisitor.EVAL_ERROR);
     }

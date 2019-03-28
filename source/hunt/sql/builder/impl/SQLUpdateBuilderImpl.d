@@ -38,7 +38,7 @@ import hunt.sql.ast.expr.SQLCharExpr;
 import hunt.sql.ast.expr.SQLIntegerExpr;
 import hunt.sql.ast.expr.SQLNullExpr;
 import hunt.sql.ast.expr.SQLNumberExpr;
-import hunt.sql.util.MyString;
+import hunt.String;
 import hunt.Double;
 import hunt.Float;
 import hunt.Boolean;

@@ -818,7 +818,7 @@ public class Lexer {
                     if (isEOF()) { // JLS
                         _token = Token.EOF;
                     } else {
-                        //lexError("illegal.char", MyString.valueOf((int) ch));
+                        //lexError("illegal.char", String.valueOf((int) ch));
                         scanChar();
                     }
 

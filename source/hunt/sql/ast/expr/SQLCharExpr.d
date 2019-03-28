@@ -24,7 +24,6 @@ import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.expr.SQLTextLiteralExpr;
 import hunt.sql.ast.expr.SQLValuableExpr;
 import hunt.collection;
-import hunt.sql.util.MyString;
 import hunt.String;
 import hunt.util.Common;
 //import hunt.lang;
@@ -45,11 +44,11 @@ public class SQLCharExpr : SQLTextLiteralExpr , SQLValuableExpr{
     }
 
     // public this(String text){
-    //     super(new MyString(text.value));
+    //     super(new String(text.value));
     // }
 
     public this(string text){
-        super(new MyString(text));
+        super(new String(text));
     }
 
     override public void output(StringBuffer buf) {

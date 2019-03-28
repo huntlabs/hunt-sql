@@ -5,26 +5,26 @@ import hunt.sql.ast.expr.SQLLiteralExpr;
 import hunt.sql.ast.SQLExprImpl;
 import hunt.collection;
 import hunt.sql.ast.SQLObject;
-import hunt.sql.util.MyString;
+import hunt.String;
 
 public abstract class SQLTextLiteralExpr : SQLExprImpl , SQLLiteralExpr {
 
-    protected MyString text;
+    protected String text;
 
     public this(){
 
     }
 
-    public this(MyString text){
+    public this(String text){
 
         this.text = text;
     }
 
-    public MyString getText() {
+    public String getText() {
         return this.text;
     }
 
-    public void setText(MyString text) {
+    public void setText(String text) {
         this.text = text;
     }
 

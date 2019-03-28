@@ -22,7 +22,7 @@ import hunt.sql.ast.expr.SQLMethodInvokeExpr;
 import hunt.sql.visitor.SQLEvalVisitor;
 import hunt.sql.visitor.functions.Function;
 //import hunt.lang;
-import hunt.sql.util.MyString;
+import hunt.String;
 import hunt.String;
 import hunt.collection;
 import std.conv;
@@ -63,9 +63,9 @@ public class Ltrim : Function {
         }
         
         if (index <= 0) {
-            return new MyString(strValue);
+            return new String(strValue);
         } else {
-            return new MyString(strValue.substring(index));
+            return new String(strValue.substring(index));
         }
     }
 }

@@ -20,7 +20,7 @@ module hunt.sql.visitor.functions.Locate;
 import hunt.Integer;
 import hunt.Number;
 
-import hunt.sql.util.MyString;
+import hunt.String;
 import hunt.String;
 import hunt.collection;
 import std.conv;
