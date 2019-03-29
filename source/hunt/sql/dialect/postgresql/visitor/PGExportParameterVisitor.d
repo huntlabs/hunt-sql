@@ -76,7 +76,7 @@ public class PGExportParameterVisitor : PGOutputVisitor , ExportParameterVisitor
     override
     public bool visit(SQLSelectItem x) {
         if(requireParameterizedOutput){
-            return visit(x);
+            return (super).visit(x);
         }
         return false;
     }
@@ -84,7 +84,7 @@ public class PGExportParameterVisitor : PGOutputVisitor , ExportParameterVisitor
     override
     public bool visit(SQLOrderBy x) {
         if(requireParameterizedOutput){
-            return visit(x);
+            return (super).visit(x);
         }
         return false;
     }
@@ -92,7 +92,7 @@ public class PGExportParameterVisitor : PGOutputVisitor , ExportParameterVisitor
     override
     public bool visit(SQLSelectGroupByClause x) {
         if(requireParameterizedOutput){
-            return visit(x);
+            return (super).visit(x);
         }
         return false;
     }
@@ -100,7 +100,7 @@ public class PGExportParameterVisitor : PGOutputVisitor , ExportParameterVisitor
     override
     public bool visit(SQLMethodInvokeExpr x) {
         if(requireParameterizedOutput){
-            return visit(x);
+            return (super).visit(x);
         }
         ExportParameterVisitorUtils.exportParamterAndAccept(this.parameters, x.getParameters());
 
@@ -110,7 +110,7 @@ public class PGExportParameterVisitor : PGOutputVisitor , ExportParameterVisitor
     override
     public bool visit(SQLInListExpr x) {
         if(requireParameterizedOutput){
-            return visit(x);
+            return (super).visit(x);
         }
         ExportParameterVisitorUtils.exportParamterAndAccept(this.parameters, x.getTargetList());
 
@@ -120,7 +120,7 @@ public class PGExportParameterVisitor : PGOutputVisitor , ExportParameterVisitor
     override
     public bool visit(SQLBetweenExpr x) {
         if(requireParameterizedOutput){
-            return visit(x);
+            return (super).visit(x);
         }
         ExportParameterVisitorUtils.exportParameter(this.parameters, x);
         return true;
@@ -128,7 +128,7 @@ public class PGExportParameterVisitor : PGOutputVisitor , ExportParameterVisitor
 
     override public bool visit(SQLBinaryOpExpr x) {
         if(requireParameterizedOutput){
-            return visit(x);
+            return (super).visit(x);
         }
         ExportParameterVisitorUtils.exportParameter(this.parameters, x);
         return true;

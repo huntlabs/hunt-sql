@@ -37,7 +37,9 @@ import hunt.sql.dialect.postgresql.ast.stmt.PGSelectQueryBlock;
 // import hunt.sql.dialect.postgresql.ast.stmt.PGSelectQueryBlock.ForClause;
 // import hunt.sql.dialect.postgresql.ast.stmt.PGSelectQueryBlock.WindowClause;
 import hunt.sql.visitor.SchemaStatVisitor;
+import hunt.sql.ast.SQLExpr;
 import hunt.sql.stat.TableStat;
+import hunt.sql.ast.statement.SQLUpdateSetItem;
 // import hunt.sql.stat.TableStat.Mode;
 import hunt.sql.util.DBType;
 import hunt.sql.util.PGUtils;
@@ -149,7 +151,7 @@ public class PGSchemaStatVisitor : SchemaStatVisitor , PGASTVisitor {
             stat.incrementInsertCount();
         }
 
-        accept(cast(List!SQLObject)(x.getColumns()));
+        accept!SQLExpr((x.getColumns()));
         accept(x.getQuery());
 
         return false;
@@ -190,7 +192,7 @@ public class PGSchemaStatVisitor : SchemaStatVisitor , PGASTVisitor {
 
         accept(x.getFrom());
 
-        accept(cast(List!SQLObject)(x.getItems()));
+        accept!SQLUpdateSetItem((x.getItems()));
         accept(x.getWhere());
 
         return false;

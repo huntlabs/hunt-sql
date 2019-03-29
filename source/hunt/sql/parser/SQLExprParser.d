@@ -3058,12 +3058,12 @@ public class SQLExprParser : SQLParser {
 
     public List!(SQLCommentHint) parseHints() {
         List!(SQLCommentHint) hints = new ArrayList!(SQLCommentHint)();
-        parseHints(cast(List!SQLObject)(hints));
+        parseHints!(SQLCommentHint)((hints));
         return hints;
     }
 
     //@SuppressWarnings({ "unchecked", "rawtypes" })
-    public void parseHints(List!SQLObject hints) {
+    public void parseHints(T)(List!(T) hints) {
         if (lexer.token == Token.HINT) {
             SQLCommentHint hint = new SQLCommentHint(lexer.stringVal());
 

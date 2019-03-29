@@ -44,14 +44,15 @@ import hunt.sql.dialect.mysql.ast.expr.MySqlOutFileExpr;
 import hunt.sql.dialect.mysql.ast.expr.MySqlUserName;
 import hunt.sql.dialect.mysql.ast.statement;
 import hunt.sql.dialect.mysql.ast.statement.MySqlCreateTableStatement;
-
+import hunt.sql.ast.SQLObjectImpl;
+import hunt.sql.ast.SQLStatement;
 // import hunt.sql.dialect.mysql.ast.statement.MySqlCreateTableStatement.TableSpaceOption;
 // import hunt.sql.dialect.mysql.ast.statement.MySqlCreateUserStatement.UserSpecification;
 import hunt.sql.visitor.SchemaStatVisitor;
 import hunt.sql.stat.TableStat;
 // import hunt.sql.stat.TableStat.Mode;
 import hunt.sql.util.DBType;
-// import hunt.sql.util.DBType;
+import hunt.sql.dialect.mysql.ast.clause.MySqlCaseStatement;
 import hunt.sql.dialect.mysql.visitor.MySqlASTVisitor;
 import hunt.collection;
 
@@ -134,10 +135,10 @@ public class MySqlSchemaStatVisitor : SchemaStatVisitor , MySqlASTVisitor {
             stat.incrementInsertCount();
         }
 
-        accept(cast(List!SQLObject)(x.getColumns()));
-        accept(cast(List!SQLObject)(x.getValuesList()));
+        accept!(SQLExpr)((x.getColumns()));
+        accept!(ValuesClause)((x.getValuesList()));
         accept(x.getQuery());
-        accept(cast(List!SQLObject)(x.getDuplicateKeyUpdate()));
+        accept!(SQLExpr)((x.getDuplicateKeyUpdate()));
 
         return false;
     }
@@ -374,7 +375,7 @@ public class MySqlSchemaStatVisitor : SchemaStatVisitor , MySqlASTVisitor {
 
     override
     public bool visit(MySqlPartitionByKey x) {
-        accept(cast(List!SQLObject)(x.getColumns()));
+        accept!SQLExpr((x.getColumns()));
         return false;
     }
 
@@ -1134,7 +1135,7 @@ public class MySqlSchemaStatVisitor : SchemaStatVisitor , MySqlASTVisitor {
 
     override
     public bool visit(MySqlCaseStatement x) {
-        accept(cast(List!SQLObject)(x.getWhenList()));
+        accept!(MySqlCaseStatement.MySqlWhenStatement)((x.getWhenList()));
         return false;
     }
 
@@ -1165,7 +1166,7 @@ public class MySqlSchemaStatVisitor : SchemaStatVisitor , MySqlASTVisitor {
 
     override
     public bool visit(MySqlCaseStatement.MySqlWhenStatement x) {
-        accept(cast(List!SQLObject)(x.getStatements()));
+        accept!SQLStatement((x.getStatements()));
         return false;
     }
 
@@ -1196,7 +1197,7 @@ public class MySqlSchemaStatVisitor : SchemaStatVisitor , MySqlASTVisitor {
 
     override
     public bool visit(MySqlRepeatStatement x) {
-        accept(cast(List!SQLObject)(x.getStatements()));
+        accept!SQLStatement((x.getStatements()));
         return false;
     }
 

@@ -2599,7 +2599,7 @@ public class MySqlOutputVisitor : SQLASTOutputVisitor , MySqlASTVisitor {
 
         if (x.getPartitionSize() > 0) {
             print0(ucase ? " PARTITION (" : " partition (");
-            printlnAndAccept(cast(List!SQLObject)(x.getPartitions()), ", ");
+            printlnAndAccept!(SQLName)((x.getPartitions()), ", ");
             print(')');
         }
 

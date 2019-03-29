@@ -35,6 +35,7 @@ import hunt.Float;
 import hunt.sql.parser.ParserException;
 import hunt.String;
 import hunt.text;
+import hunt.sql.ast.SQLCommentHint;
 
 public class SQLSelectParser : SQLParser {
     protected SQLExprParser      exprParser;
@@ -88,7 +89,7 @@ public class SQLSelectParser : SQLParser {
         }
 
         while (lexer.token == Token.HINT) {
-            this.exprParser.parseHints(cast(List!SQLObject)(select.getHints()));
+            this.exprParser.parseHints!(SQLHint)((select.getHints()));
         }
 
         return select;
@@ -240,7 +241,7 @@ public class SQLSelectParser : SQLParser {
         accept(Token.SELECT);
 
         if (lexer.token() == Token.HINT) {
-            this.exprParser.parseHints(cast(List!SQLObject)(queryBlock.getHints()));
+            this.exprParser.parseHints!(SQLCommentHint)((queryBlock.getHints()));
         }
 
         if (lexer.token == Token.COMMENT) {

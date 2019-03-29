@@ -216,7 +216,7 @@ public class PGOutputVisitor : SQLASTOutputVisitor , PGASTVisitor//, OracleASTVi
             print0(ucase ? "ONLY " : "only ");
         }
 
-        printlnAndAccept(cast(List!SQLObject)(x.getTableSources()), ", ");
+        printlnAndAccept!(SQLExprTableSource)((x.getTableSources()), ", ");
 
         if (x.getRestartIdentity() !is null) {
             if (x.getRestartIdentity().booleanValue()) {
@@ -305,7 +305,7 @@ public class PGOutputVisitor : SQLASTOutputVisitor , PGASTVisitor//, OracleASTVi
         if (x.getValues() !is null) {
             println();
             print0(ucase ? "VALUES " : "values ");
-            printlnAndAccept(cast(List!SQLObject)(x.getValuesList()), ", ");
+            printlnAndAccept!(ValuesClause)((x.getValuesList()), ", ");
         } else {
             if (x.getQuery() !is null) {
                 println();

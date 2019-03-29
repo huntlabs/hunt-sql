@@ -61,6 +61,7 @@ import hunt.math;
 import hunt.util.Common;
 import hunt.text;
 import hunt.collection.Collections;
+import hunt.sql.ast.expr.SQLCaseStatement;
 
 public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, PrintableVisitor {
 
@@ -459,13 +460,13 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         this.indentCount--;
     }
 
-    protected void printlnAndAccept(List!SQLObject nodes, string seperator) {
+    protected void printlnAndAccept(T = SQLObject)(List!(T) nodes, string seperator) {
         for (int i = 0, size = nodes.size(); i < size; ++i) {
             if (i != 0) {
                 println(seperator);
             }
 
-            (cast(SQLObject) nodes.get(i)).accept(this);
+            (cast(T) nodes.get(i)).accept(this);
         }
     }
 
@@ -1077,12 +1078,12 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         }
         this.indentCount++;
         println();
-        printlnAndAccept(cast(List!SQLObject)(x.getItems()), " ");
+        printlnAndAccept!(SQLCaseStatement.Item)((x.getItems()), " ");
 
         if (x.getElseStatements().size() > 0) {
             println();
             print0(ucase ? "ELSE " : "else ");
-            printlnAndAccept(cast(List!SQLObject)(x.getElseStatements()), "");
+            printlnAndAccept!(SQLStatement)((x.getElseStatements()), "");
         }
 
         this.indentCount--;
@@ -3844,7 +3845,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
             print0(ucase ? "RECURSIVE " : "recursive ");
         }
         this.indentCount++;
-        printlnAndAccept(cast(List!SQLObject)(x.getEntries()), ", ");
+        printlnAndAccept!(SQLWithSubqueryClause.Entry)((x.getEntries()), ", ");
         this.indentCount--;
         return false;
     }
@@ -5388,7 +5389,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
             print0(ucase ? "SUBPARTITION TEMPLATE (" : "subpartition template (");
             this.indentCount++;
             println();
-            printlnAndAccept(cast(List!SQLObject)(x.getSubPartitionTemplate()), ",");
+            printlnAndAccept!(SQLSubPartition)((x.getSubPartitionTemplate()), ",");
             this.indentCount--;
             println();
             print(')');

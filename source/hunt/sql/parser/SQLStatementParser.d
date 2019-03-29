@@ -3128,7 +3128,7 @@ public class SQLStatementParser : SQLParser {
     }
     
     public void parseHints(List!(SQLHint) hints) {
-        this.getExprParser().parseHints(cast(List!SQLObject)(hints));
+        this.getExprParser().parseHints!(SQLHint)((hints));
     }
 
     public SQLStatement parseDescribe() {

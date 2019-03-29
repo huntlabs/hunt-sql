@@ -993,7 +993,7 @@ public class SchemaStatVisitor : SQLASTVisitorAdapter {
 
     protected void accept(T = SQLObject)(List!(T) nodes) {
         import std.stdio;
-        if(nodes is null ) writeln("***** : ");
+        if(nodes is null ) throw new Exception("object is null");
         for (int i = 0, size = nodes.size(); i < size; ++i) {
             accept(nodes.get(i));
         }

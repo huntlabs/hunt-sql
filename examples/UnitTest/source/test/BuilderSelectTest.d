@@ -18,7 +18,7 @@ public class BuilderSelectTest  {
 
         // auto builder = SQLBuilderFactory.createSQLBuilder!(SQLSelectBuilderImpl)(DBType.MYSQL.name);
 
-        auto builder = SQLBuilderFactory.createSelectSQLBuilder(DBType.MYSQL.name);
+        auto builder = SQLBuilderFactory.createSelectSQLBuilder(DBType.POSTGRESQL.name);
 
         builder.from("mytable");
         builder.select("f1", "f2", "f3 F3", "count(*) cnt");

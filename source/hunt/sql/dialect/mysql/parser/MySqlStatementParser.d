@@ -148,7 +148,7 @@ public class MySqlStatementParser : SQLStatementParser {
             }
 
             if (lexer.token() == Token.HINT) {
-                this.getExprParser().parseHints(cast(List!SQLObject)(deleteStatement.getHints()));
+                this.getExprParser().parseHints!(SQLCommentHint)((deleteStatement.getHints()));
             }
 
             if (lexer.identifierEquals(FnvHash.Constants.LOW_PRIORITY)) {

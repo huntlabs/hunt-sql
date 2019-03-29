@@ -51,6 +51,7 @@ import hunt.collection;
 import hunt.sql.ast.SQLObject;
 import hunt.text;
 import hunt.Number;
+import hunt.sql.ast.SQLCommentHint;
 
 public class MySqlCreateTableParser : SQLCreateTableParser {
 
@@ -622,7 +623,7 @@ public class MySqlCreateTableParser : SQLCreateTableParser {
         }
 
         while (lexer.token() == (Token.HINT)) {
-            this.exprParser.parseHints(cast(List!SQLObject)(stmt.getOptionHints()));
+            this.exprParser.parseHints!(SQLCommentHint)((stmt.getOptionHints()));
         }
         return stmt;
     }

@@ -38,6 +38,8 @@ import hunt.sql.ast.statement.SQLSelectQuery;
 import hunt.sql.dialect.mysql.parser.MySqlExprParser;
 import hunt.Boolean;
 import hunt.collection;
+import hunt.sql.ast.SQLCommentHint;
+import hunt.sql.ast.SQLHint;
 
 public class MySqlSelectParser : SQLSelectParser {
 
@@ -109,7 +111,7 @@ public class MySqlSelectParser : SQLSelectParser {
 
             for(;;) {
                 if (lexer.token() == Token.HINT) {
-                    this.exprParser.parseHints(cast(List!SQLObject)(queryBlock.getHints()));
+                    this.exprParser.parseHints!(SQLCommentHint)((queryBlock.getHints()));
                 } else {
                     break;
                 }
@@ -332,7 +334,7 @@ public class MySqlSelectParser : SQLSelectParser {
         }
 
         while (lexer.token() == Token.HINT) {
-            this.exprParser.parseHints(cast(List!SQLObject)(update.getHints()));
+            this.exprParser.parseHints!(SQLHint)((update.getHints()));
         }
 
         SQLSelectParser selectParser = this.exprParser.createSelectParser();
