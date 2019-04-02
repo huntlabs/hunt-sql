@@ -295,7 +295,10 @@ public class SQLUtils {
             List!(SQLStatement) statementList = parser.parseStatementList();
             return toSQLString(statementList, dbType, parameters, option);
         } catch (Exception ex) {
-            warning("format error, dbType : " ~ dbType, ex);
+            warningf("format error, dbType: %s, message: %s", dbType, ex.msg);
+            version(HUNT_DEBUG) {
+                warning(ex);
+            }
             return sql;
         }
         // } catch (ParserException ex) {

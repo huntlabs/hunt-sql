@@ -46,22 +46,25 @@ import hunt.sql.visitor.SQLASTVisitorAdapter;
 import hunt.sql.visitor.ParameterizedVisitor;
 import hunt.sql.visitor.PrintableVisitor;
 import hunt.sql.visitor.VisitorFeature;
+import hunt.sql.ast.expr.SQLCaseStatement;
+import hunt.sql.visitor.ExportParameterVisitorUtils;
+
 import std.datetime;
 import std.conv;
 import std.string;
 import hunt.collection;
-import hunt.String;
+import hunt.Byte;
+import hunt.Exceptions;
+import hunt.logging.ConsoleLogger;
 import hunt.String;
 import hunt.Boolean;
 import hunt.Number;
 import hunt.Integer;
 import hunt.Float;
-import hunt.sql.visitor.ExportParameterVisitorUtils;
 import hunt.math;
 import hunt.util.Common;
 import hunt.text;
 import hunt.collection.Collections;
-import hunt.sql.ast.expr.SQLCaseStatement;
 
 public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, PrintableVisitor {
 
@@ -349,14 +352,20 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
      }
     protected void print0(string text) {
         if (appender is null) {
+            warning("appender is null");
             return;
         }
 
         try {
+            // version(HUNT_DEBUG) tracef("Appending: %s", text);
             this.appender.append(text);
         } catch (Exception e) {
             throw new Exception("println error", e);
         }
+    }
+
+    protected void print0(Bytes data) {        
+        implementationMissing(false);
     }
 
     protected void printAlias(string _alias) {
@@ -2315,15 +2324,21 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
             return;
         }
 
+        if (cast(String)param !is null) {
+            SQLCharExpr charExpr = new SQLCharExpr(cast(String) param);
+            visit(charExpr);
+            return;
+        }
+
         if (cast(Number)param !is null //
             || cast(Boolean)param !is null) {
             print0((cast(Object)(param)).toString());
             return;
         }
 
-        if (cast(String)param !is null) {
-            SQLCharExpr charExpr = new SQLCharExpr(cast(String) param);
-            visit(charExpr);
+        Bytes bytesData = cast(Bytes)param;
+        if(bytesData !is null) {
+            print0(bytesData);
             return;
         }
 
@@ -2376,7 +2391,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         //     print0(new String(chars));
         //     return;
         // }
-
+        warningf("unhandled parameter: %s", typeid(param).name);
         print0("'" ~ typeid(param).name ~ "'");
     }
 

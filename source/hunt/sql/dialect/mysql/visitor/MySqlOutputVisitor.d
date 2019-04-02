@@ -51,13 +51,15 @@ import hunt.sql.dialect.mysql.ast.statement.MySqlCreateUserStatement;
 import hunt.sql.visitor;
 import hunt.sql.util.DBType;
 import hunt.sql.dialect.mysql.visitor.MySqlASTVisitor;
-import hunt.String;
+
+import hunt.Byte;
 import hunt.collection;
-import std.string;
 import hunt.String;
 import hunt.Boolean;
 import hunt.util.Common;
 import hunt.text;
+
+import std.string;
 
 public class MySqlOutputVisitor : SQLASTOutputVisitor , MySqlASTVisitor {
     alias visit = SQLASTOutputVisitor.visit;
@@ -4275,4 +4277,14 @@ public class MySqlOutputVisitor : SQLASTOutputVisitor , MySqlASTVisitor {
         printAndAccept!SQLExprTableSource((x.getTables()), "，");
         return false;
     }
+
+    
+    override protected void print0(Bytes data) {
+        // FIXME: Needing refactor or cleanup -@zhangxueping at 4/2/2019, 5:11:53 PM
+        // need to be checked
+        string s = format("unhex('%(%02X%)')", data.value());
+        print0(s);
+    }
+
+    alias print0 = SQLASTOutputVisitor.print0;
 } //
