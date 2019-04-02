@@ -54,7 +54,12 @@ public class PGDeleteStatement : SQLDeleteStatement , PGSQLStatement {
     }
 
     override  protected void accept0(SQLASTVisitor visitor) {
-        accept0(cast(PGASTVisitor) visitor);
+        // accept0(cast(PGASTVisitor) visitor);
+        if (cast(PGASTVisitor)(visitor) !is null) {
+            accept0(cast(PGASTVisitor) visitor);
+        } else {
+            super.accept0(visitor);
+        }
     }
 
     override

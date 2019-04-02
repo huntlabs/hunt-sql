@@ -53,4 +53,11 @@ public class PostgresqlTest  {
         assert(search(visitor.getColumns(), new TableStat.Column("info", "salary")) != -1);
     }
 
+    void test_delete()
+    {
+        mixin(DO_TEST);
+
+        string sql = "DELETE FROM Uinfo u where u.id > 9";
+        List!SQLStatement statementList = SQLUtils.parseStatements(sql , DBType.POSTGRESQL.name);
+    }
 }

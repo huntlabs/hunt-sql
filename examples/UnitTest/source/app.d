@@ -15,8 +15,8 @@ void main()
 
     // new Demo0().test_demo_0();
 
-    new ExportParameters().test_export_parameters();
-    new ExportParameters().test_pg_export_parameters();
+    // new ExportParameters().test_export_parameters();
+    // new ExportParameters().test_pg_export_parameters();
 
 
     // new ExportParameters().test_sql_format();
@@ -49,6 +49,7 @@ void main()
     // new MySqlVisitorDemo().test_for_insert();
 
     // new PostgresqlTest().test_0();
+    new PostgresqlTest().test_delete();
 
     // new PageTest().test();
 }
