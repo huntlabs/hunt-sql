@@ -117,6 +117,8 @@ public  class SQLPropertyExpr : SQLExprImpl , SQLName {
     }
 
     override public void output(StringBuffer buf) {
+        import hunt.logging.ConsoleLogger;
+        SQLIdentifierExpr qe = cast(SQLIdentifierExpr)this.owner;
         this.owner.output(buf);
         buf.append(".");
         buf.append(this.name);

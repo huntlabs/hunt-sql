@@ -53,6 +53,7 @@ import hunt.String;
 import hunt.util.Common;
 import hunt.text;
 
+import std.array;
 import std.format;
 import std.uni;
 import std.algorithm.searching;
