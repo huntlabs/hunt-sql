@@ -41,7 +41,7 @@ void main()
 
     // new MySqlUpdateTest_1().test_1();
 
-    // new BuilderSelectTest().test_0();
+    new BuilderSelectTest().test_0();
 
     // new SelectTest().test_0();
 
@@ -49,7 +49,7 @@ void main()
     // new MySqlVisitorDemo().test_for_insert();
 
     // new PostgresqlTest().test_0();
-    new PostgresqlTest().test_delete();
+    // new PostgresqlTest().test_delete();
 
     // new PageTest().test();
 }

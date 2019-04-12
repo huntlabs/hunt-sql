@@ -157,13 +157,13 @@ public class Lexer {
             //buf = Arrays.copyOf(buf, size);
             auto tmp = new char[size];
             buf.copy(tmp);
-            buf = tmp;
+            buf = tmp.dup;
         }
     }
 
     public void arraycopy(int srcPos, char[] dest, int destPos, int length) {
         //text.getChars(srcPos, srcPos + length, dest, destPos);
-        dest = cast(char[])text[srcPos .. srcPos + length];
+        dest[destPos .. destPos+length] = cast(char[])text[srcPos .. srcPos + length].dup;
     }
 
     public bool isAllowComment() {

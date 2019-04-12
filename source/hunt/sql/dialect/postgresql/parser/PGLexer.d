@@ -23,6 +23,7 @@ import  hunt.sql.parser.Token;
 import hunt.collection;
 import hunt.sql.parser;
 import hunt.sql.util.DBType;
+import hunt.logging;
 
 public class PGLexer : Lexer {
 
@@ -86,6 +87,7 @@ public class PGLexer : Lexer {
         bool hasSpecial = false;
 
         for (;;) {
+            // logDebug("ch : ",ch);
             if (isEOF()) {
                 lexError("unclosed.str.lit");
                 return;
@@ -145,9 +147,10 @@ public class PGLexer : Lexer {
                 } else {
                     initBuff(bufPos);
                     arraycopy(_mark + 1, buf, 0, bufPos);
+                    // logDebugf("bufPos :%d ,mark : %d , buf : %s",bufPos,_mark,buf);
                     hasSpecial = true;
                     putChar('\'');
-                    putChar('\'');
+                    // putChar('\'');
                     continue;
                 }
             }

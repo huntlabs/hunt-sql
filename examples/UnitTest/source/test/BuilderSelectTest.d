@@ -21,11 +21,11 @@ public class BuilderSelectTest  {
         auto builder = SQLBuilderFactory.createSelectSQLBuilder(DBType.POSTGRESQL.name);
 
         builder.from("mytable");
-        builder.select("f1", "f2", "f3 F3", "count(*) cnt");
-        builder.groupBy("f1");
-        builder.having("count(*) > 1");
-        builder.orderBy("f1", "f2 desc");
-        builder.where("nickName  =  \"Jame\\\"s Ha\'Deng\" OR nickName  =  \"James Ha\\\"Deng\"");
+        // builder.select("f1", "f2", "f3 F3", "count(*) cnt");
+        // builder.groupBy("f1");
+        // builder.having("count(*) > 1");
+        // builder.orderBy("f1", "f2 desc");
+        builder.where("nickName  = " ~ `'Ha''deng'`);
         builder.limit(4,1);
 
 

@@ -231,7 +231,7 @@ public class SQLUtils {
         if (parser.getLexer().token() != Token.EOF) {
             throw new ParserException("illegal sql expr : " ~ sql);
         }
-
+        // logDebug("toSQLExpr : ",toSQLString(expr,dbType));
         return expr;
     }
 
