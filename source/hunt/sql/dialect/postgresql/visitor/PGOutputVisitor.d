@@ -45,12 +45,18 @@ import hunt.sql.visitor.SQLASTOutputVisitor;
 import hunt.sql.util.FnvHash;
 import hunt.sql.util.DBType;
 import hunt.sql.dialect.postgresql.visitor.PGASTVisitor;
-import hunt.String;
+
+import hunt.Byte;
 import hunt.collection;
-import std.uni;
-import std.algorithm.searching;
+import hunt.logging.ConsoleLogger;
+import hunt.String;
 import hunt.util.Common;
 import hunt.text;
+
+import std.array;
+import std.format;
+import std.uni;
+import std.algorithm.searching;
 
 public class PGOutputVisitor : SQLASTOutputVisitor , PGASTVisitor//, OracleASTVisitor 
 {
@@ -3043,4 +3049,11 @@ public class PGOutputVisitor : SQLASTOutputVisitor , PGASTVisitor//, OracleASTVi
             orderBy.accept(this);
         }
     }
+
+    override protected void print0(Bytes data) {
+        string s = format("E'%(\\\\%03o%)'", data.value());
+        print0(s);
+    }
+
+    alias print0 = SQLASTOutputVisitor.print0;
 }

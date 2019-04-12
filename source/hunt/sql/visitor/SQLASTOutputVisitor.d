@@ -46,22 +46,27 @@ import hunt.sql.visitor.SQLASTVisitorAdapter;
 import hunt.sql.visitor.ParameterizedVisitor;
 import hunt.sql.visitor.PrintableVisitor;
 import hunt.sql.visitor.VisitorFeature;
-import std.datetime;
-import std.conv;
-import std.string;
+import hunt.sql.ast.expr.SQLCaseStatement;
+import hunt.sql.visitor.ExportParameterVisitorUtils;
+
 import hunt.collection;
-import hunt.String;
+import hunt.Byte;
+import hunt.Exceptions;
+import hunt.logging.ConsoleLogger;
 import hunt.String;
 import hunt.Boolean;
 import hunt.Number;
 import hunt.Integer;
 import hunt.Float;
-import hunt.sql.visitor.ExportParameterVisitorUtils;
 import hunt.math;
 import hunt.util.Common;
 import hunt.text;
 import hunt.collection.Collections;
-import hunt.sql.ast.expr.SQLCaseStatement;
+
+import std.array;
+import std.conv;
+import std.datetime;
+import std.string;
 
 public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, PrintableVisitor {
 
@@ -348,7 +353,9 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
          print0(text.value());
      }
     protected void print0(string text) {
+        version(HUNT_SQL_DEBUG) tracef("Appending: %s", text);
         if (appender is null) {
+            warning("appender is null");
             return;
         }
 
@@ -357,6 +364,10 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         } catch (Exception e) {
             throw new Exception("println error", e);
         }
+    }
+
+    protected void print0(Bytes data) {        
+        implementationMissing(false);
     }
 
     protected void printAlias(string _alias) {
@@ -978,7 +989,12 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     protected  void printExpr(SQLExpr x) {
-        auto clazz = typeid(x);
+        auto clazz = typeid((cast(Object)x)); //typeid(x);
+        version(HUNT_DEBUG) {
+            // tracef("SQLExpr: %s", clazz.name);
+            // tracef("SQLExpr2: %s", typeid((cast(Object)x)).name);
+        } 
+
         if (clazz == typeid(SQLIdentifierExpr)) {
             visit(cast(SQLIdentifierExpr) x);
         } else if (clazz == typeid(SQLPropertyExpr)) {
@@ -1214,7 +1230,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    private bool printName(SQLName x, string name) {
+    protected bool printName(SQLName x, string name) {
         bool shardingSupport = this.shardingSupport
                 && this.parameterized;
         return printName(x, name, shardingSupport);
@@ -1254,7 +1270,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return realName;
     }
 
-    private bool printName(SQLName x, string name, bool shardingSupport) {
+    protected bool printName(SQLName x, string name, bool shardingSupport) {
 
         if (shardingSupport) {
             SQLObject parent = x.getParent();
@@ -1711,24 +1727,27 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
 
     override public bool visit(SQLPropertyExpr x) {
         SQLExpr owner = x.getOwner();
+        SQLIdentifierExpr ownerIdent = cast(SQLIdentifierExpr)owner;
 
         string mapTableName = null, ownerName = null;
-        if (cast(SQLIdentifierExpr)owner !is null) {
-            ownerName = (cast(SQLIdentifierExpr) owner).getName();
+        if (ownerIdent !is null) {
+            ownerName = ownerIdent.getName();
             if (tableMapping !is null) {
                 mapTableName = tableMapping.get(ownerName);
 
-                if (mapTableName is null
+                //tracef("mapTableName: %s, ownerName=%s", mapTableName, ownerName);
+                if (mapTableName.empty()
                         && ownerName.length > 2
-                        && charAt(ownerName, 0) == '`'
-                        && charAt(ownerName, ownerName.length - 1) == '`') {
-                    ownerName = ownerName.substring(1, ownerName.length - 1);
+                        && ownerName[0] == '`'
+                        && ownerName[$-1] == '`') {
+                    ownerName = ownerName[1 .. $ - 1];
                     mapTableName = tableMapping.get(ownerName);
                 }
             }
         }
 
-        if (mapTableName !is null) {
+
+        if (!mapTableName.empty()) {
             for (SQLObject parent = x.getParent();parent !is null; parent = parent.getParent()) {
                 if (cast(SQLSelectQueryBlock)parent !is null) {
                     SQLTableSource from = (cast(SQLSelectQueryBlock) parent).getFrom();
@@ -1740,19 +1759,23 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
             }
         }
 
-        if (mapTableName !is null) {
+        version(HUNT_SQL_DEBUG) tracef("mapTableName: %s, ownerName=%s", mapTableName, ownerName);
+        
+        if (!mapTableName.empty()) {
             print0(mapTableName);
+            print('.');
         } else {
-            if (cast(SQLIdentifierExpr)owner !is null) {
-                SQLIdentifierExpr ownerIdent = cast(SQLIdentifierExpr) owner;
-                printName(ownerIdent
-                        , ownerIdent.getName()
-                        , this.shardingSupport && this.parameterized);
+            if (ownerIdent !is null) {
+                ownerName = ownerIdent.getName();
+                if(!ownerName.empty()) {
+                    printName(ownerIdent, ownerName, this.shardingSupport && this.parameterized);
+                    print('.');
+                }
             } else {
                 printExpr(owner);
+                print('.');
             }
         }
-        print('.');
         print0(x.getName());
 
         return false;
@@ -2315,15 +2338,21 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
             return;
         }
 
+        if (cast(String)param !is null) {
+            SQLCharExpr charExpr = new SQLCharExpr(cast(String) param);
+            visit(charExpr);
+            return;
+        }
+
         if (cast(Number)param !is null //
             || cast(Boolean)param !is null) {
             print0((cast(Object)(param)).toString());
             return;
         }
 
-        if (cast(String)param !is null) {
-            SQLCharExpr charExpr = new SQLCharExpr(cast(String) param);
-            visit(charExpr);
+        Bytes bytesData = cast(Bytes)param;
+        if(bytesData !is null) {
+            print0(bytesData);
             return;
         }
 
@@ -2376,7 +2405,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         //     print0(new String(chars));
         //     return;
         // }
-
+        warningf("unhandled parameter: %s", typeid(param).name);
         print0("'" ~ typeid(param).name ~ "'");
     }
 
