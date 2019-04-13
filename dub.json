@@ -1,6 +1,6 @@
 {
     "name": "hunt-sql",
-    "description": "SQL parser library for DLang.",
+    "description": "SQL parser and generate library for PostgreSQL / MySQL / SQLite and more.",
     "copyright": "Copyright (C) 2018-2019, HuntLabs",
     "homepage": "https://www.huntlabs.net",
     "license": "Apache-2.0",
