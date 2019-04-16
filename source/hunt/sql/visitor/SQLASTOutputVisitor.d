@@ -353,7 +353,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
          print0(text.value());
      }
     protected void print0(string text) {
-        version(HUNT_SQL_DEBUG) tracef("Appending: %s", text);
+        version(HUNT_SQL_DEBUG_MORE) tracef("Appending: %s", text);
         if (appender is null) {
             warning("appender is null");
             return;
@@ -1759,7 +1759,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
             }
         }
 
-        version(HUNT_SQL_DEBUG) tracef("mapTableName: %s, ownerName=%s", mapTableName, ownerName);
+        version(HUNT_SQL_DEBUG_MORE) tracef("mapTableName: %s, ownerName=%s", mapTableName, ownerName);
         
         if (!mapTableName.empty()) {
             print0(mapTableName);
