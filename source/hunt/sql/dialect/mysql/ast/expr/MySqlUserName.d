@@ -27,7 +27,7 @@ import hunt.util.Common;
 
 import hunt.collection;
 
-public class MySqlUserName : MySqlExprImpl , SQLName, Cloneable {
+public class MySqlUserName : MySqlExprImpl , SQLName {
 
     alias accept0 = MySqlObjectImpl.accept0;
 
