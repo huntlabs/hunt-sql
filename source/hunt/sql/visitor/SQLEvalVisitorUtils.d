@@ -1918,7 +1918,7 @@ public class SQLEvalVisitorUtils {
             int aI = 0, bI = 0;
             if (castToBoolean(a)) aI = 1;
             if (castToBoolean(b)) bI = 1;
-            return new Boolean((aI - bI));
+            return new Boolean(cast(long) (aI - bI));
         }
 
         if (cast(Byte)(a) !is null || cast(Byte)(b) !is null) {

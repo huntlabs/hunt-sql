@@ -412,9 +412,9 @@ public class SQLColumnDefinition : SQLObjectImpl , SQLTableElement, SQLObjectWit
     }
 
     public void simplify() {
-        enable = false;
-        validate = false;
-        rely = false;
+        enable = Boolean.FALSE;
+        validate = Boolean.FALSE;
+        rely = Boolean.FALSE;
 
 
         if (cast(SQLIdentifierExpr)(this.name) !is null ) {
