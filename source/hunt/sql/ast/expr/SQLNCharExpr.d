@@ -43,7 +43,7 @@ public class SQLNCharExpr : SQLTextLiteralExpr {
     }
 
     override public void output(StringBuffer buf) {
-        if ((this.text is null) || (this.text.length == 0)) {
+        if ((this.text is null) || (this.text.value.length == 0)) {
             buf.append("NULL");
             return;
         }

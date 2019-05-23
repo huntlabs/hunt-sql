@@ -1654,7 +1654,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
             return false;
         }
 
-        if ((x.getText() is null) || (x.getText().length == 0)) {
+        if ((x.getText() is null) || (x.getText().value.length == 0)) {
             print0(ucase ? "NULL" : "null");
         } else {
             print0(ucase ? "N'" : "n'");
