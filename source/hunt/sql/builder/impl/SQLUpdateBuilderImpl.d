@@ -50,6 +50,8 @@ import hunt.String;
 import hunt.logging;
 import hunt.Nullable;
 
+import std.variant;
+
 public class SQLUpdateBuilderImpl :  SQLUpdateBuilder {
 
     private SQLUpdateStatement stmt;
@@ -75,87 +77,87 @@ public class SQLUpdateBuilderImpl :  SQLUpdateBuilder {
         this.dbType = dbType;
     }
 
-    public static SQLExpr toSQLExpr(Object obj, string dbType) {
+    public static SQLExpr toSQLExpr(Variant obj, string dbType) {
         // logDebug("set : ",obj.toString);
-        if (obj is null) {
+        if (!obj.hasValue() || obj == null) {
             return new SQLNullExpr();
         }
+
+        TypeInfo typeInfo = obj.type;
         
-        if (cast(Nullable!int)(obj) !is null) {
-            return new SQLIntegerExpr((cast(Nullable!int) obj).value);
+        if (typeInfo == typeid(int)) {
+            return new SQLIntegerExpr(obj.get!int());
         }
 
-        if (cast(Nullable!uint)(obj) !is null) {
-            return new SQLIntegerExpr((cast(Nullable!uint) obj).value);
+        if (typeInfo == typeid(uint)) {
+            return new SQLIntegerExpr(cast(int)obj.get!uint());
         }
-
-        if (cast(Nullable!short)(obj) !is null) {
-            return new SQLIntegerExpr(cast(int)((cast(Nullable!short) obj).value));
+        
+        if (typeInfo == typeid(short)) {
+            return new SQLIntegerExpr(cast(int)obj.get!short());
         }
-
-        if (cast(Nullable!ushort)(obj) !is null) {
-            return new SQLIntegerExpr(cast(int)((cast(Nullable!ushort) obj).value));
+        
+        if (typeInfo == typeid(ushort)) {
+            return new SQLIntegerExpr(cast(int)obj.get!ushort());
         }
-
-        if (cast(Nullable!long)(obj) !is null) {
-            return new SQLIntegerExpr(cast(int)((cast(Nullable!long) obj).value));
+        
+        if (typeInfo == typeid(long)) {
+            return new SQLIntegerExpr(cast(int)obj.get!long());
         }
-
-        if (cast(Nullable!ulong)(obj) !is null) {
-            return new SQLIntegerExpr(cast(int)((cast(Nullable!ulong) obj).value));
+        
+        if (typeInfo == typeid(ulong)) {
+            return new SQLIntegerExpr(cast(int)obj.get!ulong());
         }
-
-        if (cast(Nullable!double)(obj) !is null) {
-            Double db = new Double((cast(Nullable!double) obj).value);
+        
+        if (typeInfo == typeid(double)) {
+            Double db = new Double(obj.get!double());
+            return new SQLNumberExpr(db);
+        }
+        
+        if (typeInfo == typeid(float)) {
+            Float db = new Float(obj.get!float());
             return new SQLNumberExpr(db);
         }
 
-        if (cast(Nullable!float)(obj) !is null) {
-            Float db = new Float((cast(Nullable!float) obj).value);
-            return new SQLNumberExpr(db);
+        if (typeInfo == typeid(bool)) {
+            return new SQLBooleanExpr(obj.get!bool());
+        }
+
+        if (typeInfo == typeid(string)) {
+            return new SQLCharExpr(obj.get!string());
         }
 
 
-        if (cast(Nullable!bool)(obj) !is null) {
-            Boolean db = new Boolean((cast(Nullable!bool) obj).value);
-            return new SQLBooleanExpr(db.booleanValue);
-        }
+        // if (cast(Integer)(obj) !is null) {
+        //     return new SQLIntegerExpr(cast(Integer) obj);
+        // }
 
-        if (cast(Nullable!string)(obj) !is null) {
-            return new SQLCharExpr((cast(Nullable!string) obj).value);
-        }
+        // if (cast(Long)(obj) !is null) {
+        //     return new SQLIntegerExpr(cast(int)(cast(Long) obj).longValue);
+        // }
 
+        // if (cast(Float)(obj) !is null) {
+        //     return new SQLNumberExpr(cast(Float)obj);
+        // }
 
-        if (cast(Integer)(obj) !is null) {
-            return new SQLIntegerExpr(cast(Integer) obj);
-        }
-
-        if (cast(Long)(obj) !is null) {
-            return new SQLIntegerExpr(cast(int)(cast(Long) obj).longValue);
-        }
-
-        if (cast(Float)(obj) !is null) {
-            return new SQLNumberExpr(cast(Float)obj);
-        }
-
-        if (cast(Double)(obj) !is null) {
-            Number nm = cast(Number)obj;
-            return new SQLNumberExpr(nm);
-        }
+        // if (cast(Double)(obj) !is null) {
+        //     Number nm = cast(Number)obj;
+        //     return new SQLNumberExpr(nm);
+        // }
         
-        if (cast(Number)(obj) !is null) {
-            return new SQLNumberExpr(cast(Number) obj);
-        }
+        // if (cast(Number)(obj) !is null) {
+        //     return new SQLNumberExpr(cast(Number) obj);
+        // }
         
-        if (cast(String)(obj) !is null) {
-            return new SQLCharExpr(cast(String) obj);
-        }
+        // if (cast(String)(obj) !is null) {
+        //     return new SQLCharExpr(cast(String) obj);
+        // }
         
-        if (cast(Boolean)(obj) !is null) {
-            return new SQLBooleanExpr((cast(Boolean) obj).booleanValue);
-        }
+        // if (cast(Boolean)(obj) !is null) {
+        //     return new SQLBooleanExpr((cast(Boolean) obj).booleanValue);
+        // }
 
-        throw new IllegalArgumentException("unsupported : " ~ typeid(obj).name);
+        throw new IllegalArgumentException("unsupported : " ~ obj.type.toString());
     }
 
     public this(SQLUpdateStatement stmt, string dbType){
@@ -229,15 +231,15 @@ public class SQLUpdateBuilderImpl :  SQLUpdateBuilder {
         return this;
     }
     
-    public SQLUpdateBuilderImpl setValue(Map!(string, Object) values) {
-        foreach (string k, Object v ; values) {
+    public SQLUpdateBuilderImpl setValue(Map!(string, Variant) values) {
+        foreach (string k, Variant v ; values) {
             setValue(k, v);
         }
         
         return this;
     }
     
-    public SQLUpdateBuilderImpl setValue(string column, Object value) {
+    public SQLUpdateBuilderImpl setValue(string column, Variant value) {
         SQLUpdateStatement update = getSQLUpdateStatement();
         
         SQLExpr columnExpr = SQLUtils.toSQLExpr(column, dbType);
