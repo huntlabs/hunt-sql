@@ -38,8 +38,9 @@ import hunt.sql.ast.expr.SQLCharExpr;
 import hunt.sql.ast.expr.SQLIntegerExpr;
 import hunt.sql.ast.expr.SQLNullExpr;
 import hunt.sql.ast.expr.SQLNumberExpr;
-import hunt.String;
+
 import hunt.Double;
+import hunt.Exceptions;
 import hunt.Float;
 import hunt.Boolean;
 import hunt.Integer;
@@ -154,7 +155,7 @@ public class SQLUpdateBuilderImpl :  SQLUpdateBuilder {
             return new SQLBooleanExpr((cast(Boolean) obj).booleanValue);
         }
 
-        throw new Exception(" Hunt-sql IllegalArgument not support : " ~ typeid(obj).name);
+        throw new IllegalArgumentException("unsupported : " ~ typeid(obj).name);
     }
 
     public this(SQLUpdateStatement stmt, string dbType){
