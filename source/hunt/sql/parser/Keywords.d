@@ -7,6 +7,7 @@ import hunt.sql.util.Utils;
 
 import hunt.collection;
 
+import std.concurrency : initOnce;
 
 
 public class Keywords {
@@ -16,12 +17,17 @@ public class Keywords {
     private long[] hashArray;
     private Token[] tokens;
 
-    public  static Keywords     DEFAULT_KEYWORDS;
+    static Keywords DEFAULT_KEYWORDS() {
+        __gshared Keywords inst;
+        return initOnce!inst(buildDefaultKeywords());
+    }
 
-    public  static Keywords     SQLITE_KEYWORDS;
+    static Keywords SQLITE_KEYWORDS() {
+        __gshared Keywords inst;
+        return initOnce!inst(buildSqliteKeywords());
+    }
 
-    static this(){
-
+    private static Keywords buildDefaultKeywords() {
         Map!(string, Token) map = new HashMap!(string, Token)();
 
         map.put("ALL", Token.ALL);
@@ -146,15 +152,17 @@ public class Keywords {
         map.put("INOUT", Token.INOUT);
         map.put("LIMIT", Token.LIMIT);
 
-        DEFAULT_KEYWORDS = new Keywords(map);
+        return new Keywords(map);
+    }
+
+    private static Keywords buildSqliteKeywords() {
 
         Map!(string, Token) sqlitemap = new HashMap!(string, Token)();
 
         sqlitemap.putAll(Keywords.DEFAULT_KEYWORDS.getKeywords());
 
         sqlitemap.put("LIMIT", Token.LIMIT);
-        SQLITE_KEYWORDS = new Keywords(sqlitemap);
-
+        return new Keywords(sqlitemap);
     }
 
     public bool containsValue(Token token) {

@@ -23,11 +23,11 @@ public  class HexBin {
 
     private enum int    BASE_LENGTH        = 128;
     private enum  int    LOOKUP_LENGTH      = 16;
-    static  private byte[] HEX_NUMBER_TABLE;
-    static  private char[] UPPER_CHARS ;
-    static  private char[] LOWER_CHARS ;
+    private __gshared byte[] HEX_NUMBER_TABLE;
+    private __gshared char[] UPPER_CHARS ;
+    private __gshared char[] LOWER_CHARS ;
 
-    static this(){
+    shared static this() {
         HEX_NUMBER_TABLE   = new byte[BASE_LENGTH];
         UPPER_CHARS        = new char[LOOKUP_LENGTH];
         LOWER_CHARS        = new char[LOOKUP_LENGTH];

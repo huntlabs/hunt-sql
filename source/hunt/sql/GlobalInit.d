@@ -30,7 +30,7 @@ import hunt.sql.dialect.postgresql.parser.PGLexer;
 import hunt.sql.visitor.functions;
 
 
-/* shared */ static this()
+shared  static this()
 {
     import std.stdio;
 

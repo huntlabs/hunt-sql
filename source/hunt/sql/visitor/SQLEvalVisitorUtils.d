@@ -91,14 +91,22 @@ import hunt.text;
 import std.datetime;
 import hunt.math;
 
+import std.concurrency : initOnce;
+
 public class SQLEvalVisitorUtils {
 
-    private static Map!(string, Function) functions;
-
-    static this() {
-        functions = new HashMap!(string, Function)();
-        registerBaseFunctions();
+    static Map!(string, Function) functions()
+    {
+        __gshared Map!(string, Function) inst;
+        return initOnce!inst(registerBaseFunctions());
     }
+
+    // private static Map!(string, Function) functions;
+
+    // static this() {
+    //     functions = new HashMap!(string, Function)();
+    //     registerBaseFunctions();
+    // }
 
     public static Object evalExpr(string dbType, string expr, Object[]  parameters...) {
         SQLExpr sqlExpr = SQLUtils.toSQLExpr(expr, dbType);
@@ -192,7 +200,8 @@ public class SQLEvalVisitorUtils {
         return new SQLEvalVisitorImpl();
     }
 
-    static void registerBaseFunctions() {
+    static Map!(string, Function) registerBaseFunctions() {
+        Map!(string, Function) functions = new HashMap!(string, Function)();
         functions.put("now", Now.instance);
         functions.put("concat", Concat.instance);
         functions.put("concat_ws", Concat.instance);
@@ -232,6 +241,8 @@ public class SQLEvalVisitorUtils {
         functions.put("bit_count", OneParamFunctions.instance);
         functions.put("soundex", OneParamFunctions.instance);
         functions.put("space", OneParamFunctions.instance);
+
+        return functions;
     }
 
     public static bool visit(SQLEvalVisitor visitor, SQLMethodInvokeExpr x) {
