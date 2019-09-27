@@ -30,16 +30,37 @@ import hunt.sql.util.FnvHash;
 import hunt.sql.util.DBType;
 import std.string;
 
+import std.concurrency : initOnce;
+
 alias  hunt_charAt = hunt.text.Common.charAt;
 
 public class MySqlLexer : Lexer {
-    public static SymbolTable quoteTable;
+    __gshared SymbolTable quoteTable;
+    __gshared Keywords DEFAULT_MYSQL_KEYWORDS;
+    __gshared bool[] identifierFlags;
 
-    public  static Keywords DEFAULT_MYSQL_KEYWORDS;
+    // public static SymbolTable quoteTable() {
+    //     __gshared SymbolTable inst;
+    //     return initOnce!inst(initSymbolTable());
+    // }
 
-    // static this() {
-    //     quoteTable = new SymbolTable(8192);
+    // public static Keywords DEFAULT_MYSQL_KEYWORDS() {
+    //     __gshared Keywords inst;
+    //     return initOnce!inst(initKeywords());
+    // }
+    
+    
+    // public static bool[] identifierFlags() {
+    //     __gshared bool[] inst;
+    //     return initOnce!inst(initIdentifierFlags());
+    // } 
 
+    // private static SymbolTable initSymbolTable() {
+    //     SymbolTable quoteTable = new SymbolTable(8192);
+    //     return quoteTable;
+    // }
+
+    // private static Keywords initKeywords() {
     //     Map!(string, Token) map = new HashMap!(string, Token)();
 
     //     map.putAll(Keywords.DEFAULT_KEYWORDS.getKeywords());
@@ -75,22 +96,27 @@ public class MySqlLexer : Lexer {
     //     map.put("RLIKE", Token.RLIKE);
     //     map.put("FULLTEXT", Token.FULLTEXT);
 
-    //     DEFAULT_MYSQL_KEYWORDS = new Keywords(map);
+    //     return new Keywords(map);
+    // }
 
-    //     for (char c = 0; c < identifierFlags.length; ++c) {
+    // private static bool[] initIdentifierFlags() {
+    //     bool[] flags = new bool[256];
+
+    //     for (char c = 0; c < flags.length; ++c) {
     //         if (c >= 'A' && c <= 'Z') {
-    //             identifierFlags[c] = true;
+    //             flags[c] = true;
     //         } else if (c >= 'a' && c <= 'z') {
-    //             identifierFlags[c] = true;
+    //             flags[c] = true;
     //         } else if (c >= '0' && c <= '9') {
-    //             identifierFlags[c] = true;
+    //             flags[c] = true;
     //         }
     //     }
     //     // identifierFlags['`'] = true;
-    //     identifierFlags['_'] = true;
+    //     flags['_'] = true;
     //     //identifierFlags['-'] = true; // mysql
-    // }
 
+    //     return flags;
+    // }
 
     public this(char[] input, int inputLength, bool skipComment){
         dbType = DBType.MYSQL.name;
@@ -647,8 +673,7 @@ public class MySqlLexer : Lexer {
             return;
         }
     }
-    
-    public  static bool[] identifierFlags = new bool[256];
+
     // static {
         
     // }

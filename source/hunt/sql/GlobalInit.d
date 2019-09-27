@@ -148,6 +148,8 @@ shared  static this()
 
         MySqlLexer.DEFAULT_MYSQL_KEYWORDS = new Keywords(map);
 
+        MySqlLexer.identifierFlags = new bool[256];
+
         for (dchar c = 0; c < MySqlLexer.identifierFlags.length; ++c)//@gxc char->dchar
         {
             if (c >= 'A' && c <= 'Z')
