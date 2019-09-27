@@ -23,9 +23,16 @@ import hunt.sql.visitor.SQLEvalVisitor;
 import hunt.sql.visitor.SQLEvalVisitorUtils;
 import hunt.sql.visitor.functions.Function;
 
-public class Greatest : Function {
+import std.concurrency : initOnce;
 
-    public  static Greatest instance;
+public class Greatest : Function {
+    
+    static Greatest instance() {
+        __gshared Greatest inst;
+        return initOnce!inst(new Greatest());
+    }    
+
+    // public  static Greatest instance;
 
     // static this()
     // {

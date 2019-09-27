@@ -28,9 +28,17 @@ import hunt.String;
 import hunt.collection;
 import std.conv;
 import std.uni;
-public class Least : Function {
 
-    public  static Least instance;
+import std.concurrency : initOnce;
+
+public class Least : Function {
+    
+    static Least instance() {
+        __gshared Least inst;
+        return initOnce!inst(new Least());
+    }    
+
+    // public  static Least instance;
 
     // static this()
     // {

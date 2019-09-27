@@ -32,9 +32,16 @@ import std.conv;
 import std.uni;
 import hunt.text;
 
+import std.concurrency : initOnce;
+
 public class Unhex : Function {
 
-    public  static Unhex instance;
+    static Unhex instance() {
+        __gshared Unhex inst;
+        return initOnce!inst(new Unhex());
+    } 
+    
+    // public  static Unhex instance;
 
     // static this()
     // {

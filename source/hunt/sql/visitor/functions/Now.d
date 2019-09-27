@@ -25,9 +25,16 @@ import hunt.sql.ast.expr.SQLMethodInvokeExpr;
 import hunt.sql.visitor.SQLEvalVisitor;
 import hunt.sql.visitor.functions.Function;
 
+import std.concurrency : initOnce;
 
 public class Now : Function {
-    public  static Now instance;
+    
+    static Now instance() {
+        __gshared Now inst;
+        return initOnce!inst(new Now());
+    }
+
+    // public  static Now instance;
 
     // static this()
     // {

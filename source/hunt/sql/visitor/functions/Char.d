@@ -28,10 +28,15 @@ import hunt.String;
 import hunt.collection;
 import hunt.math;
 import hunt.text;
+import std.concurrency : initOnce;
 
 public class Char : Function {
 
-    public  static Char instance;
+    static Char instance() {
+        __gshared Char inst;
+        return initOnce!inst(new Char());
+    }    
+    // public  static Char instance;
 
     // static this()
     // {

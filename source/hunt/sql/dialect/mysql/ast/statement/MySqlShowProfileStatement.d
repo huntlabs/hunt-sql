@@ -26,43 +26,17 @@ import hunt.sql.dialect.mysql.ast.statement.MySqlShowStatement;
 
 public class MySqlShowProfileStatement : MySqlStatementImpl , MySqlShowStatement {
     alias accept0 = MySqlStatementImpl.accept0;
-    public static class Type {
-        public static  Type ALL ;
-        public static  Type BLOCK_IO;
-        public static  Type CONTEXT_SWITCHES ;
-        public static  Type CPU ;
-        public static  Type IPC ;
-        public static  Type MEMORY ;
-        public static  Type PAGE_FAULTS ;
-        public static  Type SOURCE ;
-        public static  Type SWAPS ;
 
-        // static this()
-        // {
-        //     ALL = new Type("ALL");
-        //     BLOCK_IO = new Type("BLOCK IO");
-        //     CONTEXT_SWITCHES = new Type("CONTEXT SWITCHES");
-        //     CPU = new Type("CPU");
-        //     IPC = new Type("IPC");
-        //     MEMORY = new Type("MEMORY");
-        //     PAGE_FAULTS = new Type("PAGE FAULTS");
-        //     SOURCE = new Type("SOURCE");
-        //     SWAPS = new Type("SWAPS");
-        // }
-
-        public  string name;
-
-        this(string name){
-            this.name = name;
-        }
-
-        bool opEquals(const Type h) nothrow {
-            return name == h.name ;
-        } 
-
-        bool opEquals(ref const Type h) nothrow {
-            return name == h.name ;
-        }
+    enum Type : string {
+        ALL = "ALL",
+        BLOCK_IO = "BLOCK IO",
+        CONTEXT_SWITCHES = "CONTEXT SWITCHES",
+        CPU = "CPU",
+        IPC = "IPC",
+        MEMORY = "MEMORY",
+        PAGE_FAULTS = "PAGE FAULTS",
+        SOURCE = "SOURCE",
+        SWAPS = "SWAPS"
     }
 
     private List!(Type) types;

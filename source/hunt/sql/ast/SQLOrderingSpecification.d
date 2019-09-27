@@ -1,11 +1,22 @@
 module hunt.sql.ast.SQLOrderingSpecification;
 
 import std.uni;
+import std.concurrency : initOnce;
 
 public class SQLOrderingSpecification {
 
-    public static  SQLOrderingSpecification ASC;
-    public static  SQLOrderingSpecification DESC;
+    // public static  SQLOrderingSpecification ASC;
+    // public static  SQLOrderingSpecification DESC;
+    
+    static SQLOrderingSpecification ASC() {
+        __gshared SQLOrderingSpecification inst;
+        return initOnce!inst(new SQLOrderingSpecification("ASC"));
+    }
+
+    static SQLOrderingSpecification DESC() {
+        __gshared SQLOrderingSpecification inst;
+        return initOnce!inst(new SQLOrderingSpecification("DESC"));
+    }
 
     // static this()
     // {

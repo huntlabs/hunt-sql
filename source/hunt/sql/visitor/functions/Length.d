@@ -28,8 +28,16 @@ import hunt.collection;
 import std.conv;
 import std.uni;
 
+import std.concurrency : initOnce;
+
 public class Length : Function {
-    public  static Length instance;
+    
+    static Length instance() {
+        __gshared Length inst;
+        return initOnce!inst(new Length());
+    }    
+        
+    // public  static Length instance;
 
     // static this()
     // {

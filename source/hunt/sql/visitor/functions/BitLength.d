@@ -24,9 +24,16 @@ import hunt.sql.visitor.functions.Function;
 import hunt.Long;
 import hunt.String;
 
+import std.concurrency : initOnce;
+
 public class BitLength : Function {
 
-    public  static BitLength instance;
+    static BitLength instance() {
+        __gshared BitLength inst;
+        return initOnce!inst(new BitLength());
+    }    
+
+    // public  static BitLength instance;
 
     // static this()
     // {

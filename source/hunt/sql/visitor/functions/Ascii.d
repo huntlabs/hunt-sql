@@ -27,9 +27,16 @@ import hunt.String;
 import hunt.Integer;
 import hunt.text;
 
+import std.concurrency : initOnce;
+
 public class Ascii : Function {
 
-    public  static Ascii instance;
+    static Ascii instance() {
+        __gshared Ascii inst;
+        return initOnce!inst(new Ascii());
+    }    
+
+    // public  static Ascii instance;
 
     // static this()
     // {

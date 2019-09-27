@@ -29,8 +29,16 @@ import std.conv;
 import std.uni;
 import hunt.text;
 
+import std.concurrency : initOnce;
+
 public class Reverse : Function {
-    public  static Reverse instance;
+
+    static Reverse instance() {
+        __gshared Reverse inst;
+        return initOnce!inst(new Reverse());
+    } 
+        
+    // public  static Reverse instance;
 
     // static this()
     // {

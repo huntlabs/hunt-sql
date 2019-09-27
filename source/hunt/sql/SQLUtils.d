@@ -83,20 +83,24 @@ import hunt.String;
 import std.array;
 import hunt.text;
 
+import std.concurrency : initOnce;
+
 public class SQLUtils {
-    private  static SQLParserFeature[] FORMAT_DEFAULT_FEATURES = [
+    private  enum SQLParserFeature[] FORMAT_DEFAULT_FEATURES = [
             SQLParserFeature.KeepComments,
             SQLParserFeature.EnableSQLBinaryOpExprGroup
     ];
 
-     public static FormatOption DEFAULT_FORMAT_OPTION;
-     public static FormatOption DEFAULT_LCASE_FORMAT_OPTION;
+    static FormatOption DEFAULT_FORMAT_OPTION() {
+        __gshared FormatOption inst;
+        return initOnce!inst(new FormatOption(true, true));
+     }
 
-    // private  static Log LOG = LogFactory.getLog(SQLUtils.class);
-    //  static this(){
-    //     DEFAULT_FORMAT_OPTION = new FormatOption(true, true);
-    //     DEFAULT_LCASE_FORMAT_OPTION = new FormatOption(false, true);
-    // }
+    static FormatOption DEFAULT_LCASE_FORMAT_OPTION() {
+        __gshared FormatOption inst;
+        return initOnce!inst(new FormatOption(false, true));
+     }
+
 
     public static string toSQLString(SQLObject sqlObject, string dbType) {
         return toSQLString(sqlObject, dbType, null);

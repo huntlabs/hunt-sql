@@ -29,9 +29,16 @@ import std.conv;
 import std.uni;
 import std.string;
 
+import std.concurrency : initOnce;
+
 public class Trim : Function {
 
-    public  static Trim instance;
+    static Trim instance() {
+        __gshared Trim inst;
+        return initOnce!inst(new Trim());
+    } 
+    
+    // public  static Trim instance;
 
     // static this()
     // {

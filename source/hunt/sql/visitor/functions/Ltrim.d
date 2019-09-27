@@ -30,9 +30,16 @@ import std.uni;
 import hunt.sql.parser.CharTypes;
 import hunt.text;
 
-public class Ltrim : Function {
+import std.concurrency : initOnce;
 
-    public  static Ltrim instance;
+public class Ltrim : Function {
+    
+    static Ltrim instance() {
+        __gshared Ltrim inst;
+        return initOnce!inst(new Ltrim());
+    } 
+
+    // public  static Ltrim instance;
 
     // static this()
     // {

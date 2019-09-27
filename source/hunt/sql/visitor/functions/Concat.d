@@ -27,9 +27,16 @@ import hunt.String;
 import hunt.collection;
 import hunt.text;
 
+import std.concurrency : initOnce;
+
 public class Concat : Function {
 
-    public  static Concat instance;
+    static Concat instance() {
+        __gshared Concat inst;
+        return initOnce!inst(new Concat());
+    }    
+
+    // public  static Concat instance;
 
     // static this()
     // {

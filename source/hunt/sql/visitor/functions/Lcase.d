@@ -28,8 +28,15 @@ import hunt.collection;
 import std.conv;
 import std.uni;
 
+import std.concurrency : initOnce;
+
 public class Lcase : Function {
-    public  static Lcase instance ;
+
+    static Lcase instance() {
+        __gshared Lcase inst;
+        return initOnce!inst(new Lcase());
+    }        
+    // public  static Lcase instance ;
 
     // static this()
     // {

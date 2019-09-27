@@ -27,15 +27,16 @@ import hunt.collection;
 import hunt.sql.ast.SQLObject;
 import hunt.Boolean;
 
+import std.concurrency : initOnce;
+
 public  class SQLBooleanExpr : SQLExprImpl , SQLExpr, SQLLiteralExpr, SQLValuableExpr {
-    public static  SQLDataType DEFAULT_DATA_TYPE;
+
+    static SQLDataType DEFAULT_DATA_TYPE() {
+        __gshared SQLDataType inst;
+        return initOnce!inst(new SQLDataTypeImpl(SQLDataType.Constants.BOOLEAN));
+    }
 
     private bool value;
-
-    // static this()
-    // {
-    //     DEFAULT_DATA_TYPE = new SQLDataTypeImpl(SQLDataType.Constants.BOOLEAN);
-    // }
 
     public this(){
 

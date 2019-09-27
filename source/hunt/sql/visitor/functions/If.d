@@ -32,9 +32,16 @@ import hunt.sql.visitor.SQLEvalVisitor;
 import hunt.sql.visitor.SQLEvalVisitorUtils;
 import hunt.sql.visitor.functions.Function;
 
-public class If : Function {
+import std.concurrency : initOnce;
 
-    public  static If instance;
+public class If : Function {
+    
+    static If instance() {
+        __gshared If inst;
+        return initOnce!inst(new If());
+    }    
+
+    // public  static If instance;
 
     // static this()
     // {

@@ -45,8 +45,40 @@ import hunt.String;
 import hunt.math;
 import hunt.text;
 
+import std.concurrency : initOnce;
+
 public class Lexer {
-    public static SymbolTable symbols_l2;
+    // public static SymbolTable symbols_l2;
+    
+    static SymbolTable symbols_l2() {
+        __gshared SymbolTable inst;
+        return initOnce!inst(new SymbolTable(512));
+    }
+
+    static int[] digits() {
+        __gshared int[] inst;
+        return initOnce!inst(initDigits);
+    }
+
+
+    // public  static int[] digits              = new int[cast(int) '9' + 1];
+
+    // static this(){
+    //     symbols_l2 = new SymbolTable(512);
+    //     for (int i = '0'; i <= '9'; ++i) {
+    //         digits[i] = i - '0';
+    //     }
+    // }
+
+    private static int[] initDigits() {
+        int[] r = new int[cast(int) '9' + 1];
+        for (int i = '0'; i <= '9'; ++i)
+        {
+            r[i] = i - '0';
+        }
+
+        return r;
+    }
 
     protected int          features       = 0; //SQLParserFeature.of(SQLParserFeature.EnableSQLBinaryOpExprGroup);
     public    string text;
@@ -1997,17 +2029,8 @@ public class Lexer {
         }
     }
 
-    private static  long  MULTMIN_RADIX_TEN   = long.min / 10;
-    private static  long  N_MULTMAX_RADIX_TEN = -long.max / 10;
-
-    public  static int[] digits              = new int[cast(int) '9' + 1];
-
-    // static this(){
-    //     symbols_l2 = new SymbolTable(512);
-    //     for (int i = '0'; i <= '9'; ++i) {
-    //         digits[i] = i - '0';
-    //     }
-    // }
+    private enum  long  MULTMIN_RADIX_TEN   = long.min / 10;
+    private enum  long  N_MULTMAX_RADIX_TEN = -long.max / 10;
 
     // QS_TODO negative number is invisible for lexer
      public Number integerValue() {

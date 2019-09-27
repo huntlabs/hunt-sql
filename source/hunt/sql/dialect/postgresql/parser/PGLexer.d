@@ -18,60 +18,65 @@ module hunt.sql.dialect.postgresql.parser.PGLexer;
 import  hunt.sql.parser.CharTypes;
 import  hunt.sql.parser.Token;
 
-
-
 import hunt.collection;
 import hunt.sql.parser;
 import hunt.sql.util.DBType;
 import hunt.logging;
 
+import std.concurrency : initOnce;
+
 public class PGLexer : Lexer {
 
-    public  static Keywords DEFAULT_PG_KEYWORDS;
+    // public  static Keywords DEFAULT_PG_KEYWORDS;
 
-    // static this() {
-    //     Map!(string, Token) map = new HashMap!(string, Token)();
+    static Keywords DEFAULT_PG_KEYWORDS() {
+        __gshared Keywords inst;
+        return initOnce!inst(initKeyWords());
+    }
 
-    //     map.putAll(Keywords.DEFAULT_KEYWORDS.getKeywords());
+    private static Keywords initKeyWords() {
+        Map!(string, Token) map = new HashMap!(string, Token)();
 
-    //     map.put("BEGIN", Token.BEGIN);
-    //     map.put("CASCADE", Token.CASCADE);
-    //     map.put("CONTINUE", Token.CONTINUE);
-    //     map.put("CURRENT", Token.CURRENT);
-    //     map.put("FETCH", Token.FETCH);
-    //     map.put("FIRST", Token.FIRST);
+        map.putAll(Keywords.DEFAULT_KEYWORDS.getKeywords());
 
-    //     map.put("IDENTITY", Token.IDENTITY);
-    //     map.put("LIMIT", Token.LIMIT);
-    //     map.put("NEXT", Token.NEXT);
-    //     map.put("NOWAIT", Token.NOWAIT);
-    //     map.put("OF", Token.OF);
+        map.put("BEGIN", Token.BEGIN);
+        map.put("CASCADE", Token.CASCADE);
+        map.put("CONTINUE", Token.CONTINUE);
+        map.put("CURRENT", Token.CURRENT);
+        map.put("FETCH", Token.FETCH);
+        map.put("FIRST", Token.FIRST);
 
-    //     map.put("OFFSET", Token.OFFSET);
-    //     map.put("ONLY", Token.ONLY);
-    //     map.put("RECURSIVE", Token.RECURSIVE);
-    //     map.put("RESTART", Token.RESTART);
+        map.put("IDENTITY", Token.IDENTITY);
+        map.put("LIMIT", Token.LIMIT);
+        map.put("NEXT", Token.NEXT);
+        map.put("NOWAIT", Token.NOWAIT);
+        map.put("OF", Token.OF);
 
-    //     map.put("RESTRICT", Token.RESTRICT);
-    //     map.put("RETURNING", Token.RETURNING);
-    //     map.put("ROW", Token.ROW);
-    //     map.put("ROWS", Token.ROWS);
-    //     map.put("SHARE", Token.SHARE);
-    //     map.put("SHOW", Token.SHOW);
-    //     map.put("START", Token.START);
+        map.put("OFFSET", Token.OFFSET);
+        map.put("ONLY", Token.ONLY);
+        map.put("RECURSIVE", Token.RECURSIVE);
+        map.put("RESTART", Token.RESTART);
+
+        map.put("RESTRICT", Token.RESTRICT);
+        map.put("RETURNING", Token.RETURNING);
+        map.put("ROW", Token.ROW);
+        map.put("ROWS", Token.ROWS);
+        map.put("SHARE", Token.SHARE);
+        map.put("SHOW", Token.SHOW);
+        map.put("START", Token.START);
         
-    //     map.put("USING", Token.USING);
-    //     map.put("WINDOW", Token.WINDOW);
+        map.put("USING", Token.USING);
+        map.put("WINDOW", Token.WINDOW);
         
-    //     map.put("TRUE", Token.TRUE);
-    //     map.put("FALSE", Token.FALSE);
-    //     map.put("ARRAY", Token.ARRAY);
-    //     map.put("IF", Token.IF);
-    //     map.put("TYPE", Token.TYPE);
-    //     map.put("ILIKE", Token.ILIKE);
+        map.put("TRUE", Token.TRUE);
+        map.put("FALSE", Token.FALSE);
+        map.put("ARRAY", Token.ARRAY);
+        map.put("IF", Token.IF);
+        map.put("TYPE", Token.TYPE);
+        map.put("ILIKE", Token.ILIKE);
 
-    //     DEFAULT_PG_KEYWORDS = new Keywords(map);
-    // }
+        return new Keywords(map);
+    }
 
     public this(string input, SQLParserFeature[] features...){
         super(input);

@@ -29,9 +29,16 @@ import std.conv;
 import std.uni;
 import hunt.text;
 
+import std.concurrency : initOnce;
+
 public class Insert : Function {
 
-    public  static Insert instance;
+    static Insert instance() {
+        __gshared Insert inst;
+        return initOnce!inst(new Insert());
+    }    
+
+    // public  static Insert instance;
     // static this()
     // {
     //     instance = new Insert();

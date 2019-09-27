@@ -31,9 +31,16 @@ import hunt.collection;
 import std.conv;
 import std.uni;
 
-public class Hex : Function {
+import std.concurrency : initOnce;
 
-    public  static Hex instance;
+public class Hex : Function {
+    
+    static Hex instance() {
+        __gshared Hex inst;
+        return initOnce!inst(new Hex());
+    }    
+
+    // public  static Hex instance;
 
     // static this()
     // {

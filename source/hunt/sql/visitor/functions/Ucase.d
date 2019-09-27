@@ -28,8 +28,16 @@ import hunt.collection;
 import std.conv;
 import std.uni;
 
+import std.concurrency : initOnce;
+
 public class Ucase : Function {
-    public  static Ucase instance;
+
+    static Ucase instance() {
+        __gshared Ucase inst;
+        return initOnce!inst(new Ucase());
+    } 
+
+    // public  static Ucase instance;
 
     // static this()
     // {

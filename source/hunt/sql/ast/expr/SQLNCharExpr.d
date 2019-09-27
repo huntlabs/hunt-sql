@@ -23,13 +23,15 @@ import hunt.collection;
 import std.array;
 import hunt.String;
 
-public class SQLNCharExpr : SQLTextLiteralExpr {
-    public static SQLDataType defaultDataType;
+import std.concurrency : initOnce;
 
-    // static this()
-    // {
-    //     defaultDataType = new SQLCharacterDataType("nvarchar");
-    // }
+public class SQLNCharExpr : SQLTextLiteralExpr {
+    
+    static SQLDataType defaultDataType() {
+        __gshared SQLDataType inst;
+        return initOnce!inst(new SQLCharacterDataType("nvarchar"));
+    }
+
     public this(){
 
     }

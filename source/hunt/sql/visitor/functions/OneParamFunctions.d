@@ -38,9 +38,16 @@ import std.string;
 import hunt.math;
 import hunt.text;
 
+import std.concurrency : initOnce;
+
 public class OneParamFunctions : Function {
 
-    public  static OneParamFunctions instance;
+    static OneParamFunctions instance() {
+        __gshared OneParamFunctions inst;
+        return initOnce!inst(new OneParamFunctions());
+    } 
+
+    // public  static OneParamFunctions instance;
 
     // static this()
     // {

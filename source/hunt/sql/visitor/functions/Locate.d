@@ -31,9 +31,16 @@ import hunt.sql.ast.expr.SQLMethodInvokeExpr;
 import hunt.sql.visitor.SQLEvalVisitor;
 import hunt.sql.visitor.functions.Function;
 
+import std.concurrency : initOnce;
+
 public class Locate : Function {
 
-    public  static Locate instance;
+    static Locate instance() {
+        __gshared Locate inst;
+        return initOnce!inst(new Locate());
+    } 
+
+    // public  static Locate instance;
 
     // static this()
     // {

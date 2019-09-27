@@ -44,11 +44,13 @@ import hunt.String;
 import hunt.sql.util.Utils;
 import hunt.text;
 
+import std.concurrency : initOnce;
+
 public class PGExprParser : SQLExprParser {
 
-    public  static string[] AGGREGATE_FUNCTIONS;
+    // public  static string[] AGGREGATE_FUNCTIONS;
 
-    public  static long[] AGGREGATE_FUNCTIONS_CODES;
+    // public  static long[] AGGREGATE_FUNCTIONS_CODES;
 
     // static this(){
     //     string[] strings = [ "AVG", "COUNT", "MAX", "MIN", "STDDEV", "SUM", "ROW_NUMBER" ];
@@ -60,6 +62,30 @@ public class PGExprParser : SQLExprParser {
     //         AGGREGATE_FUNCTIONS[index] = str;
     //     }
     // }
+    
+    private enum string[] strings = [ "AVG", "COUNT", "MAX", "MIN", "STDDEV", "SUM", "ROW_NUMBER" ];
+    
+    static string[] AGGREGATE_FUNCTIONS() {
+        __gshared string[] inst;
+        return initOnce!inst({
+            long[] codes = AGGREGATE_FUNCTIONS_CODES();
+            string[] r = new string[codes.length];
+            
+            foreach(string str ; strings) {
+                long hash = FnvHash.fnv1a_64_lower(str);
+                int index = search(codes, hash);
+                r[index] = str;
+            }
+            return r;
+        }());
+    }
+
+    static long[] AGGREGATE_FUNCTIONS_CODES() {
+        __gshared long[] inst;
+        return initOnce!inst({
+            return FnvHash.fnv1a_64_lower(strings, true);
+        }());
+    }
 
     public this(string sql){
         this(new PGLexer(sql));

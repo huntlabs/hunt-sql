@@ -2271,7 +2271,7 @@ public class MySqlOutputVisitor : SQLASTOutputVisitor , MySqlASTVisitor {
             } else {
                 print0(", ");
             }
-            print0(x.getTypes().get(i).name);
+            print0(x.getTypes().get(i));
         }
 
         if (x.getForQuery() !is null) {

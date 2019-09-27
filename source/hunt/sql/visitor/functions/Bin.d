@@ -25,9 +25,16 @@ import hunt.Number;
 import hunt.Long;
 import hunt.String;
 
-public class Bin : Function {
+import std.concurrency : initOnce;
 
-    public  static Bin instance;
+public class Bin : Function {
+    
+    static Bin instance() {
+        __gshared Bin inst;
+        return initOnce!inst(new Bin());
+    }    
+
+    // public  static Bin instance;
 
     // static this()
     // {

@@ -29,9 +29,16 @@ import hunt.sql.ast.expr.SQLMethodInvokeExpr;
 import hunt.sql.visitor.SQLEvalVisitor;
 import hunt.sql.visitor.functions.Function;
 
+import std.concurrency : initOnce;
+
 public class Lpad : Function {
 
-    public  static Lpad instance;
+    static Lpad instance() {
+        __gshared Lpad inst;
+        return initOnce!inst(new Lpad());
+    } 
+
+    // public  static Lpad instance;
 
     // static this()
     // {

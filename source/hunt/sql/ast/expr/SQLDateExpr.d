@@ -29,15 +29,16 @@ import hunt.collection;
 import hunt.sql.ast.expr.SQLCharExpr;
 import hunt.String;
 
+import std.concurrency : initOnce;
+
 public class SQLDateExpr : SQLExprImpl , SQLLiteralExpr, SQLValuableExpr {
-    public static  SQLDataType DEFAULT_DATA_TYPE;
-
+    
+    static SQLDataType DEFAULT_DATA_TYPE() {
+        __gshared SQLDataType inst;
+        return initOnce!inst(new SQLCharacterDataType("date"));
+    }
+    
     private SQLExpr literal;
-
-    // static this()
-    // {
-    //     DEFAULT_DATA_TYPE = new SQLCharacterDataType("date");
-    // }
 
     public this(){
 

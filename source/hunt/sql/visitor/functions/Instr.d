@@ -26,8 +26,15 @@ import hunt.String;
 import hunt.String;
 import hunt.Integer;
 
+import std.concurrency : initOnce;
+
 public class Instr : Function {
-    public  static Instr instance;
+
+    static Instr instance() {
+        __gshared Instr inst;
+        return initOnce!inst(new Instr());
+    }        
+    // public  static Instr instance;
 
     // static this()
     // {

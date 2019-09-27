@@ -28,13 +28,15 @@ import hunt.String;
 import hunt.util.Common;
 //import hunt.lang;
 
-public class SQLCharExpr : SQLTextLiteralExpr , SQLValuableExpr{
-    public static  SQLDataType DEFAULT_DATA_TYPE;
+import std.concurrency : initOnce;
 
-    // static this()
-    // {
-    //     DEFAULT_DATA_TYPE = new SQLCharacterDataType("varchar");
-    // }
+public class SQLCharExpr : SQLTextLiteralExpr , SQLValuableExpr {
+
+    static SQLDataType DEFAULT_DATA_TYPE() {
+        __gshared SQLDataType inst;
+        return initOnce!inst(new SQLCharacterDataType("varchar"));
+    }
+
     public this(){
 
     }

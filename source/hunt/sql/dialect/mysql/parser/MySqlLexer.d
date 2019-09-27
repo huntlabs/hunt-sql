@@ -35,88 +35,88 @@ import std.concurrency : initOnce;
 alias  hunt_charAt = hunt.text.Common.charAt;
 
 public class MySqlLexer : Lexer {
-    __gshared SymbolTable quoteTable;
-    __gshared Keywords DEFAULT_MYSQL_KEYWORDS;
-    __gshared bool[] identifierFlags;
+    // __gshared SymbolTable quoteTable;
+    // __gshared Keywords DEFAULT_MYSQL_KEYWORDS;
+    // __gshared bool[] identifierFlags;
 
-    // public static SymbolTable quoteTable() {
-    //     __gshared SymbolTable inst;
-    //     return initOnce!inst(initSymbolTable());
-    // }
+    static SymbolTable quoteTable() {
+        __gshared SymbolTable inst;
+        return initOnce!inst(initSymbolTable());
+    }
 
-    // public static Keywords DEFAULT_MYSQL_KEYWORDS() {
-    //     __gshared Keywords inst;
-    //     return initOnce!inst(initKeywords());
-    // }
+    public static Keywords DEFAULT_MYSQL_KEYWORDS() {
+        __gshared Keywords inst;
+        return initOnce!inst(initKeywords());
+    }
     
     
-    // public static bool[] identifierFlags() {
-    //     __gshared bool[] inst;
-    //     return initOnce!inst(initIdentifierFlags());
-    // } 
+    public static bool[] identifierFlags() {
+        __gshared bool[] inst;
+        return initOnce!inst(initIdentifierFlags());
+    } 
 
-    // private static SymbolTable initSymbolTable() {
-    //     SymbolTable quoteTable = new SymbolTable(8192);
-    //     return quoteTable;
-    // }
+    private static SymbolTable initSymbolTable() {
+        SymbolTable quoteTable = new SymbolTable(8192);
+        return quoteTable;
+    }
 
-    // private static Keywords initKeywords() {
-    //     Map!(string, Token) map = new HashMap!(string, Token)();
+    private static Keywords initKeywords() {
+        Map!(string, Token) map = new HashMap!(string, Token)();
 
-    //     map.putAll(Keywords.DEFAULT_KEYWORDS.getKeywords());
+        map.putAll(Keywords.DEFAULT_KEYWORDS.getKeywords());
 
-    //     map.put("DUAL", Token.DUAL);
-    //     map.put("FALSE", Token.FALSE);
-    //     map.put("IDENTIFIED", Token.IDENTIFIED);
-    //     map.put("IF", Token.IF);
-    //     map.put("KILL", Token.KILL);
+        map.put("DUAL", Token.DUAL);
+        map.put("FALSE", Token.FALSE);
+        map.put("IDENTIFIED", Token.IDENTIFIED);
+        map.put("IF", Token.IF);
+        map.put("KILL", Token.KILL);
 
-    //     map.put("LIMIT", Token.LIMIT);
-    //     map.put("TRUE", Token.TRUE);
-    //     map.put("BINARY", Token.BINARY);
-    //     map.put("SHOW", Token.SHOW);
-    //     map.put("CACHE", Token.CACHE);
-    //     map.put("ANALYZE", Token.ANALYZE);
-    //     map.put("OPTIMIZE", Token.OPTIMIZE);
-    //     map.put("ROW", Token.ROW);
-    //     map.put("BEGIN", Token.BEGIN);
-    //     map.put("END", Token.END);
-    //     map.put("DIV", Token.DIV);
-    //     map.put("MERGE", Token.MERGE);
+        map.put("LIMIT", Token.LIMIT);
+        map.put("TRUE", Token.TRUE);
+        map.put("BINARY", Token.BINARY);
+        map.put("SHOW", Token.SHOW);
+        map.put("CACHE", Token.CACHE);
+        map.put("ANALYZE", Token.ANALYZE);
+        map.put("OPTIMIZE", Token.OPTIMIZE);
+        map.put("ROW", Token.ROW);
+        map.put("BEGIN", Token.BEGIN);
+        map.put("END", Token.END);
+        map.put("DIV", Token.DIV);
+        map.put("MERGE", Token.MERGE);
         
-    //     // for oceanbase & mysql 5.7
-    //     map.put("PARTITION", Token.PARTITION);
+        // for oceanbase & mysql 5.7
+        map.put("PARTITION", Token.PARTITION);
         
-    //     map.put("CONTINUE", Token.CONTINUE);
-    //     map.put("UNDO", Token.UNDO);
-    //     map.put("SQLSTATE", Token.SQLSTATE);
-    //     map.put("CONDITION", Token.CONDITION);
-    //     map.put("MOD", Token.MOD);
-    //     map.put("CONTAINS", Token.CONTAINS);
-    //     map.put("RLIKE", Token.RLIKE);
-    //     map.put("FULLTEXT", Token.FULLTEXT);
+        map.put("CONTINUE", Token.CONTINUE);
+        map.put("UNDO", Token.UNDO);
+        map.put("SQLSTATE", Token.SQLSTATE);
+        map.put("CONDITION", Token.CONDITION);
+        map.put("MOD", Token.MOD);
+        map.put("CONTAINS", Token.CONTAINS);
+        map.put("RLIKE", Token.RLIKE);
+        map.put("FULLTEXT", Token.FULLTEXT);
 
-    //     return new Keywords(map);
-    // }
+        return new Keywords(map);
+    }
 
-    // private static bool[] initIdentifierFlags() {
-    //     bool[] flags = new bool[256];
+    private static bool[] initIdentifierFlags() {
+        bool[] flags = new bool[256];
 
-    //     for (char c = 0; c < flags.length; ++c) {
-    //         if (c >= 'A' && c <= 'Z') {
-    //             flags[c] = true;
-    //         } else if (c >= 'a' && c <= 'z') {
-    //             flags[c] = true;
-    //         } else if (c >= '0' && c <= '9') {
-    //             flags[c] = true;
-    //         }
-    //     }
-    //     // identifierFlags['`'] = true;
-    //     flags['_'] = true;
-    //     //identifierFlags['-'] = true; // mysql
+        for (dchar c = 0; c < flags.length; ++c) {
+            if (c >= 'A' && c <= 'Z') {
+                flags[c] = true;
+            } else if (c >= 'a' && c <= 'z') {
+                flags[c] = true;
+            } else if (c >= '0' && c <= '9') {
+                flags[c] = true;
+            }
+        }
+        // identifierFlags['`'] = true;
+        flags['_'] = true;
+        //identifierFlags['-'] = true; // mysql
 
-    //     return flags;
-    // }
+        return flags;
+    }
 
     public this(char[] input, int inputLength, bool skipComment){
         dbType = DBType.MYSQL.name;

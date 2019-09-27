@@ -10,16 +10,19 @@ import hunt.sql.SQLUtils;
 //import hunt.lang;
 import hunt.String;
 
+import std.concurrency : initOnce;
+
 public class SQLTimestampExpr : SQLExprImpl , SQLValuableExpr {
-    public static  SQLDataType DEFAULT_DATA_TYPE ;
+    
+    static SQLDataType DEFAULT_DATA_TYPE() {
+        __gshared SQLDataType inst;
+        return initOnce!inst(new SQLCharacterDataType("datetime"));
+    }
 
     protected string  literal;
     protected string  timeZone;
     protected bool withTimeZone = false;
 
-    // static this(){
-    //     DEFAULT_DATA_TYPE = new SQLCharacterDataType("datetime");
-    // }
     this()
     {
     }

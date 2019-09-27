@@ -43,11 +43,38 @@ import hunt.sql.parser.SQLParserFeature;
 import hunt.Exceptions;
 import hunt.math;
 
+import std.concurrency : initOnce;
+
 public class SQLExprParser : SQLParser {
 
-    public   static string[] AGGREGATE_FUNCTIONS =[];
+    private enum string[] strings = [ "AVG", "COUNT", "MAX", "MIN", "STDDEV", "SUM" ];
+    
+    static string[] AGGREGATE_FUNCTIONS() {
+        __gshared string[] inst;
+        return initOnce!inst({
+            long[] codes = AGGREGATE_FUNCTIONS_CODES();
+            string[] r = new string[codes.length];
+            
+            foreach(string str ; strings) {
+                long hash = FnvHash.fnv1a_64_lower(str);
+                int index = search(codes, hash);
+                r[index] = str;
+            }
+            return r;
+        }());
+    }
 
-    public   static long[] AGGREGATE_FUNCTIONS_CODES = [];
+    static long[] AGGREGATE_FUNCTIONS_CODES() {
+        __gshared long[] inst;
+        return initOnce!inst({
+            return FnvHash.fnv1a_64_lower(strings, true);
+        }());
+    }
+
+
+    // public   static string[] AGGREGATE_FUNCTIONS =[];
+
+    // public   static long[] AGGREGATE_FUNCTIONS_CODES = [];
 
     // static this(){
     //     string[] strings = [ "AVG", "COUNT", "MAX", "MIN", "STDDEV", "SUM" ];

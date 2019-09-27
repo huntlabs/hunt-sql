@@ -31,9 +31,16 @@ import std.conv;
 import std.uni;
 import hunt.text;
 
+import std.concurrency : initOnce;
+
 public class Substring : Function {
 
-    public  static Substring instance;
+    static Substring instance() {
+        __gshared Substring inst;
+        return initOnce!inst(new Substring());
+    } 
+    
+    // public  static Substring instance;
 
     // static this()
     // {

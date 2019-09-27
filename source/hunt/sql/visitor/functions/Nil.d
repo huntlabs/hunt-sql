@@ -24,9 +24,17 @@ import hunt.String;
 import hunt.collection;
 import std.conv;
 import std.uni;
+
+import std.concurrency : initOnce;
+
 public class Nil : Function {
 
-    public  static Nil instance;
+    static Nil instance() {
+        __gshared Nil inst;
+        return initOnce!inst(new Nil());
+    } 
+
+    // public  static Nil instance;
 
     // static this()
     // {

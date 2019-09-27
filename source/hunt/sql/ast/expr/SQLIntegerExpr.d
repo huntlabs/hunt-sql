@@ -25,15 +25,16 @@ import hunt.Number;
 import hunt.Integer;
 import hunt.collection;
 
-public class SQLIntegerExpr : SQLNumericLiteralExpr , SQLValuableExpr{
-    public static  SQLDataType DEFAULT_DATA_TYPE;
+import std.concurrency : initOnce;
+
+public class SQLIntegerExpr : SQLNumericLiteralExpr , SQLValuableExpr {
+    
+    static SQLDataType DEFAULT_DATA_TYPE() {
+        __gshared SQLDataType inst;
+        return initOnce!inst(new SQLDataTypeImpl("bigint"));
+    }
 
     private Number number;
-
-    // static this()
-    // {
-    //      DEFAULT_DATA_TYPE = new SQLDataTypeImpl("bigint");
-    // }
 
     public this(Number number){
 

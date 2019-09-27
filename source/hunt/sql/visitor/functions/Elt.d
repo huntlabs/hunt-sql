@@ -26,9 +26,16 @@ import hunt.String;
 import hunt.String;
 import hunt.collection;
 
+import std.concurrency : initOnce;
+
 public class Elt : Function {
 
-    public  static Elt instance;
+    static Elt instance() {
+        __gshared Elt inst;
+        return initOnce!inst(new Elt());
+    }    
+
+    // public  static Elt instance;
 
     // static this()
     // {

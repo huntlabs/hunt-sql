@@ -30,9 +30,16 @@ import std.conv;
 import std.uni;
 import hunt.text;
 
-public class Left : Function {
+import std.concurrency : initOnce;
 
-    public  static Left instance;
+public class Left : Function {
+    
+    static Left instance() {
+        __gshared Left inst;
+        return initOnce!inst(new Left());
+    }
+
+    // public  static Left instance;
 
     // static this()
     // {

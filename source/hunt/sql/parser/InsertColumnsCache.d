@@ -20,13 +20,15 @@ import hunt.sql.util.FnvHash;
 import hunt.Long;
 import hunt.collection;
 
+import std.concurrency : initOnce;
 
 public class InsertColumnsCache {
-    public static InsertColumnsCache global;
+    
+    static InsertColumnsCache global() {
+        __gshared InsertColumnsCache inst;
+        return initOnce!inst(new InsertColumnsCache(8192));
+    }
 
-    // static this(){
-    //     global = new InsertColumnsCache(8192);
-    // }
 
     public HashMap!(Long, Entry) cache;
 

@@ -32,9 +32,16 @@ import hunt.collection;
 import std.conv;
 import std.uni;
 
+import std.concurrency : initOnce;
+
 public class Isnull : Function {
 
-    public static Isnull instance ;
+    static Isnull instance() {
+        __gshared Isnull inst;
+        return initOnce!inst(new Isnull());
+    }    
+
+    // public static Isnull instance ;
 
     // static this()
     // {
