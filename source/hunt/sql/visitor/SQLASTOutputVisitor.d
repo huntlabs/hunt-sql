@@ -352,18 +352,24 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
      {
          print0(text.value());
      }
+
     protected void print0(string text) {
+        // if(text == "desc") text = "`" ~ text ~ "`";
+        // TODO: Tasks pending completion -@zhangxueping at 2019-10-08T11:01:20+08:00
+        // handle the reserved words, for example, desc, table, etc.
         version(HUNT_ENTITY_DEBUG_MORE) tracef("Appending: %s", text);
         if (appender is null) {
             warning("appender is null");
             return;
         }
 
-        try {
-            this.appender.append(text);
-        } catch (Exception e) {
-            throw new Exception("println error", e);
-        }
+        this.appender.append(text);
+
+        // try {
+        //     this.appender.append(text);
+        // } catch (Exception e) {
+        //     throw new Exception("println error", e);
+        // }
     }
 
     protected void print0(Bytes data) {        

@@ -1,6 +1,5 @@
 module hunt.sql;
 
-public import hunt.sql.GlobalInit;
 public import hunt.sql.PagerUtils;
 public import hunt.sql.SQLTransformUtils;
 public import hunt.sql.SQLUtils;
