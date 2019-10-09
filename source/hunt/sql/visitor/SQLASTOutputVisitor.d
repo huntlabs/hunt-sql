@@ -288,6 +288,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         }
 
         try {
+            version(HUNT_ENTITY_DEBUG_MORE) tracef("Appending: %s", value);
             this.appender.append(value);
         } catch (Exception e) {
             throw new Exception("print error", e);
@@ -298,6 +299,8 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         if (this.appender is null) {
             return;
         }
+
+        version(HUNT_ENTITY_DEBUG_MORE) tracef("Appending: %s", value);
 
         if (cast(StringBuffer)appender !is null) {
             (cast(StringBuffer) appender).append(value);
@@ -1608,7 +1611,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
 
         print(')');
 
-        if (!DBType.POSTGRESQL.opEquals(dbType)) {
+        if (DBType.POSTGRESQL != dbType) {
             SQLOrderBy withGroup = x.getWithinGroup();
             if (withGroup !is null) {
                 print0(ucase ? " WITHIN GROUP (" : " within group (");
