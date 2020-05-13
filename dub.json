@@ -1,7 +1,7 @@
 {
     "name": "hunt-sql",
     "description": "SQL parser and generate library for PostgreSQL / MySQL / SQLite and more.",
-    "copyright": "Copyright (C) 2018-2019, HuntLabs",
+    "copyright": "Copyright (C) 2018-2020, HuntLabs",
     "homepage": "https://www.huntlabs.net",
     "license": "Apache-2.0",
     "dependencies": {
