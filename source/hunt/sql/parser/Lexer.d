@@ -34,7 +34,6 @@ import hunt.sql.parser.SQLParserUtils;
 import hunt.collection;
 import std.string;
 import std.bigint;
-import std.xml;
 import std.uni;
 import std.conv;
 import std.algorithm.mutation;
@@ -828,7 +827,7 @@ public class Lexer {
                     }
                     return;
                 default:
-                    if (isLetter(ch)) {
+                    if (isAlpha(ch)) {
                         scanIdentifier();
                         return;
                     }

@@ -19,7 +19,6 @@ module hunt.sql.visitor.functions.OneParamFunctions;
 // import hunt.sql.visitor.SQLEvalVisitor.EVAL_VALUE_NULL;
 
 
-import std.xml;
 import hunt.sql.ast.SQLExpr;
 import hunt.sql.ast.expr.SQLMethodInvokeExpr;
 import hunt.sql.visitor.SQLEvalVisitor;
@@ -144,7 +143,7 @@ public class OneParamFunctions : Function {
         char[] chars = new char[len];
         int count = 0;
         for (int i = 0; i < len; i++) {
-            if (isLetter(charAt(str, i))) {
+            if (isAlpha(charAt(str, i))) {
                 chars[count++] = charAt(str, i);
             }
         }
