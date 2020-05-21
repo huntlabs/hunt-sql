@@ -88,7 +88,7 @@ public class SQLBinaryExpr : SQLExprImpl , SQLLiteralExpr, SQLValuableExpr {
         visitor.endVisit(this);
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         buf.append("b'");
         buf.append(text);
         buf.append('\'');

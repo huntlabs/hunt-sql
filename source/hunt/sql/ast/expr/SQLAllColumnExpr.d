@@ -20,6 +20,7 @@ import hunt.sql.ast.statement.SQLTableSource;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.collection;
 import hunt.sql.ast.SQLObject;
+import hunt.util.StringBuilder;
 
 public  class SQLAllColumnExpr : SQLExprImpl {
     private  SQLTableSource resolvedTableSource;
@@ -28,7 +29,7 @@ public  class SQLAllColumnExpr : SQLExprImpl {
 
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         buf.append("*");
     }
 

@@ -21,6 +21,7 @@ import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.dialect.mysql.ast.expr.MySqlExpr;
 import hunt.collection;
 import hunt.String;
+import hunt.util.StringBuilder;
 
 public class MySqlCharExpr : SQLCharExpr , MySqlExpr {
 
@@ -57,7 +58,7 @@ public class MySqlCharExpr : SQLCharExpr , MySqlExpr {
         this.collate = collate;
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         if (charset !is null) {
             buf.append(charset);
             buf.append(' ');
@@ -88,7 +89,7 @@ public class MySqlCharExpr : SQLCharExpr , MySqlExpr {
     }
     
     override public string toString() {
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         output(buf);
         return buf.toString();
     }

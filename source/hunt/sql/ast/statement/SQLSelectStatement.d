@@ -23,6 +23,7 @@ import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.statement.SQLSelect;
 
 import hunt.collection;
+import hunt.util.StringBuilder;
 
 public class SQLSelectStatement : SQLStatementImpl {
 
@@ -56,7 +57,7 @@ public class SQLSelectStatement : SQLStatementImpl {
         this.select = select;
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         this.select.output(buf);
     }
 

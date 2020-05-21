@@ -20,6 +20,7 @@ import hunt.sql.ast.SQLObjectImpl;
 import hunt.sql.ast.SQLReplaceable;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.collection;
+import hunt.util.StringBuilder;
 
 public class SQLAssignItem : SQLObjectImpl , SQLReplaceable {
 
@@ -67,7 +68,7 @@ public class SQLAssignItem : SQLObjectImpl , SQLReplaceable {
         this.value = value;
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         target.output(buf);
         buf.append(" = ");
         value.output(buf);

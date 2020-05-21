@@ -23,6 +23,7 @@ import hunt.sql.ast.expr.SQLIdentifierExpr;
 import hunt.sql.ast.expr.SQLPropertyExpr;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.collection;
+import hunt.util.StringBuilder;
 
 public class SQLUpdateSetItem : SQLObjectImpl , SQLReplaceable {
 
@@ -55,7 +56,7 @@ public class SQLUpdateSetItem : SQLObjectImpl , SQLReplaceable {
         this.value = value;
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         column.output(buf);
         buf.append(" = ");
         value.output(buf);

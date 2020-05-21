@@ -25,6 +25,7 @@ import hunt.sql.visitor.SQLASTOutputVisitor;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.collection;
 import hunt.sql.ast.expr.SQLBooleanExpr;
+import hunt.util.StringBuilder;
 
 public class SQLInSubQueryExpr : SQLExprImpl //, Serializable 
 {
@@ -86,7 +87,7 @@ public class SQLInSubQueryExpr : SQLExprImpl //, Serializable
         this.subQuery = subQuery;
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         SQLASTOutputVisitor visitor = SQLUtils.createOutputVisitor(buf, null);
         this.accept(visitor);
     }

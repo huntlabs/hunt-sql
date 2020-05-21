@@ -82,6 +82,7 @@ import hunt.collection;
 import hunt.String;
 import std.array;
 import hunt.text;
+import hunt.util.Appendable;
 
 import std.concurrency : initOnce;
 

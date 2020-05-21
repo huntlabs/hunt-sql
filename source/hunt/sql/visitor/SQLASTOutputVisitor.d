@@ -60,6 +60,7 @@ import hunt.Integer;
 import hunt.Float;
 import hunt.math;
 import hunt.util.Common;
+import hunt.util.Appendable;
 import hunt.text;
 import hunt.collection.Collections;
 
@@ -83,7 +84,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         }
 
         for (int len = 0; len < variantValuesCache.length; ++len) {
-            StringBuffer buf = new StringBuffer();
+            StringBuilder buf = new StringBuilder();
             buf.append('(');
             for (int i = 0; i < len; ++i) {
                 if (i != 0) {
@@ -302,8 +303,8 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
 
         version(HUNT_ENTITY_DEBUG_MORE) tracef("Appending: %s", value);
 
-        if (cast(StringBuffer)appender !is null) {
-            (cast(StringBuffer) appender).append(value);
+        if (cast(StringBuilder)appender !is null) {
+            (cast(StringBuilder) appender).append(value);
         } else if (cast(StringBuilder)appender !is null) {
             (cast(StringBuilder) appender).append(value);
         } else {
@@ -318,8 +319,8 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
 
         if (cast(StringBuilder)appender !is null) {
             (cast(StringBuilder) appender).append(cast(int)value);
-        } else if (cast(StringBuffer)appender !is null) {
-            (cast(StringBuffer) appender).append(cast(int)value);
+        } else if (cast(StringBuilder)appender !is null) {
+            (cast(StringBuilder) appender).append(cast(int)value);
         } else {
             print0(to!string(value));
         }
@@ -3191,7 +3192,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     static string[] variantValuesCache = new string[64];
     // static {
     //     for (int len = 0; len < variantValuesCache.length; ++len) {
-    //         StringBuffer buf = new StringBuffer();
+    //         StringBuilder buf = new StringBuilder();
     //         buf.append('(');
     //         for (int i = 0; i < len; ++i) {
     //             if (i != 0) {
@@ -6703,8 +6704,8 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
 
         if (cast(StringBuilder)appender !is null) {
             (cast(StringBuilder) appender).append(value);
-        } else if (cast(StringBuffer)appender !is null) {
-            (cast(StringBuffer) appender).append(value);
+        } else if (cast(StringBuilder)appender !is null) {
+            (cast(StringBuilder) appender).append(value);
         } else {
             print0(to!string(value));
         }

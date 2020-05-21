@@ -21,6 +21,7 @@ import hunt.sql.visitor.SQLASTVisitor;
 import hunt.collection;
 import hunt.sql.ast.expr.SQLIntervalUnit;
 import hunt.sql.ast.SQLObject;
+import hunt.util.StringBuilder;
 
 
 public class SQLIntervalExpr : SQLExprImpl {
@@ -61,7 +62,7 @@ public class SQLIntervalExpr : SQLExprImpl {
         this.unit = unit;
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         buf.append("INTERVAL ");
         value.output(buf);
         if (unit.name.length != 0) {

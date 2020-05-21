@@ -24,6 +24,7 @@ import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.util.DBType;
 import hunt.sql.dialect.postgresql.ast.stmt.PGSQLStatement;
 import hunt.collection;
+import hunt.util.StringBuilder;
 
 public class PGConnectToStatement : SQLStatementImpl , PGSQLStatement {
     private SQLName target;
@@ -36,7 +37,7 @@ public class PGConnectToStatement : SQLStatementImpl , PGSQLStatement {
         this.accept0(cast(PGASTVisitor) visitor);
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         SQLASTOutputVisitor visitor = SQLUtils.createOutputVisitor(buf, dbType);
         this.accept(visitor);
     }

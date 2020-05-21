@@ -56,8 +56,10 @@ import hunt.Byte;
 import hunt.collection;
 import hunt.String;
 import hunt.Boolean;
-import hunt.util.Common;
 import hunt.text;
+import hunt.util.Appendable;
+import hunt.util.Common;
+import hunt.util.StringBuilder;
 
 import std.string;
 

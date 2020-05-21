@@ -26,6 +26,7 @@ import hunt.sql.dialect.mysql.visitor.MySqlOutputVisitor;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.util.DBType;
 import hunt.sql.ast.SQLObjectImpl;
+import hunt.util.StringBuilder;
 
 public class MySqlInsertStatement : SQLInsertStatement {
 
@@ -112,7 +113,7 @@ public class MySqlInsertStatement : SQLInsertStatement {
         }
     }
 
-    override  public void output(StringBuffer buf) {
+    override  public void output(StringBuilder buf) {
         new MySqlOutputVisitor(buf).visit(this);
     }
 

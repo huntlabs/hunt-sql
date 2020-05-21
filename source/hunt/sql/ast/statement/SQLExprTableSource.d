@@ -32,6 +32,7 @@ import hunt.sql.ast.statement.SQLColumnDefinition;
 import hunt.sql.ast.statement.SQLTableSourceImpl;
 import hunt.sql.ast.statement.SQLTableSource;
 import hunt.sql.ast.statement.SQLCreateTableStatement;
+import hunt.util.StringBuilder;
 
 
 public class SQLExprTableSource : SQLTableSourceImpl , SQLReplaceable {
@@ -139,7 +140,7 @@ public class SQLExprTableSource : SQLTableSourceImpl , SQLReplaceable {
         visitor.endVisit(this);
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         this.expr.output(buf);
     }
 

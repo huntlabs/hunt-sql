@@ -30,6 +30,7 @@ import hunt.sql.ast.statement.SQLTableSource;
 import hunt.sql.ast.statement.SQLWithSubqueryClause;
 import hunt.sql.ast.statement.SQLUpdateSetItem;
 import hunt.sql.ast.statement.SQLJoinTableSource;
+import hunt.util.StringBuilder;
 
 public class SQLUpdateStatement : SQLStatementImpl , SQLReplaceable {
     protected SQLWithSubqueryClause _with; // for pg
@@ -142,7 +143,7 @@ public class SQLUpdateStatement : SQLStatementImpl , SQLReplaceable {
         this.hints = hints;
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         SQLASTOutputVisitor visitor = SQLUtils.createOutputVisitor(buf, dbType);
         this.accept(visitor);
     }

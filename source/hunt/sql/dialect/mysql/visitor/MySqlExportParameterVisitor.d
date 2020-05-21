@@ -31,6 +31,7 @@ import hunt.sql.visitor.ExportParameterVisitor;
 import hunt.sql.visitor.ExportParameterVisitorUtils;
 import hunt.sql.dialect.mysql.visitor.MySqlOutputVisitor;
 import hunt.sql.visitor.SQLASTOutputVisitor;
+import hunt.util.Appendable;
 import hunt.util.Common;
 
 public class MySqlExportParameterVisitor : MySqlOutputVisitor , ExportParameterVisitor {

@@ -7,6 +7,7 @@ import hunt.collection;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.SQLDataType;
 import hunt.sql.ast.SQLObject;
+import hunt.util.StringBuilder;
 
 public  class SQLSomeExpr : SQLExprImpl {
 
@@ -39,7 +40,7 @@ public  class SQLSomeExpr : SQLExprImpl {
         this.subQuery = subQuery;
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         this.subQuery.output(buf);
     }
 

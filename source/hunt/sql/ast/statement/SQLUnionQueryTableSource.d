@@ -19,6 +19,7 @@ import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.statement.SQLTableSourceImpl;
 import hunt.sql.ast.statement.SQLUnionQuery;
 import hunt.collection;
+import hunt.util.StringBuilder;
 
 public class SQLUnionQueryTableSource : SQLTableSourceImpl {
 
@@ -49,7 +50,7 @@ public class SQLUnionQueryTableSource : SQLTableSourceImpl {
         visitor.endVisit(this);
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         buf.append("(");
         this._union.output(buf);
         buf.append(")");

@@ -134,7 +134,7 @@ public class SQLInsertStatement : SQLInsertInto , SQLStatement {
     //         return values;
     //     }
 
-    //     override public void output(StringBuffer buf) {
+    //     override public void output(StringBuilder buf) {
     //         buf.append(" VALUES (");
     //         for (int i = 0, size = values.size(); i < size; ++i) {
     //             if (i != 0) {

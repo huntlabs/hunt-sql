@@ -25,6 +25,7 @@ import hunt.sql.ast.statement.SQLSelectQuery;
 import hunt.sql.ast.statement.SQLSelectQueryBlock;
 import hunt.sql.ast.statement.SQLUnionOperator;
 import hunt.collection;
+import hunt.util.StringBuilder;
 
 public class SQLUnionQuery : SQLObjectImpl , SQLSelectQuery {
 
@@ -165,7 +166,7 @@ public class SQLUnionQuery : SQLObjectImpl , SQLSelectQuery {
         this.dbType = dbType;
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         SQLASTOutputVisitor visitor = SQLUtils.createOutputVisitor(buf, dbType);
         this.accept(visitor);
     }

@@ -22,6 +22,7 @@ import hunt.sql.ast.expr.SQLTextLiteralExpr;
 import hunt.collection;
 import std.array;
 import hunt.String;
+import hunt.util.StringBuilder;
 
 import std.concurrency : initOnce;
 
@@ -44,7 +45,7 @@ public class SQLNCharExpr : SQLTextLiteralExpr {
         super(new String(text));
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         if ((this.text is null) || (this.text.value.length == 0)) {
             buf.append("NULL");
             return;

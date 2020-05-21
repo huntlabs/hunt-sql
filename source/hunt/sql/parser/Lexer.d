@@ -1955,7 +1955,7 @@ public class Lexer {
         return _stringVal;
     }
 
-    private  void stringVal(StringBuffer sb) {
+    private  void stringVal(StringBuilder sb) {
         if (_stringVal !is null) {
             sb.append(_stringVal);
             return;
@@ -2241,7 +2241,7 @@ public class Lexer {
 
         lexer.nextToken();
 
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
 
         for_:
         for (;;) {

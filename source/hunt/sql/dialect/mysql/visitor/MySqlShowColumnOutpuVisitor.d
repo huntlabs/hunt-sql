@@ -25,9 +25,9 @@ import hunt.sql.dialect.mysql.ast.statement.MySqlCreateTableStatement;
 import hunt.sql.visitor.SQLASTOutputVisitor;
 
 import hunt.String;
-//import hunt.lang;
 import hunt.collection;
 import hunt.sql.dialect.mysql.visitor.MySqlOutputVisitor;
+import hunt.util.Appendable;
 import hunt.util.Common;
 import hunt.text;
 

@@ -25,6 +25,7 @@ import hunt.sql.ast.expr.SQLPropertyExpr;
 import std.uni;
 import hunt.String;
 import hunt.text;
+import hunt.util.StringBuilder;
 
 public  class SQLIdentifierExpr : SQLExprImpl , SQLName {
     public  string    name;
@@ -85,7 +86,7 @@ public  class SQLIdentifierExpr : SQLExprImpl , SQLName {
         return _hashCode64;
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         buf.append(this.name);
     }
 

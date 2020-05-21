@@ -22,6 +22,7 @@ import hunt.sql.ast.statement.SQLSelectQuery;
 import hunt.sql.ast.statement.SQLSelectQueryBlock;
 import hunt.sql.ast.statement.SQLTableSource;
 import hunt.collection;
+import hunt.util.StringBuilder;
 
 public class SQLSubqueryTableSource : SQLTableSourceImpl {
 
@@ -67,7 +68,7 @@ public class SQLSubqueryTableSource : SQLTableSourceImpl {
         visitor.endVisit(this);
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         buf.append("(");
         this.select.output(buf);
         buf.append(")");

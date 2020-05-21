@@ -6,6 +6,7 @@ import hunt.sql.ast.SQLDataType;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.SQLObject;
 import hunt.sql.ast.expr.SQLBooleanExpr;
+import hunt.util.StringBuilder;
 
 public  class SQLNotExpr : SQLExprImpl //, Serializable 
 {
@@ -30,7 +31,7 @@ public  class SQLNotExpr : SQLExprImpl //, Serializable
         this.expr = expr;
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         buf.append(" NOT ");
         this.expr.output(buf);
     }

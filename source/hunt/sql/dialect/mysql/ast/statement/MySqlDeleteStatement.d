@@ -28,6 +28,7 @@ import hunt.sql.dialect.mysql.visitor.MySqlASTVisitor;
 import hunt.sql.dialect.mysql.visitor.MySqlOutputVisitor;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.util.DBType;
+import hunt.util.StringBuilder;
 
 public class MySqlDeleteStatement : SQLDeleteStatement {
 
@@ -133,7 +134,7 @@ public class MySqlDeleteStatement : SQLDeleteStatement {
         }
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         new MySqlOutputVisitor(buf).visit(this);
     }
 

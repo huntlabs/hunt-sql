@@ -30,6 +30,7 @@ import hunt.sql.dialect.postgresql.visitor.PGExportParameterVisitor;
 import hunt.sql.visitor.ExportParameterVisitor;
 import hunt.sql.util.DBType;
 import hunt.String;
+import hunt.util.Appendable;
 import hunt.util.Common;
 
 public  class ExportParameterVisitorUtils {

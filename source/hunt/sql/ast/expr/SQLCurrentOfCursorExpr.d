@@ -20,6 +20,7 @@ import hunt.sql.ast.SQLName;
 import hunt.sql.ast.SQLObject;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.collection;
+import hunt.util.StringBuilder;
 
 public class SQLCurrentOfCursorExpr : SQLExprImpl {
 
@@ -52,7 +53,7 @@ public class SQLCurrentOfCursorExpr : SQLExprImpl {
         this.cursorName = cursorName;
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         buf.append("CURRENT OF ");
         cursorName.output(buf);
     }

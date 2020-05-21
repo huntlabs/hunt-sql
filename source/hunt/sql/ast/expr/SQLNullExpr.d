@@ -6,6 +6,7 @@ import hunt.collection;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.SQLObject;
 import hunt.sql.visitor.SQLEvalVisitor;
+import hunt.util.StringBuilder;
 
 public  class SQLNullExpr : SQLExprImpl , SQLLiteralExpr, SQLValuableExpr {
 
@@ -13,7 +14,7 @@ public  class SQLNullExpr : SQLExprImpl , SQLLiteralExpr, SQLValuableExpr {
 
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         buf.append("NULL");
     }
 

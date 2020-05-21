@@ -32,6 +32,7 @@ import hunt.Integer;
 import hunt.sql.ast.statement.SQLNotNullConstraint;
 import hunt.sql.ast.statement.SQLColumnPrimaryKey;
 import hunt.sql.ast.statement.SQLCreateTableStatement;
+import hunt.util.StringBuilder;
 
 public class SQLColumnDefinition : SQLObjectImpl , SQLTableElement, SQLObjectWithDataType, SQLReplaceable {
     protected string                          dbType;
@@ -170,7 +171,7 @@ public class SQLColumnDefinition : SQLObjectImpl , SQLTableElement, SQLObjectWit
         this.constraints.add(constraint);
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         name.output(buf);
         buf.append(' ');
         this.dataType.output(buf);

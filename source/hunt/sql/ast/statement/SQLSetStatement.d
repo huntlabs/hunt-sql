@@ -24,6 +24,7 @@ import hunt.sql.ast.expr.SQLBinaryOperator;
 import hunt.sql.ast.expr.SQLIntegerExpr;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.statement.SQLAssignItem;
+import hunt.util.StringBuilder;
 
 public class  SQLSetStatement: SQLStatementImpl {
     private Option option;
@@ -97,7 +98,7 @@ public class  SQLSetStatement: SQLStatementImpl {
         visitor.endVisit(this);
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         buf.append("SET ");
 
         for (int i = 0; i < items.size(); ++i) {

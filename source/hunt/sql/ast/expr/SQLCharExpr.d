@@ -25,8 +25,9 @@ import hunt.sql.ast.expr.SQLTextLiteralExpr;
 import hunt.sql.ast.expr.SQLValuableExpr;
 import hunt.collection;
 import hunt.String;
+import hunt.util.Appendable;
 import hunt.util.Common;
-//import hunt.lang;
+import hunt.util.StringBuilder;
 
 import std.concurrency : initOnce;
 
@@ -53,7 +54,7 @@ public class SQLCharExpr : SQLTextLiteralExpr , SQLValuableExpr {
         super(new String(text));
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         output(cast(Appendable) buf);
     }
 

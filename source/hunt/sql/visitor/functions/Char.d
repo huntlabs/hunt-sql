@@ -48,7 +48,7 @@ public class Char : Function {
             return cast(Object)(SQLEvalVisitor.EVAL_ERROR);
         }
 
-        StringBuffer buf = new StringBuffer(x.getParameters().size());
+        StringBuilder buf = new StringBuilder(x.getParameters().size());
         foreach(SQLExpr param ; x.getParameters()) {
             param.accept(visitor);
 

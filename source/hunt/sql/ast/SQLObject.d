@@ -2,6 +2,7 @@ module hunt.sql.ast.SQLObject;
 
 import hunt.collection;
 import hunt.sql.visitor.SQLASTVisitor;
+import hunt.util.StringBuilder;
 
 
 
@@ -16,7 +17,7 @@ interface SQLObject {
     Object              getAttribute(string name);
     void                putAttribute(string name, Object value);
     Map!(string, Object) getAttributesDirect();
-    void                output(StringBuffer buf);
+    void                output(StringBuilder buf);
 
     void                addBeforeComment(string comment);
     void                addBeforeComment(List!string comments);

@@ -50,6 +50,7 @@ import hunt.Byte;
 import hunt.collection;
 import hunt.logging.ConsoleLogger;
 import hunt.String;
+import hunt.util.Appendable;
 import hunt.util.Common;
 import hunt.text;
 

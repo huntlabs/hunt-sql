@@ -29,6 +29,7 @@ import hunt.sql.ast.statement.SQLWithSubqueryClause;
 import hunt.sql.ast.statement.SQLSelectQuery;
 import hunt.sql.ast.statement.SQLSelectQueryBlock;
 import hunt.sql.ast.statement.SQLUnionQuery;
+import hunt.util.StringBuilder;
 
 public class SQLSelect : SQLObjectImpl {
 
@@ -149,7 +150,7 @@ public class SQLSelect : SQLObjectImpl {
         return true;
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         string dbType = null;
 
         SQLObject parent = this.getParent();

@@ -21,6 +21,7 @@ import hunt.sql.ast;
 import hunt.sql.visitor.SQLASTOutputVisitor;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.collection;
+import hunt.util.StringBuilder;
 
 public class SQLCaseExpr : SQLExprImpl , SQLReplaceable//, Serializable 
 {
@@ -187,7 +188,7 @@ public class SQLCaseExpr : SQLExprImpl , SQLReplaceable//, Serializable
             return x;
         }
 
-        override public void output(StringBuffer buf) {
+        override public void output(StringBuilder buf) {
             new SQLASTOutputVisitor(buf).visit(this);
         }
 

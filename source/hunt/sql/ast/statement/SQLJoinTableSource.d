@@ -30,7 +30,7 @@ import hunt.sql.ast.statement.SQLExprTableSource;
 import hunt.sql.ast.statement.SQLTableSourceImpl;
 import hunt.sql.ast.statement.SQLTableSource;
 import hunt.sql.ast.statement.SQLColumnDefinition;
-import hunt.collection;
+import hunt.util.StringBuilder;
 import std.uni;
 import hunt.sql.ast.SQLObject;
 
@@ -180,7 +180,7 @@ public class SQLJoinTableSource : SQLTableSourceImpl , SQLReplaceable {
         this.natural = natural;
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         this.left.output(buf);
         buf.append(' ');
         buf.append(JoinType.toString(this.joinType));

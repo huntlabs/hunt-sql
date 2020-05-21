@@ -5,6 +5,7 @@ import hunt.sql.ast.SQLHint;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.collection;
 import hunt.Exceptions;
+import hunt.util.StringBuilder;
 
 
 public class SQLCommentHint : SQLObjectImpl , SQLHint {
@@ -37,7 +38,7 @@ public class SQLCommentHint : SQLObjectImpl , SQLHint {
         return new SQLCommentHint(text);
     }
 
-    public override void output(StringBuffer buf) {
+    public override void output(StringBuilder buf) {
         // new SQLASTOutputVisitor(buf).visit(this); @gxc
         implementationMissing();
 

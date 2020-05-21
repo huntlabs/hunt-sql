@@ -35,6 +35,7 @@ import hunt.sql.visitor.ParameterizedVisitor;
 import hunt.sql.visitor.VisitorFeature;
 import hunt.String;
 import hunt.sql.visitor.SQLASTOutputVisitor;
+import hunt.util.Appendable;
 import hunt.util.Common;
 import hunt.text;
 

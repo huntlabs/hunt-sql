@@ -25,6 +25,7 @@ import hunt.sql.util.FnvHash;
 import hunt.collection;
 import hunt.sql.ast.expr.SQLIdentifierExpr;
 import hunt.sql.ast.expr.SQLDateExpr;
+import hunt.util.StringBuilder;
 
 public class SQLMethodInvokeExpr : SQLExprImpl , SQLReplaceable//, Serializable 
 {
@@ -129,7 +130,7 @@ public class SQLMethodInvokeExpr : SQLExprImpl , SQLReplaceable//, Serializable
         this.parameters.add(arg);
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         if (this.owner !is null) {
             this.owner.output(buf);
             buf.append(".");

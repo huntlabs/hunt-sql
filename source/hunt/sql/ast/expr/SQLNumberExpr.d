@@ -10,6 +10,7 @@ import hunt.text;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.SQLDataTypeImpl;
 import hunt.sql.util.Utils;
+import hunt.util.StringBuilder;
 
 public class SQLNumberExpr : SQLNumericLiteralExpr, SQLValuableExpr
 {
@@ -62,19 +63,7 @@ public class SQLNumberExpr : SQLNumericLiteralExpr, SQLValuableExpr
         this.chars = null;
     }
 
-    public void output(StringBuilder buf)
-    {
-        if (chars !is null)
-        {
-            buf.append(chars);
-        }
-        else
-        {
-            buf.append((cast(Object)(this.number)).toString());
-        }
-    }
-
-    override public void output(StringBuffer buf)
+    override void output(StringBuilder buf)
     {
         if (chars !is null)
         {

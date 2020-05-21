@@ -19,6 +19,7 @@ import hunt.sql.visitor.SQLASTOutputVisitor;
 import hunt.sql.visitor.ExportParameterVisitor;
 import hunt.String;
 import hunt.collection;
+import hunt.util.Appendable;
 import hunt.util.Common;
 import hunt.text;
 

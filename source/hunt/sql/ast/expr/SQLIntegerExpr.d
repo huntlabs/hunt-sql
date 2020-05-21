@@ -24,6 +24,7 @@ import hunt.sql.ast.expr.SQLValuableExpr;
 import hunt.Number;
 import hunt.Integer;
 import hunt.collection;
+import hunt.util.StringBuilder;
 
 import std.concurrency : initOnce;
 
@@ -57,7 +58,7 @@ public class SQLIntegerExpr : SQLNumericLiteralExpr , SQLValuableExpr {
         this.number = new Integer(number);
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         buf.append(this.number.intValue);
     }
 

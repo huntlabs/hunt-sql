@@ -5,6 +5,7 @@ import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.SQLDataType;
 import hunt.sql.ast.SQLExpr;
 import hunt.collection;
+import hunt.util.StringBuilder;
 
 
 
@@ -48,12 +49,12 @@ abstract class SQLObjectImpl : SQLObject {
         child.accept(visitor);
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         buf.append(super.toString());
     }
 
     public override string toString() {
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         output(buf);
         return buf.toString();
     }
@@ -249,7 +250,7 @@ abstract class SQLObjectImpl : SQLObject {
             return values;
         }
 
-        override public void output(StringBuffer buf) {
+        override public void output(StringBuilder buf) {
             buf.append(" VALUES (");
             for (int i = 0, size = values.size(); i < size; ++i) {
                 if (i != 0) {

@@ -26,6 +26,7 @@ import hunt.sql.util.FnvHash;
 import hunt.sql.util.DBType;
 import hunt.collection;
 import hunt.sql.ast.statement.SQLTableSource;
+import hunt.util.StringBuilder;
 
 public class SQLSelectItem : SQLObjectImpl , SQLReplaceable {
 
@@ -103,7 +104,7 @@ public class SQLSelectItem : SQLObjectImpl , SQLReplaceable {
         this._alias = alias_p;
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         if(this.connectByRoot) {
             buf.append(" CONNECT_BY_ROOT ");
         }

@@ -4,6 +4,7 @@ import hunt.sql.ast.SQLExprImpl;
 import hunt.collection;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.ast.SQLObject;
+import hunt.util.StringBuilder;
 
 public class SQLVariantRefExpr : SQLExprImpl {
 
@@ -50,7 +51,7 @@ public class SQLVariantRefExpr : SQLExprImpl {
         this.name = name;
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         buf.append(this.name);
     }
 

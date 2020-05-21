@@ -24,6 +24,7 @@ import hunt.collection;
 import hunt.sql.ast.SQLObject;
 import hunt.Byte;
 import hunt.Nullable;
+import hunt.util.StringBuilder;
 
 public class SQLHexExpr : SQLExprImpl , SQLLiteralExpr, SQLValuableExpr {
 
@@ -37,7 +38,7 @@ public class SQLHexExpr : SQLExprImpl , SQLLiteralExpr, SQLValuableExpr {
         return hex;
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         buf.append("0x");
         buf.append(this.hex);
 

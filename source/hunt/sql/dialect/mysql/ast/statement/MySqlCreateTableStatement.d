@@ -35,7 +35,10 @@ import hunt.sql.dialect.mysql.ast.statement.MySqlAlterTableAlterColumn;
 import hunt.sql.dialect.mysql.ast.statement.MySqlAlterTableChangeColumn;
 import hunt.sql.dialect.mysql.ast.statement.MySqlAlterTableModifyColumn;
 import hunt.sql.dialect.mysql.ast.statement.MySqlTableIndex;
+
+import hunt.util.Appendable;
 import hunt.util.Common;
+import hunt.util.StringBuilder;
 
 public class MySqlCreateTableStatement : SQLCreateTableStatement , MySqlStatement {
 
@@ -361,7 +364,7 @@ public class MySqlCreateTableStatement : SQLCreateTableStatement , MySqlStatemen
         return true;
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         this.accept(new MySqlOutputVisitor(buf));
     }
 

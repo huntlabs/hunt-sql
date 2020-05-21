@@ -26,6 +26,7 @@ import hunt.sql.ast.expr.SQLLiteralExpr;
 import hunt.collection;
 import hunt.sql.ast.SQLObject;
 import hunt.Boolean;
+import hunt.util.StringBuilder;
 
 import std.concurrency : initOnce;
 
@@ -64,7 +65,7 @@ public  class SQLBooleanExpr : SQLExprImpl , SQLExpr, SQLLiteralExpr, SQLValuabl
         visitor.endVisit(this);
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         buf.append("x");
         buf.append(value ? "TRUE" : "FALSE");
     }

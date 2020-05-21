@@ -33,6 +33,7 @@ import hunt.sql.ast.expr.SQLPropertyExpr;
 import hunt.sql.ast.expr.SQLIdentifierExpr;
 import hunt.sql.ast.expr.SQLLiteralExpr;
 import hunt.sql.ast.expr.SQLVariantRefExpr;
+import hunt.util.StringBuilder;
 
 public class SQLBinaryOpExpr : SQLExprImpl , SQLReplaceable//, Serializable 
 {
@@ -232,7 +233,7 @@ public class SQLBinaryOpExpr : SQLExprImpl , SQLReplaceable//, Serializable
         return SQLUtils.toSQLString(this, getDbType());
     }
 
-    override public void output(StringBuffer buf) {
+    override public void output(StringBuilder buf) {
         SQLASTOutputVisitor visitor = SQLUtils.createOutputVisitor(buf, dbType);
         this.accept(visitor);
     }

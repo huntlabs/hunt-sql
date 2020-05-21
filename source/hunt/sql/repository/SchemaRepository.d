@@ -41,6 +41,10 @@ import hunt.collection;
 import std.uni;
 import hunt.sql.repository.SchemaObjectImpl;
 import hunt.Long;
+import hunt.util.Appendable;
+import hunt.util.StringBuilder;
+
+
 /**
  * Created by wenshao on 03/06/2017.
  */
@@ -298,7 +302,7 @@ public class SchemaRepository {
 
     public string console(string input) {
         try {
-            StringBuffer buf = new StringBuffer();
+            StringBuilder buf = new StringBuilder();
 
             List!(SQLStatement) stmtList = SQLUtils.parseStatements(input, dbType);
 
