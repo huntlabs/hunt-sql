@@ -43,6 +43,8 @@ import hunt.sql.parser.SQLParserFeature;
 import hunt.Exceptions;
 import hunt.math;
 
+import hunt.logging.ConsoleLogger;
+
 import std.concurrency : initOnce;
 
 public class SQLExprParser : SQLParser {
@@ -2558,6 +2560,8 @@ public class SQLExprParser : SQLParser {
 
         SQLName typeExpr = name();
         string typeName = (cast(Object)(typeExpr)).toString();
+
+        version(HUNT_SQL_PARSER_DEBUG) warningf("typename: %s", typeName);
         
         if ("long".equalsIgnoreCase(typeName) // 
                 && lexer.identifierEquals("byte") //
@@ -2598,8 +2602,20 @@ public class SQLExprParser : SQLParser {
             lexer.nextToken();
         }
 
-        SQLDataType dataType = new SQLDataTypeImpl(typeName);
+        SQLDataTypeImpl dataType = new SQLDataTypeImpl(typeName);
         dataType.setDbType(dbType);
+
+        version(HUNT_SQL_PARSER_DEBUG) infof("token: %s, value: %s", lexer.token, cast(string)lexer.token);
+
+        // FIXME: Needing refactor or cleanup -@zhangxueping at 2020-08-05T18:03:58+08:00
+        // 
+        // if (lexer.token == Token.LPAREN) {
+        //     lexer.nextToken();
+        //     SQLExpr arg = this.expr();
+        //     arg.setParent(dataType);
+        //     dataType.addArgument(arg);
+        //     accept(Token.RPAREN);
+        // }
 
         return parseDataTypeRest(dataType);
     }
@@ -2708,7 +2724,7 @@ public class SQLExprParser : SQLParser {
         if (lexer.token == token) {
             lexer.nextToken();
         } else {
-            throw new ParserException("syntax error, expect " ~ token ~ ", actual " ~ lexer.token ~ " "
+            throw new ParserException("syntax error, expect:{" ~ token ~ "}, actual:{" ~ lexer.token ~ "}, "
                                       ~ lexer.info());
         }
     }

@@ -24,7 +24,7 @@ public class SQLDataTypeImpl : SQLObjectImpl , SQLDataType {
     private         bool       zerofill;
 
     public this(){
-
+        arguments = new ArrayList!SQLExpr();
     }
 
     public this(string name){

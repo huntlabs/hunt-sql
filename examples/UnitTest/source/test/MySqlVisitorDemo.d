@@ -4,7 +4,7 @@ import hunt.logging;
 import hunt.collection;
 import hunt.String;
 import hunt.sql;
-import hunt.text.StringBuilder;
+import hunt.util.StringBuilder;
 import std.conv;
 import std.traits;
 import test.base;

@@ -5,7 +5,7 @@ module hunt.sql.parser.Token;
  * 
  * SQL Token 
  */
-public enum Token {
+enum Token : string {
     SELECT = "SELECT", 
     DELETE = "DELETE", 
     INSERT = "INSERT", 
