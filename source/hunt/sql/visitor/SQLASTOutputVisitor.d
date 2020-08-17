@@ -2071,10 +2071,11 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         }
 
         string _alias = x.getAlias();
-        if (_alias !is null && _alias.length > 0) {
+        if (!_alias.empty) {
             print0(ucase ? " AS " : " as ");
-            char c0 = charAt(_alias, 0);
-            if (_alias.indexOf(' ') == -1 || c0 == '"' || c0 == '\'') {
+            _alias = _alias.strip();
+            char c0 = _alias[0];
+            if (c0 == '"' || c0 == '\'') { // _alias.indexOf(' ') == -1 || 
                 print0(_alias);
             } else {
                 print('"');

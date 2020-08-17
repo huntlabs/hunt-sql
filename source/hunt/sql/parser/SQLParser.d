@@ -289,7 +289,8 @@ public class SQLParser {
         // ParserException("syntax error, error arround:'"~arround~"',expect "
         // ~ token ~ ", actual " ~ lexer.token ~ " "
         // ~ lexer.stringVal() ~ ", pos " ~ this.lexer.pos());
-        throw new ParserException("syntax error, error in :'" ~ arround ~ "', expect " ~ token ~ ", actual " ~ lexer.token ~ " " ~ lexer.info());
+        throw new ParserException("syntax error, error in :<" ~ arround ~ ">, expect: <" ~ token ~ 
+            ">, actual: <" ~ lexer.token ~ ">, " ~ lexer.info());
     }
 
     public void accept(Token token) {
@@ -307,14 +308,14 @@ public class SQLParser {
             lexer.nextToken();
             return intVal;
         } else {
-            throw new ParserException("syntax error, expect int, actual " ~ lexer.token ~ " "
+            throw new ParserException("syntax error, expect: <int>, actual: <" ~ lexer.token ~ ">, "
                     ~ lexer.info());
         }
     }
 
     public void match(Token token) {
         if (lexer.token != token) {
-            throw new ParserException("syntax error, expect " ~ token ~ ", actual " ~ lexer.token ~ " "
+            throw new ParserException("syntax error, expect: <" ~ token ~ ">, actual: <" ~ lexer.token ~ ">, "
                                       ~ lexer.info());
         }
     }
