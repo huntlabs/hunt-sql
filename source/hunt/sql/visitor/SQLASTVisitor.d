@@ -3,7 +3,7 @@ module hunt.sql.visitor.SQLASTVisitor;
 
 import hunt.sql.ast;
 import hunt.sql.ast.expr;
-import hunt.sql.ast.statement;
+// import hunt.sql.ast.statement;
 import hunt.sql.ast.statement.SQLWhileStatement;
 import hunt.sql.ast.statement.SQLDeclareStatement;
 import hunt.sql.ast.statement.SQLCommitStatement;

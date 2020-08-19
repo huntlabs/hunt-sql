@@ -65,25 +65,26 @@ import hunt.text;
 import hunt.collection.Collections;
 
 import std.array;
+import std.concurrency : initOnce;
 import std.conv;
 import std.datetime;
 import std.string;
 
-public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, PrintableVisitor {
+
+
+class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, PrintableVisitor {
 
     alias visit = SQLASTVisitorAdapter.visit;
     alias endVisit = SQLASTVisitorAdapter.endVisit;
 
-    public static  Boolean defaultPrintStatementAfterSemi;
+    static string[] variantValuesCache() {
+        __gshared string[] inst;
+        return initOnce!inst(initializeCache());
+    }
 
-    shared static this(){
-        try {
-            defaultPrintStatementAfterSemi = Boolean.FALSE /* getBoolean(System.getProperties(), "druid.sql.output.printStatementAfterSemi") */; // compatible for early versions
-        } catch (Throwable ex) {
-            // skip
-        }
-
-        for (int len = 0; len < variantValuesCache.length; ++len) {
+    private static string[] initializeCache() {
+        string[] v = new string[64];
+        for (int len = 0; len < v.length; ++len) {
             StringBuilder buf = new StringBuilder();
             buf.append('(');
             for (int i = 0; i < len; ++i) {
@@ -96,8 +97,10 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
                 buf.append('?');
             }
             buf.append(')');
-            variantValuesCache[len] = buf.toString();
+            v[len] = buf.toString();
         }
+
+        return v;
     }
 
     protected  Appendable appender;
@@ -134,36 +137,36 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
 
     this()
     {
-        printStatementAfterSemi = defaultPrintStatementAfterSemi;
+        printStatementAfterSemi = Boolean.FALSE;
         
         features |= VisitorFeature.OutputPrettyFormat.mask;
         
     }
 
-    public this(Appendable appender){
+    this(Appendable appender){
         this.appender = appender;
     }
 
-    public this(Appendable appender, string dbType){
+    this(Appendable appender, string dbType){
         this.appender = appender;
         this.dbType = dbType;
     }
 
-    public this(Appendable appender, bool parameterized){
+    this(Appendable appender, bool parameterized){
         this.appender = appender;
         this.config(VisitorFeature.OutputParameterized, parameterized);
         this.config(VisitorFeature.OutputParameterizedQuesUnMergeInList, parameterizedQuesUnMergeInList);
     }
 
-    public int getReplaceCount() {
+    int getReplaceCount() {
         return this.replaceCount;
     }
 
-    public void incrementReplaceCunt() {
+    void incrementReplaceCunt() {
         replaceCount++;
     }
 
-    public void addTableMapping(string srcTable, string destTable) {
+    void addTableMapping(string srcTable, string destTable) {
         if (tableMapping is null) {
             tableMapping = new HashMap!(string, string)();
         }
@@ -179,11 +182,11 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         tableMapping.put(srcTable, destTable);
     }
 
-    public void setTableMapping(Map!(string,string)tableMapping) {
+    void setTableMapping(Map!(string,string)tableMapping) {
         this.tableMapping = tableMapping;
     }
 
-    public List!Object getParameters() {
+    List!Object getParameters() {
         if (parameters is null) {
             parameters = new ArrayList!Object();
         }
@@ -191,15 +194,15 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return parameters;
     }
 
-    public bool isDesensitize() {
+    bool isDesensitize() {
         return isEnabled(VisitorFeature.OutputDesensitize);
     }
 
-    public void setDesensitize(bool desensitize) {
+    void setDesensitize(bool desensitize) {
         config(VisitorFeature.OutputDesensitize, desensitize);
     }
 
-    public Set!string getTables() {
+    Set!string getTables() {
         if (this.table !is null && this.tables is null) {
             return Collections.singleton!string(this.table);
         }
@@ -207,7 +210,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     //@Deprecated
-    public void setParameters(List!Object parameters) {
+    void setParameters(List!Object parameters) {
         if (parameters !is null && parameters.size() > 0) {
             this.inputParameters = parameters;
         } else {
@@ -215,7 +218,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         }
     }
 
-    public void setInputParameters(List!Object parameters) {
+    void setInputParameters(List!Object parameters) {
         this.inputParameters = parameters;
     }
 
@@ -223,67 +226,67 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
      *
      * @since 1.1.5
      */
-    public void setOutputParameters(List!Object parameters) {
+    void setOutputParameters(List!Object parameters) {
         this.parameters = parameters;
     }
 
-    public int getIndentCount() {
+    int getIndentCount() {
         return indentCount;
     }
 
-    public Appendable getAppender() {
+    Appendable getAppender() {
         return appender;
     }
 
-    public bool isPrettyFormat() {
+    bool isPrettyFormat() {
         return isEnabled(VisitorFeature.OutputPrettyFormat);
     }
 
-    public void setPrettyFormat(bool prettyFormat) {
+    void setPrettyFormat(bool prettyFormat) {
         config(VisitorFeature.OutputPrettyFormat, prettyFormat);
     }
 
-    public void decrementIndent() {
+    void decrementIndent() {
         this.indentCount--;
     }
 
-    public void incrementIndent() {
+    void incrementIndent() {
         this.indentCount++;
     }
 
-    public bool isParameterized() {
+    bool isParameterized() {
         return isEnabled(VisitorFeature.OutputParameterized);
     }
 
-    public void setParameterized(bool parameterized) {
+    void setParameterized(bool parameterized) {
         config(VisitorFeature.OutputParameterized, parameterized);
     }
 
-    public bool isParameterizedMergeInList() {
+    bool isParameterizedMergeInList() {
         return parameterizedMergeInList;
     }
 
-    public void setParameterizedMergeInList(bool parameterizedMergeInList) {
+    void setParameterizedMergeInList(bool parameterizedMergeInList) {
         this.parameterizedMergeInList = parameterizedMergeInList;
     }
 
-    public bool isParameterizedQuesUnMergeInList() {
+    bool isParameterizedQuesUnMergeInList() {
         return isEnabled(VisitorFeature.OutputParameterizedQuesUnMergeInList);
     }
 
-    public void setParameterizedQuesUnMergeInList(bool parameterizedQuesUnMergeInList) {
+    void setParameterizedQuesUnMergeInList(bool parameterizedQuesUnMergeInList) {
         config(VisitorFeature.OutputParameterizedQuesUnMergeInList, parameterizedQuesUnMergeInList);
     }
 
-    public bool isExportTables() {
+    bool isExportTables() {
         return exportTables;
     }
 
-    public void setExportTables(bool exportTables) {
+    void setExportTables(bool exportTables) {
         this.exportTables = exportTables;
     }
 
-    public void print(char value) {
+    void print(char value) {
         if (this.appender is null) {
             return;
         }
@@ -296,7 +299,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         }
     }
 
-    public void print(int value) {
+    void print(int value) {
         if (this.appender is null) {
             return;
         }
@@ -312,7 +315,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         }
     }
 
-    public void print(long value) {
+    void print(long value) {
         if (this.appender is null) {
             return;
         }
@@ -327,7 +330,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
 
-    // public void print(Date date) {
+    // void print(Date date) {
     //     if (this.appender is null) {
     //         return;
     //     }
@@ -341,12 +344,12 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     //     print0("'" ~ dateFormat.format(date) ~ "'");
     // }
 
-    public void print(String text)
+    void print(String text)
     {
         print(text.value());
     }
 
-    public void print(string text) {
+    void print(string text) {
         if (this.appender is null) {
             return;
         }
@@ -505,7 +508,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         }
     }
 
-    public void println() {
+    void println() {
         if (!isPrettyFormat()) {
             print(' ');
             return;
@@ -516,14 +519,14 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         printIndent();
     }
 
-    public void println(string text) {
+    void println(string text) {
         print(text);
         println();
     }
 
     // ////////////////////
 
-    override public bool visit(SQLBetweenExpr x) {
+    override bool visit(SQLBetweenExpr x) {
          SQLExpr testExpr = x.getTestExpr();
          SQLExpr beginExpr = x.getBeginExpr();
          SQLExpr endExpr = x.getEndExpr();
@@ -590,7 +593,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLBinaryOpExprGroup x) {
+    override bool visit(SQLBinaryOpExprGroup x) {
         SQLObject parent = x.getParent();
         SQLBinaryOperator operator = x.getOperator();
 
@@ -740,7 +743,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLBinaryOpExpr x) {
+    override bool visit(SQLBinaryOpExpr x) {
         SQLBinaryOperator operator = x.getOperator();
         if (this.parameterized
                 && operator == SQLBinaryOperator.BooleanOr
@@ -1040,7 +1043,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         }
     }
 
-    override public bool visit(SQLCaseExpr x) {
+    override bool visit(SQLCaseExpr x) {
         this.indentCount++;
         print0(ucase ? "CASE " : "case ");
 
@@ -1076,7 +1079,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLCaseExpr.Item x) {
+    override bool visit(SQLCaseExpr.Item x) {
         print0(ucase ? "WHEN " : "when ");
         SQLExpr conditionExpr = x.getConditionExpr();
         printExpr(conditionExpr);
@@ -1095,7 +1098,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLCaseStatement x) {
+    override bool visit(SQLCaseStatement x) {
         print0(ucase ? "CASE" : "case");
         SQLExpr valueExpr = x.getValueExpr();
         if (valueExpr !is null) {
@@ -1122,7 +1125,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLCaseStatement.Item x) {
+    override bool visit(SQLCaseStatement.Item x) {
         print0(ucase ? "WHEN " : "when ");
         printExpr(x.getConditionExpr());
         print0(ucase ? " THEN " : " then ");
@@ -1135,7 +1138,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLCastExpr x) {
+    override bool visit(SQLCastExpr x) {
         print0(ucase ? "CAST(" : "cast(");
         x.getExpr().accept(this);
         print0(ucase ? " AS " : " as ");
@@ -1145,7 +1148,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLCharExpr x) {
+    override bool visit(SQLCharExpr x) {
         if (this.parameterized) {
             print('?');
             incrementReplaceCunt();
@@ -1174,7 +1177,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         }
     }
 
-    override public bool visit(SQLDataType x) {
+    override bool visit(SQLDataType x) {
         printDataType(x);
 
         return false;
@@ -1206,7 +1209,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         this.parameterized = parameterized;
     }
 
-    override public bool visit(SQLCharacterDataType x) {
+    override bool visit(SQLCharacterDataType x) {
         visit(cast(SQLDataType) x);
 
         List!SQLCommentHint hints = (cast(SQLCharacterDataType) x).hints;
@@ -1220,7 +1223,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLExistsExpr x) {
+    override bool visit(SQLExistsExpr x) {
         if (x.isNot()) {
             print0(ucase ? "NOT EXISTS (" : "not exists (");
         } else {
@@ -1235,7 +1238,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLIdentifierExpr x) {
+    override bool visit(SQLIdentifierExpr x) {
         print0(x.getName());
         return false;
     }
@@ -1246,7 +1249,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return printName(x, name, shardingSupport);
     }
 
-    public string unwrapShardingTable(string name) {
+    string unwrapShardingTable(string name) {
         char c0 = charAt(name, 0);
         char c_last = charAt(name, name.length - 1);
          bool quote = (c0 == '`' && c_last == '`') || (c0 == '"' && c_last == '"');
@@ -1328,7 +1331,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLInListExpr x) {
+    override bool visit(SQLInListExpr x) {
         if (this.parameterized) {
             List!SQLExpr targetList = x.getTargetList();
 
@@ -1451,7 +1454,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLIntegerExpr x) {
+    override bool visit(SQLIntegerExpr x) {
         bool parameterized = this.parameterized;
         printInteger(x, parameterized);
         return false;
@@ -1495,7 +1498,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         }
     }
 
-    override public bool visit(SQLMethodInvokeExpr x) {
+    override bool visit(SQLMethodInvokeExpr x) {
         SQLExpr owner = x.getOwner();
         if (owner !is null) {
             printMethodOwner(owner);
@@ -1586,7 +1589,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         print0(name);
     }
 
-    override public bool visit(SQLAggregateExpr x) {
+    override bool visit(SQLAggregateExpr x) {
         bool parameterized = this.parameterized;
         this.parameterized = false;
 
@@ -1648,12 +1651,12 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
 
     }
 
-    override public bool visit(SQLAllColumnExpr x) {
+    override bool visit(SQLAllColumnExpr x) {
         print('*');
         return true;
     }
 
-    override public bool visit(SQLNCharExpr x) {
+    override bool visit(SQLNCharExpr x) {
         if (this.parameterized) {
             print('?');
             incrementReplaceCunt();
@@ -1674,7 +1677,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLNotExpr x) {
+    override bool visit(SQLNotExpr x) {
         print0(ucase ? "NOT " : "not ");
         SQLExpr expr = x.getExpr();
 
@@ -1698,7 +1701,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLNullExpr x) {
+    override bool visit(SQLNullExpr x) {
         if (this.parameterized
                 && cast(ValuesClause)x.getParent() !is null) {
             print('?');
@@ -1714,7 +1717,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLNumberExpr x) {
+    override bool visit(SQLNumberExpr x) {
         if (this.parameterized) {
             print('?');
             incrementReplaceCunt();
@@ -1735,7 +1738,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLPropertyExpr x) {
+    override bool visit(SQLPropertyExpr x) {
         SQLExpr owner = x.getOwner();
         SQLIdentifierExpr ownerIdent = cast(SQLIdentifierExpr)owner;
 
@@ -1818,7 +1821,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLQueryExpr x) {
+    override bool visit(SQLQueryExpr x) {
         SQLObject parent = x.getParent();
         if (cast(SQLSelect)parent !is null) {
             parent = parent.getParent();
@@ -1854,7 +1857,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLSelectGroupByClause x) {
+    override bool visit(SQLSelectGroupByClause x) {
 
         bool oracle = DBType.ORACLE.opEquals(dbType);
         bool rollup = x.isWithRollUp();
@@ -1902,7 +1905,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLSelect x) {
+    override bool visit(SQLSelect x) {
         SQLWithSubqueryClause withSubQuery = x.getWithSubQuery();
         if (withSubQuery !is null) {
             withSubQuery.accept(this);
@@ -1924,7 +1927,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLSelectQueryBlock x) {
+    override bool visit(SQLSelectQueryBlock x) {
         if (isPrettyFormat() && x.hasBeforeComment()) {
             printlnComments(x.getBeforeCommentsDirect());
         }
@@ -2055,7 +2058,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         }
     }
 
-    override public bool visit(SQLSelectItem x) {
+    override bool visit(SQLSelectItem x) {
         if (x.isConnectByRoot()) {
             print0(ucase ? "CONNECT_BY_ROOT " : "connect_by_root ");
         }
@@ -2086,7 +2089,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLOrderBy x) {
+    override bool visit(SQLOrderBy x) {
         List!SQLSelectOrderByItem items = x.getItems();
 
         if (items.size() > 0) {
@@ -2107,7 +2110,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLSelectOrderByItem x) {
+    override bool visit(SQLSelectOrderByItem x) {
         SQLExpr expr = x.getExpr();
 
         if (cast(SQLIntegerExpr)expr !is null) {
@@ -2270,7 +2273,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
 
     }
 
-    override public bool visit(SQLExprTableSource x) {
+    override bool visit(SQLExprTableSource x) {
         printTableSourceExpr(x.getExpr());
 
         string _alias = x.getAlias();
@@ -2287,7 +2290,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLSelectStatement stmt) {
+    override bool visit(SQLSelectStatement stmt) {
         List!SQLCommentHint headHints = stmt.getHeadHintsDirect();
         if (headHints !is null) {
             foreach(SQLCommentHint hint  ;  headHints) {
@@ -2302,7 +2305,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLVariantRefExpr x) {
+    override bool visit(SQLVariantRefExpr x) {
         int index = x.getIndex();
 
         if (index < 0 || inputParameters is null || index >= inputParameters.size()) {
@@ -2343,7 +2346,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    public void printParameter(Object param) {
+    void printParameter(Object param) {
         if (param is null) {
             print0(ucase ? "NULL" : "null");
             return;
@@ -2420,7 +2423,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         print0("'" ~ typeid(param).name ~ "'");
     }
 
-    override public bool visit(SQLDropTableStatement x) {
+    override bool visit(SQLDropTableStatement x) {
         print0(ucase ? "DROP " : "drop ");
         List!SQLCommentHint hints = x.getHints();
         if (hints !is null) {
@@ -2459,7 +2462,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         print0(ucase ? " CASCADE" : " cascade");
     }
 
-    override public bool visit(SQLDropViewStatement x) {
+    override bool visit(SQLDropViewStatement x) {
         print0(ucase ? "DROP VIEW " : "drop view ");
 
         if (x.isIfExists()) {
@@ -2474,7 +2477,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLDropMaterializedViewStatement x) {
+    override bool visit(SQLDropMaterializedViewStatement x) {
         print0(ucase ? "DROP VIEW " : "drop view ");
 
         if (x.isIfExists()) {
@@ -2486,7 +2489,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLDropEventStatement x) {
+    override bool visit(SQLDropEventStatement x) {
         print0(ucase ? "DROP EVENT " : "drop event ");
 
         if (x.isIfExists()) {
@@ -2497,7 +2500,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLColumnDefinition x) {
+    override bool visit(SQLColumnDefinition x) {
         bool parameterized = this.parameterized;
         this.parameterized = false;
 
@@ -2565,7 +2568,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLColumnDefinition.Identity x) {
+    bool visit(SQLColumnDefinition.Identity x) {
         print0(ucase ? "IDENTITY" : "identity");
         if (x.getSeed() !is null) {
             print0(" (");
@@ -2582,7 +2585,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         x.getDefaultExpr().accept(this);
     }
 
-    override public bool visit(SQLDeleteStatement x) {
+    override bool visit(SQLDeleteStatement x) {
         SQLTableSource from = x.getFrom();
         string _alias = x.getAlias();
 
@@ -2613,13 +2616,13 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLCurrentOfCursorExpr x) {
+    override bool visit(SQLCurrentOfCursorExpr x) {
         print0(ucase ? "CURRENT OF " : "current of ");
         printExpr(x.getCursorName());
         return false;
     }
 
-    override public bool visit(SQLInsertStatement x) {
+    override bool visit(SQLInsertStatement x) {
         if (x.isUpsert()) {
             print0(ucase ? "UPSERT INTO " : "upsert into ");
         } else {
@@ -2649,7 +2652,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    public void printInsertColumns(List!SQLExpr columns) {
+    void printInsertColumns(List!SQLExpr columns) {
          int size = columns.size();
         if (size > 0) {
             if (size > 5) {
@@ -2687,14 +2690,14 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         }
     }
 
-    override public bool visit(SQLUpdateSetItem x) {
+    override bool visit(SQLUpdateSetItem x) {
         printExpr(x.getColumn());
         print0(" = ");
         printExpr(x.getValue());
         return false;
     }
 
-    override public bool visit(SQLUpdateStatement x) {
+    override bool visit(SQLUpdateStatement x) {
         print0(ucase ? "UPDATE " : "update ");
 
         printTableSource(x.getTableSource());
@@ -2752,7 +2755,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         print(')');
     }
 
-    override public bool visit(SQLCreateTableStatement x) {
+    override bool visit(SQLCreateTableStatement x) {
         printCreateTable(x, true);
 
         Map!(string, SQLObject) options = x.getTableOptions();
@@ -2820,7 +2823,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         }
     }
 
-     public bool visit(SQLUniqueConstraint x) {
+     bool visit(SQLUniqueConstraint x) {
         if (x.getName() !is null) {
             print0(ucase ? "CONSTRAINT " : "constraint ");
             x.getName().accept(this);
@@ -2839,7 +2842,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLNotNullConstraint x) {
+    override bool visit(SQLNotNullConstraint x) {
         SQLName name = x.getName();
         if (name !is null) {
             print0(ucase ? "CONSTRAINT " : "constraint ");
@@ -2859,7 +2862,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLNullConstraint x) {
+    override bool visit(SQLNullConstraint x) {
         SQLName name = x.getName();
     	if (name !is null) {
     		print0(ucase ? "CONSTRAINT " : "constraint ");
@@ -2871,7 +2874,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLUnionQuery x) {
+    bool visit(SQLUnionQuery x) {
         SQLUnionOperator operator = x.getOperator();
         SQLSelectQuery left = x.getLeft();
         SQLSelectQuery right = x.getRight();
@@ -3001,7 +3004,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLUnaryExpr x) {
+    bool visit(SQLUnaryExpr x) {
         print0(x.getOperator().name);
 
         SQLExpr expr = x.getExpr();
@@ -3032,7 +3035,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLHexExpr x) {
+    bool visit(SQLHexExpr x) {
         if (this.parameterized) {
             print('?');
             incrementReplaceCunt();
@@ -3056,7 +3059,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLSetStatement x) {
+    bool visit(SQLSetStatement x) {
         bool printSet = x.getAttribute("parser.set") == Boolean.TRUE || !DBType.ORACLE.opEquals(dbType);
         if (printSet) {
             print0(ucase ? "SET " : "set ");
@@ -3078,7 +3081,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLAssignItem x) {
+    bool visit(SQLAssignItem x) {
         x.getTarget().accept(this);
         print0(" = ");
         x.getValue().accept(this);
@@ -3086,7 +3089,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLCallStatement x) {
+    bool visit(SQLCallStatement x) {
         if (x.isBrace()) {
             print('{');
         }
@@ -3108,7 +3111,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLJoinTableSource x) {
+    bool visit(SQLJoinTableSource x) {
         SQLTableSource left = x.getLeft();
 
         if (cast(SQLJoinTableSource)left !is null
@@ -3190,7 +3193,6 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         print0(ucase ? joinType.name : joinType.name_lcase);
     }
 
-    static string[] variantValuesCache = new string[64];
     // static {
     //     for (int len = 0; len < variantValuesCache.length; ++len) {
     //         StringBuilder buf = new StringBuilder();
@@ -3210,7 +3212,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     // }
 
     override
-    public bool visit(ValuesClause x) {
+    bool visit(ValuesClause x) {
         if ((!this.parameterized)
                 && isEnabled(VisitorFeature.OutputUseInsertValueClauseOriginalString)
                 && x.getOriginalString() !is null) {
@@ -3267,7 +3269,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLSomeExpr x) {
+    bool visit(SQLSomeExpr x) {
         print0(ucase ? "SOME (" : "some (");
         this.indentCount++;
         println();
@@ -3279,7 +3281,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLAnyExpr x) {
+    bool visit(SQLAnyExpr x) {
         print0(ucase ? "ANY (" : "any (");
         this.indentCount++;
         println();
@@ -3291,7 +3293,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLAllExpr x) {
+    bool visit(SQLAllExpr x) {
         print0(ucase ? "ALL (" : "all (");
         this.indentCount++;
         println();
@@ -3303,7 +3305,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLInSubQueryExpr x) {
+    bool visit(SQLInSubQueryExpr x) {
         x.getExpr().accept(this);
         if (x.isNot()) {
             print0(ucase ? " NOT IN (" : " not in (");
@@ -3322,7 +3324,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLListExpr x) {
+    bool visit(SQLListExpr x) {
         print('(');
         printAndAccept!SQLExpr((x.getItems()), ", ");
         print(')');
@@ -3331,7 +3333,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLSubqueryTableSource x) {
+    bool visit(SQLSubqueryTableSource x) {
         print('(');
         this.indentCount++;
         println();
@@ -3349,7 +3351,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLTruncateStatement x) {
+    bool visit(SQLTruncateStatement x) {
         print0(ucase ? "TRUNCATE TABLE " : "truncate table ");
         printAndAccept!SQLExprTableSource((x.getTableSources()), ", ");
         
@@ -3381,18 +3383,18 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLDefaultExpr x) {
+    bool visit(SQLDefaultExpr x) {
         print0(ucase ? "DEFAULT" : "default");
         return false;
     }
 
     override
-    public void endVisit(SQLCommentStatement x) {
+    void endVisit(SQLCommentStatement x) {
 
     }
 
     override
-    public bool visit(SQLCommentStatement x) {
+    bool visit(SQLCommentStatement x) {
         print0(ucase ? "COMMENT ON " : "comment on ");
         if (x.getType().name.length != 0) {
             print0(x.getType().name);
@@ -3407,7 +3409,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLUseStatement x) {
+    bool visit(SQLUseStatement x) {
         print0(ucase ? "USE " : "use ");
         x.getDatabase().accept(this);
         return false;
@@ -3418,7 +3420,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLAlterTableAddColumn x) {
+    bool visit(SQLAlterTableAddColumn x) {
         bool odps = isOdps();
         if (odps) {
             print0(ucase ? "ADD COLUMNS (" : "add columns (");
@@ -3431,7 +3433,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLAlterTableDropColumnItem x) {
+    bool visit(SQLAlterTableDropColumnItem x) {
         print0(ucase ? "DROP COLUMN " : "drop column ");
         this.printAndAccept!SQLName((x.getColumns()), ", ");
 
@@ -3442,12 +3444,12 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public void endVisit(SQLAlterTableAddColumn x) {
+    void endVisit(SQLAlterTableAddColumn x) {
 
     }
 
     override
-    public bool visit(SQLDropIndexStatement x) {
+    bool visit(SQLDropIndexStatement x) {
         print0(ucase ? "DROP INDEX " : "drop index ");
         x.getIndexName().accept(this);
 
@@ -3473,7 +3475,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLDropLogFileGroupStatement x) {
+    bool visit(SQLDropLogFileGroupStatement x) {
         print0(ucase ? "DROP LOGFILE GROUP " : "drop logfile group ");
         x.getName().accept(this);
 
@@ -3481,7 +3483,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLDropServerStatement x) {
+    bool visit(SQLDropServerStatement x) {
         print0(ucase ? "DROP SERVER " : "drop server ");
         if (x.isIfExists()) {
             print0(ucase ? "IF EXISTS " : "if exists ");
@@ -3492,7 +3494,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLDropTypeStatement x) {
+    bool visit(SQLDropTypeStatement x) {
         print0(ucase ? "DROP TYPE " : "drop type ");
         if (x.isIfExists()) {
             print0(ucase ? "IF EXISTS " : "if exists ");
@@ -3503,9 +3505,9 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLDropSynonymStatement x) {
+    bool visit(SQLDropSynonymStatement x) {
         if (x.isPublic()) {
-            print0(ucase ? "DROP PUBLIC SYNONYM " : "drop public synonym ");
+            print0(ucase ? "DROP PUBLIC SYNONYM " : "drop synonym ");
         } else {
             print0(ucase ? "DROP SYNONYM " : "drop synonym ");
         }
@@ -3524,7 +3526,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLSavePointStatement x) {
+    bool visit(SQLSavePointStatement x) {
         print0(ucase ? "SAVEPOINT" : "savepoint");
         if (x.getName() !is null) {
             print(' ');
@@ -3534,14 +3536,14 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLReleaseSavePointStatement x) {
+    bool visit(SQLReleaseSavePointStatement x) {
         print0(ucase ? "RELEASE SAVEPOINT " : "release savepoint ");
         x.getName().accept(this);
         return false;
     }
 
     override
-    public bool visit(SQLRollbackStatement x) {
+    bool visit(SQLRollbackStatement x) {
         print0(ucase ? "ROLLBACK" : "rollback");
         if (x.getTo() !is null) {
             print0(ucase ? " TO " : " to ");
@@ -3550,7 +3552,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLCommentHint x) {
+    override bool visit(SQLCommentHint x) {
         if (x.hasBeforeComment()) {
             printlnComment(x.getBeforeCommentsDirect());
             print0(" ");
@@ -3563,7 +3565,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLCreateDatabaseStatement x) {
+    bool visit(SQLCreateDatabaseStatement x) {
         print0(ucase ? "CREATE DATABASE " : "create database ");
         if (x.isIfNotExists()) {
             print0(ucase ? "IF NOT EXISTS " : "if not exists ");
@@ -3584,7 +3586,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLAlterViewStatement x) {
+    bool visit(SQLAlterViewStatement x) {
         print0(ucase ? "ALTER " : "atler ");
 
         this.indentCount++;
@@ -3656,7 +3658,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLCreateViewStatement x) {
+    bool visit(SQLCreateViewStatement x) {
         print0(ucase ? "CREATE " : "create ");
         if (x.isOrReplace()) {
             print0(ucase ? "OR REPLACE " : "or replace ");
@@ -3730,7 +3732,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLCreateViewStatement.Column x) {
+    override bool visit(SQLCreateViewStatement.Column x) {
         x.getExpr().accept(this);
 
         if (x.getComment() !is null) {
@@ -3742,14 +3744,14 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLAlterTableDropIndex x) {
+    bool visit(SQLAlterTableDropIndex x) {
         print0(ucase ? "DROP INDEX " : "drop index ");
         x.getIndexName().accept(this);
         return false;
     }
 
     override
-    public bool visit(SQLOver x) {
+    bool visit(SQLOver x) {
         print0(ucase ? "OVER (" : "over (");
         if (x.getPartitionBy().size() > 0) {
             print0(ucase ? "PARTITION BY " : "partition by ");
@@ -3822,7 +3824,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
     
     override
-    public bool visit(SQLKeep x) {
+    bool visit(SQLKeep x) {
         if (x.getDenseRank() == SQLKeep.DenseRank.FIRST) {
             print0(ucase ? "KEEP (DENSE_RANK FIRST " : "keep (dense_rank first ");    
         } else {
@@ -3836,7 +3838,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLColumnPrimaryKey x) {
+    bool visit(SQLColumnPrimaryKey x) {
         if (x.getName() !is null) {
             print0(ucase ? "CONSTRAINT " : "constraint ");
             x.getName().accept(this);
@@ -3847,7 +3849,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLColumnUniqueKey x) {
+    bool visit(SQLColumnUniqueKey x) {
         if (x.getName() !is null) {
             print0(ucase ? "CONSTRAINT " : "constraint ");
             x.getName().accept(this);
@@ -3858,7 +3860,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLColumnCheck x) {
+    bool visit(SQLColumnCheck x) {
         if (x.getName() !is null) {
             print0(ucase ? "CONSTRAINT " : "constraint ");
             x.getName().accept(this);
@@ -3879,7 +3881,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLWithSubqueryClause x) {
+    bool visit(SQLWithSubqueryClause x) {
         print0(ucase ? "WITH " : "with ");
         if (x.getRecursive() == true) {
             print0(ucase ? "RECURSIVE " : "recursive ");
@@ -3891,7 +3893,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLWithSubqueryClause.Entry x) {
+    bool visit(SQLWithSubqueryClause.Entry x) {
         print0(x.getAlias());
 
         if (x.getColumns().size() > 0) {
@@ -3918,7 +3920,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLAlterTableAlterColumn x) {
+    bool visit(SQLAlterTableAlterColumn x) {
         bool odps = isOdps();
         if (odps) {
             print0(ucase ? "CHANGE COLUMN " : "change column ");
@@ -3954,7 +3956,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLCheck x) {
+    bool visit(SQLCheck x) {
         if (x.getName() !is null) {
             print0(ucase ? "CONSTRAINT " : "constraint ");
             x.getName().accept(this);
@@ -3969,58 +3971,58 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLAlterTableDropForeignKey x) {
+    bool visit(SQLAlterTableDropForeignKey x) {
         print0(ucase ? "DROP FOREIGN KEY " : "drop foreign key ");
         x.getIndexName().accept(this);
         return false;
     }
 
     override
-    public bool visit(SQLAlterTableDropPrimaryKey x) {
+    bool visit(SQLAlterTableDropPrimaryKey x) {
         print0(ucase ? "DROP PRIMARY KEY" : "drop primary key");
         return false;
     }
 
     override
-    public bool visit(SQLAlterTableDropKey x) {
+    bool visit(SQLAlterTableDropKey x) {
         print0(ucase ? "DROP KEY " : "drop key ");
         x.getKeyName().accept(this);
         return false;
     }
 
     override
-    public bool visit(SQLAlterTableEnableKeys x) {
+    bool visit(SQLAlterTableEnableKeys x) {
         print0(ucase ? "ENABLE KEYS" : "enable keys");
         return false;
     }
 
     override
-    public bool visit(SQLAlterTableDisableKeys x) {
+    bool visit(SQLAlterTableDisableKeys x) {
         print0(ucase ? "DISABLE KEYS" : "disable keys");
         return false;
     }
 
-    override public bool visit(SQLAlterTableDisableConstraint x) {
+    override bool visit(SQLAlterTableDisableConstraint x) {
         print0(ucase ? "DISABLE CONSTRAINT " : "disable constraint ");
         x.getConstraintName().accept(this);
         return false;
     }
 
-    override public bool visit(SQLAlterTableEnableConstraint x) {
+    override bool visit(SQLAlterTableEnableConstraint x) {
         print0(ucase ? "ENABLE CONSTRAINT " : "enable constraint ");
         x.getConstraintName().accept(this);
         return false;
     }
 
     override
-    public bool visit(SQLAlterTableDropConstraint x) {
+    bool visit(SQLAlterTableDropConstraint x) {
         print0(ucase ? "DROP CONSTRAINT " : "drop constraint ");
         x.getConstraintName().accept(this);
         return false;
     }
 
     override
-    public bool visit(SQLAlterTableStatement x) {
+    bool visit(SQLAlterTableStatement x) {
         print0(ucase ? "ALTER TABLE " : "alter table ");
         printTableSourceExpr(x.getName());
         this.indentCount++;
@@ -4041,13 +4043,13 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLExprHint x) {
+    bool visit(SQLExprHint x) {
         x.getExpr().accept(this);
         return false;
     }
 
     override
-    public bool visit(SQLCreateIndexStatement x) {
+    bool visit(SQLCreateIndexStatement x) {
         print0(ucase ? "CREATE " : "create ");
         if (x.getType() !is null) {
             print0(x.getType());
@@ -4080,7 +4082,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLUnique x) {
+    bool visit(SQLUnique x) {
         SQLName name = x.getName();
         if (name !is null) {
             print0(ucase ? "CONSTRAINT " : "constraint ");
@@ -4095,7 +4097,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLPrimaryKeyImpl x) {
+    bool visit(SQLPrimaryKeyImpl x) {
         SQLName name = x.getName();
         if (name !is null) {
             print0(ucase ? "CONSTRAINT " : "constraint ");
@@ -4117,7 +4119,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLAlterTableRenameColumn x) {
+    bool visit(SQLAlterTableRenameColumn x) {
         print0(ucase ? "RENAME COLUMN " : "rename column ");
         x.getColumn().accept(this);
         print0(ucase ? " TO " : " to ");
@@ -4126,7 +4128,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLColumnReference x) {
+    bool visit(SQLColumnReference x) {
         SQLName name = x.getName();
         if (name !is null) {
             print0(ucase ? "CONSTRAINT " : "constraint ");
@@ -4160,7 +4162,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLForeignKeyImpl x) {
+    bool visit(SQLForeignKeyImpl x) {
         if (x.getName() !is null) {
             print0(ucase ? "CONSTRAINT " : "constraint ");
             x.getName().accept(this);
@@ -4193,7 +4195,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLDropSequenceStatement x) {
+    bool visit(SQLDropSequenceStatement x) {
         print0(ucase ? "DROP SEQUENCE " : "drop sequence ");
         if (x.isIfExists()) {
             print0(ucase ? "IF EXISTS " : "if exists ");
@@ -4203,12 +4205,12 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public void endVisit(SQLDropSequenceStatement x) {
+    void endVisit(SQLDropSequenceStatement x) {
 
     }
 
     override
-    public bool visit(SQLDropTriggerStatement x) {
+    bool visit(SQLDropTriggerStatement x) {
         print0(ucase ? "DROP TRIGGER " : "drop trigger ");
         if (x.isIfExists()) {
             print0(ucase ? "IF EXISTS " : "if exists ");
@@ -4219,19 +4221,19 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public void endVisit(SQLDropUserStatement x) {
+    void endVisit(SQLDropUserStatement x) {
 
     }
 
     override
-    public bool visit(SQLDropUserStatement x) {
+    bool visit(SQLDropUserStatement x) {
         print0(ucase ? "DROP USER " : "drop user ");
         printAndAccept!SQLExpr((x.getUsers()), ", ");
         return false;
     }
 
     override
-    public bool visit(SQLExplainStatement x) {
+    bool visit(SQLExplainStatement x) {
         print0(ucase ? "EXPLAIN" : "explain");
         if (x.getHints() !is null && x.getHints().size() > 0) {
             print(' ');
@@ -4252,7 +4254,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLGrantStatement x) {
+    bool visit(SQLGrantStatement x) {
         print0(ucase ? "GRANT " : "grant ");
         printAndAccept!SQLExpr((x.getPrivileges()), ", ");
 
@@ -4331,7 +4333,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLRevokeStatement x) {
+    bool visit(SQLRevokeStatement x) {
         print0(ucase ? "REVOKE " : "revoke ");
         printAndAccept!SQLExpr((x.getPrivileges()), ", ");
 
@@ -4355,7 +4357,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLDropDatabaseStatement x) {
+    bool visit(SQLDropDatabaseStatement x) {
         print0(ucase ? "DROP DATABASE " : "drop databasE ");
 
         if (x.isIfExists()) {
@@ -4368,7 +4370,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLDropFunctionStatement x) {
+    bool visit(SQLDropFunctionStatement x) {
         print0(ucase ? "DROP FUNCTION " : "drop function ");
 
         if (x.isIfExists()) {
@@ -4381,7 +4383,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLDropTableSpaceStatement x) {
+    bool visit(SQLDropTableSpaceStatement x) {
         print0(ucase ? "DROP TABLESPACE " : "drop tablespace ");
 
         if (x.isIfExists()) {
@@ -4400,7 +4402,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLDropProcedureStatement x) {
+    bool visit(SQLDropProcedureStatement x) {
         print0(ucase ? "DROP PROCEDURE " : "drop procedure ");
 
         if (x.isIfExists()) {
@@ -4413,7 +4415,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLAlterTableAddIndex x) {
+    bool visit(SQLAlterTableAddIndex x) {
         print0(ucase ? "ADD " : "add ");
         string type = x.getType();
 
@@ -4463,7 +4465,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLAlterTableAddConstraint x) {
+    bool visit(SQLAlterTableAddConstraint x) {
         if (x.isWithNoCheck()) {
             print0(ucase ? "WITH NOCHECK " : "with nocheck ");
         }
@@ -4474,7 +4476,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLCreateTriggerStatement x) {
+    override bool visit(SQLCreateTriggerStatement x) {
         print0(ucase ? "CREATE " : "create ");
 
         if (x.isOrReplace()) {
@@ -4539,16 +4541,16 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLBooleanExpr x) {
+    override bool visit(SQLBooleanExpr x) {
         print0(x.getBooleanValue().booleanValue ? "true" : "false");
         return false;
     }
 
-    override public void endVisit(SQLBooleanExpr x) {
+    override void endVisit(SQLBooleanExpr x) {
     }
 
     override
-    public bool visit(SQLUnionQueryTableSource x) {
+    bool visit(SQLUnionQueryTableSource x) {
         print('(');
         this.indentCount++;
         println();
@@ -4566,7 +4568,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLTimestampExpr x) {
+    bool visit(SQLTimestampExpr x) {
         if (this.parameterized) {
             print('?');
             incrementReplaceCunt();
@@ -4597,7 +4599,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLBinaryExpr x) {
+    bool visit(SQLBinaryExpr x) {
         print0("b'");
         print0(x.getText());
         print('\'');
@@ -4606,14 +4608,14 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLAlterTableRename x) {
+    bool visit(SQLAlterTableRename x) {
         print0(ucase ? "RENAME TO " : "rename to ");
         x.getTo().accept(this);
         return false;
     }
 
     override
-    public bool visit(SQLShowTablesStatement x) {
+    bool visit(SQLShowTablesStatement x) {
         print0(ucase ? "SHOW TABLES" : "show tables");
         if (x.getDatabase() !is null) {
             print0(ucase ? " FROM " : " from ");
@@ -4640,7 +4642,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         }
     }
 
-    public void printComment(string comment) {
+    void printComment(string comment) {
         if (comment is null) {
             return;
         }
@@ -4664,7 +4666,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLAlterViewRenameStatement x) {
+    bool visit(SQLAlterViewRenameStatement x) {
         print0(ucase ? "ALTER VIEW " : "alter view ");
         x.getName().accept(this);
         print0(ucase ? " RENAME TO " : " rename to ");
@@ -4673,7 +4675,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLAlterTableAddPartition x) {
+    bool visit(SQLAlterTableAddPartition x) {
         print0(ucase ? "ADD " : "add ");
         if (x.isIfNotExists()) {
             print0(ucase ? "IF NOT EXISTS " : "if not exists ");
@@ -4694,7 +4696,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLAlterTableReOrganizePartition x) {
+    bool visit(SQLAlterTableReOrganizePartition x) {
         print0(ucase ? "REORGANIZE " : "reorganize ");
 
         printAndAccept!SQLName((x.getNames()), ", ");
@@ -4706,7 +4708,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLAlterTableDropPartition x) {
+    bool visit(SQLAlterTableDropPartition x) {
         print0(ucase ? "DROP " : "drop ");
         if (x.isIfExists()) {
             print0(ucase ? "IF EXISTS " : "if exists ");
@@ -4728,7 +4730,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLAlterTableRenamePartition x) {
+    bool visit(SQLAlterTableRenamePartition x) {
         print0(ucase ? "PARTITION (" : "partition (");
         printAndAccept!SQLAssignItem((x.getPartition()), ", ");
         print0(ucase ? ") RENAME TO PARTITION(" : ") rename to partition(");
@@ -4738,21 +4740,21 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLAlterTableSetComment x) {
+    bool visit(SQLAlterTableSetComment x) {
         print0(ucase ? "SET COMMENT " : "set comment ");
         x.getComment().accept(this);
         return false;
     }
 
     override
-    public bool visit(SQLAlterTableSetLifecycle x) {
+    bool visit(SQLAlterTableSetLifecycle x) {
         print0(ucase ? "SET LIFECYCLE " : "set lifecycle ");
         x.getLifecycle().accept(this);
         return false;
     }
 
     override
-    public bool visit(SQLAlterTableEnableLifecycle x) {
+    bool visit(SQLAlterTableEnableLifecycle x) {
         if (x.getPartition().size() != 0) {
             print0(ucase ? "PARTITION (" : "partition (");
             printAndAccept!SQLAssignItem((x.getPartition()), ", ");
@@ -4764,7 +4766,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLAlterTableDisableLifecycle x) {
+    bool visit(SQLAlterTableDisableLifecycle x) {
         if (x.getPartition().size() != 0) {
             print0(ucase ? "PARTITION (" : "partition (");
             printAndAccept!SQLAssignItem((x.getPartition()), ", ");
@@ -4776,7 +4778,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLAlterTableTouch x) {
+    bool visit(SQLAlterTableTouch x) {
         print0(ucase ? "TOUCH" : "touch");
         if (x.getPartition().size() != 0) {
             print0(ucase ? " PARTITION (" : " partition (");
@@ -4787,7 +4789,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLArrayExpr x) {
+    bool visit(SQLArrayExpr x) {
         x.getExpr().accept(this);
         print('[');
         printAndAccept!SQLExpr((x.getValues()), ", ");
@@ -4796,7 +4798,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLOpenStatement x) {
+    bool visit(SQLOpenStatement x) {
         print0(ucase ? "OPEN " : "open ");
         printExpr(x.getCursorName());
 
@@ -4816,7 +4818,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLFetchStatement x) {
+    bool visit(SQLFetchStatement x) {
         print0(ucase ? "FETCH " : "fetch ");
         x.getCursorName().accept(this);
         if (x.isBulkCollect()) {
@@ -4829,14 +4831,14 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLCloseStatement x) {
+    bool visit(SQLCloseStatement x) {
         print0(ucase ? "CLOSE " : "close ");
         printExpr(x.getCursorName());
         return false;
     }
 
     override
-    public bool visit(SQLGroupingSetExpr x) {
+    bool visit(SQLGroupingSetExpr x) {
         print0(ucase ? "GROUPING SETS" : "grouping sets");
         print0(" (");
         printAndAccept!SQLExpr((x.getParameters()), ", ");
@@ -4845,7 +4847,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLIfStatement x) {
+    bool visit(SQLIfStatement x) {
         print0(ucase ? "IF " : "if ");
         x.getCondition().accept(this);
         this.indentCount++;
@@ -4872,7 +4874,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLIfStatement.Else x) {
+    bool visit(SQLIfStatement.Else x) {
         print0(ucase ? "ELSE" : "else");
         this.indentCount++;
         println();
@@ -4890,7 +4892,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLIfStatement.ElseIf x) {
+    bool visit(SQLIfStatement.ElseIf x) {
         print0(ucase ? "ELSE IF" : "else if");
         x.getCondition().accept(this);
         print0(ucase ? " THEN" : " then");
@@ -4910,7 +4912,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLLoopStatement x) {
+    bool visit(SQLLoopStatement x) {
         print0(ucase ? "LOOP" : "loop");
         this.indentCount++;
         println();
@@ -4935,7 +4937,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    // public bool visit(OracleFunctionDataType x) {
+    // bool visit(OracleFunctionDataType x) {
     //     if (x.isStatic()) {
     //         print0(ucase ? "STATIC " : "static ");
     //     }
@@ -4961,7 +4963,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     //     return false;
     // }
 
-    // public bool visit(OracleProcedureDataType x) {
+    // bool visit(OracleProcedureDataType x) {
     //     if (x.isStatic()) {
     //         print0(ucase ? "STATIC " : "static ");
     //     }
@@ -4988,7 +4990,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     // }
 
     override
-    public bool visit(SQLParameter x) {
+    bool visit(SQLParameter x) {
         SQLName name = x.getName();
         if (x.getDataType().getName().equalsIgnoreCase("CURSOR")) {
             print0(ucase ? "CURSOR " : "cursor ");
@@ -5088,7 +5090,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLDeclareItem x) {
+    bool visit(SQLDeclareItem x) {
         SQLDataType dataType = x.getDataType();
 
         if (cast(SQLRecordDataType)dataType !is null) {
@@ -5143,7 +5145,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLPartitionValue x) {
+    bool visit(SQLPartitionValue x) {
         if (x.getOperator() == SQLPartitionValue.Operator.LessThan //
             && (!DBType.ORACLE.opEquals(getDbType())) && x.getItems().size() == 1 //
             && cast(SQLIdentifierExpr)x.getItems().get(0) !is null)  {
@@ -5166,20 +5168,20 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    public string getDbType() {
+    string getDbType() {
         return dbType;
     }
 
-    public bool isUppCase() {
+    bool isUppCase() {
         return ucase;
     }
 
-    public void setUppCase(bool val) {
+    void setUppCase(bool val) {
         this.config(VisitorFeature.OutputUCase, true);
     }
 
     override
-    public bool visit(SQLPartition x) {
+    bool visit(SQLPartition x) {
         print0(ucase ? "PARTITION " : "partition ");
         x.getName().accept(this);
         if (x.getValues() !is null) {
@@ -5256,7 +5258,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLPartitionByRange x) {
+    bool visit(SQLPartitionByRange x) {
         print0(ucase ? "RANGE" : "range");
         if (x.getColumns().size() == 1) {
             print0(" (");
@@ -5298,7 +5300,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLPartitionByList x) {
+    bool visit(SQLPartitionByList x) {
         print0(ucase ? "LIST " : "list ");
         if (x.getColumns().size() == 1) {
             print('(');
@@ -5317,7 +5319,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLPartitionByHash x) {
+    bool visit(SQLPartitionByHash x) {
         if (x.isLinear()) {
             print0(ucase ? "LINEAR HASH " : "linear hash ");
         } else {
@@ -5383,7 +5385,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLSubPartitionByHash x) {
+    bool visit(SQLSubPartitionByHash x) {
         if (x.isLinear()) {
             print0(ucase ? "SUBPARTITION BY LINEAR HASH " : "subpartition by linear hash ");
         } else {
@@ -5407,7 +5409,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLSubPartitionByList x) {
+    bool visit(SQLSubPartitionByList x) {
         if (x.isLinear()) {
             print0(ucase ? "SUBPARTITION BY LINEAR HASH " : "subpartition by linear hash ");
         } else {
@@ -5440,7 +5442,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLSubPartition x) {
+    bool visit(SQLSubPartition x) {
         print0(ucase ? "SUBPARTITION " : "subpartition ");
         x.getName().accept(this);
 
@@ -5459,7 +5461,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLAlterDatabaseStatement x) {
+    bool visit(SQLAlterDatabaseStatement x) {
         print0(ucase ? "ALTER DATABASE " : "alter database ");
         x.getName().accept(this);
         if (x.isUpgradeDataDirectoryName()) {
@@ -5475,7 +5477,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLAlterTableConvertCharSet x) {
+    bool visit(SQLAlterTableConvertCharSet x) {
         print0(ucase ? "CONVERT TO CHARACTER SET " : "convert to character set ");
         x.getCharset().accept(this);
 
@@ -5487,21 +5489,21 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLAlterTableCoalescePartition x) {
+    bool visit(SQLAlterTableCoalescePartition x) {
         print0(ucase ? "COALESCE PARTITION " : "coalesce partition ");
         x.getCount().accept(this);
         return false;
     }
     
     override
-    public bool visit(SQLAlterTableTruncatePartition x) {
+    bool visit(SQLAlterTableTruncatePartition x) {
         print0(ucase ? "TRUNCATE PARTITION " : "truncate partition ");
         printPartitions(x.getPartitions());
         return false;
     }
     
     override
-    public bool visit(SQLAlterTableDiscardPartition x) {
+    bool visit(SQLAlterTableDiscardPartition x) {
         print0(ucase ? "DISCARD PARTITION " : "discard partition ");
         printPartitions(x.getPartitions());
 
@@ -5513,14 +5515,14 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
     
     override
-    public bool visit(SQLAlterTableImportPartition x) {
+    bool visit(SQLAlterTableImportPartition x) {
         print0(ucase ? "IMPORT PARTITION " : "import partition ");
         printPartitions(x.getPartitions());
         return false;
     }
     
     override
-    public bool visit(SQLAlterTableAnalyzePartition x) {
+    bool visit(SQLAlterTableAnalyzePartition x) {
         print0(ucase ? "ANALYZE PARTITION " : "analyze partition ");
         
         printPartitions(x.getPartitions());
@@ -5536,35 +5538,35 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
     
     override
-    public bool visit(SQLAlterTableCheckPartition x) {
+    bool visit(SQLAlterTableCheckPartition x) {
         print0(ucase ? "CHECK PARTITION " : "check partition ");
         printPartitions(x.getPartitions());
         return false;
     }
     
     override
-    public bool visit(SQLAlterTableOptimizePartition x) {
+    bool visit(SQLAlterTableOptimizePartition x) {
         print0(ucase ? "OPTIMIZE PARTITION " : "optimize partition ");
         printPartitions(x.getPartitions());
         return false;
     }
     
     override
-    public bool visit(SQLAlterTableRebuildPartition x) {
+    bool visit(SQLAlterTableRebuildPartition x) {
         print0(ucase ? "REBUILD PARTITION " : "rebuild partition ");
         printPartitions(x.getPartitions());
         return false;
     }
     
     override
-    public bool visit(SQLAlterTableRepairPartition x) {
+    bool visit(SQLAlterTableRepairPartition x) {
         print0(ucase ? "REPAIR PARTITION " : "repair partition ");
         printPartitions(x.getPartitions());
         return false;
     }
     
     override
-    public bool visit(SQLSequenceExpr x) {
+    bool visit(SQLSequenceExpr x) {
         x.getSequence().accept(this);
         print('.');
         print0(ucase ? x.getFunction().name : x.getFunction().name_lcase);
@@ -5572,7 +5574,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
     
     override
-    public bool visit(SQLMergeStatement x) {
+    bool visit(SQLMergeStatement x) {
         print0(ucase ? "MERGE " : "merge ");
         if (x.getHints().size() > 0) {
             printAndAccept!SQLHint((x.getHints()), ", ");
@@ -5609,7 +5611,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLMergeStatement.MergeUpdateClause x) {
+    bool visit(SQLMergeStatement.MergeUpdateClause x) {
         print0(ucase ? "WHEN MATCHED THEN UPDATE SET " : "when matched then update set ");
         printAndAccept!SQLUpdateSetItem((x.getItems()), ", ");
 
@@ -5635,7 +5637,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLMergeStatement.MergeInsertClause x) {
+    bool visit(SQLMergeStatement.MergeInsertClause x) {
         print0(ucase ? "WHEN NOT MATCHED THEN INSERT" : "when not matched then insert");
         if (x.getColumns().size() > 0) {
             print(" (");
@@ -5657,7 +5659,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLErrorLoggingClause x) {
+    bool visit(SQLErrorLoggingClause x) {
         print0(ucase ? "LOG ERRORS " : "log errors ");
         if (x.getInto() !is null) {
             print0(ucase ? "INTO " : "into ");
@@ -5680,7 +5682,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLCreateSequenceStatement x) {
+    bool visit(SQLCreateSequenceStatement x) {
         print0(ucase ? "CREATE SEQUENCE " : "create sequence ");
         x.getName().accept(this);
 
@@ -5760,7 +5762,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLAlterSequenceStatement x) {
+    bool visit(SQLAlterSequenceStatement x) {
         print0(ucase ? "ALTER SEQUENCE " : "alter sequence ");
         x.getName().accept(this);
 
@@ -5839,7 +5841,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLDateExpr x) {
+    override bool visit(SQLDateExpr x) {
         if (this.parameterized) {
             print('?');
             incrementReplaceCunt();
@@ -5857,7 +5859,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLLimit x) {
+    override bool visit(SQLLimit x) {
         print0(ucase ? "LIMIT " : "limit ");
         SQLExpr offset = x.getOffset();
         if (offset !is null) {
@@ -5871,7 +5873,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLDescribeStatement x) {
+    override bool visit(SQLDescribeStatement x) {
         print0(ucase ? "DESC " : "desc ");
         if (x.getObjectType().name.length != 0) {
             print0(x.getObjectType().name);
@@ -5914,7 +5916,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         }
     }
 
-    // public void printOracleSegmentAttributes(OracleSegmentAttributes x) {
+    // void printOracleSegmentAttributes(OracleSegmentAttributes x) {
 
     //     if (x.getPctfree() !is null) {
     //         println();
@@ -5974,7 +5976,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     // }
 
     override
-    public bool visit(SQLWhileStatement x) {
+    bool visit(SQLWhileStatement x) {
         string label = x.getLabelName();
 
         if (label !is null && label.length != 0) {
@@ -6002,7 +6004,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLDeclareStatement x) {
+    bool visit(SQLDeclareStatement x) {
         // bool printDeclare = !(cast(OracleCreatePackageStatement)x.getParent() !is null);
         // if (printDeclare) {
         //     print0(ucase ? "DECLARE " : "declare ");
@@ -6012,7 +6014,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLReturnStatement x) {
+    bool visit(SQLReturnStatement x) {
         print0(ucase ? "RETURN" : "return");
 
         if (x.getExpr() !is null) {
@@ -6022,7 +6024,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public void postVisit(SQLObject x) {
+    override void postVisit(SQLObject x) {
         if (cast(SQLStatement)x !is null) {
             SQLStatement stmt = cast(SQLStatement) x;
             bool printSemi = printStatementAfterSemi is null
@@ -6035,7 +6037,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLArgument x) {
+    bool visit(SQLArgument x) {
         SQLParameter.ParameterType type = x.getType();
         if (type.name.length != 0) {
             print0(type.name);
@@ -6047,7 +6049,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLCommitStatement x) {
+    bool visit(SQLCommitStatement x) {
         print0(ucase ? "COMMIT" : "commit");
 
         if (x.isWrite()) {
@@ -6092,7 +6094,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLFlashbackExpr x) {
+    override bool visit(SQLFlashbackExpr x) {
         print0(x.getType().name);
         print(' ');
         SQLExpr expr = x.getExpr();
@@ -6106,7 +6108,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLCreateMaterializedViewStatement x) {
+    override bool visit(SQLCreateMaterializedViewStatement x) {
         print0(ucase ? "CREATE MATERIALIZED VIEW " : "create materialized view ");
         x.getName().accept(this);
 
@@ -6180,7 +6182,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLCreateUserStatement x) {
+    override bool visit(SQLCreateUserStatement x) {
         print0(ucase ? "CREATE USER " : "create user ");
         x.getUser().accept(this);
         print0(ucase ? " IDENTIFIED BY " : " identified by ");
@@ -6188,7 +6190,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLAlterFunctionStatement x) {
+    override bool visit(SQLAlterFunctionStatement x) {
         print0(ucase ? "ALTER FUNCTION " : "alter function ");
         x.getName().accept(this);
 
@@ -6203,7 +6205,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLAlterTypeStatement x) {
+    override bool visit(SQLAlterTypeStatement x) {
         print0(ucase ? "ALTER TYPE " : "alter type ");
         x.getName().accept(this);
 
@@ -6227,7 +6229,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLIntervalExpr x) {
+    bool visit(SQLIntervalExpr x) {
         print0(ucase ? "INTERVAL " : "interval ");
         SQLExpr value = x.getValue();
         value.accept(this);
@@ -6240,15 +6242,15 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    public Boolean getPrintStatementAfterSemi() {
+    Boolean getPrintStatementAfterSemi() {
         return printStatementAfterSemi;
     }
 
-    public void setPrintStatementAfterSemi(Boolean printStatementAfterSemi) {
+    void setPrintStatementAfterSemi(Boolean printStatementAfterSemi) {
         this.printStatementAfterSemi = printStatementAfterSemi;
     }
 
-    override public void config(VisitorFeature feature, bool state) {
+    override void config(VisitorFeature feature, bool state) {
         super.config(feature, state);
         if (feature == VisitorFeature.OutputUCase) {
             this.ucase = state;
@@ -6257,7 +6259,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         }
     }
 
-    override public void setFeatures(int features) {
+    override void setFeatures(int features) {
         super.setFeatures(features);
         this.ucase = isEnabled(VisitorFeature.OutputUCase);
         this.parameterized = isEnabled(VisitorFeature.OutputParameterized);
@@ -6265,7 +6267,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     /////////////// for oracle
-    // public bool visit(OracleCursorExpr x) {
+    // bool visit(OracleCursorExpr x) {
     //     print0(ucase ? "CURSOR(" : "cursor(");
     //     this.indentCount++;
     //     println();
@@ -6276,7 +6278,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     //     return false;
     // }
 
-    // public bool visit(OracleDatetimeExpr x) {
+    // bool visit(OracleDatetimeExpr x) {
     //     x.getExpr().accept(this);
     //     SQLExpr timeZone = x.getTimeZone();
 
@@ -6295,7 +6297,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
 
     ///////////// for odps & hive
     override
-    public bool visit(SQLLateralViewTableSource x) {
+    bool visit(SQLLateralViewTableSource x) {
         x.getTableSource().accept(this);
         this.indentCount++;
         println();
@@ -6310,13 +6312,13 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLShowErrorsStatement x) {
+    bool visit(SQLShowErrorsStatement x) {
         print0(ucase ? "SHOW ERRORS" : "show errors");
         return true;
     }
 
     override
-    public bool visit(SQLAlterCharacter x) {
+    bool visit(SQLAlterCharacter x) {
         print0(ucase ? "CHARACTER SET = " : "character set = ");
         x.getCharacterSet().accept(this);
 
@@ -6329,7 +6331,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLRecordDataType x) {
+    bool visit(SQLRecordDataType x) {
         print0(ucase ? "RECORD (" : "record (");
         indentCount++;
         println();
@@ -6351,13 +6353,13 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLExprStatement x) {
+    bool visit(SQLExprStatement x) {
         x.getExpr().accept(this);
         return false;
     }
 
     override
-    public bool visit(SQLBlockStatement x) {
+    bool visit(SQLBlockStatement x) {
         if (x.getParameters().size() != 0) {
             this.indentCount++;
             if (cast(SQLCreateProcedureStatement)x.getParent() !is null) {
@@ -6409,7 +6411,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLCreateProcedureStatement x) {
+    bool visit(SQLCreateProcedureStatement x) {
         bool create = x.isCreate();
         if (!create) {
             print0(ucase ? "PROCEDURE " : "procedure ");
@@ -6494,7 +6496,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLExternalRecordFormat x) {
+    override bool visit(SQLExternalRecordFormat x) {
         if (x.getDelimitedBy() !is null) {
             println();
             print0(ucase ? "RECORDS DELIMITED BY " : "records delimited by ");
@@ -6511,7 +6513,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLArrayDataType x) {
+    bool visit(SQLArrayDataType x) {
         print0(ucase ? "ARRAY<" : "array<");
         x.getComponentType().accept(this);
         print('>');
@@ -6519,7 +6521,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLMapDataType x) {
+    bool visit(SQLMapDataType x) {
         print0(ucase ? "MAP<" : "map<");
         x.getKeyType().accept(this);
         print0(", ");
@@ -6529,7 +6531,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLStructDataType x) {
+    bool visit(SQLStructDataType x) {
         print0(ucase ? "STRUCT<" : "struct<");
         printAndAccept!(SQLStructDataType.Field)((x.getFields()), ", ");
         print('>');
@@ -6537,7 +6539,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLStructDataType.Field x) {
+    bool visit(SQLStructDataType.Field x) {
         x.getName().accept(this);
         print(':');
         x.getDataType().accept(this);
@@ -6545,7 +6547,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLAlterTableRenameIndex x) {
+    override bool visit(SQLAlterTableRenameIndex x) {
         print0(ucase ? "RENAME INDEX " : "rename index ");
         x.getName().accept(this);
         print0(ucase ? " TO " : " to ");
@@ -6554,7 +6556,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLAlterTableExchangePartition x) {
+    bool visit(SQLAlterTableExchangePartition x) {
         print0(ucase ? "EXCHANGE PARTITION " : "exchange partition ");
         x.getPartition().accept(this);
         print0(ucase ? " WITH TABLE " : " with table ");
@@ -6573,14 +6575,14 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLValuesExpr x) {
+    bool visit(SQLValuesExpr x) {
         print0(ucase ? "VALUES (" : "values (");
         printAndAccept!SQLListExpr((x.getValues()), ", ");
         return false;
     }
 
     override
-    public bool visit(SQLValuesTableSource x) {
+    bool visit(SQLValuesTableSource x) {
         List!SQLName columns = x.getColumns();
 
         if (columns.size() > 0) {
@@ -6602,7 +6604,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLContainsExpr x) {
+    override bool visit(SQLContainsExpr x) {
         SQLExpr expr = x.getExpr();
         if (expr !is null) {
             printExpr(expr);
@@ -6655,7 +6657,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    override public bool visit(SQLRealExpr x) {
+    override bool visit(SQLRealExpr x) {
         float value = (cast(Float)(x.getValue())).floatValue;
         print0(ucase ? "REAL '" : "real '");
         print(value);
@@ -6665,7 +6667,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLWindow x) {
+    bool visit(SQLWindow x) {
         x.getName().accept(this);
         print0(ucase ? " AS " : " as ");
         x.getOver().accept(this);
@@ -6673,7 +6675,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
     }
 
     override
-    public bool visit(SQLDumpStatement x) {
+    bool visit(SQLDumpStatement x) {
         List!SQLCommentHint headHints = x.getHeadHintsDirect();
         if (headHints !is null) {
             foreach(SQLCommentHint hint  ;  headHints) {
@@ -6698,7 +6700,7 @@ public class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, 
         return false;
     }
 
-    public void print(float value) {
+    void print(float value) {
         if (this.appender is null) {
             return;
         }
