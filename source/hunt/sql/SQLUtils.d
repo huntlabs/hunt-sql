@@ -720,72 +720,6 @@ public class SQLUtils {
         selectItem.setParent(selectItem);
     }
 
-    public static class FormatOption {
-        private int features = VisitorFeature.of(VisitorFeature.OutputUCase
-                , VisitorFeature.OutputPrettyFormat);
-
-        public this() {
-
-        }
-
-        public this(VisitorFeature[] features...) {
-            this.features = VisitorFeature.of(features);
-        }
-
-        public this(bool ucase) {
-            this(ucase, true);
-        }
-
-        public this(bool ucase, bool prettyFormat) {
-            this(ucase, prettyFormat, false);
-        }
-
-        public this(bool ucase, bool prettyFormat, bool parameterized) {
-            this.features = VisitorFeature.config(this.features, VisitorFeature.OutputUCase, ucase);
-            this.features = VisitorFeature.config(this.features, VisitorFeature.OutputPrettyFormat, prettyFormat);
-            this.features = VisitorFeature.config(this.features, VisitorFeature.OutputParameterized, parameterized);
-        }
-
-        public bool isDesensitize() {
-            return isEnabled(VisitorFeature.OutputDesensitize);
-        }
-
-        public void setDesensitize(bool val) {
-            config(VisitorFeature.OutputDesensitize, val);
-        }
-
-        public bool isUppCase() {
-            return isEnabled(VisitorFeature.OutputUCase);
-        }
-
-        public void setUppCase(bool val) {
-            config(VisitorFeature.OutputUCase, val);
-        }
-
-        public bool isPrettyFormat() {
-            return isEnabled(VisitorFeature.OutputPrettyFormat);
-        }
-
-        public void setPrettyFormat(bool prettyFormat) {
-            config(VisitorFeature.OutputPrettyFormat, prettyFormat);
-        }
-
-        public bool isParameterized() {
-            return isEnabled(VisitorFeature.OutputParameterized);
-        }
-
-        public void setParameterized(bool parameterized) {
-            config(VisitorFeature.OutputParameterized, parameterized);
-        }
-
-        public void config(VisitorFeature feature, bool state) {
-            features = VisitorFeature.config(features, feature, state);
-        }
-
-        public  bool isEnabled(VisitorFeature feature) {
-            return VisitorFeature.isEnabled(this.features, feature);
-        }
-    }
 
     public static string refactor(string sql, string dbType, Map!(string , string) tableMapping) {
         List!(SQLStatement) stmtList = parseStatements(sql, dbType);
@@ -990,7 +924,7 @@ public class SQLUtils {
     }
 
     /**
-     * 重新排序建表语句，解决建表语句的依赖关系
+     * 
      * @param sql
      * @param dbType
      * @return
@@ -1002,3 +936,69 @@ public class SQLUtils {
     }
 }
 
+
+class FormatOption {
+    private int features = VisitorFeature.of(VisitorFeature.OutputUCase, VisitorFeature.OutputPrettyFormat);
+
+    this() {
+
+    }
+
+    this(VisitorFeature[] features...) {
+        this.features = VisitorFeature.of(features);
+    }
+
+    this(bool ucase) {
+        this(ucase, true);
+    }
+
+    this(bool ucase, bool prettyFormat) {
+        this(ucase, prettyFormat, false);
+    }
+
+    this(bool ucase, bool prettyFormat, bool parameterized) {
+        this.features = VisitorFeature.config(this.features, VisitorFeature.OutputUCase, ucase);
+        this.features = VisitorFeature.config(this.features, VisitorFeature.OutputPrettyFormat, prettyFormat);
+        this.features = VisitorFeature.config(this.features, VisitorFeature.OutputParameterized, parameterized);
+    }
+
+    bool isDesensitize() {
+        return isEnabled(VisitorFeature.OutputDesensitize);
+    }
+
+    void setDesensitize(bool val) {
+        config(VisitorFeature.OutputDesensitize, val);
+    }
+
+    bool isUppCase() {
+        return isEnabled(VisitorFeature.OutputUCase);
+    }
+
+    void setUppCase(bool val) {
+        config(VisitorFeature.OutputUCase, val);
+    }
+
+    bool isPrettyFormat() {
+        return isEnabled(VisitorFeature.OutputPrettyFormat);
+    }
+
+    void setPrettyFormat(bool prettyFormat) {
+        config(VisitorFeature.OutputPrettyFormat, prettyFormat);
+    }
+
+    bool isParameterized() {
+        return isEnabled(VisitorFeature.OutputParameterized);
+    }
+
+    void setParameterized(bool parameterized) {
+        config(VisitorFeature.OutputParameterized, parameterized);
+    }
+
+    void config(VisitorFeature feature, bool state) {
+        features = VisitorFeature.config(features, feature, state);
+    }
+
+    bool isEnabled(VisitorFeature feature) {
+        return VisitorFeature.isEnabled(this.features, feature);
+    }
+}

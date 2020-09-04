@@ -29,793 +29,793 @@ import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.visitor.VisitorFeature;
 
 
-public class SQLASTVisitorAdapter : SQLASTVisitor {
+class SQLASTVisitorAdapter : SQLASTVisitor {
     protected int features;
 
-    public void endVisit(SQLAllColumnExpr x) {
+    void endVisit(SQLAllColumnExpr x) {
     }
 
-    public void endVisit(SQLBetweenExpr x) {
+    void endVisit(SQLBetweenExpr x) {
     }
 
-    public void endVisit(SQLBinaryOpExpr x) {
+    void endVisit(SQLBinaryOpExpr x) {
     }
 
-    public void endVisit(SQLCaseExpr x) {
+    void endVisit(SQLCaseExpr x) {
     }
 
-    public void endVisit(SQLCaseExpr.Item x) {
+    void endVisit(SQLCaseExpr.Item x) {
     }
 
-    public void endVisit(SQLCaseStatement x) {
+    void endVisit(SQLCaseStatement x) {
     }
 
-    public void endVisit(SQLCaseStatement.Item x) {
+    void endVisit(SQLCaseStatement.Item x) {
     }
 
-    public void endVisit(SQLCharExpr x) {
+    void endVisit(SQLCharExpr x) {
     }
 
-    public void endVisit(SQLIdentifierExpr x) {
+    void endVisit(SQLIdentifierExpr x) {
     }
 
-    public void endVisit(SQLInListExpr x) {
+    void endVisit(SQLInListExpr x) {
     }
 
-    public void endVisit(SQLIntegerExpr x) {
+    void endVisit(SQLIntegerExpr x) {
     }
 
-    public void endVisit(SQLExistsExpr x) {
+    void endVisit(SQLExistsExpr x) {
     }
 
-    public void endVisit(SQLNCharExpr x) {
+    void endVisit(SQLNCharExpr x) {
     }
 
-    public void endVisit(SQLNotExpr x) {
+    void endVisit(SQLNotExpr x) {
     }
 
-    public void endVisit(SQLNullExpr x) {
+    void endVisit(SQLNullExpr x) {
     }
 
-    public void endVisit(SQLNumberExpr x) {
+    void endVisit(SQLNumberExpr x) {
     }
 
-    public void endVisit(SQLPropertyExpr x) {
+    void endVisit(SQLPropertyExpr x) {
     }
 
-    public void endVisit(SQLSelectGroupByClause x) {
+    void endVisit(SQLSelectGroupByClause x) {
     }
 
-    public void endVisit(SQLSelectItem x) {
+    void endVisit(SQLSelectItem x) {
     }
 
-    public void endVisit(SQLSelectStatement selectStatement) {
+    void endVisit(SQLSelectStatement selectStatement) {
     }
 
-    public void postVisit(SQLObject astNode) {
+    void postVisit(SQLObject astNode) {
     }
 
-    public void preVisit(SQLObject astNode) {
+    void preVisit(SQLObject astNode) {
     }
 
-    public bool visit(SQLAllColumnExpr x) {
+    bool visit(SQLAllColumnExpr x) {
         return true;
     }
 
-    public bool visit(SQLBetweenExpr x) {
+    bool visit(SQLBetweenExpr x) {
         return true;
     }
 
-    public bool visit(SQLBinaryOpExpr x) {
+    bool visit(SQLBinaryOpExpr x) {
         return true;
     }
 
-    public bool visit(SQLCaseExpr x) {
+    bool visit(SQLCaseExpr x) {
         return true;
     }
 
-    public bool visit(SQLCaseExpr.Item x) {
+    bool visit(SQLCaseExpr.Item x) {
         return true;
     }
 
-    public bool visit(SQLCaseStatement x) {
+    bool visit(SQLCaseStatement x) {
         return true;
     }
 
-    public bool visit(SQLCaseStatement.Item x) {
+    bool visit(SQLCaseStatement.Item x) {
         return true;
     }
 
-    public bool visit(SQLCastExpr x) {
+    bool visit(SQLCastExpr x) {
         return true;
     }
 
-    public bool visit(SQLCharExpr x) {
+    bool visit(SQLCharExpr x) {
         return true;
     }
 
-    public bool visit(SQLExistsExpr x) {
+    bool visit(SQLExistsExpr x) {
         return true;
     }
 
-    public bool visit(SQLIdentifierExpr x) {
+    bool visit(SQLIdentifierExpr x) {
         return true;
     }
 
-    public bool visit(SQLInListExpr x) {
+    bool visit(SQLInListExpr x) {
         return true;
     }
 
-    public bool visit(SQLIntegerExpr x) {
+    bool visit(SQLIntegerExpr x) {
         return true;
     }
 
-    public bool visit(SQLNCharExpr x) {
+    bool visit(SQLNCharExpr x) {
         return true;
     }
 
-    public bool visit(SQLNotExpr x) {
+    bool visit(SQLNotExpr x) {
         return true;
     }
 
-    public bool visit(SQLNullExpr x) {
+    bool visit(SQLNullExpr x) {
         return true;
     }
 
-    public bool visit(SQLNumberExpr x) {
+    bool visit(SQLNumberExpr x) {
         return true;
     }
 
-    public bool visit(SQLPropertyExpr x) {
+    bool visit(SQLPropertyExpr x) {
         return true;
     }
 
-    public bool visit(SQLSelectGroupByClause x) {
+    bool visit(SQLSelectGroupByClause x) {
         return true;
     }
 
-    public bool visit(SQLSelectItem x) {
+    bool visit(SQLSelectItem x) {
         return true;
     }
 
-    public void endVisit(SQLCastExpr x) {
+    void endVisit(SQLCastExpr x) {
     }
 
-    public bool visit(SQLSelectStatement astNode) {
+    bool visit(SQLSelectStatement astNode) {
         return true;
     }
 
-    public void endVisit(SQLAggregateExpr x) {
+    void endVisit(SQLAggregateExpr x) {
     }
 
-    public bool visit(SQLAggregateExpr x) {
+    bool visit(SQLAggregateExpr x) {
         return true;
     }
 
-    public bool visit(SQLVariantRefExpr x) {
+    bool visit(SQLVariantRefExpr x) {
         return true;
     }
 
-    public void endVisit(SQLVariantRefExpr x) {
+    void endVisit(SQLVariantRefExpr x) {
     }
 
-    public bool visit(SQLQueryExpr x) {
+    bool visit(SQLQueryExpr x) {
         return true;
     }
 
-    public void endVisit(SQLQueryExpr x) {
+    void endVisit(SQLQueryExpr x) {
     }
 
-    public bool visit(SQLSelect x) {
+    bool visit(SQLSelect x) {
         return true;
     }
 
-    public void endVisit(SQLSelect select) {
+    void endVisit(SQLSelect select) {
     }
 
-    public bool visit(SQLSelectQueryBlock x) {
+    bool visit(SQLSelectQueryBlock x) {
         return true;
     }
 
-    public void endVisit(SQLSelectQueryBlock x) {
+    void endVisit(SQLSelectQueryBlock x) {
     }
 
-    public bool visit(SQLExprTableSource x) {
+    bool visit(SQLExprTableSource x) {
         return true;
     }
 
-    public void endVisit(SQLExprTableSource x) {
+    void endVisit(SQLExprTableSource x) {
     }
 
-    public bool visit(SQLOrderBy x) {
+    bool visit(SQLOrderBy x) {
         return true;
     }
 
-    public void endVisit(SQLOrderBy x) {
+    void endVisit(SQLOrderBy x) {
     }
 
-    public bool visit(SQLSelectOrderByItem x) {
+    bool visit(SQLSelectOrderByItem x) {
         return true;
     }
 
-    public void endVisit(SQLSelectOrderByItem x) {
+    void endVisit(SQLSelectOrderByItem x) {
     }
 
-    public bool visit(SQLDropTableStatement x) {
+    bool visit(SQLDropTableStatement x) {
         return true;
     }
 
-    public void endVisit(SQLDropTableStatement x) {
+    void endVisit(SQLDropTableStatement x) {
     }
 
-    public bool visit(SQLCreateTableStatement x) {
+    bool visit(SQLCreateTableStatement x) {
         return true;
     }
 
-    public void endVisit(SQLCreateTableStatement x) {
+    void endVisit(SQLCreateTableStatement x) {
     }
 
-    public bool visit(SQLColumnDefinition x) {
+    bool visit(SQLColumnDefinition x) {
         return true;
     }
 
-    public void endVisit(SQLColumnDefinition x) {
+    void endVisit(SQLColumnDefinition x) {
     }
 
-    public bool visit(SQLColumnDefinition.Identity x) {
+    bool visit(SQLColumnDefinition.Identity x) {
         return true;
     }
 
-    public void endVisit(SQLColumnDefinition.Identity x) {
+    void endVisit(SQLColumnDefinition.Identity x) {
     }
 
-    public bool visit(SQLDataType x) {
+    bool visit(SQLDataType x) {
         return true;
     }
 
-    public void endVisit(SQLDataType x) {
+    void endVisit(SQLDataType x) {
     }
 
-    public bool visit(SQLDeleteStatement x) {
+    bool visit(SQLDeleteStatement x) {
         return true;
     }
 
-    public void endVisit(SQLDeleteStatement x) {
+    void endVisit(SQLDeleteStatement x) {
     }
 
-    public bool visit(SQLCurrentOfCursorExpr x) {
+    bool visit(SQLCurrentOfCursorExpr x) {
         return true;
     }
 
-    public void endVisit(SQLCurrentOfCursorExpr x) {
+    void endVisit(SQLCurrentOfCursorExpr x) {
     }
 
-    public bool visit(SQLInsertStatement x) {
+    bool visit(SQLInsertStatement x) {
         return true;
     }
 
-    public void endVisit(SQLInsertStatement x) {
+    void endVisit(SQLInsertStatement x) {
     }
 
-    public bool visit(SQLUpdateSetItem x) {
+    bool visit(SQLUpdateSetItem x) {
         return true;
     }
 
-    public void endVisit(SQLUpdateSetItem x) {
+    void endVisit(SQLUpdateSetItem x) {
     }
 
-    public bool visit(SQLUpdateStatement x) {
+    bool visit(SQLUpdateStatement x) {
         return true;
     }
 
-    public void endVisit(SQLUpdateStatement x) {
+    void endVisit(SQLUpdateStatement x) {
     }
 
-    public bool visit(SQLCreateViewStatement x) {
+    bool visit(SQLCreateViewStatement x) {
         return true;
     }
 
-    public void endVisit(SQLCreateViewStatement x) {
+    void endVisit(SQLCreateViewStatement x) {
     }
 
-    public bool visit(SQLAlterViewStatement x) {
+    bool visit(SQLAlterViewStatement x) {
         return true;
     }
 
-    public void endVisit(SQLAlterViewStatement x) {
+    void endVisit(SQLAlterViewStatement x) {
     }
 
-    public bool visit(SQLCreateViewStatement.Column x) {
+    bool visit(SQLCreateViewStatement.Column x) {
         return true;
     }
 
-    public void endVisit(SQLCreateViewStatement.Column x) {
+    void endVisit(SQLCreateViewStatement.Column x) {
     }
 
-    public bool visit(SQLNotNullConstraint x) {
+    bool visit(SQLNotNullConstraint x) {
         return true;
     }
 
-    public void endVisit(SQLNotNullConstraint x) {
+    void endVisit(SQLNotNullConstraint x) {
     }
 
     //override
-    public void endVisit(SQLMethodInvokeExpr x) {
-
-    }
-
-    //override
-    public bool visit(SQLMethodInvokeExpr x) {
-        return true;
-    }
-
-    //override
-    public void endVisit(SQLUnionQuery x) {
+    void endVisit(SQLMethodInvokeExpr x) {
 
     }
 
     //override
-    public bool visit(SQLUnionQuery x) {
+    bool visit(SQLMethodInvokeExpr x) {
         return true;
     }
 
     //override
-    public bool visit(SQLUnaryExpr x) {
+    void endVisit(SQLUnionQuery x) {
+
+    }
+
+    //override
+    bool visit(SQLUnionQuery x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLUnaryExpr x) {
+    bool visit(SQLUnaryExpr x) {
+        return true;
+    }
+
+    //override
+    void endVisit(SQLUnaryExpr x) {
 
     }
 
     //override
-    public bool visit(SQLHexExpr x) {
+    bool visit(SQLHexExpr x) {
         return false;
     }
 
     //override
-    public void endVisit(SQLHexExpr x) {
+    void endVisit(SQLHexExpr x) {
 
     }
 
     //override
-    public void endVisit(SQLSetStatement x) {
+    void endVisit(SQLSetStatement x) {
 
     }
 
     //override
-    public bool visit(SQLSetStatement x) {
+    bool visit(SQLSetStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAssignItem x) {
+    void endVisit(SQLAssignItem x) {
 
     }
 
     //override
-    public bool visit(SQLAssignItem x) {
+    bool visit(SQLAssignItem x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLCallStatement x) {
+    void endVisit(SQLCallStatement x) {
 
     }
 
     //override
-    public bool visit(SQLCallStatement x) {
+    bool visit(SQLCallStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLJoinTableSource x) {
+    void endVisit(SQLJoinTableSource x) {
 
     }
 
     //override
-    public bool visit(SQLJoinTableSource x) {
+    bool visit(SQLJoinTableSource x) {
         return true;
     }
 
     //override
-    public bool visit(ValuesClause x) {
+    bool visit(ValuesClause x) {
         return true;
     }
 
     //override
-    public void endVisit(ValuesClause x) {
+    void endVisit(ValuesClause x) {
 
     }
 
     //override
-    public void endVisit(SQLSomeExpr x) {
+    void endVisit(SQLSomeExpr x) {
 
     }
 
     //override
-    public bool visit(SQLSomeExpr x) {
+    bool visit(SQLSomeExpr x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAnyExpr x) {
+    void endVisit(SQLAnyExpr x) {
 
     }
 
     //override
-    public bool visit(SQLAnyExpr x) {
+    bool visit(SQLAnyExpr x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAllExpr x) {
+    void endVisit(SQLAllExpr x) {
 
     }
 
     //override
-    public bool visit(SQLAllExpr x) {
+    bool visit(SQLAllExpr x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLInSubQueryExpr x) {
+    void endVisit(SQLInSubQueryExpr x) {
 
     }
 
     //override
-    public bool visit(SQLInSubQueryExpr x) {
+    bool visit(SQLInSubQueryExpr x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLListExpr x) {
+    void endVisit(SQLListExpr x) {
 
     }
 
     //override
-    public bool visit(SQLListExpr x) {
+    bool visit(SQLListExpr x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLSubqueryTableSource x) {
+    void endVisit(SQLSubqueryTableSource x) {
 
     }
 
     //override
-    public bool visit(SQLSubqueryTableSource x) {
+    bool visit(SQLSubqueryTableSource x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLTruncateStatement x) {
+    void endVisit(SQLTruncateStatement x) {
 
     }
 
     //override
-    public bool visit(SQLTruncateStatement x) {
+    bool visit(SQLTruncateStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLDefaultExpr x) {
+    void endVisit(SQLDefaultExpr x) {
 
     }
 
     //override
-    public bool visit(SQLDefaultExpr x) {
+    bool visit(SQLDefaultExpr x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLCommentStatement x) {
+    void endVisit(SQLCommentStatement x) {
 
     }
 
     //override
-    public bool visit(SQLCommentStatement x) {
+    bool visit(SQLCommentStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLUseStatement x) {
+    void endVisit(SQLUseStatement x) {
 
     }
 
     //override
-    public bool visit(SQLUseStatement x) {
+    bool visit(SQLUseStatement x) {
         return true;
     }
 
     //override
-    public bool visit(SQLAlterTableAddColumn x) {
+    bool visit(SQLAlterTableAddColumn x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableAddColumn x) {
+    void endVisit(SQLAlterTableAddColumn x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableDropColumnItem x) {
+    bool visit(SQLAlterTableDropColumnItem x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableDropColumnItem x) {
+    void endVisit(SQLAlterTableDropColumnItem x) {
 
     }
 
     //override
-    public bool visit(SQLDropIndexStatement x) {
+    bool visit(SQLDropIndexStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLDropIndexStatement x) {
+    void endVisit(SQLDropIndexStatement x) {
 
     }
 
     //override
-    public bool visit(SQLDropViewStatement x) {
+    bool visit(SQLDropViewStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLDropViewStatement x) {
+    void endVisit(SQLDropViewStatement x) {
 
     }
 
     //override
-    public bool visit(SQLSavePointStatement x) {
+    bool visit(SQLSavePointStatement x) {
         return false;
     }
 
     //override
-    public void endVisit(SQLSavePointStatement x) {
+    void endVisit(SQLSavePointStatement x) {
 
     }
 
     //override
-    public bool visit(SQLRollbackStatement x) {
+    bool visit(SQLRollbackStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLRollbackStatement x) {
+    void endVisit(SQLRollbackStatement x) {
 
     }
 
     //override
-    public bool visit(SQLReleaseSavePointStatement x) {
+    bool visit(SQLReleaseSavePointStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLReleaseSavePointStatement x) {
+    void endVisit(SQLReleaseSavePointStatement x) {
     }
 
     //override
-    public bool visit(SQLCommentHint x) {
+    bool visit(SQLCommentHint x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLCommentHint x) {
+    void endVisit(SQLCommentHint x) {
 
     }
 
     //override
-    public void endVisit(SQLCreateDatabaseStatement x) {
+    void endVisit(SQLCreateDatabaseStatement x) {
 
     }
 
     //override
-    public bool visit(SQLCreateDatabaseStatement x) {
+    bool visit(SQLCreateDatabaseStatement x) {
         return true;
     }
 
     //override
-    public bool visit(SQLAlterTableDropIndex x) {
+    bool visit(SQLAlterTableDropIndex x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableDropIndex x) {
+    void endVisit(SQLAlterTableDropIndex x) {
 
     }
 
     //override
-    public void endVisit(SQLOver x) {
+    void endVisit(SQLOver x) {
     }
 
     //override
-    public bool visit(SQLOver x) {
+    bool visit(SQLOver x) {
         return true;
     }
     
     //override
-    public void endVisit(SQLKeep x) {
+    void endVisit(SQLKeep x) {
     }
     
     //override
-    public bool visit(SQLKeep x) {
+    bool visit(SQLKeep x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLColumnPrimaryKey x) {
+    void endVisit(SQLColumnPrimaryKey x) {
 
     }
 
     //override
-    public bool visit(SQLColumnPrimaryKey x) {
+    bool visit(SQLColumnPrimaryKey x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLColumnUniqueKey x) {
+    void endVisit(SQLColumnUniqueKey x) {
 
     }
 
     //override
-    public bool visit(SQLColumnUniqueKey x) {
+    bool visit(SQLColumnUniqueKey x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLWithSubqueryClause x) {
+    void endVisit(SQLWithSubqueryClause x) {
     }
 
     //override
-    public bool visit(SQLWithSubqueryClause x) {
+    bool visit(SQLWithSubqueryClause x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLWithSubqueryClause.Entry x) {
+    void endVisit(SQLWithSubqueryClause.Entry x) {
     }
 
     //override
-    public bool visit(SQLWithSubqueryClause.Entry x) {
+    bool visit(SQLWithSubqueryClause.Entry x) {
         return true;
     }
 
     //override
-    public bool visit(SQLCharacterDataType x) {
+    bool visit(SQLCharacterDataType x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLCharacterDataType x) {
+    void endVisit(SQLCharacterDataType x) {
 
     }
 
     //override
-    public void endVisit(SQLAlterTableAlterColumn x) {
+    void endVisit(SQLAlterTableAlterColumn x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableAlterColumn x) {
+    bool visit(SQLAlterTableAlterColumn x) {
         return true;
     }
 
     //override
-    public bool visit(SQLCheck x) {
+    bool visit(SQLCheck x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLCheck x) {
+    void endVisit(SQLCheck x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableDropForeignKey x) {
+    bool visit(SQLAlterTableDropForeignKey x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableDropForeignKey x) {
+    void endVisit(SQLAlterTableDropForeignKey x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableDropPrimaryKey x) {
+    bool visit(SQLAlterTableDropPrimaryKey x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableDropPrimaryKey x) {
+    void endVisit(SQLAlterTableDropPrimaryKey x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableDisableKeys x) {
+    bool visit(SQLAlterTableDisableKeys x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableDisableKeys x) {
+    void endVisit(SQLAlterTableDisableKeys x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableEnableKeys x) {
+    bool visit(SQLAlterTableEnableKeys x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableEnableKeys x) {
+    void endVisit(SQLAlterTableEnableKeys x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableStatement x) {
+    bool visit(SQLAlterTableStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableStatement x) {
+    void endVisit(SQLAlterTableStatement x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableDisableConstraint x) {
+    bool visit(SQLAlterTableDisableConstraint x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableDisableConstraint x) {
+    void endVisit(SQLAlterTableDisableConstraint x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableEnableConstraint x) {
+    bool visit(SQLAlterTableEnableConstraint x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableEnableConstraint x) {
+    void endVisit(SQLAlterTableEnableConstraint x) {
 
     }
 
     //override
-    public bool visit(SQLColumnCheck x) {
+    bool visit(SQLColumnCheck x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLColumnCheck x) {
+    void endVisit(SQLColumnCheck x) {
 
     }
 
     //override
-    public bool visit(SQLExprHint x) {
+    bool visit(SQLExprHint x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLExprHint x) {
+    void endVisit(SQLExprHint x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableDropConstraint x) {
+    bool visit(SQLAlterTableDropConstraint x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableDropConstraint x) {
+    void endVisit(SQLAlterTableDropConstraint x) {
 
     }
 
     //override
-    public bool visit(SQLUnique x) {
+    bool visit(SQLUnique x) {
         foreach(SQLSelectOrderByItem column ; x.getColumns()) {
             column.accept(this);
         }
@@ -823,1204 +823,1204 @@ public class SQLASTVisitorAdapter : SQLASTVisitor {
     }
 
     //override
-    public void endVisit(SQLUnique x) {
+    void endVisit(SQLUnique x) {
 
     }
 
     //override
-    public bool visit(SQLCreateIndexStatement x) {
+    bool visit(SQLCreateIndexStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLCreateIndexStatement x) {
+    void endVisit(SQLCreateIndexStatement x) {
 
     }
 
     //override
-    public bool visit(SQLPrimaryKeyImpl x) {
+    bool visit(SQLPrimaryKeyImpl x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLPrimaryKeyImpl x) {
+    void endVisit(SQLPrimaryKeyImpl x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableRenameColumn x) {
+    bool visit(SQLAlterTableRenameColumn x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableRenameColumn x) {
+    void endVisit(SQLAlterTableRenameColumn x) {
 
     }
 
     //override
-    public bool visit(SQLColumnReference x) {
+    bool visit(SQLColumnReference x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLColumnReference x) {
+    void endVisit(SQLColumnReference x) {
 
     }
 
     //override
-    public bool visit(SQLForeignKeyImpl x) {
+    bool visit(SQLForeignKeyImpl x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLForeignKeyImpl x) {
+    void endVisit(SQLForeignKeyImpl x) {
 
     }
 
     //override
-    public bool visit(SQLDropSequenceStatement x) {
+    bool visit(SQLDropSequenceStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLDropSequenceStatement x) {
+    void endVisit(SQLDropSequenceStatement x) {
 
     }
 
     //override
-    public bool visit(SQLDropTriggerStatement x) {
+    bool visit(SQLDropTriggerStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLDropTriggerStatement x) {
+    void endVisit(SQLDropTriggerStatement x) {
 
     }
 
     //override
-    public void endVisit(SQLDropUserStatement x) {
+    void endVisit(SQLDropUserStatement x) {
 
     }
 
     //override
-    public bool visit(SQLDropUserStatement x) {
+    bool visit(SQLDropUserStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLExplainStatement x) {
+    void endVisit(SQLExplainStatement x) {
 
     }
 
     //override
-    public bool visit(SQLExplainStatement x) {
+    bool visit(SQLExplainStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLGrantStatement x) {
+    void endVisit(SQLGrantStatement x) {
 
     }
 
     //override
-    public bool visit(SQLGrantStatement x) {
+    bool visit(SQLGrantStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLDropDatabaseStatement x) {
+    void endVisit(SQLDropDatabaseStatement x) {
 
     }
 
     //override
-    public bool visit(SQLDropDatabaseStatement x) {
+    bool visit(SQLDropDatabaseStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableAddIndex x) {
+    void endVisit(SQLAlterTableAddIndex x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableAddIndex x) {
+    bool visit(SQLAlterTableAddIndex x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableAddConstraint x) {
+    void endVisit(SQLAlterTableAddConstraint x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableAddConstraint x) {
+    bool visit(SQLAlterTableAddConstraint x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLCreateTriggerStatement x) {
+    void endVisit(SQLCreateTriggerStatement x) {
 
     }
 
     //override
-    public bool visit(SQLCreateTriggerStatement x) {
+    bool visit(SQLCreateTriggerStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLDropFunctionStatement x) {
+    void endVisit(SQLDropFunctionStatement x) {
 
     }
 
     //override
-    public bool visit(SQLDropFunctionStatement x) {
+    bool visit(SQLDropFunctionStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLDropTableSpaceStatement x) {
+    void endVisit(SQLDropTableSpaceStatement x) {
 
     }
 
     //override
-    public bool visit(SQLDropTableSpaceStatement x) {
+    bool visit(SQLDropTableSpaceStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLDropProcedureStatement x) {
+    void endVisit(SQLDropProcedureStatement x) {
 
     }
 
     //override
-    public bool visit(SQLDropProcedureStatement x) {
+    bool visit(SQLDropProcedureStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLBooleanExpr x) {
+    void endVisit(SQLBooleanExpr x) {
 
     }
 
     //override
-    public bool visit(SQLBooleanExpr x) {
+    bool visit(SQLBooleanExpr x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLUnionQueryTableSource x) {
+    void endVisit(SQLUnionQueryTableSource x) {
 
     }
 
     //override
-    public bool visit(SQLUnionQueryTableSource x) {
+    bool visit(SQLUnionQueryTableSource x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLTimestampExpr x) {
+    void endVisit(SQLTimestampExpr x) {
 
     }
 
     //override
-    public bool visit(SQLTimestampExpr x) {
+    bool visit(SQLTimestampExpr x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLRevokeStatement x) {
+    void endVisit(SQLRevokeStatement x) {
 
     }
 
     //override
-    public bool visit(SQLRevokeStatement x) {
+    bool visit(SQLRevokeStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLBinaryExpr x) {
+    void endVisit(SQLBinaryExpr x) {
 
     }
 
     //override
-    public bool visit(SQLBinaryExpr x) {
+    bool visit(SQLBinaryExpr x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableRename x) {
+    void endVisit(SQLAlterTableRename x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableRename x) {
+    bool visit(SQLAlterTableRename x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterViewRenameStatement x) {
+    void endVisit(SQLAlterViewRenameStatement x) {
 
     }
 
     //override
-    public bool visit(SQLAlterViewRenameStatement x) {
+    bool visit(SQLAlterViewRenameStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLShowTablesStatement x) {
+    void endVisit(SQLShowTablesStatement x) {
 
     }
 
     //override
-    public bool visit(SQLShowTablesStatement x) {
+    bool visit(SQLShowTablesStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableAddPartition x) {
+    void endVisit(SQLAlterTableAddPartition x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableAddPartition x) {
+    bool visit(SQLAlterTableAddPartition x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableDropPartition x) {
+    void endVisit(SQLAlterTableDropPartition x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableDropPartition x) {
+    bool visit(SQLAlterTableDropPartition x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableRenamePartition x) {
+    void endVisit(SQLAlterTableRenamePartition x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableRenamePartition x) {
+    bool visit(SQLAlterTableRenamePartition x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableSetComment x) {
+    void endVisit(SQLAlterTableSetComment x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableSetComment x) {
+    bool visit(SQLAlterTableSetComment x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableSetLifecycle x) {
+    void endVisit(SQLAlterTableSetLifecycle x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableSetLifecycle x) {
+    bool visit(SQLAlterTableSetLifecycle x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableEnableLifecycle x) {
+    void endVisit(SQLAlterTableEnableLifecycle x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableEnableLifecycle x) {
+    bool visit(SQLAlterTableEnableLifecycle x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableDisableLifecycle x) {
+    void endVisit(SQLAlterTableDisableLifecycle x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableDisableLifecycle x) {
+    bool visit(SQLAlterTableDisableLifecycle x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableTouch x) {
+    void endVisit(SQLAlterTableTouch x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableTouch x) {
+    bool visit(SQLAlterTableTouch x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLArrayExpr x) {
+    void endVisit(SQLArrayExpr x) {
 
     }
 
     //override
-    public bool visit(SQLArrayExpr x) {
+    bool visit(SQLArrayExpr x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLOpenStatement x) {
+    void endVisit(SQLOpenStatement x) {
 
     }
 
     //override
-    public bool visit(SQLOpenStatement x) {
+    bool visit(SQLOpenStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLFetchStatement x) {
+    void endVisit(SQLFetchStatement x) {
 
     }
 
     //override
-    public bool visit(SQLFetchStatement x) {
+    bool visit(SQLFetchStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLCloseStatement x) {
+    void endVisit(SQLCloseStatement x) {
 
     }
 
     //override
-    public bool visit(SQLCloseStatement x) {
+    bool visit(SQLCloseStatement x) {
         return true;
     }
 
     //override
-    public bool visit(SQLGroupingSetExpr x) {
+    bool visit(SQLGroupingSetExpr x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLGroupingSetExpr x) {
+    void endVisit(SQLGroupingSetExpr x) {
 
     }
 
     //override
-    public bool visit(SQLIfStatement x) {
+    bool visit(SQLIfStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLIfStatement x) {
+    void endVisit(SQLIfStatement x) {
 
     }
 
     //override
-    public bool visit(SQLIfStatement.Else x) {
+    bool visit(SQLIfStatement.Else x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLIfStatement.Else x) {
+    void endVisit(SQLIfStatement.Else x) {
 
     }
 
     //override
-    public bool visit(SQLIfStatement.ElseIf x) {
+    bool visit(SQLIfStatement.ElseIf x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLIfStatement.ElseIf x) {
+    void endVisit(SQLIfStatement.ElseIf x) {
 
     }
 
     //override
-    public bool visit(SQLLoopStatement x) {
+    bool visit(SQLLoopStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLLoopStatement x) {
+    void endVisit(SQLLoopStatement x) {
 
     }
 
     //override
-    public bool visit(SQLParameter x) {
+    bool visit(SQLParameter x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLParameter x) {
+    void endVisit(SQLParameter x) {
 
     }
 
     //override
-    public bool visit(SQLCreateProcedureStatement x) {
+    bool visit(SQLCreateProcedureStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLCreateProcedureStatement x) {
+    void endVisit(SQLCreateProcedureStatement x) {
 
     }
 
     //override
-    public bool visit(SQLCreateFunctionStatement x) {
+    bool visit(SQLCreateFunctionStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLCreateFunctionStatement x) {
+    void endVisit(SQLCreateFunctionStatement x) {
 
     }
 
     //override
-    public bool visit(SQLBlockStatement x) {
+    bool visit(SQLBlockStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLBlockStatement x) {
+    void endVisit(SQLBlockStatement x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableDropKey x) {
+    bool visit(SQLAlterTableDropKey x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableDropKey x) {
+    void endVisit(SQLAlterTableDropKey x) {
 
     }
 
     //override
-    public bool visit(SQLDeclareItem x) {
+    bool visit(SQLDeclareItem x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLDeclareItem x) {
+    void endVisit(SQLDeclareItem x) {
     }
 
     //override
-    public bool visit(SQLPartitionValue x) {
+    bool visit(SQLPartitionValue x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLPartitionValue x) {
+    void endVisit(SQLPartitionValue x) {
 
     }
 
     //override
-    public bool visit(SQLPartition x) {
+    bool visit(SQLPartition x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLPartition x) {
+    void endVisit(SQLPartition x) {
 
     }
 
     //override
-    public bool visit(SQLPartitionByRange x) {
+    bool visit(SQLPartitionByRange x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLPartitionByRange x) {
+    void endVisit(SQLPartitionByRange x) {
 
     }
 
     //override
-    public bool visit(SQLPartitionByHash x) {
+    bool visit(SQLPartitionByHash x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLPartitionByHash x) {
+    void endVisit(SQLPartitionByHash x) {
 
     }
 
     //override
-    public bool visit(SQLPartitionByList x) {
+    bool visit(SQLPartitionByList x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLPartitionByList x) {
+    void endVisit(SQLPartitionByList x) {
 
     }
 
     //override
-    public bool visit(SQLSubPartition x) {
+    bool visit(SQLSubPartition x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLSubPartition x) {
+    void endVisit(SQLSubPartition x) {
 
     }
 
     //override
-    public bool visit(SQLSubPartitionByHash x) {
+    bool visit(SQLSubPartitionByHash x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLSubPartitionByHash x) {
+    void endVisit(SQLSubPartitionByHash x) {
 
     }
 
     //override
-    public bool visit(SQLSubPartitionByList x) {
+    bool visit(SQLSubPartitionByList x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLSubPartitionByList x) {
+    void endVisit(SQLSubPartitionByList x) {
 
     }
 
     //override
-    public bool visit(SQLAlterDatabaseStatement x) {
+    bool visit(SQLAlterDatabaseStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterDatabaseStatement x) {
+    void endVisit(SQLAlterDatabaseStatement x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableConvertCharSet x) {
+    bool visit(SQLAlterTableConvertCharSet x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableConvertCharSet x) {
+    void endVisit(SQLAlterTableConvertCharSet x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableReOrganizePartition x) {
+    bool visit(SQLAlterTableReOrganizePartition x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableReOrganizePartition x) {
+    void endVisit(SQLAlterTableReOrganizePartition x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableCoalescePartition x) {
+    bool visit(SQLAlterTableCoalescePartition x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableCoalescePartition x) {
+    void endVisit(SQLAlterTableCoalescePartition x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableTruncatePartition x) {
+    bool visit(SQLAlterTableTruncatePartition x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableTruncatePartition x) {
+    void endVisit(SQLAlterTableTruncatePartition x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableDiscardPartition x) {
+    bool visit(SQLAlterTableDiscardPartition x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableDiscardPartition x) {
+    void endVisit(SQLAlterTableDiscardPartition x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableImportPartition x) {
+    bool visit(SQLAlterTableImportPartition x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableImportPartition x) {
+    void endVisit(SQLAlterTableImportPartition x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableAnalyzePartition x) {
+    bool visit(SQLAlterTableAnalyzePartition x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableAnalyzePartition x) {
+    void endVisit(SQLAlterTableAnalyzePartition x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableCheckPartition x) {
+    bool visit(SQLAlterTableCheckPartition x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableCheckPartition x) {
+    void endVisit(SQLAlterTableCheckPartition x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableOptimizePartition x) {
+    bool visit(SQLAlterTableOptimizePartition x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableOptimizePartition x) {
+    void endVisit(SQLAlterTableOptimizePartition x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableRebuildPartition x) {
+    bool visit(SQLAlterTableRebuildPartition x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableRebuildPartition x) {
+    void endVisit(SQLAlterTableRebuildPartition x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableRepairPartition x) {
+    bool visit(SQLAlterTableRepairPartition x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableRepairPartition x) {
+    void endVisit(SQLAlterTableRepairPartition x) {
 
     }
     
     //override
-    public bool visit(SQLSequenceExpr x) {
+    bool visit(SQLSequenceExpr x) {
         return true;
     }
     
     //override
-    public void endVisit(SQLSequenceExpr x) {
+    void endVisit(SQLSequenceExpr x) {
         
     }
 
     //override
-    public bool visit(SQLMergeStatement x) {
+    bool visit(SQLMergeStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLMergeStatement x) {
+    void endVisit(SQLMergeStatement x) {
         
     }
 
     //override
-    public bool visit(SQLMergeStatement.MergeUpdateClause x) {
+    bool visit(SQLMergeStatement.MergeUpdateClause x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLMergeStatement.MergeUpdateClause x) {
+    void endVisit(SQLMergeStatement.MergeUpdateClause x) {
         
     }
 
     //override
-    public bool visit(SQLMergeStatement.MergeInsertClause x) {
+    bool visit(SQLMergeStatement.MergeInsertClause x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLMergeStatement.MergeInsertClause x) {
+    void endVisit(SQLMergeStatement.MergeInsertClause x) {
         
     }
 
     //override
-    public bool visit(SQLErrorLoggingClause x) {
+    bool visit(SQLErrorLoggingClause x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLErrorLoggingClause x) {
+    void endVisit(SQLErrorLoggingClause x) {
 
     }
 
     //override
-    public bool visit(SQLNullConstraint x) {
+    bool visit(SQLNullConstraint x) {
 	return true;
     }
 
     //override
-    public void endVisit(SQLNullConstraint x) {
+    void endVisit(SQLNullConstraint x) {
     }
 
     //override
-    public bool visit(SQLCreateSequenceStatement x) {
+    bool visit(SQLCreateSequenceStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLCreateSequenceStatement x) {
+    void endVisit(SQLCreateSequenceStatement x) {
     }
 
     //override
-    public bool visit(SQLDateExpr x) {
+    bool visit(SQLDateExpr x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLDateExpr x) {
+    void endVisit(SQLDateExpr x) {
 
     }
 
     //override
-    public bool visit(SQLLimit x) {
+    bool visit(SQLLimit x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLLimit x) {
+    void endVisit(SQLLimit x) {
 
     }
 
     //override
-    public void endVisit(SQLStartTransactionStatement x) {
+    void endVisit(SQLStartTransactionStatement x) {
 
     }
 
     //override
-    public bool visit(SQLStartTransactionStatement x) {
+    bool visit(SQLStartTransactionStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLDescribeStatement x) {
+    void endVisit(SQLDescribeStatement x) {
 
     }
 
     //override
-    public bool visit(SQLDescribeStatement x) {
+    bool visit(SQLDescribeStatement x) {
         return true;
     }
 
     //override
-    public bool visit(SQLWhileStatement x) {
+    bool visit(SQLWhileStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLWhileStatement x) {
+    void endVisit(SQLWhileStatement x) {
 
     }
 
 
     //override
-    public bool visit(SQLDeclareStatement x) {
+    bool visit(SQLDeclareStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLDeclareStatement x) {
+    void endVisit(SQLDeclareStatement x) {
 
     }
 
     //override
-    public bool visit(SQLReturnStatement x) {
+    bool visit(SQLReturnStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLReturnStatement x) {
+    void endVisit(SQLReturnStatement x) {
 
     }
 
     //override
-    public bool visit(SQLArgument x) {
+    bool visit(SQLArgument x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLArgument x) {
+    void endVisit(SQLArgument x) {
 
     }
 
     //override
-    public bool visit(SQLCommitStatement x) {
+    bool visit(SQLCommitStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLCommitStatement x) {
+    void endVisit(SQLCommitStatement x) {
 
     }
 
     //override
-    public bool visit(SQLFlashbackExpr x) {
+    bool visit(SQLFlashbackExpr x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLFlashbackExpr x) {
+    void endVisit(SQLFlashbackExpr x) {
 
     }
 
     //override
-    public bool visit(SQLCreateMaterializedViewStatement x) {
+    bool visit(SQLCreateMaterializedViewStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLCreateMaterializedViewStatement x) {
+    void endVisit(SQLCreateMaterializedViewStatement x) {
 
     }
 
     //override
-    public bool visit(SQLBinaryOpExprGroup x) {
+    bool visit(SQLBinaryOpExprGroup x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLBinaryOpExprGroup x) {
+    void endVisit(SQLBinaryOpExprGroup x) {
 
     }
 
-    public void config(VisitorFeature feature, bool state) {
+    void config(VisitorFeature feature, bool state) {
         features = VisitorFeature.config(features, feature, state);
     }
 
     //override
-    public bool visit(SQLScriptCommitStatement x) {
+    bool visit(SQLScriptCommitStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLScriptCommitStatement x) {
+    void endVisit(SQLScriptCommitStatement x) {
 
     }
 
     //override
-    public bool visit(SQLReplaceStatement x) {
+    bool visit(SQLReplaceStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLReplaceStatement x) {
+    void endVisit(SQLReplaceStatement x) {
 
     }
 
     //override
-    public bool visit(SQLCreateUserStatement x) {
+    bool visit(SQLCreateUserStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLCreateUserStatement x) {
+    void endVisit(SQLCreateUserStatement x) {
 
     }
 
     //override
-    public bool visit(SQLAlterFunctionStatement x) {
+    bool visit(SQLAlterFunctionStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterFunctionStatement x) {
+    void endVisit(SQLAlterFunctionStatement x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTypeStatement x) {
+    bool visit(SQLAlterTypeStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTypeStatement x) {
+    void endVisit(SQLAlterTypeStatement x) {
 
     }
 
     //override
-    public bool visit(SQLIntervalExpr x) {
+    bool visit(SQLIntervalExpr x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLIntervalExpr x) {
+    void endVisit(SQLIntervalExpr x) {
 
     }
 
     //override
-    public bool visit(SQLLateralViewTableSource x) {
+    bool visit(SQLLateralViewTableSource x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLLateralViewTableSource x) {
+    void endVisit(SQLLateralViewTableSource x) {
 
     }
 
     //override
-    public bool visit(SQLShowErrorsStatement x) {
+    bool visit(SQLShowErrorsStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLShowErrorsStatement x) {
+    void endVisit(SQLShowErrorsStatement x) {
 
     }
 
     //override
-    public bool visit(SQLAlterCharacter x) {
+    bool visit(SQLAlterCharacter x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterCharacter x) {
+    void endVisit(SQLAlterCharacter x) {
 
     }
 
     //override
-    public bool visit(SQLExprStatement x) {
+    bool visit(SQLExprStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLExprStatement x) {
+    void endVisit(SQLExprStatement x) {
 
     }
 
     //override
-    public bool visit(SQLAlterProcedureStatement x) {
+    bool visit(SQLAlterProcedureStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterProcedureStatement x) {
+    void endVisit(SQLAlterProcedureStatement x) {
 
     }
 
     //override
-    public bool visit(SQLDropEventStatement x) {
+    bool visit(SQLDropEventStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLDropEventStatement x) {
+    void endVisit(SQLDropEventStatement x) {
 
     }
 
     //override
-    public bool visit(SQLDropLogFileGroupStatement x) {
+    bool visit(SQLDropLogFileGroupStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLDropLogFileGroupStatement x) {
+    void endVisit(SQLDropLogFileGroupStatement x) {
 
     }
 
     //override
-    public bool visit(SQLDropServerStatement x) {
+    bool visit(SQLDropServerStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLDropServerStatement x) {
+    void endVisit(SQLDropServerStatement x) {
 
     }
 
     //override
-    public bool visit(SQLDropSynonymStatement x) {
+    bool visit(SQLDropSynonymStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLDropSynonymStatement x) {
+    void endVisit(SQLDropSynonymStatement x) {
 
     }
 
     //override
-    public bool visit(SQLDropTypeStatement x) {
+    bool visit(SQLDropTypeStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLDropTypeStatement x) {
+    void endVisit(SQLDropTypeStatement x) {
 
     }
 
     //override
-    public bool visit(SQLRecordDataType x) {
+    bool visit(SQLRecordDataType x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLRecordDataType x) {
+    void endVisit(SQLRecordDataType x) {
 
     }
 
-    public bool visit(SQLExternalRecordFormat x) {
+    bool visit(SQLExternalRecordFormat x) {
         return true;
     }
 
-    public void endVisit(SQLExternalRecordFormat x) {
+    void endVisit(SQLExternalRecordFormat x) {
 
     }
 
     //override
-    public bool visit(SQLArrayDataType x) {
-        return true;
-    }
-
-    //override
-    public void endVisit(SQLArrayDataType x) {
-
-    }
-
-    //override
-    public bool visit(SQLMapDataType x) {
+    bool visit(SQLArrayDataType x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLMapDataType x) {
+    void endVisit(SQLArrayDataType x) {
 
     }
 
     //override
-    public bool visit(SQLStructDataType x) {
+    bool visit(SQLMapDataType x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLStructDataType x) {
+    void endVisit(SQLMapDataType x) {
 
     }
 
     //override
-    public bool visit(SQLStructDataType.Field x) {
+    bool visit(SQLStructDataType x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLStructDataType.Field x) {
+    void endVisit(SQLStructDataType x) {
 
     }
 
     //override
-    public bool visit(SQLDropMaterializedViewStatement x) {
+    bool visit(SQLStructDataType.Field x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLDropMaterializedViewStatement x) {
+    void endVisit(SQLStructDataType.Field x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableRenameIndex x) {
+    bool visit(SQLDropMaterializedViewStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableRenameIndex x) {
+    void endVisit(SQLDropMaterializedViewStatement x) {
 
     }
 
     //override
-    public bool visit(SQLAlterSequenceStatement x) {
+    bool visit(SQLAlterTableRenameIndex x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterSequenceStatement x) {
+    void endVisit(SQLAlterTableRenameIndex x) {
 
     }
 
     //override
-    public bool visit(SQLAlterTableExchangePartition x) {
+    bool visit(SQLAlterSequenceStatement x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLAlterTableExchangePartition x) {
+    void endVisit(SQLAlterSequenceStatement x) {
 
     }
 
     //override
-    public bool visit(SQLValuesExpr x) {
+    bool visit(SQLAlterTableExchangePartition x) {
         return true;
     }
 
     //override
-    public void endVisit(SQLValuesExpr x) {
+    void endVisit(SQLAlterTableExchangePartition x) {
 
     }
 
     //override
-    public bool visit(SQLValuesTableSource x) {
+    bool visit(SQLValuesExpr x) {
         return true;
     }
 
-    public void endVisit(SQLValuesTableSource x) {
+    //override
+    void endVisit(SQLValuesExpr x) {
 
     }
 
     //override
-    public bool visit(SQLContainsExpr x) {
+    bool visit(SQLValuesTableSource x) {
         return true;
     }
 
-    public void endVisit(SQLContainsExpr x) {
+    void endVisit(SQLValuesTableSource x) {
 
     }
 
     //override
-    public bool visit(SQLRealExpr x) {
+    bool visit(SQLContainsExpr x) {
         return true;
     }
 
-    public void endVisit(SQLRealExpr x) {
+    void endVisit(SQLContainsExpr x) {
 
     }
 
     //override
-    public bool visit(SQLWindow x) {
+    bool visit(SQLRealExpr x) {
         return true;
     }
 
-    public void endVisit(SQLWindow x) {
+    void endVisit(SQLRealExpr x) {
 
     }
 
     //override
-    public bool visit(SQLDumpStatement x) {
+    bool visit(SQLWindow x) {
         return true;
     }
 
-    public void endVisit(SQLDumpStatement x) {
+    void endVisit(SQLWindow x) {
 
     }
 
-    public  bool isEnabled(VisitorFeature feature) {
+    //override
+    bool visit(SQLDumpStatement x) {
+        return true;
+    }
+
+    void endVisit(SQLDumpStatement x) {
+
+    }
+
+     bool isEnabled(VisitorFeature feature) {
         return VisitorFeature.isEnabled(this.features, feature);
     }
 
-    public int getFeatures() {
+    int getFeatures() {
         return features;
     }
 
-    public void setFeatures(int features) {
+    void setFeatures(int features) {
         this.features = features;
     }
 }

@@ -15,7 +15,7 @@
  */
 module hunt.sql.visitor.VisitorFeature;
 
-public struct  VisitorFeature {
+struct  VisitorFeature {
     enum VisitorFeature OutputUCase =  VisitorFeature(0);
     enum VisitorFeature OutputPrettyFormat =  VisitorFeature(1);
     enum VisitorFeature OutputParameterized =  VisitorFeature(2);
@@ -26,24 +26,20 @@ public struct  VisitorFeature {
     enum VisitorFeature OutputParameterizedQuesUnMergeInList =  VisitorFeature(7);
     enum VisitorFeature OutputParameterizedQuesUnMergeOr =  VisitorFeature(8);
     enum VisitorFeature OutputKeepParenthesisWhenNotExpr =   VisitorFeature(9);
-
-
-    /**
-     * @deprecated
-     */
+    enum VisitorFeature OutputQuotedIdentifier =  VisitorFeature(10);
 
     private this(int ord){
         mask = (1 << ord);
     }
 
-    public  int mask;
+    int mask;
 
 
-    public static bool isEnabled(int features, VisitorFeature feature) {
+    static bool isEnabled(int features, VisitorFeature feature) {
         return (features & feature.mask) != 0;
     }
 
-    public static int config(int features, VisitorFeature feature, bool state) {
+    static int config(int features, VisitorFeature feature, bool state) {
         if (state) {
             features |= feature.mask;
         } else {
@@ -53,7 +49,7 @@ public struct  VisitorFeature {
         return features;
     }
 
-    public static int of(VisitorFeature[] features...) {
+    static int of(VisitorFeature[] features...) {
         if (features is null) {
             return 0;
         }

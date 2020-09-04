@@ -131,32 +131,52 @@ class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, Printab
 
     protected  int lines = 0;
 
-
     protected Boolean printStatementAfterSemi ;
+    private bool _haveQuotes = false;
+    private char _quotes = '"';
 
 
-    this()
-    {
+    this() {
         printStatementAfterSemi = Boolean.FALSE;
-        
-        features |= VisitorFeature.OutputPrettyFormat.mask;
-        
+        // features |= VisitorFeature.OutputPrettyFormat.mask;
+        config(VisitorFeature.OutputPrettyFormat, true);
+        initialization();
     }
 
     this(Appendable appender){
         this.appender = appender;
+        initialization();
     }
 
     this(Appendable appender, string dbType){
         this.appender = appender;
         this.dbType = dbType;
+        initialization();
     }
 
     this(Appendable appender, bool parameterized){
         this.appender = appender;
         this.config(VisitorFeature.OutputParameterized, parameterized);
         this.config(VisitorFeature.OutputParameterizedQuesUnMergeInList, parameterizedQuesUnMergeInList);
+        initialization();
     }
+
+    private void initialization() {
+        if(dbType == DBType.MYSQL.name) {
+            _quotes = '`';
+        } else if(dbType == DBType.POSTGRESQL.name) {
+            // https://stackoverflow.com/questions/20878932/are-postgresql-column-names-case-sensitive
+            // https://blog.xojo.com/2016/09/28/about-postgresql-case-sensitivity/
+            // https://lerner.co.il/2013/11/30/quoting-postgresql/
+            _quotes = '"';
+        }
+
+        // config(VisitorFeature.OutputQuotedIdentifier, false);
+    }
+
+    // bool haveQuotes() {
+    //     return _haveQuotes;
+    // }
 
     int getReplaceCount() {
         return this.replaceCount;
@@ -288,23 +308,25 @@ class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, Printab
 
     void print(char value) {
         if (this.appender is null) {
+            warning("The appender is null");
             return;
         }
 
         try {
-            version(HUNT_ENTITY_DEBUG_MORE) tracef("Appending: %s", value);
+            version(HUNT_SQL_DEBUG_MORE) tracef("Appending: %s", value);
             this.appender.append(value);
         } catch (Exception e) {
+            warning(e.msg);
             throw new Exception("print error", e);
         }
     }
 
     void print(int value) {
+        version(HUNT_SQL_DEBUG_MORE) tracef("Appending: %s", value);
         if (this.appender is null) {
+            warning("The appender is null");
             return;
         }
-
-        version(HUNT_ENTITY_DEBUG_MORE) tracef("Appending: %s", value);
 
         if (cast(StringBuilder)appender !is null) {
             (cast(StringBuilder) appender).append(value);
@@ -316,7 +338,9 @@ class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, Printab
     }
 
     void print(long value) {
+        version(HUNT_SQL_DEBUG_MORE) tracef("Appending: %s", value);
         if (this.appender is null) {
+            warning("The appender is null");
             return;
         }
 
@@ -361,22 +385,13 @@ class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, Printab
      }
 
     protected void print0(string text) {
-        // if(text == "desc") text = "`" ~ text ~ "`";
-        // TODO: Tasks pending completion -@zhangxueping at 2019-10-08T11:01:20+08:00
-        // handle the reserved words, for example, desc, table, etc.
-        version(HUNT_ENTITY_DEBUG_MORE) tracef("Appending: %s", text);
+        version(HUNT_SQL_DEBUG_MORE) tracef("Appending: %s", text);
         if (appender is null) {
             warning("appender is null");
             return;
         }
 
         this.appender.append(text);
-
-        // try {
-        //     this.appender.append(text);
-        // } catch (Exception e) {
-        //     throw new Exception("println error", e);
-        // }
     }
 
     protected void print0(Bytes data) {        
@@ -1239,7 +1254,12 @@ class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, Printab
     }
 
     override bool visit(SQLIdentifierExpr x) {
-        print0(x.getName());
+        string name = x.getName();
+        if(isEnabled(VisitorFeature.OutputQuotedIdentifier)) {
+            print0(_quotes ~ name ~ _quotes);
+        } else {
+            print0(name);
+        }
         return false;
     }
 
@@ -1304,7 +1324,8 @@ class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, Printab
                     if (cast(SQLSelectQueryBlock)parent !is null) {
                         SQLTableSource from = (cast(SQLSelectQueryBlock) parent).getFrom();
                         if (quote) {
-                            string name2 = name.substring(1, name.length - 1);
+                            // string name2 = name.substring(1, name.length - 1);
+                            string name2 = name[1 .. $-1];
                             if (isTableSourceAlias(from, name, name2)) {
                                 isAlias = true;
                             }
@@ -1327,6 +1348,7 @@ class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, Printab
                 }
             }
         }
+
         print0(name);
         return false;
     }
@@ -1772,24 +1794,35 @@ class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, Printab
             }
         }
 
-        version(HUNT_SQL_DEBUG_MORE) tracef("mapTableName: %s, ownerName=%s", mapTableName, ownerName);
+        // version(HUNT_SQL_DEBUG_MORE) tracef("mapTableName: %s, ownerName=%s", mapTableName, ownerName);
         
         if (!mapTableName.empty()) {
             print0(mapTableName);
             print('.');
-        } else {
-            if (ownerIdent !is null) {
-                ownerName = ownerIdent.getName();
-                if(!ownerName.empty()) {
+        } else if (ownerIdent !is null) {
+            ownerName = ownerIdent.getName();
+            if(!ownerName.empty()) {
+                if(isEnabled(VisitorFeature.OutputQuotedIdentifier)) {
+                    print(_quotes);
                     printName(ownerIdent, ownerName, this.shardingSupport && this.parameterized);
-                    print('.');
+                    print(_quotes);
+                } else {
+                    printName(ownerIdent, ownerName, this.shardingSupport && this.parameterized);
                 }
-            } else {
-                printExpr(owner);
+
                 print('.');
             }
+        } else {
+            printExpr(owner);
+            print('.');
         }
-        print0(x.getName());
+
+       string name = x.getName();
+        if(isEnabled(VisitorFeature.OutputQuotedIdentifier)) {
+            print0(_quotes ~ name ~ _quotes);
+        } else {
+            print0(name);
+        }
 
         return false;
     }
@@ -2064,9 +2097,16 @@ class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, Printab
         }
 
         SQLExpr expr = x.getExpr();
+        SQLIdentifierExpr identifierExpr = cast(SQLIdentifierExpr)expr;
 
-        if (cast(SQLIdentifierExpr)expr !is null) {
-            print0((cast(SQLIdentifierExpr) expr).getName());
+        if (identifierExpr !is null) {
+            string name = identifierExpr.getName();
+            print0(name);
+            // if(isEnabled(VisitorFeature.OutputQuotedIdentifier)) {
+            //     print0(_quotes ~ name ~ _quotes);
+            // } else {
+            //     print0(name);
+            // }
         } else if (cast(SQLPropertyExpr)expr !is null) {
             visit(cast(SQLPropertyExpr) expr);
         } else {
@@ -2081,9 +2121,11 @@ class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, Printab
             if (c0 == '"' || c0 == '\'') { // _alias.indexOf(' ') == -1 || 
                 print0(_alias);
             } else {
-                print('"');
-                print0(_alias);
-                print('"');
+                if(isEnabled(VisitorFeature.OutputQuotedIdentifier)) {
+                    print0(_quotes ~ _alias ~ _quotes);
+                } else {
+                    print0(_alias);
+                }
             }
         }
         return false;
@@ -2218,11 +2260,17 @@ class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, Printab
             }
         }
 
-        if (cast(SQLIdentifierExpr)expr !is null) {
-            SQLIdentifierExpr identifierExpr = cast(SQLIdentifierExpr) expr;
+        SQLIdentifierExpr identifierExpr = cast(SQLIdentifierExpr) expr;
+        SQLPropertyExpr propertyExpr = cast(SQLPropertyExpr) expr;
+
+        if (identifierExpr !is null) {
              string name = identifierExpr.getName();
             if (!this.parameterized) {
-                print0(name);
+                if(isEnabled(VisitorFeature.OutputQuotedIdentifier)) {
+                    print0(_quotes ~ name ~ _quotes);
+                } else {
+                    print0(name);
+                }
                 return;
             }
 
@@ -2240,8 +2288,7 @@ class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, Printab
             } else {
                 print0(name);
             }
-        } else if (cast(SQLPropertyExpr)expr !is null) {
-            SQLPropertyExpr propertyExpr = cast(SQLPropertyExpr) expr;
+        } else if (propertyExpr !is null) {
             SQLExpr owner = propertyExpr.getOwner();
 
             printTableSourceExpr(owner);
