@@ -31,16 +31,16 @@ import hunt.sql.dialect.postgresql.ast.stmt.PGDeleteStatement;
 import hunt.sql.util.DBType;
 import hunt.sql.builder.SQLBuilder;
 
-public class SQLDeleteBuilderImpl : SQLDeleteBuilder {
+class SQLDeleteBuilderImpl : SQLDeleteBuilder {
 
     private SQLDeleteStatement stmt;
     private string             dbType;
 
-    public this(string dbType){
+    this(string dbType){
         this.dbType = dbType;
     }
     
-    public this(string sql, string dbType){
+    this(string sql, string dbType){
         List!SQLStatement stmtList = SQLUtils.parseStatements(sql, dbType);
 
         if (stmtList.size() == 0) {
@@ -56,28 +56,28 @@ public class SQLDeleteBuilderImpl : SQLDeleteBuilder {
         this.dbType = dbType;
     }
 
-    public this(SQLDeleteStatement stmt, string dbType){
+    this(SQLDeleteStatement stmt, string dbType){
         this.stmt = stmt;
         this.dbType = dbType;
     }
 
     override
-    public SQLBuilder limit(int rowCount) {
+    SQLBuilder limit(int rowCount) {
         throw new Exception("not implement");
     }
 
     override
-    public SQLBuilder limit(int rowCount, int offset) {
+    SQLBuilder limit(int rowCount, int offset) {
         throw new Exception("not implement");
     }
 
     override
-    public SQLBuilder from(string table) {
+    SQLBuilder from(string table) {
         return from(table, null);
     }
 
     override
-    public SQLBuilder from(string table, string _alias) {
+    SQLBuilder from(string table, string _alias) {
         SQLDeleteStatement _delete = getSQLDeleteStatement();
         SQLExprTableSource from = new SQLExprTableSource(new SQLIdentifierExpr(table), _alias);
         _delete.setTableSource(from);
@@ -85,7 +85,7 @@ public class SQLDeleteBuilderImpl : SQLDeleteBuilder {
     }
 
     override
-    public SQLBuilder where(string expr) {
+    SQLBuilder where(string expr) {
         SQLDeleteStatement _delete = getSQLDeleteStatement();
 
         SQLExpr exprObj = SQLUtils.toSQLExpr(expr, dbType);
@@ -95,7 +95,7 @@ public class SQLDeleteBuilderImpl : SQLDeleteBuilder {
     }
 
     override
-    public SQLBuilder whereAnd(string expr) {
+    SQLBuilder whereAnd(string expr) {
         SQLDeleteStatement _delete = getSQLDeleteStatement();
 
         SQLExpr exprObj = SQLUtils.toSQLExpr(expr, dbType);
@@ -106,7 +106,7 @@ public class SQLDeleteBuilderImpl : SQLDeleteBuilder {
     }
 
     override
-    public SQLBuilder whereOr(string expr) {
+    SQLBuilder whereOr(string expr) {
         SQLDeleteStatement _delete = getSQLDeleteStatement();
 
         SQLExpr exprObj = SQLUtils.toSQLExpr(expr, dbType);
@@ -116,14 +116,14 @@ public class SQLDeleteBuilderImpl : SQLDeleteBuilder {
         return this;
     }
 
-    public SQLDeleteStatement getSQLDeleteStatement() {
+    SQLDeleteStatement getSQLDeleteStatement() {
         if (stmt is null) {
             stmt = createSQLDeleteStatement();
         }
         return stmt;
     }
 
-    public SQLDeleteStatement createSQLDeleteStatement() {
+    SQLDeleteStatement createSQLDeleteStatement() {
         // if (DBType.ORACLE.name == dbType) {
         //     return new OracleDeleteStatement();    
         // }
@@ -139,7 +139,11 @@ public class SQLDeleteBuilderImpl : SQLDeleteBuilder {
         return new SQLDeleteStatement();
     }
 
-    override public string toString() {
+    override string toString() {
         return SQLUtils.toSQLString(stmt, dbType);
+    }
+    
+    string toString(FormatOption option) {
+        return SQLUtils.toSQLString(stmt, dbType, option);
     }
 }

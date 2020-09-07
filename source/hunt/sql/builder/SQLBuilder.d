@@ -16,9 +16,9 @@
 
 module hunt.sql.builder.SQLBuilder;
 
+import hunt.sql.SQLUtils;
 
-public interface SQLBuilder {
-
+interface SQLBuilder {
 
     SQLBuilder select(string[] column...);
 
@@ -57,4 +57,6 @@ public interface SQLBuilder {
     SQLBuilder rightJoin(string table , string _alias = null, string cond = null);
 
     string toString();
+
+    string toString(FormatOption option);
 }

@@ -18,101 +18,81 @@ module hunt.sql.builder.SQLSelectBuilder;
 import hunt.sql.ast.statement.SQLSelectStatement;
 import hunt.sql.builder.SQLBuilder;
 
-
 abstract class SQLSelectBuilder : SQLBuilder {
 
-    SQLBuilder select(string[] column...)
-    {
+    SQLBuilder select(string[] column...) {
         return this;
     }
 
-    SQLBuilder selectWithAlias(string column, string _alias)
-    {
+    SQLBuilder selectWithAlias(string column, string _alias) {
         return this;
     }
 
-    SQLBuilder from(string table)
-    {
+    SQLBuilder from(string table) {
         return this;
     }
 
-    SQLBuilder from(string table, string _alias)
-    {
+    SQLBuilder from(string table, string _alias) {
         return this;
     }
 
-    SQLBuilder orderBy(string[] columns...)
-    {
+    SQLBuilder orderBy(string[] columns...) {
         return this;
     }
 
-    SQLBuilder groupBy(string expr)
-    {
+    SQLBuilder groupBy(string expr) {
         return this;
     }
 
-    SQLBuilder having(string expr)
-    {
+    SQLBuilder having(string expr) {
         return this;
     }
 
-    SQLBuilder into(string expr)
-    {
+    SQLBuilder into(string expr) {
         return this;
     }
 
-    SQLBuilder limit(int rowCount)
-    {
+    SQLBuilder limit(int rowCount) {
         return this;
     }
 
-    SQLBuilder offset(int offset)
-    {
+    SQLBuilder offset(int offset) {
         return this;
     }
 
-    SQLBuilder limit(int rowCount, int offset)
-    {
+    SQLBuilder limit(int rowCount, int offset) {
         return this;
     }
 
-    SQLBuilder where(string sql)
-    {
+    SQLBuilder where(string sql) {
         return this;
     }
 
-    SQLBuilder whereAnd(string sql)
-    {
+    SQLBuilder whereAnd(string sql) {
         return this;
     }
 
-    SQLBuilder whereOr(string sql)
-    {
+    SQLBuilder whereOr(string sql) {
         return this;
     }
 
-    SQLBuilder join(string table , string _alias = null, string cond = null)
-    {
+    SQLBuilder join(string table, string _alias = null, string cond = null) {
         return this;
     }
 
-    SQLBuilder innerJoin(string table , string _alias = null, string cond = null)
-    {
+    SQLBuilder innerJoin(string table, string _alias = null, string cond = null) {
         return this;
     }
 
-    SQLBuilder leftJoin(string table , string _alias = null, string cond = null)
-    {
+    SQLBuilder leftJoin(string table, string _alias = null, string cond = null) {
         return this;
     }
 
-    SQLBuilder rightJoin(string table , string _alias = null, string cond = null)
-    {
+    SQLBuilder rightJoin(string table, string _alias = null, string cond = null) {
         return this;
     }
 
-    override string toString()
-    {
+    override string toString() {
         return "SQLSelectBuilder";
     }
 }

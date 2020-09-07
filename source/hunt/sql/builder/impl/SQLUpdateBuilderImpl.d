@@ -52,16 +52,16 @@ import hunt.Nullable;
 
 import std.variant;
 
-public class SQLUpdateBuilderImpl :  SQLUpdateBuilder {
+class SQLUpdateBuilderImpl :  SQLUpdateBuilder {
 
     private SQLUpdateStatement stmt;
     private string             dbType;
 
-    public this(string dbType){
+    this(string dbType){
         this.dbType = dbType;
     }
     
-    public this(string sql, string dbType){
+    this(string sql, string dbType){
         List!SQLStatement stmtList = SQLUtils.parseStatements(sql, dbType);
 
         if (stmtList.size() == 0) {
@@ -77,7 +77,7 @@ public class SQLUpdateBuilderImpl :  SQLUpdateBuilder {
         this.dbType = dbType;
     }
 
-    public static SQLExpr toSQLExpr(Variant obj, string dbType) {
+    static SQLExpr toSQLExpr(Variant obj, string dbType) {
         // logDebug("set : ",obj.toString);
         if (!obj.hasValue() || obj == null) {
             return new SQLNullExpr();
@@ -160,28 +160,28 @@ public class SQLUpdateBuilderImpl :  SQLUpdateBuilder {
         throw new IllegalArgumentException("unsupported : " ~ obj.type.toString());
     }
 
-    public this(SQLUpdateStatement stmt, string dbType){
+    this(SQLUpdateStatement stmt, string dbType){
         this.stmt = stmt;
         this.dbType = dbType;
     }
 
     override
-    public SQLBuilder limit(int rowCount) {
+    SQLBuilder limit(int rowCount) {
         throw new Exception("not implement");
     }
 
     override
-    public SQLBuilder limit(int rowCount, int offset) {
+    SQLBuilder limit(int rowCount, int offset) {
         throw new Exception("not implement");
     }
 
     override
-    public SQLBuilder from(string table) {
+    SQLBuilder from(string table) {
         return from(table, null);
     }
 
     override
-    public SQLBuilder from(string table, string _alias) {
+    SQLBuilder from(string table, string _alias) {
         SQLUpdateStatement update = getSQLUpdateStatement();
         SQLExprTableSource from = new SQLExprTableSource(new SQLIdentifierExpr(table), _alias);
         update.setTableSource(from);
@@ -189,7 +189,7 @@ public class SQLUpdateBuilderImpl :  SQLUpdateBuilder {
     }
 
     override
-    public SQLBuilder where(string expr) {
+    SQLBuilder where(string expr) {
         SQLUpdateStatement update = getSQLUpdateStatement();
 
         SQLExpr exprObj = SQLUtils.toSQLExpr(expr, dbType);
@@ -199,7 +199,7 @@ public class SQLUpdateBuilderImpl :  SQLUpdateBuilder {
     }
 
     override
-    public SQLBuilder whereAnd(string expr) {
+    SQLBuilder whereAnd(string expr) {
         SQLUpdateStatement update = getSQLUpdateStatement();
 
         SQLExpr exprObj = SQLUtils.toSQLExpr(expr, dbType);
@@ -210,7 +210,7 @@ public class SQLUpdateBuilderImpl :  SQLUpdateBuilder {
     }
 
     override
-    public SQLBuilder whereOr(string expr) {
+    SQLBuilder whereOr(string expr) {
         SQLUpdateStatement update = getSQLUpdateStatement();
 
         SQLExpr exprObj = SQLUtils.toSQLExpr(expr, dbType);
@@ -221,7 +221,7 @@ public class SQLUpdateBuilderImpl :  SQLUpdateBuilder {
     }
 
     override
-    public SQLUpdateBuilder set(string[] items...) {
+    SQLUpdateBuilder set(string[] items...) {
         SQLUpdateStatement update = getSQLUpdateStatement();
         foreach (string item ; items) {
             SQLUpdateSetItem updateSetItem = SQLUtils.toUpdateSetItem(item, dbType);
@@ -231,7 +231,7 @@ public class SQLUpdateBuilderImpl :  SQLUpdateBuilder {
         return this;
     }
     
-    public SQLUpdateBuilderImpl setValue(Map!(string, Variant) values) {
+    SQLUpdateBuilderImpl setValue(Map!(string, Variant) values) {
         foreach (string k, Variant v ; values) {
             setValue(k, v);
         }
@@ -239,7 +239,7 @@ public class SQLUpdateBuilderImpl :  SQLUpdateBuilder {
         return this;
     }
     
-    public SQLUpdateBuilderImpl setValue(string column, Variant value) {
+    SQLUpdateBuilderImpl setValue(string column, Variant value) {
         SQLUpdateStatement update = getSQLUpdateStatement();
         
         SQLExpr columnExpr = SQLUtils.toSQLExpr(column, dbType);
@@ -253,14 +253,14 @@ public class SQLUpdateBuilderImpl :  SQLUpdateBuilder {
         return this;
     }
 
-    public SQLUpdateStatement getSQLUpdateStatement() {
+    SQLUpdateStatement getSQLUpdateStatement() {
         if (stmt is null) {
             stmt = createSQLUpdateStatement();
         }
         return stmt;
     }
 
-    public SQLUpdateStatement createSQLUpdateStatement() {
+    SQLUpdateStatement createSQLUpdateStatement() {
         if (DBType.MYSQL.name == dbType) {
             return new MySqlUpdateStatement();    
         }
@@ -280,7 +280,11 @@ public class SQLUpdateBuilderImpl :  SQLUpdateBuilder {
         return new SQLUpdateStatement();
     }
     
-    override public string toString() {
+    override string toString() {
         return SQLUtils.toSQLString(stmt, dbType);
+    }
+    
+    string toString(FormatOption option) {
+        return SQLUtils.toSQLString(stmt, dbType, option);
     }
 }
