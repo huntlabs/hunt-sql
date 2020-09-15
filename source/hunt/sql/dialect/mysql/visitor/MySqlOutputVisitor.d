@@ -67,6 +67,8 @@ public class MySqlOutputVisitor : SQLASTOutputVisitor , MySqlASTVisitor {
     alias visit = SQLASTOutputVisitor.visit;
     alias endVisit = SQLASTOutputVisitor.endVisit;
 
+    private char _quotes = '`';
+
     this(){
         this.dbType = DBType.MYSQL.name;
         this.shardingSupport = true;
@@ -947,8 +949,16 @@ public class MySqlOutputVisitor : SQLASTOutputVisitor , MySqlASTVisitor {
                     }
 
                     SQLExpr column = columns.get(i);
-                    if (cast(SQLIdentifierExpr)(column) !is null) {
-                        print0((cast(SQLIdentifierExpr) column).getName());
+                    SQLIdentifierExpr identifierExpr = cast(SQLIdentifierExpr)(column);
+                    if (identifierExpr !is null) {
+                        string name = identifierExpr.getName();
+                        if(isEnabled(VisitorFeature.OutputQuotedIdentifier)) {
+                            print0(_quotes ~ name ~ _quotes);
+                        } else {
+                            print0(name);
+                        }
+
+                        // print0((cast(SQLIdentifierExpr) column).getName());
                     } else {
                         printExpr(column);
                     }
