@@ -993,7 +993,7 @@ class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, Printab
     }
 
     protected void printTableSource(SQLTableSource x) {
-        auto clazz = typeid(x);
+        auto clazz = typeid(cast(Object)x);
         if (clazz == typeid(SQLJoinTableSource)) {
             visit(cast(SQLJoinTableSource) x);
         } else  if (clazz == typeid(SQLExprTableSource)) {
@@ -1006,7 +1006,7 @@ class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, Printab
     }
 
     protected void printQuery(SQLSelectQuery x) {
-        auto clazz = typeid(x);
+        auto clazz = typeid(cast(Object)x);
         if (clazz == typeid(SQLSelectQueryBlock)) {
             visit(cast(SQLSelectQueryBlock) x);
         } else if (clazz == typeid(SQLUnionQuery)) {
