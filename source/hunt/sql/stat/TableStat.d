@@ -18,7 +18,7 @@ module hunt.sql.stat.TableStat;
 import hunt.sql.SQLUtils;
 import hunt.sql.ast.SQLExpr;
 import hunt.sql.ast.expr.SQLPropertyExpr;
-import hunt.util.Serialize;
+import hunt.serialization.JsonSerializer;
 import hunt.sql.util.FnvHash;
 import hunt.sql.util.DBType;
 import hunt.String;

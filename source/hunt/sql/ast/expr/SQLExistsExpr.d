@@ -15,7 +15,7 @@
  */
 module hunt.sql.ast.expr.SQLExistsExpr;
 
-import hunt.util.Serialize;
+import hunt.serialization.JsonSerializer;
 
 import hunt.collection;
 
