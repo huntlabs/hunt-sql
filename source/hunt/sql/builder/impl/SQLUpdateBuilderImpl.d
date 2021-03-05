@@ -86,27 +86,27 @@ class SQLUpdateBuilderImpl :  SQLUpdateBuilder {
         TypeInfo typeInfo = obj.type;
         
         if (typeInfo == typeid(int)) {
-            return new SQLIntegerExpr(obj.get!int());
+            return new SQLIntegerExpr(cast(long)obj.get!int());
         }
 
         if (typeInfo == typeid(uint)) {
-            return new SQLIntegerExpr(cast(int)obj.get!uint());
+            return new SQLIntegerExpr(cast(long)obj.get!uint());
         }
         
         if (typeInfo == typeid(short)) {
-            return new SQLIntegerExpr(cast(int)obj.get!short());
+            return new SQLIntegerExpr(cast(long)obj.get!short());
         }
         
         if (typeInfo == typeid(ushort)) {
-            return new SQLIntegerExpr(cast(int)obj.get!ushort());
+            return new SQLIntegerExpr(cast(long)obj.get!ushort());
         }
         
         if (typeInfo == typeid(long)) {
-            return new SQLIntegerExpr(cast(int)obj.get!long());
+            return new SQLIntegerExpr(cast(long)obj.get!long());
         }
         
         if (typeInfo == typeid(ulong)) {
-            return new SQLIntegerExpr(cast(int)obj.get!ulong());
+            return new SQLIntegerExpr(cast(long)obj.get!ulong());
         }
         
         if (typeInfo == typeid(double)) {
