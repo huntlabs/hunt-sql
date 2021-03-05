@@ -22,7 +22,8 @@ import hunt.sql.ast.expr.SQLNumericLiteralExpr;
 import hunt.sql.ast.expr.SQLValuesExpr;
 import hunt.sql.ast.expr.SQLValuableExpr;
 import hunt.Number;
-import hunt.Integer;
+// import hunt.Integer;
+import hunt.Long;
 import hunt.collection;
 import hunt.util.StringBuilder;
 
@@ -42,8 +43,8 @@ public class SQLIntegerExpr : SQLNumericLiteralExpr , SQLValuableExpr {
         this.number = number;
     }
 
-    public this(int number){
-        this.number = new Integer(number);
+    public this(long number){
+        this.number = new Long(number);
     }
 
     public override Number getNumber() {
@@ -54,12 +55,12 @@ public class SQLIntegerExpr : SQLNumericLiteralExpr , SQLValuableExpr {
         this.number = number;
     }
 
-    public void setNumber(int number) {
-        this.number = new Integer(number);
+    public void setNumber(long number) {
+        this.number = new Long(number);
     }
 
     override public void output(StringBuilder buf) {
-        buf.append(this.number.intValue);
+        buf.append(this.number.longValue);
     }
 
     override  protected void accept0(SQLASTVisitor visitor) {
