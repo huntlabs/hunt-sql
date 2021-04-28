@@ -634,7 +634,19 @@ public class PGOutputVisitor : SQLASTOutputVisitor , PGASTVisitor//, OracleASTVi
     public void endVisit(PGShowStatement x) {
         
     }
+
+    override bool visit(SQLBlobExpr x) {
+        print0("'\\x");
+        print0(x.getHex());
+        print('\'');
+
+        return false;
+    }
     
+    override void endVisit(SQLBlobExpr x) {
+        
+    }    
+
     override
     public bool visit(PGShowStatement x) {
         print0(ucase ? "SHOW " : "show ");

@@ -3105,6 +3105,31 @@ class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, Printab
         return false;
     }
 
+
+    override
+    bool visit(SQLBlobExpr x) {
+        if (this.parameterized) {
+            print('?');
+            incrementReplaceCunt();
+
+            if(this.parameters !is null){
+                ExportParameterVisitorUtils.exportParameter(this.parameters, x);
+            }
+            return false;
+        }
+
+        print0("0x");
+        print0(x.getHex());
+
+        String charset = cast(String) x.getAttribute("USING");
+        if (charset !is null) {
+            print0(ucase ? " USING " : " using ");
+            print0(charset.value());
+        }
+
+        return false;
+    }    
+
     override
     bool visit(SQLSetStatement x) {
         bool printSet = x.getAttribute("parser.set") == Boolean.TRUE || !DBType.ORACLE.opEquals(dbType);

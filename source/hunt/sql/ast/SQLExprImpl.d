@@ -19,7 +19,7 @@ abstract class SQLExprImpl : SQLObjectImpl, SQLExpr {
     override public abstract size_t toHash();
 
     public override SQLExpr clone() {
-        throw new Exception("UnsupportedOperation");
+        throw new Exception("Unsupported Operation");
     }
 
     public override SQLDataType computeDataType() {

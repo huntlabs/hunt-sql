@@ -4290,6 +4290,19 @@ public class MySqlOutputVisitor : SQLASTOutputVisitor , MySqlASTVisitor {
         return false;
     }
 
+
+    override bool visit(SQLBlobExpr x) {
+        print0("\"0x");
+        print0(x.getHex());
+        print('"');
+
+        return false;
+    }
+    
+    override void endVisit(SQLBlobExpr x) {
+        
+    }    
+
     
     override protected void print0(Bytes data) {
         // FIXME: Needing refactor or cleanup -@zhangxueping at 4/2/2019, 5:11:53 PM
