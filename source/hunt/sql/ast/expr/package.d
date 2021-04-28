@@ -12,6 +12,7 @@ public import hunt.sql.ast.expr.SQLBinaryOperator;
 public import hunt.sql.ast.expr.SQLBinaryOpExpr;
 public import hunt.sql.ast.expr.SQLBinaryOpExprGroup;
 public import hunt.sql.ast.expr.SQLBooleanExpr;
+public import hunt.sql.ast.expr.SQLBlobExpr;
 public import hunt.sql.ast.expr.SQLCaseExpr;
 public import hunt.sql.ast.expr.SQLCaseStatement;
 public import hunt.sql.ast.expr.SQLCastExpr;

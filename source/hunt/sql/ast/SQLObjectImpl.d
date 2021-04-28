@@ -216,7 +216,7 @@ abstract class SQLObjectImpl : SQLObject {
 }
 
 
- public /*static*/ class ValuesClause : SQLObjectImpl {
+class ValuesClause : SQLObjectImpl {
 
         private      List!SQLExpr values;
         private  string        originalString;

@@ -33,6 +33,7 @@ import hunt.sql.dialect.postgresql.ast.stmt.PGUpdateStatement;
 import hunt.sql.util.DBType;
 import hunt.sql.builder.impl.SQLBuilderImpl;
 import hunt.sql.builder.SQLBuilder;
+import hunt.sql.ast.expr.SQLBlobExpr;
 import hunt.sql.ast.expr.SQLBooleanExpr;
 import hunt.sql.ast.expr.SQLCharExpr;
 import hunt.sql.ast.expr.SQLIntegerExpr;
@@ -125,6 +126,11 @@ class SQLUpdateBuilderImpl :  SQLUpdateBuilder {
 
         if (typeInfo == typeid(string)) {
             return new SQLCharExpr(obj.get!string());
+        }
+
+        if(typeInfo == typeid(ubyte[])) {
+            ubyte[] data = obj.get!(ubyte[])();
+            return new SQLBlobExpr(data);
         }
 
 

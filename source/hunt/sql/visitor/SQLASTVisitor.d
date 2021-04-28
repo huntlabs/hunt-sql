@@ -118,6 +118,10 @@ public interface SQLASTVisitor {
 
     void endVisit(SQLHexExpr x);
 
+    bool visit(SQLBlobExpr x);
+
+    void endVisit(SQLBlobExpr x);
+
     bool visit(SQLSelect x);
 
     void endVisit(SQLSelect select);

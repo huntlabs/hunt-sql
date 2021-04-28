@@ -379,6 +379,13 @@ class SQLASTVisitorAdapter : SQLASTVisitor {
 
     }
 
+    bool visit(SQLBlobExpr x) {
+        return false;
+    }
+
+    void endVisit(SQLBlobExpr x) {
+
+    }
     //override
     void endVisit(SQLSetStatement x) {
 
