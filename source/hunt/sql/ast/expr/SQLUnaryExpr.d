@@ -10,7 +10,6 @@ import hunt.sql.ast.SQLObject;
 public class SQLUnaryExpr : SQLExprImpl // Serializable 
 {
 
-    private static  long serialVersionUID = 1L;
     private SQLExpr           expr;
     private SQLUnaryOperator  operator;
 

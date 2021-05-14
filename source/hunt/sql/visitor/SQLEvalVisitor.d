@@ -20,13 +20,27 @@ import hunt.collection;
 import hunt.sql.visitor.functions.Function;
 import hunt.sql.visitor.SQLASTVisitor;
 
-public interface SQLEvalVisitor : SQLASTVisitor {
+import std.concurrency : initOnce;
 
-    public static  string EVAL_VALUE       = "eval.value";
-    public static  string EVAL_EXPR        = "eval.expr";
-    public static const  Object EVAL_ERROR       = new Object();
-    public static const  Object EVAL_VALUE_COUNT = new Object();
-    public static const  Object EVAL_VALUE_NULL  = new Object();
+interface SQLEvalVisitor : SQLASTVisitor {
+
+    enum  string EVAL_VALUE       = "eval.value";
+    enum  string EVAL_EXPR        = "eval.expr";
+
+    static Object EVAL_ERROR() {
+        __gshared Object inst;
+        return initOnce!inst(new Object());
+    }
+    
+    static Object EVAL_VALUE_COUNT() {
+        __gshared Object inst;
+        return initOnce!inst(new Object());
+    }
+    
+    static Object EVAL_VALUE_NULL() {
+        __gshared Object inst;
+        return initOnce!inst(new Object());
+    }
 
     Function getFunction(string funcName);
 

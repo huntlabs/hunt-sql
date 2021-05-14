@@ -29,8 +29,6 @@ import hunt.util.StringBuilder;
 
 public class SQLMethodInvokeExpr : SQLExprImpl , SQLReplaceable//, Serializable 
 {
-
-    private static  long   serialVersionUID = 1L;
     private string              name;
     private SQLExpr             owner;
     private List!SQLExpr parameters;

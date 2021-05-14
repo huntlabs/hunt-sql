@@ -13,8 +13,6 @@ import hunt.collection;
 
 public class SQLAggregateExpr : SQLExprImpl , SQLReplaceable {
 
-    private static  long     serialVersionUID = 1L;
-
     protected string              methodName;
     protected long                _methodNameHashCod64;
 

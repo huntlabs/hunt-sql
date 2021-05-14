@@ -730,17 +730,31 @@ public class TableStat
 
         public static class Mode
         {
-            static  const Mode Insert = new Mode(1); //
-            static  const Mode Update = new Mode(2); //
-            static  const Mode Delete = new Mode(4); //
-            static  const Mode Select = new Mode(8); //
-            static  const Mode Merge = new Mode(16); //
-            static  const Mode Truncate = new Mode(32); 
-            static  const Mode Alter = new Mode(64); //
-            static  const Mode Drop = new Mode(128); //
-            static  const Mode DropIndex = new Mode(256);
-            static  const Mode CreateIndex = new Mode(512);
-            static  const Mode Replace = new Mode(1024);
+            __gshared Mode Insert;
+            __gshared Mode Update;
+            __gshared Mode Delete;
+            __gshared Mode Select;
+            __gshared Mode Merge;
+            __gshared Mode Truncate;
+            __gshared Mode Alter;
+            __gshared Mode Drop;
+            __gshared Mode DropIndex;
+            __gshared Mode CreateIndex;
+            __gshared Mode Replace;
+
+            shared static this() {
+                Insert = new Mode(1); //
+                Update = new Mode(2); //
+                Delete = new Mode(4); //
+                Select = new Mode(8); //
+                Merge = new Mode(16); //
+                Truncate = new Mode(32); 
+                Alter = new Mode(64); //
+                Drop = new Mode(128); //
+                DropIndex = new Mode(256);
+                CreateIndex = new Mode(512);
+                Replace = new Mode(1024);                
+            }
 
 
             public int mark;

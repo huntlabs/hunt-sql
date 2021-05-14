@@ -24,7 +24,6 @@ import hunt.sql.ast.expr.SQLBooleanExpr;
 public class SQLBetweenExpr : SQLExprImpl , SQLReplaceable //Serializable, 
 {
 
-    private static  long serialVersionUID = 1L;
     public SQLExpr            testExpr;
     private bool           not;
     public SQLExpr            beginExpr;

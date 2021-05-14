@@ -37,8 +37,6 @@ import hunt.util.StringBuilder;
 
 public class SQLBinaryOpExpr : SQLExprImpl , SQLReplaceable//, Serializable 
 {
-
-    private static  long   serialVersionUID = 1L;
     public SQLExpr           left;
     public SQLExpr           right;
     public SQLBinaryOperator operator;

@@ -43,9 +43,9 @@ import hunt.text;
 import std.uni;
 
 public class PGSQLStatementParser : SQLStatementParser {
-    public static  string TIME_ZONE = "TIME ZONE";
-    public static  string TIME = "TIME";
-    public static  string LOCAL = "LOCAL";
+    enum string TIME_ZONE = "TIME ZONE";
+    enum string TIME = "TIME";
+    enum string LOCAL = "LOCAL";
 
     public this(PGExprParser parser) {
         super(parser);
