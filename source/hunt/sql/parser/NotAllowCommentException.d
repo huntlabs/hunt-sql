@@ -18,7 +18,6 @@ import hunt.sql.parser.ParserException;
 
 public class NotAllowCommentException : ParserException {
 
-    private static  long serialVersionUID = 1L;
 
     public this(){
         this("comment not allow");

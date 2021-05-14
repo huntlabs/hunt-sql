@@ -10,8 +10,6 @@ import hunt.util.StringBuilder;
 
 public  class SQLNotExpr : SQLExprImpl //, Serializable 
 {
-
-    private static  long serialVersionUID = 1L;
     public SQLExpr            expr;
 
     public this(){

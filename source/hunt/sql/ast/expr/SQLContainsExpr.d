@@ -23,8 +23,6 @@ import hunt.sql.ast.expr.SQLBooleanExpr;
 
 public  class SQLContainsExpr : SQLExprImpl , SQLReplaceable//, Serializable 
 {
-
-    private static  long serialVersionUID = 1L;
     private bool not = false;
     private SQLExpr expr;
     private List!SQLExpr targetList;

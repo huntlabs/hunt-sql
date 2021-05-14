@@ -26,7 +26,6 @@ import hunt.util.StringBuilder;
 public class SQLCaseExpr : SQLExprImpl , SQLReplaceable//, Serializable 
 {
 
-    private static  long serialVersionUID = 1L;
     private  List!Item  items;
     private SQLExpr           valueExpr;
     private SQLExpr           elseExpr;
@@ -107,8 +106,6 @@ public class SQLCaseExpr : SQLExprImpl , SQLReplaceable//, Serializable
 
     public static class Item : SQLObjectImpl , SQLReplaceable//, Serializable 
     {
-
-        private static  long serialVersionUID = 1L;
         private SQLExpr           conditionExpr;
         private SQLExpr           valueExpr;
 

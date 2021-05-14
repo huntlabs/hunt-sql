@@ -1,17 +1,22 @@
 
 module hunt.sql.parser.SymbolTable;
 
+import std.concurrency:initOnce;
+
 /**
  */
 public class SymbolTable {
     // private  enum UTF8 = "UTF-8";
     // private static  bool JVM_16;
-    static this()
-    {
-        global = new SymbolTable(32768);
-    }
+    // static this()
+    // {
+    //     global = new SymbolTable(32768);
+    // }
 
-    public static SymbolTable global;
+    static SymbolTable global() {
+        __gshared SymbolTable inst;
+        return initOnce!inst(new SymbolTable(32768));
+    }
 
     private  Entry[] entries;
     private  int      indexMask;

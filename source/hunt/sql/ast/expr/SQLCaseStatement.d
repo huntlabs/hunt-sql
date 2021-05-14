@@ -79,7 +79,6 @@ public class SQLCaseStatement : SQLStatementImpl //, Serializable
     public static class Item : SQLObjectImpl //, Serializable 
     {
 
-        private static  long serialVersionUID = 1L;
         private SQLExpr           conditionExpr;
         private SQLStatement      statement;
 

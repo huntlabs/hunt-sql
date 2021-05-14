@@ -66,8 +66,9 @@ public class PGUtils {
         return words.contains(name_lower);
     }
 
-    private  static long[] pseudoColumnHashCodes;
-    static this(){
+    private  __gshared long[] pseudoColumnHashCodes;
+    
+    shared static this(){
         long[] array = [
                 FnvHash.Constants.CURRENT_TIMESTAMP
         ];

@@ -28,7 +28,6 @@ import hunt.sql.ast.SQLObject;
 public  class SQLExistsExpr : SQLExprImpl //, Serializable 
 {
 
-    private static  long serialVersionUID = 1L;
     public bool            not              = false;
     public SQLSelect          subQuery;
 

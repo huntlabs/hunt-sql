@@ -29,8 +29,6 @@ import hunt.util.StringBuilder;
 
 public class SQLInSubQueryExpr : SQLExprImpl //, Serializable 
 {
-
-    private static  long serialVersionUID = 1L;
     private bool           not              = false;
     private SQLExpr           expr;
 

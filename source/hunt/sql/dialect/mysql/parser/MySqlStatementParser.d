@@ -56,30 +56,30 @@ import hunt.sql.dialect.mysql.parser.MySqlSelectIntoParser;
 
 public class MySqlStatementParser : SQLStatementParser {
 
-    private static  string AUTO_INCREMENT = "AUTO_INCREMENT";
-    private static  string COLLATE2 = "COLLATE";
-    private static  string CHAIN = "CHAIN";
-    private static  string ENGINES = "ENGINES";
-    private static  string ENGINE = "ENGINE";
-    private static  string BINLOG = "BINLOG";
-    private static  string EVENTS = "EVENTS";
-    private static  string SESSION = "SESSION";
-    private static  string GLOBAL = "GLOBAL";
-    private static  string VARIABLES = "VARIABLES";
-    private static  string STATUS = "STATUS";
-    private static  string RESET = "RESET";
-    private static  string DESCRIBE = "DESCRIBE";
-    private static  string WRITE = "WRITE";
-    private static  string READ = "READ";
-    private static  string LOCAL = "LOCAL";
-    private static  string TABLES = "TABLES";
-    private static  string TEMPORARY = "TEMPORARY";
-    private static  string SPATIAL = "SPATIAL";
-    private static  string LOW_PRIORITY = "LOW_PRIORITY";
-    private static  string CONNECTION = "CONNECTION";
-    private static  string EXTENDED = "EXTENDED";
-    private static  string PARTITIONS = "PARTITIONS";
-    private static  string FORMAT = "FORMAT";
+    private enum string AUTO_INCREMENT = "AUTO_INCREMENT";
+    private enum string COLLATE2 = "COLLATE";
+    private enum string CHAIN = "CHAIN";
+    private enum string ENGINES = "ENGINES";
+    private enum string ENGINE = "ENGINE";
+    private enum string BINLOG = "BINLOG";
+    private enum string EVENTS = "EVENTS";
+    private enum string SESSION = "SESSION";
+    private enum string GLOBAL = "GLOBAL";
+    private enum string VARIABLES = "VARIABLES";
+    private enum string STATUS = "STATUS";
+    private enum string RESET = "RESET";
+    private enum string DESCRIBE = "DESCRIBE";
+    private enum string WRITE = "WRITE";
+    private enum string READ = "READ";
+    private enum string LOCAL = "LOCAL";
+    private enum string TABLES = "TABLES";
+    private enum string TEMPORARY = "TEMPORARY";
+    private enum string SPATIAL = "SPATIAL";
+    private enum string LOW_PRIORITY = "LOW_PRIORITY";
+    private enum string CONNECTION = "CONNECTION";
+    private enum string EXTENDED = "EXTENDED";
+    private enum string PARTITIONS = "PARTITIONS";
+    private enum string FORMAT = "FORMAT";
 
     private int maxIntoClause = -1;
 

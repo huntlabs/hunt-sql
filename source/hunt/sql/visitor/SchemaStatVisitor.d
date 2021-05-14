@@ -1650,27 +1650,18 @@ public class SchemaStatVisitor : SQLASTVisitorAdapter {
 
             TableStat.Mode mode = getMode();
             if (mode !is null) {
-                switch (mode.mark) {
-                    case TableStat.Mode.Delete.mark:
-                        stat.incrementDeleteCount();
-                        break;
-                    case TableStat.Mode.Insert.mark:
-                        stat.incrementInsertCount();
-                        break;
-                    case TableStat.Mode.Update.mark:
-                        stat.incrementUpdateCount();
-                        break;
-                    case TableStat.Mode.Select.mark:
-                        stat.incrementSelectCount();
-                        break;
-                    case TableStat.Mode.Merge.mark:
-                        stat.incrementMergeCount();
-                        break;
-                    case TableStat.Mode.Drop.mark:
-                        stat.incrementDropCount();
-                        break;
-                    default:
-                        break;
+                if(mode.mark == TableStat.Mode.Delete.mark) {
+                    stat.incrementDeleteCount();
+                } else if(mode.mark == TableStat.Mode.Insert.mark) {
+                    stat.incrementInsertCount();
+                } else if(mode.mark == TableStat.Mode.Update.mark) {
+                    stat.incrementUpdateCount();
+                } else if(mode.mark == TableStat.Mode.Select.mark) {
+                    stat.incrementSelectCount();
+                } else if(mode.mark == TableStat.Mode.Merge.mark) {
+                    stat.incrementMergeCount();
+                } else if(mode.mark == TableStat.Mode.Drop.mark) {
+                    stat.incrementDropCount();
                 }
             }
         } else {

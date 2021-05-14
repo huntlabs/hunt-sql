@@ -12,8 +12,6 @@ import hunt.util.StringBuilder;
 
 public class SQLQueryExpr : SQLExprImpl //, Serializable 
 {
-
-    private static  long serialVersionUID = 1L;
     public SQLSelect          subQuery;
 
     public this(){
