@@ -6,6 +6,8 @@ import hunt.sql.ast.SQLExpr;
 import hunt.sql.ast.SQLDataType;
 import hunt.sql.visitor.SQLASTVisitor;
 import hunt.sql.util.FnvHash;
+
+import hunt.Boolean;
 import hunt.collection;
 
 
@@ -38,11 +40,11 @@ public class SQLArrayDataType : SQLObjectImpl , SQLDataType {
         return new ArrayList!SQLExpr();
     }
 
-    public bool getWithTimeZone() {
-        return false;
+    public Boolean getWithTimeZone() {
+        return Boolean.FALSE;
     }
 
-    public void setWithTimeZone(bool value) {
+    public void setWithTimeZone(Boolean value) {
         throw new Exception("UnsupportedOperation");
     }
 

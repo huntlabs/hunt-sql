@@ -4,9 +4,11 @@ import hunt.sql.ast.SQLDataType;
 import hunt.sql.ast.SQLObjectImpl;
 import hunt.sql.ast.SQLExpr;
 import hunt.sql.visitor.SQLASTVisitor;
-import hunt.collection;
 import hunt.sql.util.FnvHash;
 import hunt.sql.ast.SQLObject;
+
+import hunt.Boolean;
+import hunt.collection;
 
 public class SQLMapDataType : SQLObjectImpl , SQLDataType {
     private string dbType;
@@ -45,11 +47,11 @@ public class SQLMapDataType : SQLObjectImpl , SQLDataType {
     }
 
     
-    public override bool getWithTimeZone() {
-        return false;
+    public override Boolean getWithTimeZone() {
+        return Boolean.FALSE;
     }
 
-    public override void setWithTimeZone(bool value) {
+    public override void setWithTimeZone(Boolean value) {
         throw new Exception("UnsupportedOperation");
     }
 

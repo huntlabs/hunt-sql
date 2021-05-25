@@ -594,7 +594,7 @@ public class SQLTransformUtils {
             x.setName(SQLDataType.Constants.TIMESTAMP);
             if (x.isWithLocalTimeZone()) {
                 x.setWithLocalTimeZone(false);
-                x.setWithTimeZone(false);
+                x.setWithTimeZone(null);
             }
             dataType = x;
         } else if (nameHash == FnvHash.Constants.DATETIME) {

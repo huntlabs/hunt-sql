@@ -3,6 +3,7 @@ module hunt.sql.ast.SQLDataType;
 import hunt.sql.ast.SQLObject;
 import hunt.sql.ast.SQLExpr;
 
+import hunt.Boolean;
 import hunt.collection;
 
 
@@ -16,8 +17,8 @@ public interface SQLDataType : SQLObject {
 
     List!SQLExpr getArguments();
 
-    bool getWithTimeZone();
-    void  setWithTimeZone(bool value);
+    Boolean getWithTimeZone();
+    void  setWithTimeZone(Boolean value);
 
     bool isWithLocalTimeZone();
     void setWithLocalTimeZone(bool value);

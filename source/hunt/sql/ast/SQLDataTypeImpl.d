@@ -1,6 +1,5 @@
 module hunt.sql.ast.SQLDataTypeImpl;
 
-import hunt.collection;
 import hunt.sql.ast.SQLObjectImpl;
 import hunt.sql.ast.SQLDataType;
 import hunt.sql.ast.SQLExpr;
@@ -9,6 +8,9 @@ import hunt.sql.ast.SQLObject;
 import hunt.sql.util.FnvHash;
 import hunt.sql.SQLUtils;
 
+import hunt.Boolean;
+import hunt.collection;
+
 
 
 public class SQLDataTypeImpl : SQLObjectImpl , SQLDataType {
@@ -16,7 +18,7 @@ public class SQLDataTypeImpl : SQLObjectImpl , SQLDataType {
     private         string        name;
     private         long          _nameHashCode64;
     protected  List!SQLExpr arguments;
-    private         bool       withTimeZone;
+    private         Boolean       withTimeZone;
     private         bool       withLocalTimeZone = false;
     private         string        dbType;
 
@@ -91,7 +93,8 @@ public class SQLDataTypeImpl : SQLObjectImpl , SQLDataType {
 
         if (name !is null ? !(name == dataType.name) : dataType.name !is null) return false;
         if (arguments !is null ? !(arguments == dataType.arguments) : dataType.arguments !is null) return false;
-        return withTimeZone !is false ? withTimeZone == (dataType.withTimeZone) : dataType.withTimeZone == false;
+        return withTimeZone !is null ? 
+            (withTimeZone.value() == dataType.withTimeZone.value) : (dataType.withTimeZone is null);
     }
 
     override public  size_t toHash() @trusted nothrow {
@@ -99,11 +102,11 @@ public class SQLDataTypeImpl : SQLObjectImpl , SQLDataType {
         return cast(size_t)(value ^ (value >>> 32));
     }
 
-    public override bool getWithTimeZone() {
+    public override Boolean getWithTimeZone() {
         return withTimeZone;
     }
 
-    public void setWithTimeZone(bool withTimeZone) {
+    public void setWithTimeZone(Boolean withTimeZone) {
         this.withTimeZone = withTimeZone;
     }
 

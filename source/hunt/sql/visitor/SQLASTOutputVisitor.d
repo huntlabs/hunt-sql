@@ -1209,9 +1209,9 @@ class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, Printab
             print(')');
         }
 
-        bool withTimeZone = x.getWithTimeZone();
-        /* if (withTimeZone !is null) */ {
-            if (withTimeZone) {
+        Boolean withTimeZone = x.getWithTimeZone();
+        if (withTimeZone !is null)  {
+            if (withTimeZone.value()) {
                 if (x.isWithLocalTimeZone()) {
                     print0(ucase ? " WITH LOCAL TIME ZONE" : " with local time zone");
                 } else {
@@ -1221,6 +1221,7 @@ class SQLASTOutputVisitor : SQLASTVisitorAdapter , ParameterizedVisitor, Printab
                 print0(ucase ? " WITHOUT TIME ZONE" : " without time zone");
             }
         }
+        
         this.parameterized = parameterized;
     }
 

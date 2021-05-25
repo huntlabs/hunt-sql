@@ -2638,12 +2638,12 @@ public class SQLExprParser : SQLParser {
                 lexer.nextToken();
                 acceptIdentifier("TIME");
                 acceptIdentifier("ZONE");
-                dataType.setWithTimeZone(false);
+                dataType.setWithTimeZone(Boolean.FALSE);
             } else if (lexer.token == Token.WITH) {
                 lexer.nextToken();
                 acceptIdentifier("TIME");
                 acceptIdentifier("ZONE");
-                dataType.setWithTimeZone(true);
+                dataType.setWithTimeZone(Boolean.TRUE);
             }
         }
 
