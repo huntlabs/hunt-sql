@@ -96,6 +96,7 @@ class SQLSelectBuilderImpl : SQLSelectBuilder {
             queryBlock.addSelectItem(selectItem);
         }
 
+
         return this;
     }
 

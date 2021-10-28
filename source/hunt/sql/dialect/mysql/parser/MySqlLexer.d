@@ -32,6 +32,7 @@ import std.string;
 
 import std.concurrency : initOnce;
 
+import hunt.text;
 alias  hunt_charAt = hunt.text.Common.charAt;
 
 public class MySqlLexer : Lexer {
