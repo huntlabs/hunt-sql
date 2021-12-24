@@ -48,7 +48,7 @@ import hunt.sql.dialect.postgresql.visitor.PGASTVisitor;
 
 import hunt.Byte;
 import hunt.collection;
-import hunt.logging.ConsoleLogger;
+import hunt.logging;
 import hunt.String;
 import hunt.util.Appendable;
 import hunt.util.Common;

@@ -22,7 +22,7 @@ import hunt.sql.util.HexBin;
 import hunt.sql.ast.expr.SQLValuableExpr;
 import hunt.sql.ast.expr.SQLLiteralExpr;
 import hunt.collection;
-import hunt.logging.ConsoleLogger;
+import hunt.logging;
 import hunt.Byte;
 import hunt.Nullable;
 import hunt.util.StringBuilder;

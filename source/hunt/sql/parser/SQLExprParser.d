@@ -43,7 +43,7 @@ import hunt.sql.parser.SQLParserFeature;
 import hunt.Exceptions;
 import hunt.math;
 
-import hunt.logging.ConsoleLogger;
+import hunt.logging;
 
 import std.concurrency : initOnce;
 

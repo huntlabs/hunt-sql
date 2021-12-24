@@ -52,7 +52,7 @@ import hunt.sql.visitor.ExportParameterVisitorUtils;
 import hunt.collection;
 import hunt.Byte;
 import hunt.Exceptions;
-import hunt.logging.ConsoleLogger;
+import hunt.logging;
 import hunt.String;
 import hunt.Boolean;
 import hunt.Number;

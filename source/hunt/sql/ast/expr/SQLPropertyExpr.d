@@ -117,7 +117,7 @@ public  class SQLPropertyExpr : SQLExprImpl , SQLName {
     }
 
     override public void output(StringBuilder buf) {
-        import hunt.logging.ConsoleLogger;
+        import hunt.logging;
         SQLIdentifierExpr qe = cast(SQLIdentifierExpr)this.owner;
         this.owner.output(buf);
         buf.append(".");
